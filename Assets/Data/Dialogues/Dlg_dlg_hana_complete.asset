@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c597d33f149cdf04299a1085b446df21, type: 3}
+  m_Name: Dlg_dlg_hana_complete
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.DialogueData
+  dialogueID: dlg_hana_complete
+  lines:
+  - speakerNameKey: dlg_hana_complete_sp_0
+    textKey: dlg_hana_complete_tx_0
+    portraitOverride: {fileID: 0}
+  - speakerNameKey: dlg_hana_complete_sp_1
+    textKey: dlg_hana_complete_tx_1
+    portraitOverride: {fileID: 0}
+  setsStoryFlagOnFinish: flag_hana_bread_done
+  givesItemOnFinish: {fileID: 11400000, guid: 7b29f0021ee2f6944a6777661389af33, type: 2}
+  givesItemAmount: 1
+  consumesRequiredItem: {fileID: 11400000, guid: 461e4e5992c791d4b8aae3934d785ce8, type: 2}
+  consumesAmount: 4
+  unlocksDiaryPage: {fileID: 11400000, guid: a4e7fe317c1661e4ca6ad7ef5eac69e6, type: 2}

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b6de5f2ff841c44865dba62b4ee420, type: 3}
+  m_Name: NPC_npc_bach
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.NPCData
+  npcID: npc_bach
+  displayNameKey: name_npc_bach
+  roleTitleKey: role_npc_bach
+  portraitSprite: {fileID: 0}
+  worldSprite: {fileID: 1744481138330546997, guid: 3fd16121da456f243bc2242989f8838e, type: 3}
+  defaultDialogue: {fileID: 11400000, guid: 9c2705da7edda164ab5cd63c6cda24ce, type: 2}
+  conditionalDialogues:
+  - requiredStoryFlag: flag_tutorial_done
+    blockedByStoryFlag: flag_met_bach_at_gate
+    dialogue: {fileID: 11400000, guid: 8d0a5ac1a6ddef34685217aa0ff3d202, type: 2}
+  - requiredStoryFlag: flag_garden_bench_cleaned
+    blockedByStoryFlag: flag_bach_letters_read
+    dialogue: {fileID: 11400000, guid: 1c4206cda93e1eb44a194ee733410b0b, type: 2}
+  isHelperForBundleID: bundle_forgotten_garden
+  helperReadyStoryFlag: flag_bach_letters_read

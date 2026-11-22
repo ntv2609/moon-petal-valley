@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using MoonpetalValley.Core;
-using MoonpetalValley.Player;
 using MoonpetalValley.Farming;
 
 namespace MoonpetalValley.DebugTools
@@ -28,6 +27,7 @@ namespace MoonpetalValley.DebugTools
         [SerializeField] private Button btnDamageLightHP;
         [SerializeField] private Button btnGiveTestKit;
         [SerializeField] private Button btnWaterAllCrops;
+        [SerializeField] private Button btnSkipPrologue;
 
         private bool _isOpen;
         private float _refreshTimer;
@@ -45,16 +45,15 @@ namespace MoonpetalValley.DebugTools
             if (btnTpVillage != null) btnTpVillage.onClick.AddListener(() => TeleportTo("Spawn_Village"));
             if (btnTpGarden != null) btnTpGarden.onClick.AddListener(() => TeleportTo("Spawn_BachGarden"));
             if (btnTpForest != null) btnTpForest.onClick.AddListener(() => TeleportTo("Spawn_ForestEdge"));
-
-            if (btnTimePlus2H != null) btnTimePlus2H.onClick.AddListener(OnClickTimePlus2H);
-            if (btnTimeSetDusk != null) btnTimeSetDusk.onClick.AddListener(OnClickTimeSetDusk);
-            if (btnTimeNextDay != null) btnTimeNextDay.onClick.AddListener(OnClickTimeNextDay);
-
-            if (btnRestoreStats != null) btnRestoreStats.onClick.AddListener(OnClickRestoreStats);
-            if (btnForceExhaust != null) btnForceExhaust.onClick.AddListener(OnClickForceExhaust);
-            if (btnDamageLightHP != null) btnDamageLightHP.onClick.AddListener(OnClickDamageLightHP);
+            if (btnTimePlus2H != null) btnTimePlus2H.onClick.AddListener(() => { GameRoot.Instance?.Time?.AddHours(2f); RefreshStatusText(); });
+            if (btnTimeSetDusk != null) btnTimeSetDusk.onClick.AddListener(() => { GameRoot.Instance?.Time?.SetHour(19.83f); RefreshStatusText(); });
+            if (btnTimeNextDay != null) btnTimeNextDay.onClick.AddListener(() => { GameRoot.Instance?.Time?.AdvanceToNextDay(); RefreshStatusText(); });
+            if (btnRestoreStats != null) btnRestoreStats.onClick.AddListener(() => { GameRoot.Instance?.Stats?.RestoreStats(100, 100, true); RefreshStatusText(); });
+            if (btnForceExhaust != null) btnForceExhaust.onClick.AddListener(() => { GameRoot.Instance?.Stats?.ConsumeStamina(999, true); RefreshStatusText(); });
+            if (btnDamageLightHP != null) btnDamageLightHP.onClick.AddListener(() => { GameRoot.Instance?.Stats?.TakeLightDamage(25, true); RefreshStatusText(); });
             if (btnGiveTestKit != null) btnGiveTestKit.onClick.AddListener(OnClickGiveTestKit);
-            if (btnWaterAllCrops != null) btnWaterAllCrops.onClick.AddListener(OnClickWaterAllCrops);
+            if (btnWaterAllCrops != null) btnWaterAllCrops.onClick.AddListener(() => { FarmGridManager.Instance?.WaterAllTilesDebug(); RefreshStatusText(); });
+            if (btnSkipPrologue != null) btnSkipPrologue.onClick.AddListener(OnClickSkipPrologue);
         }
 
         private void OnEnable()
@@ -77,11 +76,7 @@ namespace MoonpetalValley.DebugTools
             if (_isOpen)
             {
                 _refreshTimer += Time.unscaledDeltaTime;
-                if (_refreshTimer >= 0.25f)
-                {
-                    _refreshTimer = 0f;
-                    RefreshStatusText();
-                }
+                if (_refreshTimer >= 0.25f) { _refreshTimer = 0f; RefreshStatusText(); }
             }
         }
 
@@ -113,44 +108,41 @@ namespace MoonpetalValley.DebugTools
             }
         }
 
-        private void OnClickTimePlus2H() { GameRoot.Instance?.Time?.AddHours(2f); RefreshStatusText(); }
-        private void OnClickTimeSetDusk() { GameRoot.Instance?.Time?.SetHour(19.83f); RefreshStatusText(); }
-        private void OnClickTimeNextDay() { GameRoot.Instance?.Time?.AdvanceToNextDay(); RefreshStatusText(); }
-        private void OnClickRestoreStats() { GameRoot.Instance?.Stats?.RestoreStats(100, 100, true); RefreshStatusText(); }
-        private void OnClickForceExhaust() { GameRoot.Instance?.Stats?.ConsumeStamina(999, true); RefreshStatusText(); }
-        private void OnClickDamageLightHP() { GameRoot.Instance?.Stats?.TakeLightDamage(25, true); RefreshStatusText(); }
-
         private void OnClickGiveTestKit()
         {
             if (GameRoot.Instance == null || GameRoot.Instance.Inventory == null) return;
             var inv = GameRoot.Instance.Inventory;
             inv.AddItemById("item_sunshine_bread", 2, false);
             inv.AddItemById("item_branch_wood", 10, false);
-            inv.AddItemById("item_seed_bag_1", 1, false);
+            inv.AddItemById("item_dew_barley", 4, false);
             inv.AddItemById("item_dew_barley_seed", 6, false);
-            GameEventBus.RaiseToastRequested("Đã thêm Bộ Test Đồ (2 Bánh Mì, 10 Gỗ, 1 Túi Hạt, 6 Hạt Lúa Mạch)!");
+            GameEventBus.RaiseToastRequested("Đã thêm Bộ Test (2 Bánh Mì, 10 Gỗ, 4 Lúa Mạch, 6 Hạt)!");
             RefreshStatusText();
         }
 
-        private void OnClickWaterAllCrops()
+        private void OnClickSkipPrologue()
         {
-            if (FarmGridManager.Instance != null) FarmGridManager.Instance.WaterAllTilesDebug();
+            if (GameRoot.Instance == null || GameRoot.Instance.Flags == null) return;
+            var f = GameRoot.Instance.Flags;
+            f.SetFlag("flag_intro_letter_read", true);
+            f.SetFlag("flag_greenhouse_cleared", true);
+            f.SetFlag("flag_lumi_awakened", true);
+            f.SetFlag("flag_solo_plant_failed", true);
+            f.SetFlag("flag_tutorial_done", true);
+            GameRoot.Instance.Inventory?.AddItemById("item_moonpetal_seed_core", 1, false);
+            GameEventBus.RaiseToastRequested("Đã bỏ qua Mở Đầu — sẵn sàng gặp Ông Bách làm Nhiệm Vụ 1!");
             RefreshStatusText();
         }
 
         private void OnClickTestToast()
         {
-            string msg = GameRoot.Instance != null && GameRoot.Instance.Loc != null
-                ? GameRoot.Instance.Loc.Get("toast_step1_test")
-                : "Kiểm thử thông báo tiếng Việt có dấu thành công!";
-            GameEventBus.RaiseToastRequested(msg);
+            GameEventBus.RaiseToastRequested("Kiểm thử thông báo tiếng Việt có dấu thành công!");
         }
 
         private void OnClickToggleTestFlag()
         {
             if (GameRoot.Instance == null || GameRoot.Instance.Flags == null) return;
-            bool next = !GameRoot.Instance.Flags.HasFlag(TestFlagId);
-            GameRoot.Instance.Flags.SetFlag(TestFlagId, next);
+            GameRoot.Instance.Flags.SetFlag(TestFlagId, !GameRoot.Instance.Flags.HasFlag(TestFlagId));
             RefreshStatusText();
         }
 
@@ -179,12 +171,9 @@ namespace MoonpetalValley.DebugTools
                 sb.AppendLine(string.Format("HP: {0}/{1} | Stamina: {2}/{3}",
                     st.CurrentLightHP, st.MaxLightHP, st.CurrentStamina, st.EffectiveMaxStamina));
             }
-            if (GameRoot.Instance.Inventory != null)
+            if (GameRoot.Instance.Diary != null)
             {
-                var inv = GameRoot.Instance.Inventory;
-                sb.AppendLine("Gỗ: " + inv.GetItemCount("item_branch_wood") +
-                              " | Lúa Mạch: " + inv.GetItemCount("item_dew_barley") +
-                              " | Hạt: " + inv.GetItemCount("item_dew_barley_seed"));
+                sb.AppendLine("Sổ tay: " + GameRoot.Instance.Diary.UnlockedCount + "/4 trang | Flags: " + GameRoot.Instance.Flags.GetAllActiveFlags().Count);
             }
             statusText.text = sb.ToString();
         }

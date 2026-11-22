@@ -5,6 +5,7 @@ using MoonpetalValley.DebugTools;
 using MoonpetalValley.TimeSystem;
 using MoonpetalValley.Player;
 using MoonpetalValley.Inventory;
+using MoonpetalValley.Narrative;
 
 namespace MoonpetalValley.Core
 {
@@ -22,6 +23,9 @@ namespace MoonpetalValley.Core
         [SerializeField] private PlayerStatsController statsController;
         [SerializeField] private SleepAndKnockoutController sleepController;
         [SerializeField] private InventoryManager inventoryManager;
+        [SerializeField] private DialogueManager dialogueManager;
+        [SerializeField] private DiaryManager diaryManager;
+        [SerializeField] private QuestManager questManager;
 
         private readonly List<ISaveable> _saveables = new List<ISaveable>();
 
@@ -35,6 +39,9 @@ namespace MoonpetalValley.Core
         public PlayerStatsController Stats => statsController;
         public SleepAndKnockoutController Sleep => sleepController;
         public InventoryManager Inventory => inventoryManager;
+        public DialogueManager Dialogue => dialogueManager;
+        public DiaryManager Diary => diaryManager;
+        public QuestManager Quests => questManager;
 
         private void Awake()
         {
@@ -47,15 +54,13 @@ namespace MoonpetalValley.Core
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            if (localization != null)
-            {
-                localization.Initialize();
-            }
+            if (localization != null) localization.Initialize();
 
             if (storyFlagManager != null) RegisterSaveable(storyFlagManager);
             if (timeManager != null) RegisterSaveable(timeManager);
             if (statsController != null) RegisterSaveable(statsController);
             if (inventoryManager != null) RegisterSaveable(inventoryManager);
+            if (diaryManager != null) RegisterSaveable(diaryManager);
 
             Debug.Log("[MV] GameRoot khởi tạo thành công.");
         }
@@ -63,15 +68,9 @@ namespace MoonpetalValley.Core
         public void RegisterSaveable(ISaveable saveable)
         {
             if (saveable == null) return;
-            if (!_saveables.Contains(saveable))
-            {
-                _saveables.Add(saveable);
-            }
+            if (!_saveables.Contains(saveable)) _saveables.Add(saveable);
         }
 
-        public IReadOnlyList<ISaveable> GetSaveables()
-        {
-            return _saveables;
-        }
+        public IReadOnlyList<ISaveable> GetSaveables() => _saveables;
     }
 }
