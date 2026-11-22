@@ -1,0 +1,13 @@
+{
+  "step": 21,
+  "count": 7,
+  "files": [
+    "Environment/Props/prop_greenhouse_debris.png",
+    "Environment/Props/prop_dry_branch.png",
+    "Characters/spr_miu_cat.png",
+    "Crops/spr_dew_barley_0.png",
+    "Crops/spr_dew_barley_1.png",
+    "Crops/spr_dew_barley_2.png",
+    "Crops/spr_dew_barley_3.png"
+  ]
+}

@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: item_hoe
   displayNameKey: name_item_hoe
   descriptionKey: desc_item_hoe
-  icon: {fileID: -5296866924862926320, guid: d8a16e53fa8f7c34a8bb7b76b4f8607f, type: 3}
+  icon: {fileID: 21300000, guid: d8a16e53fa8f7c34a8bb7b76b4f8607f, type: 3}
   category: 0
   maxStack: 1
   staminaRestore: 0

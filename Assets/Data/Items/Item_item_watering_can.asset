@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: item_watering_can
   displayNameKey: name_item_watering_can
   descriptionKey: desc_item_watering_can
-  icon: {fileID: -8524774422064376873, guid: 885f19d4222feef43921545d6b03c1b0, type: 3}
+  icon: {fileID: 21300000, guid: 885f19d4222feef43921545d6b03c1b0, type: 3}
   category: 0
   maxStack: 1
   staminaRestore: 0

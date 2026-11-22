@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: item_dew_barley
   displayNameKey: name_item_dew_barley
   descriptionKey: desc_item_dew_barley
-  icon: {fileID: 7190148221897973637, guid: d21ca8dae95bbb246b5bd2197dad5fe0, type: 3}
+  icon: {fileID: 21300000, guid: d21ca8dae95bbb246b5bd2197dad5fe0, type: 3}
   category: 2
   maxStack: 99
   staminaRestore: 0

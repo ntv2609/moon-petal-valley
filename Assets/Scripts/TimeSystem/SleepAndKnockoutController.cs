@@ -10,6 +10,7 @@ namespace MoonpetalValley.TimeSystem
     public class SleepAndKnockoutController : MonoBehaviour
     {
         [SerializeField] private CanvasGroup fadeCanvasGroup;
+        [SerializeField] private TMP_Text transitionTitleText;
         [SerializeField] private TMP_Text transitionText;
 
         public static event Action OnPassOutMaterialPenalty;
@@ -39,27 +40,27 @@ namespace MoonpetalValley.TimeSystem
 
         private void HandleLateNightPassOut()
         {
-            TriggerKnockout("Đã 02:00 đêm! Bạn thiếp đi vì quá mệt mỏi...\n(Sáng hôm sau trần Thể lực giảm còn 50% trừ khi ăn Bánh Mì Nắng Ấm)");
+            TriggerKnockout("Đã 02:00 đêm! Bạn thiếp đi vì quá mệt mỏi...\nSáng hôm sau trần Thể lực giảm còn 50% (ăn Bánh Mì Nắng Ấm để hồi phục).");
         }
 
         private void HandleStatKnockout(string reason)
         {
-            TriggerKnockout(reason + "\n(Sáng hôm sau trần Thể lực giảm còn 50% trừ khi ăn Bánh Mì Nắng Ấm)");
+            TriggerKnockout(reason + "\nSáng hôm sau trần Thể lực giảm còn 50% (ăn Bánh Mì Nắng Ấm để hồi phục).");
         }
 
         public void TriggerNormalSleep()
         {
             if (_isTransitioning) return;
-            StartCoroutine(DayTransitionRoutine(false, "Bạn nghỉ ngơi yên bình trong Nhà Kính...\nĐang đón ánh bình minh ngày mới."));
+            StartCoroutine(DayTransitionRoutine(false, "NGHỈ NGƠI TRONG NHÀ KÍNH", "Bạn nghỉ ngơi yên bình dưới ánh trăng...\nĐang đón ánh bình minh ngày mới."));
         }
 
         public void TriggerKnockout(string message)
         {
             if (_isTransitioning) return;
-            StartCoroutine(DayTransitionRoutine(true, message));
+            StartCoroutine(DayTransitionRoutine(true, "BẠN ĐÃ KIỆT SỨC...", message));
         }
 
-        private IEnumerator DayTransitionRoutine(bool passedOut, string message)
+        private IEnumerator DayTransitionRoutine(bool passedOut, string title, string message)
         {
             _isTransitioning = true;
 
@@ -68,10 +69,16 @@ namespace MoonpetalValley.TimeSystem
                 GameRoot.Instance.State.SetState(GameState.DayTransition);
             }
 
+            if (transitionTitleText != null)
+            {
+                transitionTitleText.text = title;
+                transitionTitleText.color = passedOut
+                    ? new Color32(255, 168, 112, 255)
+                    : new Color32(252, 224, 146, 255);
+            }
             if (transitionText != null) transitionText.text = message;
             if (fadeCanvasGroup != null) fadeCanvasGroup.blocksRaycasts = true;
 
-            // Fade to black
             float t = 0f;
             while (t < 0.45f)
             {
@@ -80,7 +87,6 @@ namespace MoonpetalValley.TimeSystem
                 yield return null;
             }
 
-            // Qua ngày mới, hồi stats hoặc áp phạt kiệt sức, đưa Wen về Nhà Kính
             if (passedOut)
             {
                 OnPassOutMaterialPenalty?.Invoke();
@@ -97,9 +103,8 @@ namespace MoonpetalValley.TimeSystem
                 WorldSpawnRegistry.Instance.TeleportPlayerTo("Spawn_Greenhouse");
             }
 
-            yield return new WaitForSecondsRealtime(1.1f);
+            yield return new WaitForSecondsRealtime(1.35f);
 
-            // Fade back in
             t = 0f;
             while (t < 0.45f)
             {

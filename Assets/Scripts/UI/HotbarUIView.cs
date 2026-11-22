@@ -15,6 +15,8 @@ namespace MoonpetalValley.UI
         [SerializeField] private Image[] slotIcons;
         [SerializeField] private TMP_Text[] slotCounts;
         [SerializeField] private TMP_Text selectedItemLabel;
+        [SerializeField] private Sprite normalSlotSprite;
+        [SerializeField] private Sprite selectedSlotSprite;
 
         private GameInputReader _input;
         private readonly Color _normalSlotColor = new Color(0.11f, 0.15f, 0.22f, 0.88f);
@@ -78,10 +80,14 @@ namespace MoonpetalValley.UI
                 }
             }
 
-            // Cuộn chuột chuyển ô Hotbar
-            float scroll = ReadMouseScroll();
-            if (scroll > 0.1f) GameRoot.Instance.Inventory.CycleHotbar(-1);
-            else if (scroll < -0.1f) GameRoot.Instance.Inventory.CycleHotbar(1);
+            // Chi dung con lan chuot doi Hotbar khi khong dang chon giua >= 2 muc tieu tuong tac
+            bool cyclingInteractables = InteractionManager.Instance != null && InteractionManager.Instance.CandidateCount > 1;
+            if (!cyclingInteractables)
+            {
+                float scroll = ReadMouseScroll();
+                if (scroll > 0.1f) GameRoot.Instance.Inventory.CycleHotbar(-1);
+                else if (scroll < -0.1f) GameRoot.Instance.Inventory.CycleHotbar(1);
+            }
         }
 
         private float ReadMouseScroll()
@@ -109,7 +115,16 @@ namespace MoonpetalValley.UI
 
                 if (slotBackgrounds != null && i < slotBackgrounds.Length && slotBackgrounds[i] != null)
                 {
-                    slotBackgrounds[i].color = isSel ? _selectedSlotColor : _normalSlotColor;
+                    if (normalSlotSprite != null && selectedSlotSprite != null)
+                    {
+                        slotBackgrounds[i].sprite = isSel ? selectedSlotSprite : normalSlotSprite;
+                        slotBackgrounds[i].type = Image.Type.Sliced;
+                        slotBackgrounds[i].color = Color.white;
+                    }
+                    else
+                    {
+                        slotBackgrounds[i].color = isSel ? _selectedSlotColor : _normalSlotColor;
+                    }
                 }
 
                 if (slotIcons != null && i < slotIcons.Length && slotIcons[i] != null)
@@ -128,22 +143,10 @@ namespace MoonpetalValley.UI
 
                 if (slotCounts != null && i < slotCounts.Length && slotCounts[i] != null)
                 {
-                    if (slot == null || slot.IsEmpty)
-                    {
-                        slotCounts[i].text = "";
-                    }
-                    else if (slot.item.itemID == "item_watering_can")
-                    {
-                        slotCounts[i].text = inv.WateringCanCharges + "/20";
-                    }
-                    else if (slot.amount > 1)
-                    {
-                        slotCounts[i].text = slot.amount.ToString();
-                    }
-                    else
-                    {
-                        slotCounts[i].text = "";
-                    }
+                    if (slot == null || slot.IsEmpty) slotCounts[i].text = "";
+                    else if (slot.item.itemID == "item_watering_can") slotCounts[i].text = inv.WateringCanCharges + "/20";
+                    else if (slot.amount > 1) slotCounts[i].text = slot.amount.ToString();
+                    else slotCounts[i].text = "";
                 }
             }
 
@@ -152,12 +155,12 @@ namespace MoonpetalValley.UI
                 var active = inv.GetSelectedSlot();
                 if (active == null || active.IsEmpty)
                 {
-                    selectedItemLabel.text = "Ô trống (Phím 1–8 đổi công cụ | Tab mở Túi Đồ)";
+                    selectedItemLabel.text = "Ô trống (Phím 1-8 đổi công cụ | Tab mở Túi Đồ)";
                 }
                 else
                 {
                     string name = inv.GetLocalizedItemName(active.item);
-                    string hint = active.item.category == ItemCategory.Consumable ? " — [Chuột trái / J] để ăn" : "";
+                    string hint = active.item.category == ItemCategory.Consumable ? " ([Chuột trái / J] để ăn)" : "";
                     selectedItemLabel.text = name + hint;
                 }
             }

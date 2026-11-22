@@ -17,12 +17,40 @@ MonoBehaviour:
   - speakerNameKey: dlg_toby_complete_sp_0
     textKey: dlg_toby_complete_tx_0
     portraitOverride: {fileID: 0}
+    speakerId: toby
+    requiredFlag: 
+    blockedFlag: 
   - speakerNameKey: dlg_toby_complete_sp_1
     textKey: dlg_toby_complete_tx_1
     portraitOverride: {fileID: 0}
+    speakerId: wen
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: dlg_toby_complete_sp_2
+    textKey: dlg_toby_complete_tx_2
+    portraitOverride: {fileID: 0}
+    speakerId: toby
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: dlg_toby_complete_sp_3
+    textKey: dlg_toby_complete_tx_3
+    portraitOverride: {fileID: 0}
+    speakerId: lumi
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: dlg_toby_complete_sp_4
+    textKey: dlg_toby_complete_tx_4
+    portraitOverride: {fileID: 0}
+    speakerId: toby
+    requiredFlag: 
+    blockedFlag: 
+  choices: []
   setsStoryFlagOnFinish: flag_toby_cat_saved
   givesItemOnFinish: {fileID: 11400000, guid: d9e2d4efdd7a75c45b7bcce8080abefc, type: 2}
   givesItemAmount: 1
+  extraRewards: []
   consumesRequiredItem: {fileID: 0}
   consumesAmount: 0
   unlocksDiaryPage: {fileID: 11400000, guid: 36bc5811154d89f429cffb84ac8a66e6, type: 2}
+  affinityNpcId: npc_toby
+  affinityBonusOnFinish: 2

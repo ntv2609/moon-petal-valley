@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c597d33f149cdf04299a1085b446df21, type: 3}
+  m_Name: dlg_miu_reunion
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.DialogueData
+  dialogueID: dlg_miu_reunion
+  lines:
+  - speakerNameKey: "M\xE8o Miu"
+    textKey: "Meo... meo? M\u1EA5y c\u1EE5c b\u1ECDt \u0111en x\u1EA5u x\xED bi\u1EBFn m\u1EA5t h\u1EBFt r\u1ED3i sao?"
+    portraitOverride: {fileID: 0}
+    speakerId: 
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: Tinh Linh Lumi
+    textKey: "Kh\u1ECBt kh\u1ECBt! H\u1EBFt m\xF9i \u1EA9m m\u1ED1c r\u1ED3i nh\xF3c l\xF4ng cam \u01A1i. Ch\u1ECB Wen qu\xE9t s\u1EA1ch b\xE1ch r\u1ED3i!"
+    portraitOverride: {fileID: 0}
+    speakerId: 
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: Wen
+    textKey: "L\u1EA1i \u0111\xE2y n\xE0o Miu, kh\xF4ng sao n\u1EEFa r\u1ED3i. Toby \u0111ang lo s\u1ED1t v\xF3 ngo\xE0i l\xE0ng kia k\xECa."
+    portraitOverride: {fileID: 0}
+    speakerId: 
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: "M\xE8o Miu"
+    textKey: "Meo~! R\u1EEB r\u1EEB... (Miu d\u1EE5i \u0111\u1EA7u v\xE0o tay b\u1EA1n r\u1ED3i nh\u1EA3y t\xF3t v\u1EC1 h\u01B0\u1EDBng L\xE0ng Ch\xEDnh!)"
+    portraitOverride: {fileID: 0}
+    speakerId: 
+    requiredFlag: 
+    blockedFlag: 
+  choices: []
+  setsStoryFlagOnFinish: flag_miu_comforted
+  givesItemOnFinish: {fileID: 0}
+  givesItemAmount: 1
+  extraRewards: []
+  consumesRequiredItem: {fileID: 0}
+  consumesAmount: 0
+  unlocksDiaryPage: {fileID: 0}
+  affinityNpcId: 
+  affinityBonusOnFinish: 0

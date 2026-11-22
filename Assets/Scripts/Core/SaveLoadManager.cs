@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using MoonpetalValley.Community;
 using MoonpetalValley.UI;
 
 namespace MoonpetalValley.Core
@@ -27,6 +26,11 @@ namespace MoonpetalValley.Core
             public string savedTimestamp;
             public List<SaveEntry> entries = new List<SaveEntry>();
         }
+
+        private static bool _isLoadingSave;
+
+        public static bool IsPendingLoad =>
+            MainMenuController.PendingLoadSaveOnWorldStart || _isLoadingSave;
 
         public string SaveFilePath => Path.Combine(Application.persistentDataPath, SaveFileName);
         public string LastSavedTimestamp { get; private set; } = "";
@@ -52,6 +56,7 @@ namespace MoonpetalValley.Core
         {
             if (scene.name == "MoonpetalValley_MVP" && MainMenuController.PendingLoadSaveOnWorldStart)
             {
+                _isLoadingSave = true;
                 MainMenuController.PendingLoadSaveOnWorldStart = false;
                 StartCoroutine(DelayedLoadRoutine());
             }
@@ -60,11 +65,25 @@ namespace MoonpetalValley.Core
         private IEnumerator DelayedLoadRoutine()
         {
             yield return null;
-            LoadGame();
+            try
+            {
+                LoadGame();
+            }
+            finally
+            {
+                _isLoadingSave = false;
+            }
         }
 
         private void HandleDayStartedAutoSave(int newDay) => SaveGame(true);
         public bool HasSaveFile() => File.Exists(SaveFilePath);
+
+        private static bool IsAliveSaveable(ISaveable saveable)
+        {
+            if (saveable == null) return false;
+            if (saveable is UnityEngine.Object unityObj && unityObj == null) return false;
+            return true;
+        }
 
         public void SaveGame(bool isAutoSave = false)
         {
@@ -79,7 +98,7 @@ namespace MoonpetalValley.Core
             var saveables = GameRoot.Instance.GetSaveables();
             for (int i = 0; i < saveables.Count; i++)
             {
-                if (saveables[i] == null) continue;
+                if (!IsAliveSaveable(saveables[i])) continue;
                 payload.entries.Add(new SaveEntry
                 {
                     key = saveables[i].SaveKey,
@@ -91,7 +110,10 @@ namespace MoonpetalValley.Core
             {
                 File.WriteAllText(SaveFilePath, JsonUtility.ToJson(payload, true));
                 LastSavedTimestamp = payload.savedTimestamp;
-                if (!isAutoSave) GameEventBus.RaiseToastRequested("Đã lưu game thành công (" + LastSavedTimestamp + ")!");
+                if (!isAutoSave)
+                {
+                    GameEventBus.RaiseToastRequested("Đã lưu game thành công (" + LastSavedTimestamp + ")!");
+                }
             }
             catch (Exception ex)
             {
@@ -113,20 +135,26 @@ namespace MoonpetalValley.Core
                 if (payload == null || payload.entries == null) return false;
 
                 var map = new Dictionary<string, string>();
-                for (int i = 0; i < payload.entries.Count; i++) map[payload.entries[i].key] = payload.entries[i].json;
+                for (int i = 0; i < payload.entries.Count; i++)
+                {
+                    map[payload.entries[i].key] = payload.entries[i].json;
+                }
 
                 var saveables = GameRoot.Instance.GetSaveables();
                 for (int i = 0; i < saveables.Count; i++)
                 {
-                    if (saveables[i] != null && map.TryGetValue(saveables[i].SaveKey, out string stateJson))
+                    if (!IsAliveSaveable(saveables[i])) continue;
+                    if (map.TryGetValue(saveables[i].SaveKey, out string stateJson))
                     {
                         saveables[i].RestoreStateJson(stateJson);
                     }
                 }
 
                 LastSavedTimestamp = payload.savedTimestamp;
+
+                GameEventBus.RaiseSaveLoaded();
                 GameRoot.Instance.Quests?.RecomputeObjective();
-                UnityEngine.Object.FindAnyObjectByType<PlantingSpotController>()?.RefreshBloomVisual();
+
                 GameEventBus.RaiseToastRequested("Đã tải game thành công (" + LastSavedTimestamp + ")!");
                 return true;
             }

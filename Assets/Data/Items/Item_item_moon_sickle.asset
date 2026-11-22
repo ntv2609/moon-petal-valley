@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: item_moon_sickle
   displayNameKey: name_item_moon_sickle
   descriptionKey: desc_item_moon_sickle
-  icon: {fileID: -3268429557759502235, guid: f5baae3e7fc2a464ea5856cc8e05f8f1, type: 3}
+  icon: {fileID: 21300000, guid: f5baae3e7fc2a464ea5856cc8e05f8f1, type: 3}
   category: 0
   maxStack: 1
   staminaRestore: 0

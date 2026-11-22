@@ -1,46 +1,44 @@
 using UnityEngine;
 using MoonpetalValley.Core;
-using MoonpetalValley.Player;
 
 namespace MoonpetalValley.Farming
 {
-    public class WaterWellInteractable : MonoBehaviour
+    public class WaterWellInteractable : MonoBehaviour, IInteractable
     {
         [SerializeField] private GameObject promptObject;
         [SerializeField] private float interactRadius = 2.0f;
 
-        private PlayerController2D _player;
-        private GameInputReader _input;
+        public bool CanInteract => gameObject.activeInHierarchy;
+        public float InteractRadius => interactRadius;
+        public Vector2 InteractionWorldPosition => transform.position;
+        public Vector3 PointerAnchorPosition => new Vector3(transform.position.x, transform.position.y + 1.0f, 0f);
+        public string InteractionPromptLabel => "Múc Nước Giếng (Đầy Bình)";
+
+        private void OnEnable()
+        {
+            InteractionManager.Register(this);
+        }
+
+        private void OnDisable()
+        {
+            InteractionManager.Unregister(this);
+        }
 
         private void Start()
         {
-            if (promptObject != null) promptObject.SetActive(false);
+            HideLegacyPrompt();
         }
 
-        private void Update()
+        public void HideLegacyPrompt()
         {
-            if (GameRoot.Instance != null && GameRoot.Instance.State != null && !GameRoot.Instance.State.IsGameplayActive)
-            {
-                if (promptObject != null && promptObject.activeSelf) promptObject.SetActive(false);
-                return;
-            }
+            if (promptObject != null && promptObject.activeSelf) promptObject.SetActive(false);
+        }
 
-            if (_player == null)
+        public void Interact()
+        {
+            if (GameRoot.Instance != null && GameRoot.Instance.Inventory != null)
             {
-                _player = UnityEngine.Object.FindAnyObjectByType<PlayerController2D>();
-                if (_player != null) _input = _player.GetComponent<GameInputReader>();
-                else return;
-            }
-
-            bool inRange = Vector2.Distance(transform.position, _player.transform.position) <= interactRadius;
-            if (promptObject != null && promptObject.activeSelf != inRange) promptObject.SetActive(inRange);
-
-            if (inRange && _input != null && _input.InteractPressed)
-            {
-                if (GameRoot.Instance != null && GameRoot.Instance.Inventory != null)
-                {
-                    GameRoot.Instance.Inventory.RefillWateringCan();
-                }
+                GameRoot.Instance.Inventory.RefillWateringCan();
             }
         }
     }

@@ -19,7 +19,7 @@ MonoBehaviour:
   growDays: 2
   harvestYield: 1
   stageSprites:
-  - {fileID: -9165084595783725224, guid: 4c0cbfffc089edc46aa9bf675af91560, type: 3}
-  - {fileID: 8729271389802593531, guid: f5c77c01c718f7e4789e8cf7a02e4c0a, type: 3}
-  - {fileID: 8549192660577931161, guid: fdc739e75debd7f4dbda99b02df9fda5, type: 3}
-  - {fileID: 6599593809026966450, guid: a3c43b4ae4e41fc4ea8f0feb79c1f6bd, type: 3}
+  - {fileID: 21300000, guid: 4c0cbfffc089edc46aa9bf675af91560, type: 3}
+  - {fileID: 21300000, guid: f5c77c01c718f7e4789e8cf7a02e4c0a, type: 3}
+  - {fileID: 21300000, guid: fdc739e75debd7f4dbda99b02df9fda5, type: 3}
+  - {fileID: 21300000, guid: a3c43b4ae4e41fc4ea8f0feb79c1f6bd, type: 3}

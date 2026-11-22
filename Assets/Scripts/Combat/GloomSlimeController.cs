@@ -66,6 +66,7 @@ namespace MoonpetalValley.Combat
             {
                 spriteRenderer.sprite = idleFrames[0];
             }
+            UpdateFootYSorting();
         }
 
         private void Update()
@@ -154,7 +155,17 @@ namespace MoonpetalValley.Combat
             }
 
             UpdateAnimation(true);
-            if (spriteRenderer != null) spriteRenderer.sortingOrder = Mathf.RoundToInt(-transform.position.y * 100f);
+            UpdateFootYSorting();
+        }
+
+        private void UpdateFootYSorting()
+        {
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.sortingLayerName = "WorldObjects";
+                float footY = spriteRenderer.sprite != null ? spriteRenderer.bounds.min.y : (transform.position.y - 0.35f);
+                spriteRenderer.sortingOrder = Mathf.RoundToInt(-footY * 100f);
+            }
         }
 
         private void UpdateAnimation(bool loop)

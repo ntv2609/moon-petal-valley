@@ -13,7 +13,7 @@ namespace MoonpetalValley.TimeSystem
         Night
     }
 
-    public class TimeOfDayManager : MonoBehaviour, ISaveable
+    public class TimeOfDayManager : MonoBehaviour, ISaveable, IResettable
     {
         [SerializeField] private TimeConfigSO timeConfig;
 
@@ -133,7 +133,7 @@ namespace MoonpetalValley.TimeSystem
                 _ => "Đêm"
             };
 
-            return string.Format("Ngày {0} — {1:00}:{2:00} ({3})", CurrentDay, displayHour, displayMin, phaseText);
+            return string.Format("Ngày {0} | {1:00}:{2:00} ({3})", CurrentDay, displayHour, displayMin, phaseText);
         }
 
         private void BroadcastTimeImmediate()
@@ -160,5 +160,13 @@ namespace MoonpetalValley.TimeSystem
                 BroadcastTimeImmediate();
             }
         }
-    }
+    
+        public void ResetForNewGame()
+        {
+            CurrentDay = 1;
+            CurrentHourFloat = timeConfig != null ? timeConfig.dayStartHour : 6f;
+            _passOutTriggeredToday = false;
+            BroadcastTimeImmediate();
+        }
+}
 }

@@ -5,7 +5,7 @@ using MoonpetalValley.Data;
 
 namespace MoonpetalValley.Player
 {
-    public class PlayerStatsController : MonoBehaviour, ISaveable
+    public class PlayerStatsController : MonoBehaviour, ISaveable, IResettable
     {
         [SerializeField] private PlayerStatsSO statsConfig;
 
@@ -146,5 +146,13 @@ namespace MoonpetalValley.Player
                 BroadcastAll();
             }
         }
-    }
+    
+        public void ResetForNewGame()
+        {
+            IsExhaustedPenalty = false;
+            CurrentStamina = EffectiveMaxStamina;
+            CurrentLightHP = MaxLightHP;
+            BroadcastAll();
+        }
+}
 }

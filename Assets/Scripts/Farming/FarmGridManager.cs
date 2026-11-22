@@ -154,5 +154,10 @@ namespace MoonpetalValley.Farming
                 }
             }
         }
-    }
+    
+        private void OnDestroy()
+        {
+            if (GameRoot.Instance != null) GameRoot.Instance.UnregisterSaveable(this);
+        }
+}
 }

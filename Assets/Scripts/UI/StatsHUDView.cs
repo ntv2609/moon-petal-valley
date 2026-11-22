@@ -14,14 +14,28 @@ namespace MoonpetalValley.UI
         [SerializeField] private TMP_Text staminaText;
         [SerializeField] private GameObject exhaustedBadge;
 
+        private const float LowThreshold = 0.25f;
+
+        private float _hpRatio = 1f;
+        private float _staminaRatio = 1f;
+        private bool _isExhausted;
+
+        private readonly Color _hpBaseColor = Color.white;
+        private readonly Color _hpDangerColor = new Color(1.0f, 0.36f, 0.36f, 1f);
+
+        private readonly Color _staminaNormalColor = Color.white;
+        private readonly Color _staminaExhaustedBase = new Color(0.95f, 0.56f, 0.28f, 1f);
+        private readonly Color _staminaExhaustedSoft = new Color(1.0f, 0.78f, 0.44f, 1f);
+        private readonly Color _staminaDangerColor = new Color(1.0f, 0.32f, 0.24f, 1f);
+
         private void Awake()
         {
             if (exhaustedBadge != null)
             {
-                var badgeTmp = exhaustedBadge.GetComponent<TMP_Text>();
+                var badgeTmp = exhaustedBadge.GetComponentInChildren<TMP_Text>(true);
                 if (badgeTmp != null)
                 {
-                    badgeTmp.text = "[!] KIỆT SỨC: Trần Thể lực giảm còn 50% (Ăn Bánh Mì để xóa)";
+                    badgeTmp.text = "KIỆT SỨC: Trần Thể lực còn 50%\nĂn Bánh Mì Nắng Ấm để hồi phục";
                 }
             }
         }
@@ -51,31 +65,63 @@ namespace MoonpetalValley.UI
             }
         }
 
+        private void Update()
+        {
+            float t = Time.unscaledTime;
+
+            if (lightHPFill != null)
+            {
+                if (_hpRatio <= LowThreshold)
+                {
+                    float pulse = 0.5f + 0.5f * Mathf.Sin(t * 7.8f);
+                    lightHPFill.color = Color.Lerp(_hpBaseColor, _hpDangerColor, pulse);
+                }
+                else
+                {
+                    lightHPFill.color = _hpBaseColor;
+                }
+            }
+
+            if (staminaFill != null)
+            {
+                if (_staminaRatio <= LowThreshold)
+                {
+                    float pulse = 0.5f + 0.5f * Mathf.Sin(t * 7.8f);
+                    Color baseCol = _isExhausted ? _staminaExhaustedBase : _staminaNormalColor;
+                    staminaFill.color = Color.Lerp(baseCol, _staminaDangerColor, pulse);
+                }
+                else if (_isExhausted)
+                {
+                    float softPulse = 0.5f + 0.5f * Mathf.Sin(t * 2.8f);
+                    staminaFill.color = Color.Lerp(_staminaExhaustedBase, _staminaExhaustedSoft, softPulse);
+                }
+                else
+                {
+                    staminaFill.color = _staminaNormalColor;
+                }
+            }
+        }
+
         private void HandleLightHPChanged(int current, int max)
         {
-            float ratio = max > 0 ? Mathf.Clamp01((float)current / max) : 0f;
-            if (lightHPFill != null) lightHPFill.fillAmount = ratio;
+            _hpRatio = max > 0 ? Mathf.Clamp01((float)current / max) : 0f;
+            if (lightHPFill != null) lightHPFill.fillAmount = _hpRatio;
             if (lightHPText != null) lightHPText.text = string.Format("Máu Ánh Sáng: {0}/{1}", current, max);
         }
 
         private void HandleStaminaChanged(int current, int max)
         {
-            float ratio = max > 0 ? Mathf.Clamp01((float)current / max) : 0f;
-            if (staminaFill != null) staminaFill.fillAmount = ratio;
+            _staminaRatio = max > 0 ? Mathf.Clamp01((float)current / max) : 0f;
+            if (staminaFill != null) staminaFill.fillAmount = _staminaRatio;
             if (staminaText != null) staminaText.text = string.Format("Thể lực: {0}/{1}", current, max);
         }
 
         private void HandleExhaustionChanged(bool isExhausted)
         {
+            _isExhausted = isExhausted;
             if (exhaustedBadge != null)
             {
                 exhaustedBadge.SetActive(isExhausted);
-            }
-            if (staminaFill != null)
-            {
-                staminaFill.color = isExhausted
-                    ? new Color(0.92f, 0.44f, 0.24f, 1f)
-                    : new Color(0.95f, 0.78f, 0.24f, 1f);
             }
         }
     }

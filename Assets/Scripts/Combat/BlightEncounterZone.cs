@@ -13,6 +13,39 @@ namespace MoonpetalValley.Combat
 
         private bool _completed;
 
+        private void OnEnable()
+        {
+            GameEventBus.OnSaveLoaded += SyncWithStoryFlags;
+        }
+
+        private void OnDisable()
+        {
+            GameEventBus.OnSaveLoaded -= SyncWithStoryFlags;
+        }
+
+        private void Start()
+        {
+            SyncWithStoryFlags();
+        }
+
+        public void SyncWithStoryFlags()
+        {
+            if (string.IsNullOrEmpty(completionFlag)) return;
+            if (GameRoot.Instance == null || GameRoot.Instance.Flags == null) return;
+
+            if (GameRoot.Instance.Flags.HasFlag(completionFlag))
+            {
+                _completed = true;
+                for (int i = 0; i < slimes.Count; i++)
+                {
+                    if (slimes[i] != null)
+                    {
+                        slimes[i].gameObject.SetActive(false);
+                    }
+                }
+            }
+        }
+
         public void NotifySlimeDefeated(GloomSlimeController defeated)
         {
             if (_completed) return;

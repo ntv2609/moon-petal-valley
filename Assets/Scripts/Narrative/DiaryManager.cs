@@ -6,7 +6,7 @@ using MoonpetalValley.Data;
 
 namespace MoonpetalValley.Narrative
 {
-    public class DiaryManager : MonoBehaviour, ISaveable
+    public class DiaryManager : MonoBehaviour, ISaveable, IResettable
     {
         [SerializeField] private List<DiaryPageData> allPages = new List<DiaryPageData>();
 
@@ -50,7 +50,7 @@ namespace MoonpetalValley.Narrative
             {
                 DiaryPageData page = GetPageById(pageId);
                 int num = page != null ? page.pageNumber : _unlockedPageIds.Count;
-                GameEventBus.RaiseToastRequested("Đã mở khóa Sổ Tay Của Bà — Trang " + num + "! Bấm [B] để đọc.");
+                GameEventBus.RaiseToastRequested("Đã mở khóa Sổ Tay Của Bà | Trang " + num + "! Bấm [B] để đọc.");
                 OnDiaryUpdated?.Invoke();
             }
         }
@@ -97,5 +97,11 @@ namespace MoonpetalValley.Narrative
             }
             OnDiaryUpdated?.Invoke();
         }
-    }
+    
+        public void ResetForNewGame()
+        {
+            _unlockedPageIds.Clear();
+            OnDiaryUpdated?.Invoke();
+        }
+}
 }

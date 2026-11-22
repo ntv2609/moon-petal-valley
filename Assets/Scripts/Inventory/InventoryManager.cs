@@ -16,7 +16,7 @@ namespace MoonpetalValley.Inventory
         public bool IsEmpty => item == null || amount <= 0;
     }
 
-    public class InventoryManager : MonoBehaviour, ISaveable
+    public class InventoryManager : MonoBehaviour, ISaveable, IResettable
     {
         public const int TotalSlots = 16;
         public const int HotbarSize = 8;
@@ -392,5 +392,20 @@ namespace MoonpetalValley.Inventory
             }
             OnInventoryChanged?.Invoke();
         }
-    }
+    
+        public void ResetForNewGame()
+        {
+            for (int i = 0; i < TotalSlots; i++)
+            {
+                _slots[i].item = null;
+                _slots[i].amount = 0;
+            }
+            WateringCanCharges = MaxWaterCharges;
+            AddItemById("item_hoe", 1, false);
+            AddItemById("item_watering_can", 1, false);
+            AddItemById("item_hatchet", 1, false);
+            SelectHotbarSlot(0);
+            OnInventoryChanged?.Invoke();
+        }
+}
 }

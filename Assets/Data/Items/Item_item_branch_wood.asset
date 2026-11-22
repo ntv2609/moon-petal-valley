@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: item_branch_wood
   displayNameKey: name_item_branch_wood
   descriptionKey: desc_item_branch_wood
-  icon: {fileID: 6667296510269359320, guid: eee13d3a45f40ad479c0873cc064b6f4, type: 3}
+  icon: {fileID: 21300000, guid: eee13d3a45f40ad479c0873cc064b6f4, type: 3}
   category: 3
   maxStack: 99
   staminaRestore: 0

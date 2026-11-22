@@ -16,6 +16,8 @@ namespace MoonpetalValley.UI
         [SerializeField] private TMP_Text[] slotCounts;
         [SerializeField] private TMP_Text detailNameText;
         [SerializeField] private TMP_Text detailDescText;
+        [SerializeField] private Sprite normalSlotSprite;
+        [SerializeField] private Sprite selectedSlotSprite;
 
         private GameInputReader _input;
         private bool _isOpen;
@@ -24,9 +26,9 @@ namespace MoonpetalValley.UI
         private Image _dragGhostImage;
         private RectTransform _dragGhostRect;
 
-        private readonly Color _hotbarBgColor = new Color(0.18f, 0.24f, 0.34f, 1f);
-        private readonly Color _bagBgColor = new Color(0.14f, 0.17f, 0.24f, 1f);
-        private readonly Color _pickedBgColor = new Color(0.84f, 0.68f, 0.24f, 1f);
+        private readonly Color _hotbarBgColor = new Color(0.95f, 0.92f, 0.86f, 1f);
+        private readonly Color _bagBgColor = new Color(0.86f, 0.82f, 0.76f, 1f);
+        private readonly Color _pickedBgColor = new Color(1f, 0.96f, 0.82f, 1f);
 
         private void Awake()
         {
@@ -78,14 +80,8 @@ namespace MoonpetalValley.UI
 
             if (_input.InventoryPressed)
             {
-                if (!_isOpen && GameRoot.Instance.State.IsGameplayActive)
-                {
-                    Open();
-                }
-                else if (_isOpen)
-                {
-                    Close();
-                }
+                if (!_isOpen && GameRoot.Instance.State.IsGameplayActive) Open();
+                else if (_isOpen) Close();
             }
             else if (_isOpen && _input.PausePressed)
             {
@@ -188,14 +184,23 @@ namespace MoonpetalValley.UI
             for (int i = 0; i < InventoryManager.TotalSlots; i++)
             {
                 var slot = inv.GetSlot(i);
+                bool highlighted = (i == _pickedSlotIndex || i == _draggingSlotIndex);
 
                 if (slotButtons != null && i < slotButtons.Length && slotButtons[i] != null)
                 {
                     var bg = slotButtons[i].GetComponent<Image>();
                     if (bg != null)
                     {
-                        if (i == _pickedSlotIndex || i == _draggingSlotIndex) bg.color = _pickedBgColor;
-                        else bg.color = i < InventoryManager.HotbarSize ? _hotbarBgColor : _bagBgColor;
+                        if (normalSlotSprite != null && selectedSlotSprite != null)
+                        {
+                            bg.sprite = highlighted ? selectedSlotSprite : normalSlotSprite;
+                            bg.type = Image.Type.Sliced;
+                            bg.color = highlighted ? _pickedBgColor : (i < InventoryManager.HotbarSize ? _hotbarBgColor : _bagBgColor);
+                        }
+                        else
+                        {
+                            bg.color = highlighted ? new Color(0.84f, 0.68f, 0.24f, 1f) : (i < InventoryManager.HotbarSize ? new Color(0.18f, 0.24f, 0.34f, 1f) : new Color(0.14f, 0.17f, 0.24f, 1f));
+                        }
                     }
                 }
 
@@ -228,14 +233,10 @@ namespace MoonpetalValley.UI
             if (GameRoot.Instance == null || GameRoot.Instance.Inventory == null) return;
             var inv = GameRoot.Instance.Inventory;
 
-            // Click-to-Swap: chọn ô 1 -> bấm ô 2 để hoán đổi / gộp stack
             if (_pickedSlotIndex < 0)
             {
                 var clickedSlot = inv.GetSlot(index);
-                if (clickedSlot != null && !clickedSlot.IsEmpty)
-                {
-                    _pickedSlotIndex = index;
-                }
+                if (clickedSlot != null && !clickedSlot.IsEmpty) _pickedSlotIndex = index;
                 ShowSlotDetails(index);
                 RefreshGrid();
                 return;
@@ -273,7 +274,7 @@ namespace MoonpetalValley.UI
             if (detailNameText != null)
             {
                 string protectTag = slot.item.isQuestProtected ? " [Được bảo vệ]" : " [Nguyên liệu thường]";
-                string pickHint = _pickedSlotIndex == index ? " — [ĐANG CHỌN: bấm ô khác để chuyển]" : "";
+                string pickHint = _pickedSlotIndex == index ? " [ĐANG CHỌN: bấm ô khác để chuyển]" : "";
                 detailNameText.text = inv.GetLocalizedItemName(slot.item) + " (x" + slot.amount + ")" + protectTag + pickHint;
             }
             if (detailDescText != null)

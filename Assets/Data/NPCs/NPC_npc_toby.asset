@@ -15,7 +15,7 @@ MonoBehaviour:
   npcID: npc_toby
   displayNameKey: name_npc_toby
   roleTitleKey: role_npc_toby
-  portraitSprite: {fileID: 0}
+  portraitSprite: {fileID: 21300000, guid: 42ba1da8b2148aa40ae2bb43254c3f22, type: 3}
   worldSprite: {fileID: 21300000, guid: f71861b299a048946915c245a92a65ba, type: 3}
   defaultDialogue: {fileID: 11400000, guid: 0081a3c915920ae45b7623c99e1a87a7, type: 2}
   conditionalDialogues:

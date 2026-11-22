@@ -17,12 +17,42 @@ MonoBehaviour:
   - speakerNameKey: dlg_hana_complete_sp_0
     textKey: dlg_hana_complete_tx_0
     portraitOverride: {fileID: 0}
+    speakerId: hana
+    requiredFlag: 
+    blockedFlag: 
   - speakerNameKey: dlg_hana_complete_sp_1
     textKey: dlg_hana_complete_tx_1
     portraitOverride: {fileID: 0}
+    speakerId: lumi
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: dlg_hana_complete_sp_2
+    textKey: dlg_hana_complete_tx_2
+    portraitOverride: {fileID: 0}
+    speakerId: hana
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: dlg_hana_complete_sp_3
+    textKey: dlg_hana_complete_tx_3
+    portraitOverride: {fileID: 0}
+    speakerId: wen
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: dlg_hana_complete_sp_4
+    textKey: dlg_hana_complete_tx_4
+    portraitOverride: {fileID: 0}
+    speakerId: hana
+    requiredFlag: 
+    blockedFlag: 
+  choices: []
   setsStoryFlagOnFinish: flag_hana_bread_done
   givesItemOnFinish: {fileID: 11400000, guid: 7b29f0021ee2f6944a6777661389af33, type: 2}
   givesItemAmount: 1
+  extraRewards:
+  - item: {fileID: 11400000, guid: 1fa070aed7dc8d3448df54e5ff2eb08b, type: 2}
+    amount: 2
   consumesRequiredItem: {fileID: 11400000, guid: 461e4e5992c791d4b8aae3934d785ce8, type: 2}
   consumesAmount: 4
   unlocksDiaryPage: {fileID: 11400000, guid: a4e7fe317c1661e4ca6ad7ef5eac69e6, type: 2}
+  affinityNpcId: npc_hana
+  affinityBonusOnFinish: 2

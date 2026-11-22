@@ -56,17 +56,23 @@ TagManager:
   - name: FarmTile
     uniqueID: 630579693
     locked: 0
+  - name: GroundDecor
+    uniqueID: 997292142
+    locked: 0
   - name: Shadows
     uniqueID: 1205849517
     locked: 0
   - name: WorldObjects
     uniqueID: 751938039
     locked: 0
-  - name: FogOverlay
-    uniqueID: 1458399544
+  - name: Foreground
+    uniqueID: 812909395
     locked: 0
   - name: WeatherVFX
     uniqueID: 2000537413
+    locked: 0
+  - name: FogOverlay
+    uniqueID: 1458399544
     locked: 0
   - name: UI
     uniqueID: 1090806756

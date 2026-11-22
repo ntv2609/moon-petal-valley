@@ -20,6 +20,7 @@ namespace MoonpetalValley.Core
     {
         public static event Action<GameState> OnGameStateChanged;
         public static event Action<string, bool> OnStoryFlagChanged;
+        public static event Action OnSaveLoaded;
         public static event Action<string> OnToastRequested;
         public static event Action<int, float> OnTimeChanged;
         public static event Action<int> OnDayStarted;
@@ -31,6 +32,7 @@ namespace MoonpetalValley.Core
 
         public static void RaiseGameStateChanged(GameState newState) => OnGameStateChanged?.Invoke(newState);
         public static void RaiseStoryFlagChanged(string flagId, bool value) => OnStoryFlagChanged?.Invoke(flagId, value);
+        public static void RaiseSaveLoaded() => OnSaveLoaded?.Invoke();
         public static void RaiseToastRequested(string message) => OnToastRequested?.Invoke(message);
         public static void RaiseTimeChanged(int day, float hourFloat) => OnTimeChanged?.Invoke(day, hourFloat);
         public static void RaiseDayStarted(int day) => OnDayStarted?.Invoke(day);

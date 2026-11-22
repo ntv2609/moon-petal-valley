@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: item_dew_sap
   displayNameKey: name_item_dew_sap
   descriptionKey: desc_item_dew_sap
-  icon: {fileID: -3282253540461203238, guid: 7bf21f9c327a8ba47b85479e89f817e8, type: 3}
+  icon: {fileID: 21300000, guid: 7bf21f9c327a8ba47b85479e89f817e8, type: 3}
   category: 3
   maxStack: 99
   staminaRestore: 0

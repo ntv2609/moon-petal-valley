@@ -43,13 +43,17 @@ namespace MoonpetalValley.Player
 
             if (inputReader == null || playerController == null) return;
 
-            // Bấm E để thu hoạch cây đã chín gần Wen
+            // Bam E de thu hoach cay da chin gan Wen (chi khi khong dang nham NPC / do vat tuong tac)
             if (inputReader.InteractPressed)
             {
-                TryHarvestNearby();
+                bool hasFocused = InteractionManager.Instance != null && InteractionManager.Instance.HasFocusedInteractable;
+                if (!hasFocused)
+                {
+                    TryHarvestNearby();
+                }
             }
 
-            // Bấm J / Chuột trái để dùng công cụ hoặc gieo hạt
+            // Bam J / Chuot trai de dung cong cu hoac gieo hat
             if (inputReader.ActionPressed && _cooldownTimer <= 0f)
             {
                 bool overUI = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
@@ -86,7 +90,7 @@ namespace MoonpetalValley.Player
             ItemData item = slot.item;
             Vector2 targetPos = (Vector2)transform.position + playerController.FacingDirection * 0.90f;
 
-            // 1. Gieo hạt
+            // 1. Gieo hat
             if (item.category == ItemCategory.Seed && item.linkedCropData != null)
             {
                 if (FarmGridManager.Instance == null) return;
@@ -104,7 +108,7 @@ namespace MoonpetalValley.Player
                 return;
             }
 
-            // 2. Cuốc Đất (xới đất hoặc đập rác Nhà Kính)
+            // 2. Cuoc Dat (xoi dat hoac dap rac Nha Kinh)
             if (item.itemID == "item_hoe")
             {
                 int cost = statsConfig != null ? statsConfig.hoeStaminaCost : 4;
@@ -124,7 +128,7 @@ namespace MoonpetalValley.Player
                 return;
             }
 
-            // 3. Bình Tưới
+            // 3. Binh Tuoi
             if (item.itemID == "item_watering_can")
             {
                 if (FarmGridManager.Instance != null)
@@ -149,7 +153,7 @@ namespace MoonpetalValley.Player
                 return;
             }
 
-            // 4. Rìu Nhỏ (chặt nhánh cây khô hoặc dọn rác Nhà Kính)
+            // 4. Riu Nho (chat nhanh cay kho hoac don rac Nha Kinh)
             if (item.itemID == "item_hatchet")
             {
                 int cost = statsConfig != null ? statsConfig.chopStaminaCost : 4;

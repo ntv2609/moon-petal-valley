@@ -31,6 +31,7 @@ namespace MoonpetalValley.Core
         [SerializeField] private BundleManager bundleManager;
         [SerializeField] private SaveLoadManager saveLoadManager;
         [SerializeField] private AudioManager audioManager;
+        [SerializeField] private RelationshipManager relationshipManager;
 
         private readonly List<ISaveable> _saveables = new List<ISaveable>();
 
@@ -50,6 +51,7 @@ namespace MoonpetalValley.Core
         public BundleManager Bundle => bundleManager;
         public SaveLoadManager SaveLoad => saveLoadManager;
         public AudioManager Audio => audioManager;
+        public RelationshipManager Relationships => relationshipManager;
 
         private void Awake()
         {
@@ -63,6 +65,7 @@ namespace MoonpetalValley.Core
             DontDestroyOnLoad(gameObject);
 
             if (localization != null) localization.Initialize();
+            if (relationshipManager == null) relationshipManager = GetComponent<RelationshipManager>() ?? gameObject.AddComponent<RelationshipManager>();
 
             if (storyFlagManager != null) RegisterSaveable(storyFlagManager);
             if (timeManager != null) RegisterSaveable(timeManager);
@@ -70,6 +73,7 @@ namespace MoonpetalValley.Core
             if (inventoryManager != null) RegisterSaveable(inventoryManager);
             if (diaryManager != null) RegisterSaveable(diaryManager);
             if (bundleManager != null) RegisterSaveable(bundleManager);
+            if (relationshipManager != null) RegisterSaveable(relationshipManager);
 
             Debug.Log("[MV] GameRoot khởi tạo thành công.");
         }
@@ -80,6 +84,39 @@ namespace MoonpetalValley.Core
             if (!_saveables.Contains(saveable)) _saveables.Add(saveable);
         }
 
-        public IReadOnlyList<ISaveable> GetSaveables() => _saveables;
+        public void UnregisterSaveable(ISaveable saveable)
+        {
+            if (saveable == null) return;
+            _saveables.Remove(saveable);
+        }
+
+        public void PruneDestroyedSaveables()
+        {
+            for (int i = _saveables.Count - 1; i >= 0; i--)
+            {
+                if (_saveables[i] == null || (_saveables[i] is UnityEngine.Object uo && uo == null))
+                {
+                    _saveables.RemoveAt(i);
+                }
+            }
+        }
+
+        public IReadOnlyList<ISaveable> GetSaveables()
+        {
+            PruneDestroyedSaveables();
+            return _saveables;
+        }
+
+        public void ResetForNewGame()
+        {
+            PruneDestroyedSaveables();
+            var resettables = GetComponentsInChildren<IResettable>(true);
+            for (int i = 0; i < resettables.Length; i++)
+            {
+                resettables[i].ResetForNewGame();
+            }
+            Quests?.RecomputeObjective();
+            Debug.Log("[MV] GameRoot đã reset sạch toàn bộ trạng thái cho lượt Chơi Mới.");
+        }
     }
 }

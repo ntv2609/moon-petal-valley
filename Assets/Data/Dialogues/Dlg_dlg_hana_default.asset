@@ -17,9 +17,40 @@ MonoBehaviour:
   - speakerNameKey: dlg_hana_default_sp_0
     textKey: dlg_hana_default_tx_0
     portraitOverride: {fileID: 0}
+    speakerId: hana
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: dlg_hana_default_sp_1
+    textKey: dlg_hana_default_tx_1
+    portraitOverride: {fileID: 0}
+    speakerId: lumi
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: dlg_hana_default_sp_2
+    textKey: dlg_hana_default_tx_2
+    portraitOverride: {fileID: 0}
+    speakerId: hana
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: dlg_hana_default_sp_3
+    textKey: dlg_hana_default_tx_3
+    portraitOverride: {fileID: 0}
+    speakerId: wen
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: dlg_hana_default_sp_4
+    textKey: dlg_hana_default_tx_4
+    portraitOverride: {fileID: 0}
+    speakerId: hana
+    requiredFlag: 
+    blockedFlag: 
+  choices: []
   setsStoryFlagOnFinish: flag_hana_quest_started
   givesItemOnFinish: {fileID: 0}
   givesItemAmount: 0
+  extraRewards: []
   consumesRequiredItem: {fileID: 0}
   consumesAmount: 0
   unlocksDiaryPage: {fileID: 0}
+  affinityNpcId: npc_hana
+  affinityBonusOnFinish: 1

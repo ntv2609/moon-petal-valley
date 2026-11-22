@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: item_sunshine_bread
   displayNameKey: name_item_sunshine_bread
   descriptionKey: desc_item_sunshine_bread
-  icon: {fileID: -4486907499563912582, guid: b4f429840bbd9fd4fa85a5c9cc29ead6, type: 3}
+  icon: {fileID: 21300000, guid: b4f429840bbd9fd4fa85a5c9cc29ead6, type: 3}
   category: 4
   maxStack: 99
   staminaRestore: 50

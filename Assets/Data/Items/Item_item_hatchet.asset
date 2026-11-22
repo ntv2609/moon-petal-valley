@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: item_hatchet
   displayNameKey: name_item_hatchet
   descriptionKey: desc_item_hatchet
-  icon: {fileID: -6993423157078638704, guid: b0a589cb6c72f3a4b8d9359b31f00552, type: 3}
+  icon: {fileID: 21300000, guid: b0a589cb6c72f3a4b8d9359b31f00552, type: 3}
   category: 0
   maxStack: 1
   staminaRestore: 0

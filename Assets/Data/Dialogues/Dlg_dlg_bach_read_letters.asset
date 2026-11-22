@@ -17,12 +17,40 @@ MonoBehaviour:
   - speakerNameKey: dlg_bach_read_letters_sp_0
     textKey: dlg_bach_read_letters_tx_0
     portraitOverride: {fileID: 0}
+    speakerId: wen
+    requiredFlag: 
+    blockedFlag: 
   - speakerNameKey: dlg_bach_read_letters_sp_1
     textKey: dlg_bach_read_letters_tx_1
     portraitOverride: {fileID: 0}
+    speakerId: bach
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: dlg_bach_read_letters_sp_2
+    textKey: dlg_bach_read_letters_tx_2
+    portraitOverride: {fileID: 0}
+    speakerId: bach
+    requiredFlag: flag_choice_bach_bold
+    blockedFlag: 
+  - speakerNameKey: dlg_bach_read_letters_sp_3
+    textKey: dlg_bach_read_letters_tx_3
+    portraitOverride: {fileID: 0}
+    speakerId: bach
+    requiredFlag: flag_choice_bach_gentle
+    blockedFlag: 
+  - speakerNameKey: dlg_bach_read_letters_sp_4
+    textKey: dlg_bach_read_letters_tx_4
+    portraitOverride: {fileID: 0}
+    speakerId: bach
+    requiredFlag: 
+    blockedFlag: 
+  choices: []
   setsStoryFlagOnFinish: flag_bach_letters_read
   givesItemOnFinish: {fileID: 0}
   givesItemAmount: 0
+  extraRewards: []
   consumesRequiredItem: {fileID: 0}
   consumesAmount: 0
   unlocksDiaryPage: {fileID: 0}
+  affinityNpcId: npc_bach
+  affinityBonusOnFinish: 2

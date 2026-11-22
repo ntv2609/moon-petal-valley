@@ -15,7 +15,7 @@ MonoBehaviour:
   npcID: npc_hana
   displayNameKey: name_npc_hana
   roleTitleKey: role_npc_hana
-  portraitSprite: {fileID: 0}
+  portraitSprite: {fileID: 21300000, guid: 661e927ad83759447855721853e7e728, type: 3}
   worldSprite: {fileID: 21300000, guid: 516392ab94e1daa4d8edc015dfb1e54d, type: 3}
   defaultDialogue: {fileID: 11400000, guid: f92a9f2a3cc6aba45bdbb4883b248c49, type: 2}
   conditionalDialogues:

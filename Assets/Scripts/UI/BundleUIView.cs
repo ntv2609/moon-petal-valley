@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using MoonpetalValley.Core;
 using MoonpetalValley.Community;
+using MoonpetalValley.Data;
 using MoonpetalValley.Player;
 
 namespace MoonpetalValley.UI
@@ -18,6 +19,7 @@ namespace MoonpetalValley.UI
         [SerializeField] private Button btnClose;
         [SerializeField] private GameObject victoryPanelRoot;
         [SerializeField] private Button btnVictoryClose;
+        [SerializeField] private DialogueData bloomClimaxDialogue;
 
         private PlantingSpotController _activeSpot;
         private GameInputReader _input;
@@ -68,6 +70,11 @@ namespace MoonpetalValley.UI
         private void CloseVictory()
         {
             if (victoryPanelRoot != null) victoryPanelRoot.SetActive(false);
+            var camFollow = UnityEngine.Object.FindAnyObjectByType<CameraFollow2D>();
+            if (camFollow != null && camFollow.IsCutsceneOverride)
+            {
+                camFollow.EndCutsceneOverride(false);
+            }
             GameRoot.Instance?.State?.ReturnToGameplay();
         }
 
@@ -100,14 +107,37 @@ namespace MoonpetalValley.UI
 
             if (_activeSpot != null) _activeSpot.ExecuteBloomClimax();
 
-            if (victoryPanelRoot != null)
+            var camFollow = UnityEngine.Object.FindAnyObjectByType<CameraFollow2D>();
+            if (camFollow != null && _activeSpot != null)
             {
-                victoryPanelRoot.SetActive(true);
-                GameRoot.Instance.State?.SetState(GameState.Cutscene);
+                camFollow.SetCutsceneTarget(_activeSpot.transform.position + new Vector3(0f, 0.35f, 0f), 4.2f, 2.2f);
+            }
+
+            if (bloomClimaxDialogue != null && GameRoot.Instance.Dialogue != null)
+            {
+                GameRoot.Instance.Dialogue.StartDialogue(bloomClimaxDialogue, ShowVictoryModal);
             }
             else
             {
-                GameRoot.Instance.State?.ReturnToGameplay();
+                ShowVictoryModal();
+            }
+        }
+
+        private void ShowVictoryModal()
+        {
+            if (victoryPanelRoot != null)
+            {
+                victoryPanelRoot.SetActive(true);
+                GameRoot.Instance?.State?.SetState(GameState.Cutscene);
+            }
+            else
+            {
+                var camFollow = UnityEngine.Object.FindAnyObjectByType<CameraFollow2D>();
+                if (camFollow != null && camFollow.IsCutsceneOverride)
+                {
+                    camFollow.EndCutsceneOverride(false);
+                }
+                GameRoot.Instance?.State?.ReturnToGameplay();
             }
         }
 

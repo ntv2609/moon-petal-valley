@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: item_moonpetal_seed_core
   displayNameKey: name_item_moonpetal_seed_core
   descriptionKey: desc_item_moonpetal_seed_core
-  icon: {fileID: 6661687554693798591, guid: 4f5fa19d944cd994fa9811d5ca17cedc, type: 3}
+  icon: {fileID: 21300000, guid: 4f5fa19d944cd994fa9811d5ca17cedc, type: 3}
   category: 7
   maxStack: 1
   staminaRestore: 0

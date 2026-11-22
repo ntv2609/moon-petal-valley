@@ -1,11 +1,14 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 using MoonpetalValley.Core;
 using MoonpetalValley.Data;
 using MoonpetalValley.Player;
+using MoonpetalValley.TimeSystem;
 
 namespace MoonpetalValley.Narrative
 {
-    public class NPCController : MonoBehaviour
+    public class NPCController : MonoBehaviour, IInteractable
     {
         [SerializeField] private NPCData npcData;
         [SerializeField] private GameObject promptObject;
@@ -19,14 +22,42 @@ namespace MoonpetalValley.Narrative
         [SerializeField] private float idleFps = 2.4f;
         [SerializeField] private float cheerFps = 6.0f;
 
-        private PlayerController2D _player;
-        private GameInputReader _input;
         private bool _movedToFlowerbed;
         private float _animTimer;
         private int _frameIndex;
         private float _cheerTimer;
+        private string _cachedPromptLabel;
+
+        private GameObject _bubbleRoot;
+        private TMP_Text _bubbleText;
+        private float _bubbleVisibleTimer;
+        private float _bubbleCooldownTimer;
+        private PlayerController2D _player;
 
         public NPCData Data => npcData;
+        public bool CanInteract => gameObject.activeInHierarchy && npcData != null;
+        public float InteractRadius => interactRadius;
+        public Vector2 InteractionWorldPosition => transform.position;
+        public Vector3 PointerAnchorPosition
+        {
+            get
+            {
+                float topY = spriteRenderer != null && spriteRenderer.sprite != null
+                    ? spriteRenderer.bounds.max.y + 0.14f
+                    : transform.position.y + 0.95f;
+                return new Vector3(transform.position.x, topY, 0f);
+            }
+        }
+
+        public string InteractionPromptLabel
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(_cachedPromptLabel)) return _cachedPromptLabel;
+                _cachedPromptLabel = "Nói chuyện: " + ResolveDisplayName();
+                return _cachedPromptLabel;
+            }
+        }
 
         private void Awake()
         {
@@ -36,26 +67,67 @@ namespace MoonpetalValley.Narrative
         private void OnEnable()
         {
             GameEventBus.OnStoryFlagChanged += HandleFlagChanged;
+            GameEventBus.OnSaveLoaded += HandleSaveLoaded;
+            InteractionManager.Register(this);
         }
 
         private void OnDisable()
         {
             GameEventBus.OnStoryFlagChanged -= HandleFlagChanged;
+            GameEventBus.OnSaveLoaded -= HandleSaveLoaded;
+            InteractionManager.Unregister(this);
         }
 
         private void Start()
         {
-            if (promptObject != null) promptObject.SetActive(false);
-            // Lệch pha ngẫu nhiên để 4 NPC không chớp mắt cùng lúc
+            HideLegacyPrompt();
             _animTimer = Random.Range(0f, 0.35f);
             _frameIndex = Random.Range(0, 4);
+            _bubbleCooldownTimer = Random.Range(3f, 8f);
             CheckMoveToFlowerbed();
             UpdateSortingOrder();
+        }
+
+        public void HideLegacyPrompt()
+        {
+            if (promptObject != null && promptObject.activeSelf) promptObject.SetActive(false);
+        }
+
+        private string ResolveDisplayName()
+        {
+            if (promptObject != null)
+            {
+                var tmp = promptObject.GetComponentInChildren<TMP_Text>(true);
+                if (tmp != null && !string.IsNullOrWhiteSpace(tmp.text))
+                {
+                    string raw = tmp.text.Trim();
+                    if (raw.StartsWith("[E]")) raw = raw.Substring(3).Trim();
+                    if (raw.StartsWith("Nói chuyện:")) raw = raw.Substring("Nói chuyện:".Length).Trim();
+                    if (!string.IsNullOrEmpty(raw)) return raw;
+                }
+            }
+            if (npcData != null && !string.IsNullOrEmpty(npcData.displayNameKey))
+            {
+                if (GameRoot.Instance != null && GameRoot.Instance.Loc != null)
+                {
+                    string loc = GameRoot.Instance.Loc.Get(npcData.displayNameKey);
+                    if (!string.IsNullOrEmpty(loc) && !loc.StartsWith("[")) return loc;
+                }
+                return npcData.displayNameKey;
+            }
+            return gameObject.name;
         }
 
         private void HandleFlagChanged(string flagId, bool value)
         {
             if (value) CheckMoveToFlowerbed();
+            if (value && flagId == "flag_nv1_completed") _cheerTimer = 8.0f;
+        }
+
+        private void HandleSaveLoaded()
+        {
+            _cheerTimer = 0f;
+            CheckMoveToFlowerbed();
         }
 
         private void CheckMoveToFlowerbed()
@@ -77,44 +149,134 @@ namespace MoonpetalValley.Narrative
         {
             if (spriteRenderer != null)
             {
-                spriteRenderer.sortingOrder = Mathf.RoundToInt(-transform.position.y * 100f);
+                spriteRenderer.sortingLayerName = "WorldObjects";
+                float footY = spriteRenderer.sprite != null ? spriteRenderer.bounds.min.y : (transform.position.y - 0.45f);
+                spriteRenderer.sortingOrder = Mathf.RoundToInt(-footY * 100f);
             }
         }
 
         private void Update()
         {
             TickAnimation(Time.deltaTime);
+            UpdateSortingOrder();
+            TickAmbientWorldBubble(Time.deltaTime);
+        }
 
-            if (GameRoot.Instance != null && GameRoot.Instance.State != null && !GameRoot.Instance.State.IsGameplayActive)
+        private void TickAmbientWorldBubble(float dt)
+        {
+            bool gameplay = GameRoot.Instance == null || GameRoot.Instance.State == null || GameRoot.Instance.State.IsGameplayActive;
+            if (!gameplay)
             {
-                if (promptObject != null && promptObject.activeSelf) promptObject.SetActive(false);
+                if (_bubbleRoot != null && _bubbleRoot.activeSelf) _bubbleRoot.SetActive(false);
                 return;
             }
 
-            if (_player == null)
+            if (_bubbleVisibleTimer > 0f)
             {
-                _player = UnityEngine.Object.FindAnyObjectByType<PlayerController2D>();
-                if (_player != null) _input = _player.GetComponent<GameInputReader>();
-                else return;
+                _bubbleVisibleTimer -= dt;
+                if (_bubbleVisibleTimer <= 0f && _bubbleRoot != null) _bubbleRoot.SetActive(false);
+                return;
             }
 
-            bool inRange = Vector2.Distance(transform.position, _player.transform.position) <= interactRadius;
-            if (promptObject != null && promptObject.activeSelf != inRange) promptObject.SetActive(inRange);
-
-            if (inRange && _input != null && _input.InteractPressed)
+            if (_bubbleCooldownTimer > 0f)
             {
-                TriggerDialogue();
+                _bubbleCooldownTimer -= dt;
+                return;
             }
+
+            if (_player == null) _player = UnityEngine.Object.FindAnyObjectByType<PlayerController2D>();
+            if (_player == null || npcData == null) return;
+
+            float dist = Vector2.Distance(transform.position, _player.transform.position);
+            if (dist <= 4.6f && dist >= 1.6f)
+            {
+                string bark = PickAmbientWorldBark();
+                if (!string.IsNullOrEmpty(bark))
+                {
+                    ShowAmbientBubble(bark, 3.2f);
+                    _bubbleCooldownTimer = 18f;
+                }
+            }
+        }
+
+        private string PickAmbientWorldBark()
+        {
+            string id = npcData.npcID ?? "";
+            bool isNight = GameRoot.Instance?.Time != null && GameRoot.Instance.Time.IsNight;
+            bool bloomed = GameRoot.Instance?.Flags != null && GameRoot.Instance.Flags.HasFlag("flag_nv1_completed");
+
+            if (bloomed)
+            {
+                if (id == "npc_bach") return "Đất ấm hẳn lên rồi...";
+                if (id == "npc_hana") return "Mùi hoa thơm cả tiệm bánh!";
+                if (id == "npc_toby") return "Hoa sáng quá đi mất!";
+                if (id == "npc_otis") return "Thung lũng hồi sinh thật rồi.";
+            }
+
+            if (isNight)
+            {
+                if (id == "npc_bach") return "Sương đêm lại dày thêm rồi...";
+                if (id == "npc_hana") return "Khuya rồi, Wen về ngủ sớm đi.";
+                if (id == "npc_toby") return "Miu ơi, đừng đi xa nhé...";
+                if (id == "npc_otis") return "E hèm, đèn lồng sáng cả rồi.";
+            }
+
+            if (id == "npc_bach") return "Hừm... đất chai hết cả rồi.";
+            if (id == "npc_hana") return "Bột mì sắp hết nữa rồi...";
+            if (id == "npc_toby") return "Ước gì ai đó giúp bé Miu...";
+            if (id == "npc_otis") return "Cái bản lề hòm thư kẹt cứng...";
+            return "";
+        }
+
+        private void ShowAmbientBubble(string text, float duration)
+        {
+            if (_bubbleRoot == null)
+            {
+                _bubbleRoot = new GameObject("AmbientBubble");
+                _bubbleRoot.transform.SetParent(transform, false);
+                _bubbleRoot.transform.localPosition = new Vector3(0f, 1.25f, 0f);
+                _bubbleRoot.transform.localScale = new Vector3(0.011f, 0.011f, 1f);
+
+                var cv = _bubbleRoot.AddComponent<Canvas>();
+                cv.renderMode = RenderMode.WorldSpace;
+                cv.sortingLayerName = "UI";
+                cv.sortingOrder = 45;
+
+                var rt = _bubbleRoot.GetComponent<RectTransform>();
+                rt.sizeDelta = new Vector2(280f, 46f);
+                var bg = _bubbleRoot.AddComponent<Image>();
+                bg.color = new Color(0.14f, 0.10f, 0.08f, 0.84f);
+
+                GameObject tGo = new GameObject("Txt");
+                tGo.transform.SetParent(_bubbleRoot.transform, false);
+                var tr = tGo.AddComponent<RectTransform>();
+                tr.anchorMin = Vector2.zero; tr.anchorMax = Vector2.one;
+                tr.offsetMin = new Vector2(10f, 4f); tr.offsetMax = new Vector2(-10f, -4f);
+
+                _bubbleText = tGo.AddComponent<TextMeshProUGUI>();
+                _bubbleText.fontSize = 19f;
+                _bubbleText.alignment = TextAlignmentOptions.Center;
+                _bubbleText.color = new Color32(252, 244, 222, 255);
+                var existingTmp = promptObject != null ? promptObject.GetComponentInChildren<TMP_Text>(true) : null;
+                if (existingTmp != null && existingTmp.font != null) _bubbleText.font = existingTmp.font;
+            }
+
+            _bubbleText.text = text;
+            _bubbleRoot.SetActive(true);
+            _bubbleVisibleTimer = duration;
+        }
+
+        public void Interact()
+        {
+            if (_bubbleRoot != null) _bubbleRoot.SetActive(false);
+            TriggerDialogue();
         }
 
         private void TickAnimation(float dt)
         {
             if (spriteRenderer == null) return;
-
             if (_cheerTimer > 0f) _cheerTimer -= dt;
-            bool celebratingVictory = GameRoot.Instance != null && GameRoot.Instance.Flags != null &&
-                                      GameRoot.Instance.Flags.HasFlag("flag_nv1_completed");
-            bool playCheer = (_cheerTimer > 0f || celebratingVictory) && cheerFrames != null && cheerFrames.Length > 0 && cheerFrames[0] != null;
+            bool playCheer = (_cheerTimer > 0f) && cheerFrames != null && cheerFrames.Length > 0 && cheerFrames[0] != null;
 
             Sprite[] frames = playCheer ? cheerFrames : idleFrames;
             if (frames == null || frames.Length == 0 || frames[0] == null) return;
@@ -122,13 +284,11 @@ namespace MoonpetalValley.Narrative
             float fps = playCheer ? cheerFps : idleFps;
             float dur = fps > 0.01f ? (1f / fps) : 0.35f;
             _animTimer += dt;
-
             if (_animTimer >= dur)
             {
                 _animTimer -= dur;
                 _frameIndex = (_frameIndex + 1) % frames.Length;
             }
-
             int idx = Mathf.Clamp(_frameIndex, 0, frames.Length - 1);
             if (frames[idx] != null) spriteRenderer.sprite = frames[idx];
         }
@@ -140,14 +300,88 @@ namespace MoonpetalValley.Narrative
             _frameIndex = 0;
             _animTimer = 0f;
 
-            DialogueData chosen = ResolveDialogue();
-            if (chosen != null)
+            DialogueData conditional = ResolveConditionalOnly();
+            if (conditional != null)
             {
-                GameRoot.Instance.Dialogue.StartDialogue(chosen);
+                GameRoot.Instance.Dialogue.StartDialogue(conditional);
+                return;
+            }
+
+            var flags = GameRoot.Instance.Flags;
+            if (npcData.npcID == "npc_bach" && flags != null &&
+                flags.HasFlag("flag_otis_mailbox_fixed") && !flags.HasFlag("flag_bach_letters_read") &&
+                (!flags.HasFlag("flag_hana_bread_done") || !flags.HasFlag("flag_toby_cat_saved")))
+            {
+                GameRoot.Instance.Dialogue.StartQuickLines(new[]
+                {
+                    ("Wen", "Ông Bach ơi, cháu tìm thấy lá thư bà chưa kịp gửi cho ông..."),
+                    ("Ông Bach", "Cất đi. Một tờ giấy cũ có làm tiệm bánh thơm lại hay lũ trẻ quay về vườn được không?"),
+                    ("Tinh Linh Lumi", "Ông ấy sợ đọc xong lại buồn đấy Wen... Mình gọi đủ Bà Hana và Toby về vườn rồi quay lại nhé.")
+                });
+                return;
+            }
+
+            if (TryTriggerReactiveDialogue()) return;
+
+            if (npcData.defaultDialogue != null)
+            {
+                GameRoot.Instance.Dialogue.StartDialogue(npcData.defaultDialogue);
             }
         }
 
-        private DialogueData ResolveDialogue()
+        private bool TryTriggerReactiveDialogue()
+        {
+            if (GameRoot.Instance == null || npcData == null) return false;
+            string id = npcData.npcID ?? "";
+            bool exhausted = GameRoot.Instance.Stats != null && GameRoot.Instance.Stats.IsExhaustedPenalty;
+            bool isNight = GameRoot.Instance.Time != null && GameRoot.Instance.Time.IsNight;
+            bool isDusk = GameRoot.Instance.Time != null && GameRoot.Instance.Time.CurrentPhase == DayPhase.Dusk;
+
+            if (exhausted)
+            {
+                if (id == "npc_hana")
+                {
+                    GameRoot.Instance.Dialogue.StartQuickLines(new[]
+                    {
+                        ("Bà Hana", "Ôi chao, mặt cháu tái mét kìa! Hôm qua kiệt sức phải không? Ăn miếng Bánh Mì Nắng Ấm đi con!"),
+                        ("Wen", "Cháu ổn mà cô... chắc tối qua cháu hơi cố quá sức.")
+                    });
+                    return true;
+                }
+                if (id == "npc_bach")
+                {
+                    GameRoot.Instance.Dialogue.StartQuickLines(new[]
+                    {
+                        ("Ông Bach", "Chậc, làm việc không biết lượng sức. Có bánh mì của Hana thì ăn đi, đứng đó run lẩy bẩy."),
+                        ("Tinh Linh Lumi", "Đấy thấy chưa, Lumi đã bảo Wen đừng cố quá rồi mà!")
+                    });
+                    return true;
+                }
+            }
+
+            if (isNight)
+            {
+                if (id == "npc_hana")
+                {
+                    GameRoot.Instance.Dialogue.StartQuickDialogue("Bà Hana", "Trời tối sương xuống rồi Wen ơi! Vào Nhà Kính ngủ sớm kẻo 2 giờ sáng gục ngoài đường đấy.");
+                    return true;
+                }
+                if (id == "npc_bach")
+                {
+                    GameRoot.Instance.Dialogue.StartQuickDialogue("Ông Bach", "Khuya rồi còn lang thang gì nữa? Về giường đi, đất không chạy mất đâu mà lo.");
+                    return true;
+                }
+            }
+            else if (isDusk && id == "npc_otis")
+            {
+                GameRoot.Instance.Dialogue.StartQuickDialogue("Bác Otis", "Đèn lồng làng vừa bật rồi. Chiều muộn gió lạnh, cháu nhớ để ý thanh Thể lực nhé.");
+                return true;
+            }
+
+            return false;
+        }
+
+        private DialogueData ResolveConditionalOnly()
         {
             var flags = GameRoot.Instance.Flags;
             var inv = GameRoot.Instance.Inventory;
@@ -179,7 +413,7 @@ namespace MoonpetalValley.Narrative
                     return entry.dialogue;
                 }
             }
-            return npcData.defaultDialogue;
+            return null;
         }
     }
 }

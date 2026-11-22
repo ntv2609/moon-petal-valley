@@ -16,7 +16,7 @@ MonoBehaviour:
   - key: ui_game_title
     vietnameseText: "Thung L\u0169ng Hoa \xC1nh Tr\u0103ng"
   - key: ui_step1_banner
-    vietnameseText: "Thung L\u0169ng Hoa \xC1nh Tr\u0103ng \u2014 N\u1EC1n t\u1EA3ng Step 1 s\u1EB5n s\xE0ng!\nB\u1EA5m ph\xEDm F1 \u0111\u1EC3 m\u1EDF b\u1EA3ng Debug ki\u1EC3m th\u1EED ti\u1EBFng Vi\u1EC7t & StoryFlag."
+    vietnameseText: "Thung L\u0169ng Hoa \xC1nh Tr\u0103ng | N\u1EC1n t\u1EA3ng Step 1 s\u1EB5n s\xE0ng!\nB\u1EA5m ph\xEDm F1 \u0111\u1EC3 m\u1EDF b\u1EA3ng Debug ki\u1EC3m th\u1EED ti\u1EBFng Vi\u1EC7t & StoryFlag."
   - key: toast_step1_test
     vietnameseText: "Ch\xE0o m\u1EEBng Wen \u0111\u1EBFn v\u1EDBi Thung L\u0169ng Hoa \xC1nh Tr\u0103ng! (Ti\u1EBFng Vi\u1EC7t c\xF3 d\u1EA5u OK)"
   - key: ui_stamina_label
@@ -24,7 +24,7 @@ MonoBehaviour:
   - key: ui_lighthp_label
     vietnameseText: "M\xE1u \xC1nh S\xE1ng"
   - key: ui_day_format
-    vietnameseText: "Ng\xE0y {0} \u2014 {1:00}:{2:00}"
+    vietnameseText: "Ng\xE0y {0} | {1:00}:{2:00}"
   - key: name_item_hoe
     vietnameseText: "Cu\u1ED1c \u0110\u1EA5t"
   - key: desc_item_hoe
@@ -86,37 +86,37 @@ MonoBehaviour:
   - key: desc_item_petal_of_hope
     vietnameseText: "C\xE1nh hoa Moonpetal \u0111\u1EA7u ti\xEAn xua tan S\u01B0\u01A1ng H\xE9o \xDAa kh\u1ECFi L\xE0ng Ch\xEDnh."
   - key: title_diary_page_01
-    vietnameseText: "Trang 1 \u2014 L\u1EDDi D\u1EB7n Trong Nh\xE0 K\xEDnh"
+    vietnameseText: "Trang 1 | L\u1EDDi D\u1EB7n Trong Nh\xE0 K\xEDnh"
   - key: body_diary_page_01
     vietnameseText: "Wen y\xEAu qu\xFD, Hoa \xC1nh Tr\u0103ng kh\xF4ng bao gi\u1EDD n\u1EDF v\xEC m\u1ED9t \u0111\xF4i tay \u0111\u01A1n \u0111\u1ED9c. Khi s\u01B0\u01A1ng h\xE9o \xFAa ph\u1EE7 l\xEAn thung l\u0169ng, h\xE3y t\xECm l\u1EA1i nh\u1EEFng ng\u01B0\u1EDDi h\xE0ng x\xF3m x\u01B0a v\xE0 l\u1EAFng nghe c\xE2u chuy\u1EC7n c\u1EE7a h\u1ECD."
   - key: title_diary_page_02
-    vietnameseText: "Trang 2 \u2014 M\u1EBB B\xE1nh \u0110\u1EA7u Xu\xE2n C\u1EE7a Hana"
+    vietnameseText: "Trang 2 | M\u1EBB B\xE1nh \u0110\u1EA7u Xu\xE2n C\u1EE7a Hana"
   - key: body_diary_page_02
     vietnameseText: "M\xF9a xu\xE2n n\u0103m \u1EA5y, c\u1EA3 l\xE0ng t\u1EE5 h\u1ECDp \u1EDF v\u01B0\u1EDDn \xF4ng Bach chia nhau nh\u1EEFng \u1ED5 B\xE1nh M\xEC N\u1EAFng \u1EA4m n\xF3ng h\u1ED5i t\u1EEB l\xFAa m\u1EA1ch s\u01B0\u01A1ng mai. H\u01B0\u01A1ng b\xE1nh l\xE0m tan \u0111i c\u1EA3 c\xE1i l\u1EA1nh \u0111\u1EA7u m\xF9a."
   - key: title_diary_page_03
-    vietnameseText: "Trang 3 \u2014 Ti\u1EBFng C\u01B0\u1EDDi Quanh V\u01B0\u1EDDn Ph\xEDa Nam"
+    vietnameseText: "Trang 3 | Ti\u1EBFng C\u01B0\u1EDDi Quanh V\u01B0\u1EDDn Ph\xEDa Nam"
   - key: body_diary_page_03
     vietnameseText: "\xD4ng Bach tuy \xEDt n\xF3i nh\u01B0ng lu\xF4n \u0111\u1EC3 d\xE0nh m\u1ED9t g\xF3c v\u01B0\u1EDDn cho l\u0169 tr\u1EBB ch\u1EA1y nh\u1EA3y v\xE0 l\u0169 m\xE8o n\u1EB1m s\u01B0\u1EDFi n\u1EAFng. Ch\u1EC9 c\u1EA7n c\xF3 ng\u01B0\u1EDDi nh\u1EDB \u0111\u1EBFn khu v\u01B0\u1EDDn, \xF4ng s\u1EBD l\u1EA1i c\u1EA7m cu\u1ED1c."
   - key: title_diary_page_04
-    vietnameseText: "Trang 4 \u2014 B\u1EE9c Th\u01B0 Ch\u01B0a K\u1ECBp G\u1EEDi \xD4ng Bach"
+    vietnameseText: "Trang 4 | B\u1EE9c Th\u01B0 Ch\u01B0a K\u1ECBp G\u1EEDi \xD4ng Bach"
   - key: body_diary_page_04
     vietnameseText: "G\u1EEDi \xF4ng b\u1EA1n gi\xE0 Bach, c\u1EA3m \u01A1n \xF4ng \u0111\xE3 gi\u1EEF g\xECn chi\u1EBFc gh\u1EBF \u0111\xF4i v\xE0 nh\u1EEFng h\u1EA1t gi\u1ED1ng x\u01B0a. N\u1EBFu ch\xE1u g\xE1i t\xF4i Wen t\xECm \u0111\u1EBFn, xin \xF4ng h\xE3y m\u1ED9t l\u1EA7n n\u1EEFa c\xF9ng ch\xE1u gieo m\u1EA7m hy v\u1ECDng nh\xE9."
   - key: dlg_bach_intro_sp_0
     vietnameseText: "\xD4ng Bach"
   - key: dlg_bach_intro_tx_0
-    vietnameseText: "Ch\xE1u l\xE0 Wen, ch\xE1u g\xE1i c\u1EE7a b\xE0 c\u1EE5 Nh\xE0 K\xEDnh ph\u1EA3i kh\xF4ng? Khu v\u01B0\u1EDDn ph\xEDa nam n\xE0y b\u1ECB B\u1ECDt S\u01B0\u01A1ng \u0110en chi\u1EBFm m\u1EA5t r\u1ED3i..."
+    vietnameseText: "Ch\u1EADc. \u0110\u1EE9ng l\u1EA1i. V\u01B0\u1EDDn \u0111\xF3ng c\u1EEDa r\u1ED3i, kh\xF4ng ti\u1EBFp kh\xE1ch tham quan."
   - key: dlg_bach_intro_sp_1
-    vietnameseText: "\xD4ng Bach"
+    vietnameseText: Tinh Linh Lumi
   - key: dlg_bach_intro_tx_1
-    vietnameseText: "C\u1EA7m l\u1EA5y chi\u1EBFc Li\u1EC1m \xC1nh Tr\u0103ng c\u0169 n\xE0y (\xF4 s\u1ED1 4). N\u1EBFu ch\xE1u thanh t\u1EA9y h\u1EBFt 5 B\u1ECDt S\u01B0\u01A1ng \u0110en v\xE0 lau s\u1EA1ch Chi\u1EBFc Gh\u1EBF \u0110\xF4i, ta s\u1EBD tin thung l\u0169ng n\xE0y c\xF2n hy v\u1ECDng."
+    vietnameseText: "\u01A0 c\xE1i \xF4ng m\u0169 r\u01A1m n\xE0y! Wen kh\xF4ng ph\u1EA3i kh\xE1ch, Wen l\xE0 ch\xE1u b\xE0..."
   - key: dlg_bach_read_letters_sp_0
     vietnameseText: Wen
   - key: dlg_bach_read_letters_tx_0
-    vietnameseText: "\xD4ng Bach \u01A1i, ch\xE1u \u0111\xE3 t\xECm l\u1EA1i \u0111\u1EE7 4 trang nh\u1EADt k\xFD v\xE0 b\u1EE9c th\u01B0 cu\u1ED1i b\xE0 g\u1EEDi cho \xF4ng..."
+    vietnameseText: "\xD4ng Bach \u01A1i, B\xE0 Hana n\u01B0\u1EDBng l\u1EA1i b\xE1nh r\u1ED3i, Toby c\u0169ng d\u1EAFt Miu ra v\u01B0\u1EDDn, c\xF2n \u0111\xE2y l\xE0 l\xE1 th\u01B0 b\xE0 g\u1EEDi \xF4ng."
   - key: dlg_bach_read_letters_sp_1
     vietnameseText: "\xD4ng Bach"
   - key: dlg_bach_read_letters_tx_1
-    vietnameseText: "B\xE0 \u1EA5y v\u1EABn lu\xF4n nh\u1EDB chi\u1EBFc gh\u1EBF \u0111\xF4i n\xE0y sao... C\u1EA3m \u01A1n ch\xE1u, Wen. Ta s\u1EBD \u0111\u1EE9ng c\u1EA1nh B\u1ED3n Hoa ch\u1EDD m\u1ECDi ng\u01B0\u1EDDi c\xF9ng gieo h\u1EA1t!"
+    vietnameseText: "...B\xE0 \u1EA5y v\u1EABn nh\u1EDB c\xE1i gh\u1EBF \u0111\xF4i. C\xF2n d\u1EB7n ta \u0111\u1EEBng c\xF3 g\u1EAFt g\u1ECFng v\u1EDBi ch\xE1u g\xE1i b\xE0 \u1EA5y n\u1EEFa."
   - key: dlg_bach_default_sp_0
     vietnameseText: "\xD4ng Bach"
   - key: dlg_bach_default_tx_0
@@ -128,11 +128,11 @@ MonoBehaviour:
   - key: dlg_hana_complete_sp_0
     vietnameseText: "B\xE0 Hana"
   - key: dlg_hana_complete_tx_0
-    vietnameseText: "\xD4i, 4 b\xF3 L\xFAa M\u1EA1ch S\u01B0\u01A1ng Mai t\u01B0\u01A1i qu\xE1! M\u1EBB b\xE1nh \u0111\u1EA7u xu\xE2n l\u1EA1i th\u01A1m l\u1EEBng c\u1EA3 qu\u1EA3ng tr\u01B0\u1EDDng r\u1ED3i!"
+    vietnameseText: "\xD4i chao, h\u1EA1t m\u1EA9y m\xE0 th\u01A1m ng\xE1t th\u1EBF n\xE0y! \u0110\xFAng v\u1ECB s\u01B0\u01A1ng s\u1EDBm ng\xE0y x\u01B0a r\u1ED3i!"
   - key: dlg_hana_complete_sp_1
-    vietnameseText: "B\xE0 Hana"
+    vietnameseText: Tinh Linh Lumi
   - key: dlg_hana_complete_tx_1
-    vietnameseText: "T\u1EB7ng ch\xE1u 2 \u1ED5 B\xE1nh M\xEC N\u1EAFng \u1EA4m (\u0103n v\xE0o h\u1ED3i l\u1EF1c & x\xF3a m\u1EC7t m\u1ECFi ngay) c\xF9ng T\xFAi H\u1EA1t Di S\u1EA3n S\u1ED1 1 nh\xE9. C\xF4 ra B\u1ED3n Hoa ch\u1EDD ch\xE1u!"
+    vietnameseText: "N\u01B0\u1EDBc mi\u1EBFng Lumi s\u1EAFp r\u01A1i r\u1ED3i Wen \u01A1i..."
   - key: dlg_hana_after_sp_0
     vietnameseText: "B\xE0 Hana"
   - key: dlg_hana_after_tx_0
@@ -140,7 +140,7 @@ MonoBehaviour:
   - key: dlg_hana_default_sp_0
     vietnameseText: "B\xE0 Hana"
   - key: dlg_hana_default_tx_0
-    vietnameseText: "Ch\xE0o Wen! N\u1EBFu ch\xE1u tr\u1ED3ng \u0111\u01B0\u1EE3c 4 c\xE2y L\xFAa M\u1EA1ch S\u01B0\u01A1ng Mai trong Nh\xE0 K\xEDnh mang t\u1EDBi \u0111\xE2y, c\xF4 s\u1EBD n\u01B0\u1EDBng B\xE1nh M\xEC N\u1EAFng \u1EA4m v\xE0 trao T\xFAi H\u1EA1t Di S\u1EA3n S\u1ED1 1 cho ch\xE1u."
+    vietnameseText: "\xD4i chao, ch\xE1u g\xE1i Nh\xE0 K\xEDnh \u0111\xF3 h\u1EA3? Nh\xECn ng\u01B0\u1EDDi g\u1EA7y nhom, \u0111\xE3 \u0103n s\xE1ng ch\u01B0a \u0111\u1EA5y?"
   - key: name_npc_hana
     vietnameseText: "B\xE0 Hana"
   - key: role_npc_hana
@@ -148,15 +148,15 @@ MonoBehaviour:
   - key: dlg_toby_complete_sp_0
     vietnameseText: "C\u1EADu B\xE9 Toby"
   - key: dlg_toby_complete_tx_0
-    vietnameseText: "Meo meo! Ch\u1ECB Wen \u0111u\u1ED5i h\u1EBFt 3 B\u1ECDt S\u01B0\u01A1ng \u0110en c\u1EE9u b\xE9 Miu r\u1ED3i! Em c\u1EA3m \u01A1n ch\u1ECB nhi\u1EC1u l\u1EAFm!"
+    vietnameseText: "Miu \u01A1i!! \u0110\u1EA5y th\u1EA5y ch\u01B0a, em \u0111\xE3 b\u1EA3o ch\u1ECB Wen si\xEAu ng\u1EA7u m\xE0!"
   - key: dlg_toby_complete_sp_1
-    vietnameseText: "C\u1EADu B\xE9 Toby"
+    vietnameseText: Wen
   - key: dlg_toby_complete_tx_1
-    vietnameseText: "Em g\u1EEDi ch\u1ECB T\xFAi H\u1EA1t Di S\u1EA3n S\u1ED1 2 v\xE0 trang s\u1ED5 em nh\u1EB7t \u0111\u01B0\u1EE3c. Em ch\u1EA1y ra B\u1ED3n Hoa ph\u1EE5 ch\u1ECB ngay \u0111\xE2y!"
+    vietnameseText: "B\xE9 Miu ch\u1EC9 h\u01A1i ho\u1EA3ng th\xF4i, kh\xF4ng b\u1ECB th\u01B0\u01A1ng \u0111\xE2u. Em nh\u1EDB \u0111\u1EEBng \u0111\u1EC3 b\xE9 ch\u1EA1y s\xE2u v\xE0o r\u1EEBng n\u1EEFa nh\xE9."
   - key: dlg_toby_default_sp_0
     vietnameseText: "C\u1EADu B\xE9 Toby"
   - key: dlg_toby_default_tx_0
-    vietnameseText: "Ch\u1ECB Wen \u01A1i, ch\xFA m\xE8o Miu c\u1EE7a em b\u1ECB 3 con B\u1ECDt S\u01B0\u01A1ng \u0110en v\xE2y \u1EDF R\xECa R\u1EEBng Ph\xEDa \u0110\xF4ng r\u1ED3i! Ch\u1ECB c\u1EA7m Li\u1EC1m \xC1nh Tr\u0103ng c\u1EE9u b\xE9 gi\xFAp em v\u1EDBi!"
+    vietnameseText: "Ch\u1ECB \u01A1i ch\u1ECB \u01A1i! Nguy to r\u1ED3i! Em kh\xF4ng s\u1EE3 ma \u0111\xE2u th\u1EADt \u0111\u1EA5y, nh\u01B0ng b\xE9 Miu b\u1ECB 3 c\u1EE5c m\u1ED1c \u0111en v\xE2y \u1EDF R\xECa R\u1EEBng Ph\xEDa \u0110\xF4ng r\u1ED3i!"
   - key: name_npc_toby
     vietnameseText: "C\u1EADu B\xE9 Toby"
   - key: role_npc_toby
@@ -168,8 +168,116 @@ MonoBehaviour:
   - key: dlg_otis_default_sp_0
     vietnameseText: "B\xE1c Otis"
   - key: dlg_otis_default_tx_0
-    vietnameseText: "H\xF2m th\u01B0 g\u1ED7 ngay c\u1EA1nh b\xE1c b\u1ECB s\u01B0\u01A1ng m\u1EE5c h\u1ECFng m\u1EA5t r\u1ED3i. Ch\xE1u ch\u1EB7t 10 G\u1ED7 Nh\xE1nh C\xE2y quanh l\xE0ng r\u1ED3i b\u1EA5m [E] v\xE0o H\xF2m Th\u01B0 \u0111\u1EC3 s\u1EEDa gi\xFAp b\xE1c nh\xE9, b\xEAn trong c\xF3 T\xFAi H\u1EA1t Di S\u1EA3n S\u1ED1 3 v\xE0 th\u01B0 c\u1EE7a b\xE0 ch\xE1u \u0111\u1EA5y!"
+    vietnameseText: "E h\xE8m, ch\xE0o c\xF4 Wen. C\xF4 \u0111\u1EBFn \u0111\xFAng l\xFAc l\u1EAFm, c\xE1i h\xF2m th\u01B0 g\u1ED7 n\xE0y b\u1ECB s\u01B0\u01A1ng m\u1EE5c k\u1EB9t c\u1EE9ng t\u1EEB m\xF9a \u0111\xF4ng tr\u01B0\u1EDBc."
   - key: name_npc_otis
     vietnameseText: "B\xE1c Otis"
   - key: role_npc_otis
     vietnameseText: "Ng\u01B0\u1EDDi \u0110\u01B0a Th\u01B0"
+  - key: dlg_bach_branch_bold_sp_0
+    vietnameseText: "\xD4ng Bach"
+  - key: dlg_bach_branch_bold_tx_0
+    vietnameseText: "H\u1EEBm, c\u1EE9ng \u0111\u1EA7u y h\u1EC7t b\xE0 ngo\u1EA1i ch\xE1u. C\u1EA7m l\u1EA5y c\xE1i Li\u1EC1m \xC1nh Tr\u0103ng c\u0169 n\xE0y. \u0110\u1EEBng c\xF3 l\xE0m m\u1EBB l\u01B0\u1EE1i \u0111\u1EA5y."
+  - key: dlg_bach_branch_bold_sp_1
+    vietnameseText: Tinh Linh Lumi
+  - key: dlg_bach_branch_bold_tx_1
+    vietnameseText: "Gh\xEA ch\u01B0a k\xECa! C\xF3 Li\u1EC1m \xC1nh Tr\u0103ng r\u1ED3i, hai \u0111\u1EE9a m\xECnh v\xE0o qu\xE9t s\u1EA1ch 5 B\u1ECDt S\u01B0\u01A1ng \u0110en th\xF4i Wen!"
+  - key: dlg_bach_branch_gentle_sp_0
+    vietnameseText: "\xD4ng Bach"
+  - key: dlg_bach_branch_gentle_tx_0
+    vietnameseText: "...N\xF3i nhi\u1EC1u qu\xE1. C\u1EA7m l\u1EA5y c\xE1i Li\u1EC1m n\xE0y. D\u1ECDn h\u1EBFt 5 con B\u1ECDt S\u01B0\u01A1ng v\u1EDBi lau c\xE1i gh\u1EBF g\u1ED7 \u0111i r\u1ED3i h\u1EB5ng n\xF3i chuy\u1EC7n."
+  - key: dlg_bach_branch_gentle_sp_1
+    vietnameseText: Tinh Linh Lumi
+  - key: dlg_bach_branch_gentle_tx_1
+    vietnameseText: "\xD4ng \u1EA5y ngo\xE0i l\u1EA1nh trong n\xF3ng \u0111\u1EA5y Wen \u01A1i! V\xE0o d\u1ECDn s\u1EA1ch v\u01B0\u1EDDn cho \xF4ng b\u1EA5t ng\u1EDD n\xE0o!"
+  - key: dlg_bach_intro_sp_2
+    vietnameseText: "\xD4ng Bach"
+  - key: dlg_bach_intro_tx_2
+    vietnameseText: "...Ch\xE1u b\xE0 c\u1EE5 Nh\xE0 K\xEDnh \xE0? H\u1EEBm. Gi\u1ED1ng m\u1EAFt b\xE0 \u1EA5y th\u1EADt."
+  - key: dlg_bach_intro_sp_3
+    vietnameseText: Wen
+  - key: dlg_bach_intro_tx_3
+    vietnameseText: "Ch\xE1u ch\xE0o \xF4ng. Ch\xE1u mu\u1ED1n h\u1ECFi v\u1EC1 Hoa Moonpetal \u1EDF B\u1ED3n Hoa trong v\u01B0\u1EDDn..."
+  - key: dlg_bach_intro_sp_4
+    vietnameseText: "\xD4ng Bach"
+  - key: dlg_bach_intro_tx_4
+    vietnameseText: "Qu\xEAn \u0111i. \u0110\u1EA5t chai h\u1EBFt r\u1ED3i, c\xF2n l\u0169 B\u1ECDt S\u01B0\u01A1ng \u0110en nhung nh\xFAc b\xEAn trong. M\u1ED9t con b\xE9 th\xE0nh ph\u1ED1 l\xE0m \u0111\u01B0\u1EE3c g\xEC?"
+  - key: choice_bach_bold
+    vietnameseText: "Ch\xE1u kh\xF4ng h\u1EE9a su\xF4ng. Cho ch\xE1u m\u01B0\u1EE3n \u0111\u1ED3, ch\xE1u d\u1ECDn s\u1EA1ch v\u01B0\u1EDDn cho \xF4ng xem."
+  - key: choice_bach_gentle
+    vietnameseText: "Ch\xE1u bi\u1EBFt \xF4ng v\u1EABn th\u01B0\u01A1ng khu v\u01B0\u1EDDn n\xE0y. C\u1EE9 \u0111\u1EC3 ch\xE1u th\u1EED m\u1ED9t l\u1EA7n nh\xE9?"
+  - key: dlg_bach_read_letters_sp_2
+    vietnameseText: "\xD4ng Bach"
+  - key: dlg_bach_read_letters_tx_2
+    vietnameseText: "H\u1EEBm, b\u1EA3o sao l\xFAc m\u1EDBi g\u1EB7p ch\xE1u \u0111\xE3 c\u1EE9ng \u0111\u1EA7u y h\u1EC7t b\xE0 ngo\u1EA1i ch\xE1u."
+  - key: dlg_bach_read_letters_sp_3
+    vietnameseText: "\xD4ng Bach"
+  - key: dlg_bach_read_letters_tx_3
+    vietnameseText: "Ch\xE1u n\xF3i \u0111\xFAng... ta ch\u01B0a bao gi\u1EDD b\u1ECF \u0111\u01B0\u1EE3c khu v\u01B0\u1EDDn n\xE0y c\u1EA3."
+  - key: dlg_bach_read_letters_sp_4
+    vietnameseText: "\xD4ng Bach"
+  - key: dlg_bach_read_letters_tx_4
+    vietnameseText: "\u0110\u01B0\u1EE3c r\u1ED3i Wen. Ra B\u1ED3n Hoa Trung T\xE2m \u0111i. \xD4ng v\u1EDBi m\u1ECDi ng\u01B0\u1EDDi ch\u1EDD ch\xE1u c\xF9ng gieo h\u1EA1t."
+  - key: dlg_hana_default_sp_1
+    vietnameseText: Tinh Linh Lumi
+  - key: dlg_hana_default_tx_1
+    vietnameseText: "Kh\u1ECBt kh\u1ECBt! C\xF4 \u01A1i ti\u1EC7m c\xF4 th\u01A1m m\xF9i b\u1ED9t m\xEC qu\xE1 \u0111i m\u1EA5t!"
+  - key: dlg_hana_default_sp_2
+    vietnameseText: "B\xE0 Hana"
+  - key: dlg_hana_default_tx_2
+    vietnameseText: "H\xEC, c\xE1i b\xE9 xanh xanh kia tinh m\u0169i gh\xEA. Ti\u1EBFc l\xE0 d\u1EA1o n\xE0y c\xF4 h\u1EBFt s\u1EA1ch L\xFAa M\u1EA1ch S\u01B0\u01A1ng Mai r\u1ED3i."
+  - key: dlg_hana_default_sp_3
+    vietnameseText: Wen
+  - key: dlg_hana_default_tx_3
+    vietnameseText: "Ch\xE1u c\xF3 h\u1EA1t gi\u1ED1ng trong Nh\xE0 K\xEDnh! N\u1EBFu ch\xE1u tr\u1ED3ng mang ra 4 b\xF3 th\xEC c\xF4 n\u01B0\u1EDBng m\u1EBB b\xE1nh \u0111\u1EA7u xu\xE2n nh\xE9?"
+  - key: dlg_hana_default_sp_4
+    vietnameseText: "B\xE0 Hana"
+  - key: dlg_hana_default_tx_4
+    vietnameseText: "N\xE0o n\xE0o, ch\xE1u mang \u0111\u01B0\u1EE3c 4 b\xF3 L\xFAa M\u1EA1ch th\xEC c\xF4 bi\u1EBFu b\xE1nh n\xF3ng, t\u1EB7ng lu\xF4n T\xFAi H\u1EA1t Di S\u1EA3n c\u0169 b\xE0 ch\xE1u g\u1EEDi c\xF4 gi\u1EEF!"
+  - key: dlg_hana_complete_sp_2
+    vietnameseText: "B\xE0 Hana"
+  - key: dlg_hana_complete_tx_2
+    vietnameseText: "N\xE0o, ph\u1EA7n ch\xE1u 2 \u1ED5 B\xE1nh M\xEC N\u1EAFng \u1EA4m \u0103n cho l\u1EA1i s\u1EE9c, c\u1EA3 T\xFAi H\u1EA1t S\u1ED1 1 n\u1EEFa. Ti\u1EC7n ch\xE1u mang gi\xF9m c\xF4 m\u1ED9t \u1ED5 ra c\u1ED5ng v\u01B0\u1EDDn nh\xE9?"
+  - key: dlg_hana_complete_sp_3
+    vietnameseText: Wen
+  - key: dlg_hana_complete_tx_3
+    vietnameseText: "Cho \xD4ng Bach \u1EA1? Ch\xE1u t\u01B0\u1EDFng \xF4ng b\u1EA3o kh\xF4ng th\xEDch \u0111\u1ED3 ng\u1ECDt?"
+  - key: dlg_hana_complete_sp_4
+    vietnameseText: "B\xE0 Hana"
+  - key: dlg_hana_complete_tx_4
+    vietnameseText: "\xD4ng \u1EA5y ch\xEA v\u1EADy th\xF4i ch\u1EE9 s\xE1ng n\xE0o c\u0169ng \u0103n h\u1EBFt s\u1EA1ch \u0111\u1EA5y! C\xF4 d\u1ECDn b\u1EBFp xong s\u1EBD ra B\u1ED3n Hoa ph\u1EE5 ch\xE1u ngay."
+  - key: dlg_toby_default_sp_1
+    vietnameseText: Wen
+  - key: dlg_toby_default_tx_1
+    vietnameseText: "B\xECnh t\u0129nh n\xE0o nh\xF3c. Em \u0111\u1EE9ng \u0111\xE2y ch\u1EDD, ch\u1ECB c\u1EA7m Li\u1EC1m sang \u0111u\u1ED5i ch\xFAng ngay."
+  - key: dlg_toby_default_sp_2
+    vietnameseText: Tinh Linh Lumi
+  - key: dlg_toby_default_tx_2
+    vietnameseText: "\u0110\u1EC3 Lumi \u0111i c\xF9ng! \u0110\xE1m m\u1ED1c \u0111en g\u1EB7p Li\u1EC1m c\u1EE7a Wen l\xE0 ch\u1EA1y m\u1EA5t d\xE9p!"
+  - key: dlg_toby_default_sp_3
+    vietnameseText: "C\u1EADu B\xE9 Toby"
+  - key: dlg_toby_default_tx_3
+    vietnameseText: "Ch\u1ECB c\u1EE9u \u0111\u01B0\u1EE3c Miu th\xEC em \u0111\u01B0a ch\u1ECB T\xFAi H\u1EA1t b\xED m\u1EADt em gi\u1EA5u d\u01B0\u1EDBi g\u1ED1c c\xE2y lu\xF4n, h\u1EE9a danh d\u1EF1 \u0111\u1EA5y!"
+  - key: dlg_toby_complete_sp_2
+    vietnameseText: "C\u1EADu B\xE9 Toby"
+  - key: dlg_toby_complete_tx_2
+    vietnameseText: "V\xE2ng \u1EA1! N\xE8 ch\u1ECB c\u1EA7m T\xFAi H\u1EA1t S\u1ED1 2 v\u1EDBi t\u1EDD gi\u1EA5y c\u0169 em nh\u1EB7t \u0111\u01B0\u1EE3c. Em ch\u1EA1y ra V\u01B0\u1EDDn \xD4ng Bach gi\u1EEF ch\u1ED7 tr\u01B0\u1EDBc \u0111\xE2y!"
+  - key: dlg_toby_complete_sp_3
+    vietnameseText: Tinh Linh Lumi
+  - key: dlg_toby_complete_tx_3
+    vietnameseText: "Khoan! C\u1EADu kh\xF4ng s\u1EE3 \xD4ng Bach m\u1EAFng n\u1EEFa \xE0?"
+  - key: dlg_toby_complete_sp_4
+    vietnameseText: "C\u1EADu B\xE9 Toby"
+  - key: dlg_toby_complete_tx_4
+    vietnameseText: "S\u1EE3 g\xEC! Miu c\xF2n n\u1EB1m ng\u1EE7 k\xE9 tr\xEAn th\u1EA3m c\u1ECF v\u01B0\u1EDDn \xF4ng su\u1ED1t, \xF4ng c\xF3 \u0111u\u1ED5i \u0111\xE2u!"
+  - key: dlg_otis_default_sp_1
+    vietnameseText: Wen
+  - key: dlg_otis_default_tx_1
+    vietnameseText: "B\xEAn trong c\xF2n th\u01B0 ch\u01B0a g\u1EEDi sao b\xE1c?"
+  - key: dlg_otis_default_sp_2
+    vietnameseText: "B\xE1c Otis"
+  - key: dlg_otis_default_tx_2
+    vietnameseText: "C\xF3 m\u1ED9t phong th\u01B0 b\xE0 ngo\u1EA1i c\xF4 g\u1EEDi cho \xD4ng Bach, k\xE8m m\u1ED9t T\xFAi H\u1EA1t Di S\u1EA3n. T\xF4i ng\u1EA1i c\u1EA1y m\u1EA1nh s\u1EE3 r\xE1ch th\u01B0..."
+  - key: dlg_otis_default_sp_3
+    vietnameseText: "B\xE1c Otis"
+  - key: dlg_otis_default_tx_3
+    vietnameseText: "N\u1EBFu c\xF4 ki\u1EBFm gi\xFAp 10 G\u1ED7 Nh\xE1nh C\xE2y quanh l\xE0ng, t\xF4i v\xE0 c\xF4 gia c\u1ED1 l\u1EA1i b\u1EA3n l\u1EC1 r\u1ED3i l\u1EA5y th\u01B0 ra t\u1EED t\u1EBF."

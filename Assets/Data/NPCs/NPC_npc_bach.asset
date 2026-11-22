@@ -15,7 +15,7 @@ MonoBehaviour:
   npcID: npc_bach
   displayNameKey: name_npc_bach
   roleTitleKey: role_npc_bach
-  portraitSprite: {fileID: 0}
+  portraitSprite: {fileID: 21300000, guid: 08bde42b1e1299c4fa87e2b5929d920e, type: 3}
   worldSprite: {fileID: 21300000, guid: d0428a3229945364e97c7fbe35e94814, type: 3}
   defaultDialogue: {fileID: 11400000, guid: 9c2705da7edda164ab5cd63c6cda24ce, type: 2}
   conditionalDialogues:

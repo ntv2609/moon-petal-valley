@@ -95,7 +95,7 @@ namespace MoonpetalValley.UI
             DiaryPageData current = pages[_pageIndex];
             var loc = GameRoot.Instance.Loc;
 
-            if (pageHeaderText != null) pageHeaderText.text = string.Format("SỔ TAY CỦA BÀ — Trang {0}/{1} (Đã mở: {2}/4)", current.pageNumber, 4, pages.Count);
+            if (pageHeaderText != null) pageHeaderText.text = string.Format("SỔ TAY CỦA BÀ | Trang {0}/{1} (Đã mở: {2}/4)", current.pageNumber, 4, pages.Count);
             if (pageTitleText != null) pageTitleText.text = loc != null ? loc.Get(current.titleKey) : current.titleKey;
             if (pageBodyText != null) pageBodyText.text = loc != null ? loc.Get(current.bodyTextKey) : current.bodyTextKey;
         }

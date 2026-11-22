@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: item_seed_bag_3
   displayNameKey: name_item_seed_bag_3
   descriptionKey: desc_item_seed_bag_3
-  icon: {fileID: 3366498179118325795, guid: b446bb4ccfe7a3e4189a2b9c2e4c3e9d, type: 3}
+  icon: {fileID: 21300000, guid: b446bb4ccfe7a3e4189a2b9c2e4c3e9d, type: 3}
   category: 5
   maxStack: 1
   staminaRestore: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: item_petal_of_hope
   displayNameKey: name_item_petal_of_hope
   descriptionKey: desc_item_petal_of_hope
-  icon: {fileID: -1661259902473277568, guid: d43d2b3911b183146837233296981df8, type: 3}
+  icon: {fileID: 21300000, guid: d43d2b3911b183146837233296981df8, type: 3}
   category: 6
   maxStack: 1
   staminaRestore: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: item_starlight_dust
   displayNameKey: name_item_starlight_dust
   descriptionKey: desc_item_starlight_dust
-  icon: {fileID: -7049409922537606730, guid: c412d5e8eb66e1c46ba3e72fbd3f9227, type: 3}
+  icon: {fileID: 21300000, guid: c412d5e8eb66e1c46ba3e72fbd3f9227, type: 3}
   category: 3
   maxStack: 99
   staminaRestore: 0

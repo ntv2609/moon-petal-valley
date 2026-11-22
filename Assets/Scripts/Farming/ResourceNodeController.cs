@@ -39,11 +39,30 @@ namespace MoonpetalValley.Farming
         private void OnEnable()
         {
             GameEventBus.OnDayStarted += HandleDayStarted;
+            GameEventBus.OnSaveLoaded += SyncWithStoryFlags;
         }
 
         private void OnDisable()
         {
             GameEventBus.OnDayStarted -= HandleDayStarted;
+            GameEventBus.OnSaveLoaded -= SyncWithStoryFlags;
+        }
+
+        private void Start()
+        {
+            SyncWithStoryFlags();
+        }
+
+        public void SyncWithStoryFlags()
+        {
+            if (nodeType != ResourceNodeType.GreenhouseDebris) return;
+            if (GameRoot.Instance != null && GameRoot.Instance.Flags != null &&
+                GameRoot.Instance.Flags.HasFlag("flag_greenhouse_cleared"))
+            {
+                _isDepleted = true;
+                if (visualRenderer != null) visualRenderer.enabled = false;
+                if (nodeCollider != null) nodeCollider.enabled = false;
+            }
         }
 
         private void Update()

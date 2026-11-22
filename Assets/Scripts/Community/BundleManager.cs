@@ -6,7 +6,7 @@ using MoonpetalValley.Data;
 
 namespace MoonpetalValley.Community
 {
-    public class BundleManager : MonoBehaviour, ISaveable
+    public class BundleManager : MonoBehaviour, ISaveable, IResettable
     {
         [SerializeField] private BundleData activeBundle;
 
@@ -131,5 +131,11 @@ namespace MoonpetalValley.Community
             }
             OnBundleUpdated?.Invoke();
         }
-    }
+    
+        public void ResetForNewGame()
+        {
+            _contributed.Clear();
+            OnBundleUpdated?.Invoke();
+        }
+}
 }

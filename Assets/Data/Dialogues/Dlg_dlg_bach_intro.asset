@@ -17,12 +17,50 @@ MonoBehaviour:
   - speakerNameKey: dlg_bach_intro_sp_0
     textKey: dlg_bach_intro_tx_0
     portraitOverride: {fileID: 0}
+    speakerId: bach
+    requiredFlag: 
+    blockedFlag: 
   - speakerNameKey: dlg_bach_intro_sp_1
     textKey: dlg_bach_intro_tx_1
     portraitOverride: {fileID: 0}
-  setsStoryFlagOnFinish: flag_met_bach_at_gate
-  givesItemOnFinish: {fileID: 11400000, guid: df34129b6b498bc41840014ecafd636e, type: 2}
-  givesItemAmount: 1
+    speakerId: lumi
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: dlg_bach_intro_sp_2
+    textKey: dlg_bach_intro_tx_2
+    portraitOverride: {fileID: 0}
+    speakerId: bach
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: dlg_bach_intro_sp_3
+    textKey: dlg_bach_intro_tx_3
+    portraitOverride: {fileID: 0}
+    speakerId: wen
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: dlg_bach_intro_sp_4
+    textKey: dlg_bach_intro_tx_4
+    portraitOverride: {fileID: 0}
+    speakerId: bach
+    requiredFlag: 
+    blockedFlag: 
+  choices:
+  - choiceTextKey: choice_bach_bold
+    setsFlagOnPick: flag_choice_bach_bold
+    targetNpcId: npc_bach
+    affinityDelta: 1
+    branchDialogue: {fileID: 11400000, guid: 0671057069995714d8aaad3aefed789f, type: 2}
+  - choiceTextKey: choice_bach_gentle
+    setsFlagOnPick: flag_choice_bach_gentle
+    targetNpcId: npc_bach
+    affinityDelta: 1
+    branchDialogue: {fileID: 11400000, guid: c4004678f979d3b4790a57d1d9a7aaeb, type: 2}
+  setsStoryFlagOnFinish: 
+  givesItemOnFinish: {fileID: 0}
+  givesItemAmount: 0
+  extraRewards: []
   consumesRequiredItem: {fileID: 0}
   consumesAmount: 0
   unlocksDiaryPage: {fileID: 0}
+  affinityNpcId: 
+  affinityBonusOnFinish: 0

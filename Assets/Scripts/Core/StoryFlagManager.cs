@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MoonpetalValley.Core
 {
-    public class StoryFlagManager : MonoBehaviour, ISaveable
+    public class StoryFlagManager : MonoBehaviour, ISaveable, IResettable
     {
         private readonly HashSet<string> _flags = new HashSet<string>();
 
@@ -43,6 +43,11 @@ namespace MoonpetalValley.Core
             }
         }
 
+        public void ResetForNewGame()
+        {
+            _flags.Clear();
+        }
+
         public IReadOnlyCollection<string> GetAllActiveFlags()
         {
             return _flags;
@@ -63,7 +68,10 @@ namespace MoonpetalValley.Core
             {
                 for (int i = 0; i < wrapper.activeFlags.Count; i++)
                 {
-                    _flags.Add(wrapper.activeFlags[i]);
+                    if (!string.IsNullOrEmpty(wrapper.activeFlags[i]))
+                    {
+                        _flags.Add(wrapper.activeFlags[i]);
+                    }
                 }
             }
         }

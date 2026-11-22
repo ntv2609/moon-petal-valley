@@ -40,6 +40,7 @@ namespace MoonpetalValley.Player
             {
                 GameRoot.Instance.RegisterSaveable(this);
             }
+            UpdateYSorting();
         }
 
         private void Update()
@@ -205,7 +206,9 @@ namespace MoonpetalValley.Player
         {
             if (spriteRenderer != null)
             {
-                spriteRenderer.sortingOrder = Mathf.RoundToInt(-transform.position.y * 100f);
+                spriteRenderer.sortingLayerName = "WorldObjects";
+                float footY = spriteRenderer.sprite != null ? spriteRenderer.bounds.min.y : (transform.position.y - 0.45f);
+                spriteRenderer.sortingOrder = Mathf.RoundToInt(-footY * 100f);
             }
         }
 
@@ -224,5 +227,10 @@ namespace MoonpetalValley.Player
                 TeleportTo(new Vector2(data.x, data.y));
             }
         }
-    }
+    
+        private void OnDestroy()
+        {
+            if (GameRoot.Instance != null) GameRoot.Instance.UnregisterSaveable(this);
+        }
+}
 }
