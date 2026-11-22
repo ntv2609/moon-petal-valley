@@ -136,7 +136,7 @@ namespace MoonpetalValley.UI
 
             var sbHelpers = new StringBuilder();
             sbHelpers.AppendLine(string.Format("<b>NGƯỜI CHUNG TAY ({0}/{1}):</b>", mgr.GetReadyHelperCount(), mgr.GetTotalRequiredHelpers()));
-            string[] names = { "Ông Bách (Đọc đủ 4 trang thư)", "Bà Hana (Giao 4 Lúa Mạch)", "Cậu Bé Toby (Cứu mèo Miu)", "Bác Otis (Sửa Hòm Thư)" };
+            string[] names = { "Ông Bach (Đọc đủ 4 trang thư)", "Bà Hana (Giao 4 Lúa Mạch)", "Cậu Bé Toby (Cứu mèo Miu)", "Bác Otis (Sửa Hòm Thư)" };
             for (int i = 0; i < bundle.requiredHelperFlags.Count; i++)
             {
                 bool ready = flags != null && flags.HasFlag(bundle.requiredHelperFlags[i]);

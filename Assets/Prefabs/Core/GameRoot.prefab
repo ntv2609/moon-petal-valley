@@ -2643,7 +2643,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "C\xF9ng v\u1EDBi \xD4ng B\xE1ch, B\xE0 Hana, C\u1EADu B\xE9 Toby v\xE0 B\xE1c Otis, b\u1EA1n \u0111\xE3 l\xE0m Hoa Moonpetal n\u1EDF r\u1EF1c gi\u1EEFa Khu V\u01B0\u1EDDn B\u1ECB L\xE3ng Qu\xEAn!\n\n- \u0110\xE3 nh\u1EADn: C\xE1nh Hoa Hy V\u1ECDng\n- S\u01B0\u01A1ng H\xE9o \xDAa \u0111\xE3 tan kh\u1ECFi L\xE0ng Ch\xEDnh\n- Tinh linh Lumi m\u1EDF kh\xF3a k\u1EF9 n\u0103ng Xung \xC1nh Tr\u0103ng (ph\xEDm Q)!"
+  m_text: "C\xF9ng v\u1EDBi \xD4ng Bach, B\xE0 Hana, C\u1EADu B\xE9 Toby v\xE0 B\xE1c Otis, b\u1EA1n \u0111\xE3 l\xE0m Hoa Moonpetal n\u1EDF r\u1EF1c gi\u1EEFa Khu V\u01B0\u1EDDn B\u1ECB L\xE3ng Qu\xEAn!\n\n- \u0110\xE3 nh\u1EADn: C\xE1nh Hoa Hy V\u1ECDng\n- S\u01B0\u01A1ng H\xE9o \xDAa \u0111\xE3 tan kh\u1ECFi L\xE0ng Ch\xEDnh\n- Tinh linh Lumi m\u1EDF kh\xF3a k\u1EF9 n\u0103ng Xung \xC1nh Tr\u0103ng (ph\xEDm Q)!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b8d13fc4284cbdc4fb7ead31e9c3982e, type: 2}
   m_sharedMaterial: {fileID: -5658035274840365629, guid: b8d13fc4284cbdc4fb7ead31e9c3982e, type: 2}
@@ -6884,7 +6884,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "TP: V\u01B0\u1EDDn Ph\xEDa Nam \xD4ng B\xE1ch"
+  m_text: "TP: V\u01B0\u1EDDn Ph\xEDa Nam \xD4ng Bach"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b8d13fc4284cbdc4fb7ead31e9c3982e, type: 2}
   m_sharedMaterial: {fileID: -5658035274840365629, guid: b8d13fc4284cbdc4fb7ead31e9c3982e, type: 2}

@@ -55,11 +55,11 @@ namespace MoonpetalValley.Narrative
             }
             else if (!f.HasFlag("flag_met_bach_at_gate"))
             {
-                text = "<b>NHIỆM VỤ 1 — Khu Vườn Bị Lãng Quên</b>\n- Ra Làng Chính, gặp Ông Bách ở cổng Vườn Phía Nam [E]";
+                text = "<b>NHIỆM VỤ 1 — Khu Vườn Bị Lãng Quên</b>\n- Ra Làng Chính, gặp Ông Bach ở cổng Vườn Phía Nam [E]";
             }
             else if (!f.HasFlag("flag_garden_slimes_cleared"))
             {
-                text = "<b>NHIỆM VỤ 1 — Thanh Tẩy Vườn Xưa</b>\n- Cầm Liềm Ánh Trăng (4) diệt 5 Bọt Sương Đen trong Vườn Ông Bách";
+                text = "<b>NHIỆM VỤ 1 — Thanh Tẩy Vườn Xưa</b>\n- Cầm Liềm Ánh Trăng (4) diệt 5 Bọt Sương Đen trong Vườn Ông Bach";
             }
             else if (!f.HasFlag("flag_garden_bench_cleaned"))
             {
@@ -87,7 +87,7 @@ namespace MoonpetalValley.Narrative
             }
             else if (!f.HasFlag("flag_bach_letters_read"))
             {
-                text = "<b>NHIỆM VỤ 1 — Lá Thư Muộn Màng</b>\n- Quay lại gặp Ông Bách đọc đủ 4 Trang Sổ Tay [E]";
+                text = "<b>NHIỆM VỤ 1 — Lá Thư Muộn Màng</b>\n- Quay lại gặp Ông Bach đọc đủ 4 Trang Sổ Tay [E]";
             }
             else if (!f.HasFlag("flag_nv1_completed"))
             {

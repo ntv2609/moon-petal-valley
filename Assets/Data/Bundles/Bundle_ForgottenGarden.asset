@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.BundleData
   bundleID: bundle_forgotten_garden
   bundleTitleKey: "G\xF3i K\xFD \u1EE8c V\u01B0\u1EDDn X\u01B0a"
-  bundleDescriptionKey: "Chung tay c\xF9ng 4 d\xE2n l\xE0ng h\u1ED3i sinh B\u1ED3n Hoa Trung T\xE2m V\u01B0\u1EDDn \xD4ng B\xE1ch."
+  bundleDescriptionKey: "Chung tay c\xF9ng 4 d\xE2n l\xE0ng h\u1ED3i sinh B\u1ED3n Hoa Trung T\xE2m V\u01B0\u1EDDn \xD4ng Bach."
   requiredItems:
   - item: {fileID: 11400000, guid: 7b29f0021ee2f6944a6777661389af33, type: 2}
     amount: 1

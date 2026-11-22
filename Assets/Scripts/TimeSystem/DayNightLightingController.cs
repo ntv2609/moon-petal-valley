@@ -11,7 +11,7 @@ namespace MoonpetalValley.TimeSystem
         [SerializeField] private TimeConfigSO timeConfig;
         [SerializeField] private Image ambientTintImage;
 
-        private Color _targetTint = new Color(1f, 0.94f, 0.78f, 0.06f);
+        private Color _targetTint = new Color(1f, 0.94f, 0.76f, 0.09f);
         private float _targetLumiScale = 1.0f;
 
         private void OnEnable()
@@ -45,10 +45,11 @@ namespace MoonpetalValley.TimeSystem
             float dusk = timeConfig != null ? timeConfig.duskStartHour : 18f;
             float night = timeConfig != null ? timeConfig.nightStartHour : 20f;
 
-            Color morningTint = new Color(1.0f, 0.92f, 0.72f, 0.08f);
-            Color noonTint = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-            Color duskTint = new Color(0.88f, 0.42f, 0.16f, 0.24f);
-            Color nightTint = new Color(0.06f, 0.09f, 0.24f, 0.50f);
+            // Cozy Stardew-inspired sunlit warmth & clearer luminous moonlit night
+            Color morningTint = new Color(1.0f, 0.94f, 0.76f, 0.09f);
+            Color noonTint    = new Color(1.0f, 0.98f, 0.90f, 0.03f);
+            Color duskTint    = new Color(0.92f, 0.48f, 0.22f, 0.22f);
+            Color nightTint   = new Color(0.08f, 0.12f, 0.28f, 0.44f);
 
             if (hour < 11f)
             {

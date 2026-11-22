@@ -40,7 +40,7 @@ MonoBehaviour:
   - key: name_item_moon_sickle
     vietnameseText: "Li\u1EC1m \xC1nh Tr\u0103ng"
   - key: desc_item_moon_sickle
-    vietnameseText: "V\u0169 kh\xED thanh t\u1EA9y c\u1EE7a \xD4ng B\xE1ch: ch\xE9m qu\xE9t 120\xB0 g\xE2y 15 s\xE1t th\u01B0\u01A1ng (2 Th\u1EC3 l\u1EF1c)."
+    vietnameseText: "V\u0169 kh\xED thanh t\u1EA9y c\u1EE7a \xD4ng Bach: ch\xE9m qu\xE9t 120\xB0 g\xE2y 15 s\xE1t th\u01B0\u01A1ng (2 Th\u1EC3 l\u1EF1c)."
   - key: name_item_dew_barley_seed
     vietnameseText: "H\u1EA1t L\xFAa M\u1EA1ch S\u01B0\u01A1ng Mai"
   - key: desc_item_dew_barley_seed
@@ -92,37 +92,37 @@ MonoBehaviour:
   - key: title_diary_page_02
     vietnameseText: "Trang 2 \u2014 M\u1EBB B\xE1nh \u0110\u1EA7u Xu\xE2n C\u1EE7a Hana"
   - key: body_diary_page_02
-    vietnameseText: "M\xF9a xu\xE2n n\u0103m \u1EA5y, c\u1EA3 l\xE0ng t\u1EE5 h\u1ECDp \u1EDF v\u01B0\u1EDDn \xF4ng B\xE1ch chia nhau nh\u1EEFng \u1ED5 B\xE1nh M\xEC N\u1EAFng \u1EA4m n\xF3ng h\u1ED5i t\u1EEB l\xFAa m\u1EA1ch s\u01B0\u01A1ng mai. H\u01B0\u01A1ng b\xE1nh l\xE0m tan \u0111i c\u1EA3 c\xE1i l\u1EA1nh \u0111\u1EA7u m\xF9a."
+    vietnameseText: "M\xF9a xu\xE2n n\u0103m \u1EA5y, c\u1EA3 l\xE0ng t\u1EE5 h\u1ECDp \u1EDF v\u01B0\u1EDDn \xF4ng Bach chia nhau nh\u1EEFng \u1ED5 B\xE1nh M\xEC N\u1EAFng \u1EA4m n\xF3ng h\u1ED5i t\u1EEB l\xFAa m\u1EA1ch s\u01B0\u01A1ng mai. H\u01B0\u01A1ng b\xE1nh l\xE0m tan \u0111i c\u1EA3 c\xE1i l\u1EA1nh \u0111\u1EA7u m\xF9a."
   - key: title_diary_page_03
     vietnameseText: "Trang 3 \u2014 Ti\u1EBFng C\u01B0\u1EDDi Quanh V\u01B0\u1EDDn Ph\xEDa Nam"
   - key: body_diary_page_03
-    vietnameseText: "\xD4ng B\xE1ch tuy \xEDt n\xF3i nh\u01B0ng lu\xF4n \u0111\u1EC3 d\xE0nh m\u1ED9t g\xF3c v\u01B0\u1EDDn cho l\u0169 tr\u1EBB ch\u1EA1y nh\u1EA3y v\xE0 l\u0169 m\xE8o n\u1EB1m s\u01B0\u1EDFi n\u1EAFng. Ch\u1EC9 c\u1EA7n c\xF3 ng\u01B0\u1EDDi nh\u1EDB \u0111\u1EBFn khu v\u01B0\u1EDDn, \xF4ng s\u1EBD l\u1EA1i c\u1EA7m cu\u1ED1c."
+    vietnameseText: "\xD4ng Bach tuy \xEDt n\xF3i nh\u01B0ng lu\xF4n \u0111\u1EC3 d\xE0nh m\u1ED9t g\xF3c v\u01B0\u1EDDn cho l\u0169 tr\u1EBB ch\u1EA1y nh\u1EA3y v\xE0 l\u0169 m\xE8o n\u1EB1m s\u01B0\u1EDFi n\u1EAFng. Ch\u1EC9 c\u1EA7n c\xF3 ng\u01B0\u1EDDi nh\u1EDB \u0111\u1EBFn khu v\u01B0\u1EDDn, \xF4ng s\u1EBD l\u1EA1i c\u1EA7m cu\u1ED1c."
   - key: title_diary_page_04
-    vietnameseText: "Trang 4 \u2014 B\u1EE9c Th\u01B0 Ch\u01B0a K\u1ECBp G\u1EEDi \xD4ng B\xE1ch"
+    vietnameseText: "Trang 4 \u2014 B\u1EE9c Th\u01B0 Ch\u01B0a K\u1ECBp G\u1EEDi \xD4ng Bach"
   - key: body_diary_page_04
-    vietnameseText: "G\u1EEDi \xF4ng b\u1EA1n gi\xE0 B\xE1ch, c\u1EA3m \u01A1n \xF4ng \u0111\xE3 gi\u1EEF g\xECn chi\u1EBFc gh\u1EBF \u0111\xF4i v\xE0 nh\u1EEFng h\u1EA1t gi\u1ED1ng x\u01B0a. N\u1EBFu ch\xE1u g\xE1i t\xF4i Wen t\xECm \u0111\u1EBFn, xin \xF4ng h\xE3y m\u1ED9t l\u1EA7n n\u1EEFa c\xF9ng ch\xE1u gieo m\u1EA7m hy v\u1ECDng nh\xE9."
+    vietnameseText: "G\u1EEDi \xF4ng b\u1EA1n gi\xE0 Bach, c\u1EA3m \u01A1n \xF4ng \u0111\xE3 gi\u1EEF g\xECn chi\u1EBFc gh\u1EBF \u0111\xF4i v\xE0 nh\u1EEFng h\u1EA1t gi\u1ED1ng x\u01B0a. N\u1EBFu ch\xE1u g\xE1i t\xF4i Wen t\xECm \u0111\u1EBFn, xin \xF4ng h\xE3y m\u1ED9t l\u1EA7n n\u1EEFa c\xF9ng ch\xE1u gieo m\u1EA7m hy v\u1ECDng nh\xE9."
   - key: dlg_bach_intro_sp_0
-    vietnameseText: "\xD4ng B\xE1ch"
+    vietnameseText: "\xD4ng Bach"
   - key: dlg_bach_intro_tx_0
     vietnameseText: "Ch\xE1u l\xE0 Wen, ch\xE1u g\xE1i c\u1EE7a b\xE0 c\u1EE5 Nh\xE0 K\xEDnh ph\u1EA3i kh\xF4ng? Khu v\u01B0\u1EDDn ph\xEDa nam n\xE0y b\u1ECB B\u1ECDt S\u01B0\u01A1ng \u0110en chi\u1EBFm m\u1EA5t r\u1ED3i..."
   - key: dlg_bach_intro_sp_1
-    vietnameseText: "\xD4ng B\xE1ch"
+    vietnameseText: "\xD4ng Bach"
   - key: dlg_bach_intro_tx_1
     vietnameseText: "C\u1EA7m l\u1EA5y chi\u1EBFc Li\u1EC1m \xC1nh Tr\u0103ng c\u0169 n\xE0y (\xF4 s\u1ED1 4). N\u1EBFu ch\xE1u thanh t\u1EA9y h\u1EBFt 5 B\u1ECDt S\u01B0\u01A1ng \u0110en v\xE0 lau s\u1EA1ch Chi\u1EBFc Gh\u1EBF \u0110\xF4i, ta s\u1EBD tin thung l\u0169ng n\xE0y c\xF2n hy v\u1ECDng."
   - key: dlg_bach_read_letters_sp_0
     vietnameseText: Wen
   - key: dlg_bach_read_letters_tx_0
-    vietnameseText: "\xD4ng B\xE1ch \u01A1i, ch\xE1u \u0111\xE3 t\xECm l\u1EA1i \u0111\u1EE7 4 trang nh\u1EADt k\xFD v\xE0 b\u1EE9c th\u01B0 cu\u1ED1i b\xE0 g\u1EEDi cho \xF4ng..."
+    vietnameseText: "\xD4ng Bach \u01A1i, ch\xE1u \u0111\xE3 t\xECm l\u1EA1i \u0111\u1EE7 4 trang nh\u1EADt k\xFD v\xE0 b\u1EE9c th\u01B0 cu\u1ED1i b\xE0 g\u1EEDi cho \xF4ng..."
   - key: dlg_bach_read_letters_sp_1
-    vietnameseText: "\xD4ng B\xE1ch"
+    vietnameseText: "\xD4ng Bach"
   - key: dlg_bach_read_letters_tx_1
     vietnameseText: "B\xE0 \u1EA5y v\u1EABn lu\xF4n nh\u1EDB chi\u1EBFc gh\u1EBF \u0111\xF4i n\xE0y sao... C\u1EA3m \u01A1n ch\xE1u, Wen. Ta s\u1EBD \u0111\u1EE9ng c\u1EA1nh B\u1ED3n Hoa ch\u1EDD m\u1ECDi ng\u01B0\u1EDDi c\xF9ng gieo h\u1EA1t!"
   - key: dlg_bach_default_sp_0
-    vietnameseText: "\xD4ng B\xE1ch"
+    vietnameseText: "\xD4ng Bach"
   - key: dlg_bach_default_tx_0
     vietnameseText: "Khu v\u01B0\u1EDDn n\xE0y c\u1EA7n s\u1EF1 chung tay c\u1EE7a c\u1EA3 l\xE0ng. Ch\xE1u h\xE3y gi\xFAp B\xE0 Hana, c\u1EADu b\xE9 Toby v\xE0 B\xE1c Otis t\xECm \u0111\u1EE7 3 T\xFAi H\u1EA1t Di S\u1EA3n nh\xE9."
   - key: name_npc_bach
-    vietnameseText: "\xD4ng B\xE1ch"
+    vietnameseText: "\xD4ng Bach"
   - key: role_npc_bach
     vietnameseText: "Ng\u01B0\u1EDDi L\xE0m V\u01B0\u1EDDn Gi\xE0"
   - key: dlg_hana_complete_sp_0
@@ -136,7 +136,7 @@ MonoBehaviour:
   - key: dlg_hana_after_sp_0
     vietnameseText: "B\xE0 Hana"
   - key: dlg_hana_after_tx_0
-    vietnameseText: "C\xF4 \u0111\xE3 s\u1EB5n s\xE0ng c\xF9ng ch\xE1u v\xE0 \xD4ng B\xE1ch gieo h\u1EA1t t\u1EA1i B\u1ED3n Hoa Trung T\xE2m V\u01B0\u1EDDn r\u1ED3i \u0111\xF3!"
+    vietnameseText: "C\xF4 \u0111\xE3 s\u1EB5n s\xE0ng c\xF9ng ch\xE1u v\xE0 \xD4ng Bach gieo h\u1EA1t t\u1EA1i B\u1ED3n Hoa Trung T\xE2m V\u01B0\u1EDDn r\u1ED3i \u0111\xF3!"
   - key: dlg_hana_default_sp_0
     vietnameseText: "B\xE0 Hana"
   - key: dlg_hana_default_tx_0

@@ -1,14 +1,11 @@
 {
-  "step": 18,
-  "count": 8,
+  "step": 19,
+  "count": 5,
   "files": [
-    "Buildings/tree_hero_oak.png",
-    "Buildings/tree_hero_blossom.png",
-    "Buildings/tree_hero_pine.png",
-    "Buildings/house_bakery.png",
-    "Buildings/house_shed.png",
-    "Buildings/otis_notice_board.png",
-    "Decor/decor_bush.png",
-    "Decor/decor_rock.png"
+    "Decor/decor_tall_grass_0.png",
+    "Decor/decor_tall_grass_1.png",
+    "Decor/decor_flower_planter.png",
+    "Decor/decor_garden_lantern.png",
+    "Decor/spr_sunbeam_glow.png"
   ]
 }

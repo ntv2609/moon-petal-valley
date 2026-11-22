@@ -85,7 +85,7 @@ MonoBehaviour:
     displayName: "Qu\u1EA3ng Tr\u01B0\u1EDDng L\xE0ng Ch\xEDnh"
     position: {x: 0, y: 3}
   - id: Spawn_BachGarden
-    displayName: "V\u01B0\u1EDDn Ph\xEDa Nam \xD4ng B\xE1ch"
+    displayName: "V\u01B0\u1EDDn Ph\xEDa Nam \xD4ng Bach"
     position: {x: 0, y: -5}
   - id: Spawn_ForestEdge
     displayName: "R\xECa R\u1EEBng Ph\xEDa \u0110\xF4ng"
