@@ -265,12 +265,12 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -8944998818329583020, guid: 84be3188a2fa39d4eba8cd8abded31bb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 61c41e9926c220d4d95cfb88f19a3a80, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.875, y: 0.75}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -463,6 +463,34 @@ MonoBehaviour:
   hpBarRoot: {fileID: 7164374368500970797}
   lootDropPrefab: {fileID: 8893861532037944952, guid: 35f7a3f7d4c5a254c8b99eda1e65f50a, type: 3}
   encounterZone: {fileID: 0}
+  idleFrames:
+  - {fileID: 21300000, guid: 61c41e9926c220d4d95cfb88f19a3a80, type: 3}
+  - {fileID: 21300000, guid: 147de800f0c19254ca7e0a8d2e7aeef9, type: 3}
+  - {fileID: 21300000, guid: 76475e2642d2a3f438a11db0807af4fe, type: 3}
+  - {fileID: 21300000, guid: 5883bd0392775754da5ac8049300024f, type: 3}
+  telegraphFrames:
+  - {fileID: 21300000, guid: 1b3c4155d632d384085574f2d8d61edf, type: 3}
+  - {fileID: 21300000, guid: 49cdbb4a0b90c3245bb55a49b9cd0c6c, type: 3}
+  - {fileID: 21300000, guid: 787180d2ce91cb1408afc7ce241a76a6, type: 3}
+  jumpFrames:
+  - {fileID: 21300000, guid: fc9a55f322dbdb24da8cc03d737bcf14, type: 3}
+  - {fileID: 21300000, guid: 6610b999c04d1b54ba2c0e92c6bdfd7c, type: 3}
+  - {fileID: 21300000, guid: de6388c121f1f8346b81012477edc895, type: 3}
+  - {fileID: 21300000, guid: cc9f98acefaa56c49b4ea12ee8885a5c, type: 3}
+  hitHurtFrames:
+  - {fileID: 21300000, guid: 96327a99af4df6347a24842556cfbb6b, type: 3}
+  - {fileID: 21300000, guid: c7ddddfe2ba08104ca2c37262b527291, type: 3}
+  - {fileID: 21300000, guid: 0b4d45ce5cb350b479b66f3b91958053, type: 3}
+  purifyDieFrames:
+  - {fileID: 21300000, guid: 727da2a8eb74363459e3c667c8f5e877, type: 3}
+  - {fileID: 21300000, guid: 6e04e1618308a6e42b106b95ede48b24, type: 3}
+  - {fileID: 21300000, guid: ccea68bd60d499c4c9918bd85e35fab8, type: 3}
+  - {fileID: 21300000, guid: 3ab4734cd0356e94d9716bb57296e434, type: 3}
+  idleFps: 6
+  telegraphFps: 9
+  jumpFps: 10
+  hitFps: 13
+  dieFps: 10
 --- !u!1 &7164374368500970797
 GameObject:
   m_ObjectHideFlags: 0

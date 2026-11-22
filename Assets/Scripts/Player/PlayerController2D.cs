@@ -12,6 +12,7 @@ namespace MoonpetalValley.Player
         [SerializeField] private GameInputReader inputReader;
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Transform visualTransform;
+        [SerializeField] private WenSpriteAnimator spriteAnimator;
 
         private Vector2 _facingDirection = Vector2.down;
         private Vector2 _dashDirection;
@@ -152,16 +153,27 @@ namespace MoonpetalValley.Player
 
         private void UpdateVisualFeedback(Vector2 move)
         {
+            bool useSpriteAnim = spriteAnimator != null && spriteAnimator.HasValidSprites;
+
+            if (useSpriteAnim)
+            {
+                spriteAnimator.UpdateLocomotion(move, _facingDirection, IsDashing);
+                if (visualTransform != null)
+                {
+                    visualTransform.localPosition = Vector3.zero;
+                }
+            }
+
             if (spriteRenderer != null)
             {
-                if (Mathf.Abs(_facingDirection.x) > 0.1f)
+                if (!useSpriteAnim && Mathf.Abs(_facingDirection.x) > 0.1f)
                 {
                     spriteRenderer.flipX = _facingDirection.x < 0f;
                 }
 
                 if (IsDashing)
                 {
-                    spriteRenderer.color = new Color(0.70f, 0.95f, 1.0f, 0.88f);
+                    spriteRenderer.color = new Color(0.75f, 0.96f, 1.0f, 0.90f);
                 }
                 else if (_slowTimer > 0f)
                 {
@@ -173,7 +185,7 @@ namespace MoonpetalValley.Player
                 }
             }
 
-            if (visualTransform != null)
+            if (!useSpriteAnim && visualTransform != null)
             {
                 if (move.sqrMagnitude > 0.01f && !IsDashing)
                 {

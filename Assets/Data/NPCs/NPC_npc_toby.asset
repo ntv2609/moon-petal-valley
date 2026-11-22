@@ -16,7 +16,7 @@ MonoBehaviour:
   displayNameKey: name_npc_toby
   roleTitleKey: role_npc_toby
   portraitSprite: {fileID: 0}
-  worldSprite: {fileID: -8939292841054072372, guid: 036f4a2c7ecf08748a5aac601309523d, type: 3}
+  worldSprite: {fileID: 21300000, guid: f71861b299a048946915c245a92a65ba, type: 3}
   defaultDialogue: {fileID: 11400000, guid: 0081a3c915920ae45b7623c99e1a87a7, type: 2}
   conditionalDialogues:
   - requiredStoryFlag: flag_toby_cat_slimes_cleared

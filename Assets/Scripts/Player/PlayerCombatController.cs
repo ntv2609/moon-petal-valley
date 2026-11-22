@@ -11,6 +11,7 @@ namespace MoonpetalValley.Player
         [SerializeField] private PlayerStatsSO statsConfig;
         [SerializeField] private PlayerController2D playerController;
         [SerializeField] private GameInputReader inputReader;
+        [SerializeField] private WenSpriteAnimator spriteAnimator;
         [SerializeField] private Transform slashArcTransform;
         [SerializeField] private SpriteRenderer slashArcRenderer;
         [SerializeField] private Transform pulseRingTransform;
@@ -40,7 +41,7 @@ namespace MoonpetalValley.Player
             }
             if (inputReader == null || playerController == null) return;
 
-            // 1. Chém Liềm Ánh Trăng 120°
+            // 1. Chém Liềm Ánh Trăng 120 độ
             if (inputReader.ActionPressed && _attackCooldownTimer <= 0f)
             {
                 bool overUI = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
@@ -78,6 +79,11 @@ namespace MoonpetalValley.Player
             Vector2 facing = playerController.FacingDirection.sqrMagnitude > 0.01f
                 ? playerController.FacingDirection.normalized
                 : Vector2.down;
+
+            if (spriteAnimator != null && spriteAnimator.HasValidSprites)
+            {
+                spriteAnimator.PlayMoonSickleSlash(facing);
+            }
 
             if (slashArcTransform != null && slashArcRenderer != null)
             {
@@ -124,6 +130,9 @@ namespace MoonpetalValley.Player
 
             GameRoot.Instance?.Stats?.ConsumeStamina(cost);
             playerController.ClearSlow();
+
+            var lumi = UnityEngine.Object.FindAnyObjectByType<LumiCompanionController>();
+            if (lumi != null) lumi.PlayMoonPulseAnimation();
 
             if (pulseRingTransform != null && pulseRingRenderer != null)
             {

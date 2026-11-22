@@ -18734,6 +18734,7 @@ GameObject:
   - component: {fileID: 4888895344434119579}
   - component: {fileID: 7199427130122635794}
   - component: {fileID: 4215445938619479567}
+  - component: {fileID: 8595387226350906902}
   m_Layer: 0
   m_Name: GameRoot
   m_TagString: Untagged
@@ -19012,6 +19013,19 @@ MonoBehaviour:
   sfxHit: {fileID: 8300000, guid: 47a57bf8386541744a9bf642137a5a29, type: 3}
   sfxPickup: {fileID: 8300000, guid: 7452bc237ffd7644eab3f4eb6976a71c, type: 3}
   sfxBloom: {fileID: 8300000, guid: 945233e94bfe15f47968f4991e587533, type: 3}
+--- !u!114 &8595387226350906902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7077557100079652462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec896b3c8e2e35041a8ad57bb8568e15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Core.JuiceEffectsManager
+  vnFont: {fileID: 11400000, guid: b8d13fc4284cbdc4fb7ead31e9c3982e, type: 2}
 --- !u!1 &7191189195305602487
 GameObject:
   m_ObjectHideFlags: 0

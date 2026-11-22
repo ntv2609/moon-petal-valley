@@ -116,6 +116,47 @@ namespace MoonpetalValley.Inventory
             SelectHotbarSlot(next);
         }
 
+        public bool SwapOrMergeSlots(int fromIndex, int toIndex)
+        {
+            if (fromIndex < 0 || fromIndex >= TotalSlots || toIndex < 0 || toIndex >= TotalSlots) return false;
+            if (fromIndex == toIndex) return false;
+
+            InventorySlot fromSlot = _slots[fromIndex];
+            InventorySlot toSlot = _slots[toIndex];
+            if (fromSlot.IsEmpty && toSlot.IsEmpty) return false;
+
+            // Tự động gộp stack nếu 2 ô chứa cùng loại vật phẩm có thể cộng dồn
+            if (!fromSlot.IsEmpty && !toSlot.IsEmpty &&
+                fromSlot.item.itemID == toSlot.item.itemID &&
+                toSlot.item.maxStack > 1 &&
+                toSlot.amount < toSlot.item.maxStack)
+            {
+                int space = toSlot.item.maxStack - toSlot.amount;
+                int moveAmt = Mathf.Min(space, fromSlot.amount);
+                toSlot.amount += moveAmt;
+                fromSlot.amount -= moveAmt;
+                if (fromSlot.amount <= 0)
+                {
+                    fromSlot.item = null;
+                    fromSlot.amount = 0;
+                }
+            }
+            else
+            {
+                ItemData tmpItem = toSlot.item;
+                int tmpAmount = toSlot.amount;
+
+                toSlot.item = fromSlot.item;
+                toSlot.amount = fromSlot.amount;
+
+                fromSlot.item = tmpItem;
+                fromSlot.amount = tmpAmount;
+            }
+
+            OnInventoryChanged?.Invoke();
+            return true;
+        }
+
         public bool AddItemById(string itemId, int amount = 1, bool showToast = true)
         {
             ItemData data = GetItemDataById(itemId);
@@ -133,7 +174,6 @@ namespace MoonpetalValley.Inventory
 
             int remaining = amount;
 
-            // 1. Cộng dồn vào ô đã có cùng vật phẩm
             if (data.maxStack > 1)
             {
                 for (int i = 0; i < TotalSlots && remaining > 0; i++)
@@ -147,7 +187,6 @@ namespace MoonpetalValley.Inventory
                 }
             }
 
-            // 2. Đặt vào ô trống
             for (int i = 0; i < TotalSlots && remaining > 0; i++)
             {
                 if (_slots[i].IsEmpty)

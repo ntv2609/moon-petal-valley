@@ -12,15 +12,24 @@ namespace MoonpetalValley.Player
         [SerializeField] private PlayerController2D playerController;
         [SerializeField] private GameInputReader inputReader;
         [SerializeField] private Transform visualTransform;
+        [SerializeField] private WenSpriteAnimator spriteAnimator;
 
         private float _cooldownTimer;
         private float _swingVisualTimer;
+
+        private void Awake()
+        {
+            if (spriteAnimator == null) spriteAnimator = GetComponent<WenSpriteAnimator>();
+            if (playerController == null) playerController = GetComponent<PlayerController2D>();
+            if (inputReader == null) inputReader = GetComponent<GameInputReader>();
+        }
 
         private void Update()
         {
             if (_cooldownTimer > 0f) _cooldownTimer -= Time.deltaTime;
 
-            if (_swingVisualTimer > 0f && visualTransform != null)
+            bool useSpriteAnim = spriteAnimator != null && spriteAnimator.HasValidSprites;
+            if (!useSpriteAnim && _swingVisualTimer > 0f && visualTransform != null)
             {
                 _swingVisualTimer -= Time.deltaTime;
                 float s = _swingVisualTimer > 0f ? 1.12f : 1.0f;
@@ -63,7 +72,7 @@ namespace MoonpetalValley.Player
                 if (tile.TryHarvest(out ItemData cropItem, out int yieldCount))
                 {
                     GameRoot.Instance.Inventory.AddItem(cropItem, yieldCount, true);
-                    TriggerSwingFeedback();
+                    TriggerSwingFeedback(WenToolAnimType.GenericSeedHarvest);
                 }
             }
         }
@@ -85,7 +94,7 @@ namespace MoonpetalValley.Player
                 if (tile != null && tile.TryPlant(item.linkedCropData))
                 {
                     GameRoot.Instance.Inventory.RemoveItem(item.itemID, 1);
-                    TriggerSwingFeedback();
+                    TriggerSwingFeedback(WenToolAnimType.GenericSeedHarvest);
                     GameEventBus.RaiseToastRequested("Đã gieo " + GameRoot.Instance.Inventory.GetLocalizedItemName(item) + "!");
                 }
                 else
@@ -99,7 +108,7 @@ namespace MoonpetalValley.Player
             if (item.itemID == "item_hoe")
             {
                 int cost = statsConfig != null ? statsConfig.hoeStaminaCost : 4;
-                if (TryHitResourceNode(targetPos, "item_hoe", cost)) return;
+                if (TryHitResourceNode(targetPos, "item_hoe", cost, WenToolAnimType.Hoe)) return;
 
                 if (FarmGridManager.Instance != null)
                 {
@@ -107,26 +116,35 @@ namespace MoonpetalValley.Player
                     if (tile != null && tile.TryTill())
                     {
                         GameRoot.Instance.Stats?.ConsumeStamina(cost);
-                        TriggerSwingFeedback();
+                        TriggerSwingFeedback(WenToolAnimType.Hoe);
+                        return;
                     }
                 }
+                TriggerSwingFeedback(WenToolAnimType.Hoe);
                 return;
             }
 
             // 3. Bình Tưới
             if (item.itemID == "item_watering_can")
             {
-                if (FarmGridManager.Instance == null) return;
-                var tile = FarmGridManager.Instance.FindClosestTile(targetPos, 1.1f);
-                if (tile != null && tile.State != FarmTileState.Untilled && !tile.IsWatered)
+                if (FarmGridManager.Instance != null)
                 {
-                    if (GameRoot.Instance.Inventory.ConsumeWaterCharge())
+                    var tile = FarmGridManager.Instance.FindClosestTile(targetPos, 1.1f);
+                    if (tile != null && tile.State != FarmTileState.Untilled && !tile.IsWatered)
                     {
-                        tile.TryWater();
-                        int cost = statsConfig != null ? statsConfig.waterStaminaCost : 2;
-                        GameRoot.Instance.Stats?.ConsumeStamina(cost);
-                        TriggerSwingFeedback();
+                        if (GameRoot.Instance.Inventory.ConsumeWaterCharge())
+                        {
+                            tile.TryWater();
+                            int cost = statsConfig != null ? statsConfig.waterStaminaCost : 2;
+                            GameRoot.Instance.Stats?.ConsumeStamina(cost);
+                            TriggerSwingFeedback(WenToolAnimType.WateringCan);
+                        }
+                        return;
                     }
+                }
+                if (GameRoot.Instance.Inventory.WateringCanCharges > 0)
+                {
+                    TriggerSwingFeedback(WenToolAnimType.WateringCan);
                 }
                 return;
             }
@@ -135,11 +153,14 @@ namespace MoonpetalValley.Player
             if (item.itemID == "item_hatchet")
             {
                 int cost = statsConfig != null ? statsConfig.chopStaminaCost : 4;
-                TryHitResourceNode(targetPos, "item_hatchet", cost);
+                if (!TryHitResourceNode(targetPos, "item_hatchet", cost, WenToolAnimType.Hatchet))
+                {
+                    TriggerSwingFeedback(WenToolAnimType.Hatchet);
+                }
             }
         }
 
-        private bool TryHitResourceNode(Vector2 targetPos, string toolId, int staminaCost)
+        private bool TryHitResourceNode(Vector2 targetPos, string toolId, int staminaCost, WenToolAnimType animType)
         {
             Collider2D[] hits = Physics2D.OverlapCircleAll(targetPos, 0.95f);
             for (int i = 0; i < hits.Length; i++)
@@ -150,7 +171,7 @@ namespace MoonpetalValley.Player
                     if (node.TryHit(toolId))
                     {
                         GameRoot.Instance.Stats?.ConsumeStamina(staminaCost);
-                        TriggerSwingFeedback();
+                        TriggerSwingFeedback(animType);
                     }
                     return true;
                 }
@@ -158,10 +179,17 @@ namespace MoonpetalValley.Player
             return false;
         }
 
-        private void TriggerSwingFeedback()
+        private void TriggerSwingFeedback(WenToolAnimType animType)
         {
-            _cooldownTimer = 0.30f;
-            _swingVisualTimer = 0.14f;
+            _cooldownTimer = animType == WenToolAnimType.WateringCan ? 0.38f : 0.32f;
+            if (spriteAnimator != null && spriteAnimator.HasValidSprites)
+            {
+                spriteAnimator.PlayToolAction(animType, playerController != null ? playerController.FacingDirection : Vector2.down);
+            }
+            else
+            {
+                _swingVisualTimer = 0.14f;
+            }
         }
     }
 }

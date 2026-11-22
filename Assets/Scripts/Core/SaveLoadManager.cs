@@ -1,8 +1,11 @@
 using System;
 using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using MoonpetalValley.Community;
+using MoonpetalValley.UI;
 
 namespace MoonpetalValley.Core
 {
@@ -31,11 +34,13 @@ namespace MoonpetalValley.Core
         private void OnEnable()
         {
             GameEventBus.OnDayStarted += HandleDayStartedAutoSave;
+            SceneManager.sceneLoaded += HandleSceneLoaded;
         }
 
         private void OnDisable()
         {
             GameEventBus.OnDayStarted -= HandleDayStartedAutoSave;
+            SceneManager.sceneLoaded -= HandleSceneLoaded;
         }
 
         private void Start()
@@ -43,11 +48,22 @@ namespace MoonpetalValley.Core
             ReadSavedTimestampPreview();
         }
 
-        private void HandleDayStartedAutoSave(int newDay)
+        private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            SaveGame(true);
+            if (scene.name == "MoonpetalValley_MVP" && MainMenuController.PendingLoadSaveOnWorldStart)
+            {
+                MainMenuController.PendingLoadSaveOnWorldStart = false;
+                StartCoroutine(DelayedLoadRoutine());
+            }
         }
 
+        private IEnumerator DelayedLoadRoutine()
+        {
+            yield return null;
+            LoadGame();
+        }
+
+        private void HandleDayStartedAutoSave(int newDay) => SaveGame(true);
         public bool HasSaveFile() => File.Exists(SaveFilePath);
 
         public void SaveGame(bool isAutoSave = false)
@@ -73,19 +89,13 @@ namespace MoonpetalValley.Core
 
             try
             {
-                string json = JsonUtility.ToJson(payload, true);
-                File.WriteAllText(SaveFilePath, json);
+                File.WriteAllText(SaveFilePath, JsonUtility.ToJson(payload, true));
                 LastSavedTimestamp = payload.savedTimestamp;
-                Debug.Log("[MV] Đã lưu game tại: " + SaveFilePath);
-                if (!isAutoSave)
-                {
-                    GameEventBus.RaiseToastRequested("Đã lưu game thành công (" + LastSavedTimestamp + ")!");
-                }
+                if (!isAutoSave) GameEventBus.RaiseToastRequested("Đã lưu game thành công (" + LastSavedTimestamp + ")!");
             }
             catch (Exception ex)
             {
                 Debug.LogError("[MV] Lỗi lưu game: " + ex.Message);
-                GameEventBus.RaiseToastRequested("Không thể lưu file game!");
             }
         }
 
@@ -99,15 +109,11 @@ namespace MoonpetalValley.Core
 
             try
             {
-                string json = File.ReadAllText(SaveFilePath);
-                var payload = JsonUtility.FromJson<SaveFilePayload>(json);
+                var payload = JsonUtility.FromJson<SaveFilePayload>(File.ReadAllText(SaveFilePath));
                 if (payload == null || payload.entries == null) return false;
 
                 var map = new Dictionary<string, string>();
-                for (int i = 0; i < payload.entries.Count; i++)
-                {
-                    map[payload.entries[i].key] = payload.entries[i].json;
-                }
+                for (int i = 0; i < payload.entries.Count; i++) map[payload.entries[i].key] = payload.entries[i].json;
 
                 var saveables = GameRoot.Instance.GetSaveables();
                 for (int i = 0; i < saveables.Count; i++)
@@ -120,18 +126,13 @@ namespace MoonpetalValley.Core
 
                 LastSavedTimestamp = payload.savedTimestamp;
                 GameRoot.Instance.Quests?.RecomputeObjective();
-
-                var spot = UnityEngine.Object.FindAnyObjectByType<PlantingSpotController>();
-                if (spot != null) spot.RefreshBloomVisual();
-
+                UnityEngine.Object.FindAnyObjectByType<PlantingSpotController>()?.RefreshBloomVisual();
                 GameEventBus.RaiseToastRequested("Đã tải game thành công (" + LastSavedTimestamp + ")!");
-                Debug.Log("[MV] Đã khôi phục trạng thái game từ: " + SaveFilePath);
                 return true;
             }
             catch (Exception ex)
             {
                 Debug.LogError("[MV] Lỗi tải game: " + ex.Message);
-                GameEventBus.RaiseToastRequested("File lưu game bị lỗi!");
                 return false;
             }
         }

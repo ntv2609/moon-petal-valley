@@ -16,7 +16,7 @@ MonoBehaviour:
   displayNameKey: name_npc_hana
   roleTitleKey: role_npc_hana
   portraitSprite: {fileID: 0}
-  worldSprite: {fileID: 9194656409140946077, guid: 753efe3dc5faa294ca96544c3195ff57, type: 3}
+  worldSprite: {fileID: 21300000, guid: 516392ab94e1daa4d8edc015dfb1e54d, type: 3}
   defaultDialogue: {fileID: 11400000, guid: f92a9f2a3cc6aba45bdbb4883b248c49, type: 2}
   conditionalDialogues:
   - requiredStoryFlag: flag_met_bach_at_gate

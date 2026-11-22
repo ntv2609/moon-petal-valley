@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c01deb91161ed54f9c8e1308021906b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Core.BootstrapLoader
-  targetSceneName: MoonpetalValley_MVP
+  targetSceneName: MainMenu
 --- !u!4 &124776454
 Transform:
   m_ObjectHideFlags: 0

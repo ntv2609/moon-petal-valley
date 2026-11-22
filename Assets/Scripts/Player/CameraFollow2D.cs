@@ -10,6 +10,14 @@ namespace MoonpetalValley.Player
         [SerializeField] private Vector2 maxBounds = new Vector2(14f, 11f);
 
         private Vector3 _velocity;
+        private float _shakeTimer;
+        private float _shakeIntensity;
+
+        public void TriggerShake(float intensity, float duration)
+        {
+            _shakeIntensity = Mathf.Max(_shakeIntensity, intensity);
+            _shakeTimer = Mathf.Max(_shakeTimer, duration);
+        }
 
         private void LateUpdate()
         {
@@ -24,7 +32,18 @@ namespace MoonpetalValley.Player
             float targetY = Mathf.Clamp(target.position.y, minBounds.y, maxBounds.y);
             Vector3 desired = new Vector3(targetX, targetY, -10f);
 
-            transform.position = Vector3.SmoothDamp(transform.position, desired, ref _velocity, smoothTime);
+            Vector3 smoothed = Vector3.SmoothDamp(transform.position, desired, ref _velocity, smoothTime);
+
+            if (_shakeTimer > 0f)
+            {
+                _shakeTimer -= Time.deltaTime;
+                Vector2 offset = Random.insideUnitCircle * _shakeIntensity;
+                smoothed.x += offset.x;
+                smoothed.y += offset.y;
+                if (_shakeTimer <= 0f) _shakeIntensity = 0f;
+            }
+
+            transform.position = smoothed;
         }
     }
 }

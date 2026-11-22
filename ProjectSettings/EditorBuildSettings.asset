@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Bootstrap.unity
     guid: 14f6717feb048ac418877d57f013add8
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: a99b9195a719d76448439763576b2ee1
+  - enabled: 1
     path: Assets/Scenes/MoonpetalValley_MVP.unity
     guid: 7a58498a06d132a45826a785704fdc9f
   m_configObjects:
