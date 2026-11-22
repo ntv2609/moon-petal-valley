@@ -6,6 +6,8 @@ using MoonpetalValley.TimeSystem;
 using MoonpetalValley.Player;
 using MoonpetalValley.Inventory;
 using MoonpetalValley.Narrative;
+using MoonpetalValley.Community;
+using MoonpetalValley.Audio;
 
 namespace MoonpetalValley.Core
 {
@@ -26,6 +28,9 @@ namespace MoonpetalValley.Core
         [SerializeField] private DialogueManager dialogueManager;
         [SerializeField] private DiaryManager diaryManager;
         [SerializeField] private QuestManager questManager;
+        [SerializeField] private BundleManager bundleManager;
+        [SerializeField] private SaveLoadManager saveLoadManager;
+        [SerializeField] private AudioManager audioManager;
 
         private readonly List<ISaveable> _saveables = new List<ISaveable>();
 
@@ -42,6 +47,9 @@ namespace MoonpetalValley.Core
         public DialogueManager Dialogue => dialogueManager;
         public DiaryManager Diary => diaryManager;
         public QuestManager Quests => questManager;
+        public BundleManager Bundle => bundleManager;
+        public SaveLoadManager SaveLoad => saveLoadManager;
+        public AudioManager Audio => audioManager;
 
         private void Awake()
         {
@@ -61,6 +69,7 @@ namespace MoonpetalValley.Core
             if (statsController != null) RegisterSaveable(statsController);
             if (inventoryManager != null) RegisterSaveable(inventoryManager);
             if (diaryManager != null) RegisterSaveable(diaryManager);
+            if (bundleManager != null) RegisterSaveable(bundleManager);
 
             Debug.Log("[MV] GameRoot khởi tạo thành công.");
         }

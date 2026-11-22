@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09c5f573ba178eb418824d0c4ee12a04, type: 3}
+  m_Name: Enemy_GloomSlime
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.EnemyData
+  enemyID: enemy_gloom_slime
+  enemyNameKey: name_enemy_gloom_slime
+  maxHP: 45
+  moveSpeed: 2.8
+  contactDamage: 10
+  attackPattern: 0
+  detectionRadius: 4.6
+  attackInterval: 1.1
+  appliesSlowOnHit: 1
+  dropTable:
+  - item: {fileID: 11400000, guid: 8fbba760ec9e7fb4b8ffd056dd09a3ef, type: 2}
+    minAmount: 1
+    maxAmount: 2
+    dropChance: 1
+  - item: {fileID: 11400000, guid: c7bdf508112dd4c43b7dfb1df239ba4b, type: 2}
+    minAmount: 1
+    maxAmount: 1
+    dropChance: 0.75
