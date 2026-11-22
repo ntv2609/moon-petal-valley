@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using MoonpetalValley.Core;
 using MoonpetalValley.Player;
+using MoonpetalValley.Farming;
 
 namespace MoonpetalValley.DebugTools
 {
@@ -26,6 +27,7 @@ namespace MoonpetalValley.DebugTools
         [SerializeField] private Button btnForceExhaust;
         [SerializeField] private Button btnDamageLightHP;
         [SerializeField] private Button btnGiveTestKit;
+        [SerializeField] private Button btnWaterAllCrops;
 
         private bool _isOpen;
         private float _refreshTimer;
@@ -33,10 +35,7 @@ namespace MoonpetalValley.DebugTools
 
         private void Awake()
         {
-            if (panelRoot != null)
-            {
-                panelRoot.SetActive(false);
-            }
+            if (panelRoot != null) panelRoot.SetActive(false);
 
             if (btnTestToast != null) btnTestToast.onClick.AddListener(OnClickTestToast);
             if (btnToggleTestFlag != null) btnToggleTestFlag.onClick.AddListener(OnClickToggleTestFlag);
@@ -55,6 +54,7 @@ namespace MoonpetalValley.DebugTools
             if (btnForceExhaust != null) btnForceExhaust.onClick.AddListener(OnClickForceExhaust);
             if (btnDamageLightHP != null) btnDamageLightHP.onClick.AddListener(OnClickDamageLightHP);
             if (btnGiveTestKit != null) btnGiveTestKit.onClick.AddListener(OnClickGiveTestKit);
+            if (btnWaterAllCrops != null) btnWaterAllCrops.onClick.AddListener(OnClickWaterAllCrops);
         }
 
         private void OnEnable()
@@ -72,11 +72,7 @@ namespace MoonpetalValley.DebugTools
         private void Update()
         {
             if (!Application.isEditor && !Debug.isDebugBuild) return;
-
-            if (WasF1PressedThisFrame())
-            {
-                TogglePanel();
-            }
+            if (WasF1PressedThisFrame()) TogglePanel();
 
             if (_isOpen)
             {
@@ -93,16 +89,10 @@ namespace MoonpetalValley.DebugTools
         {
 #if ENABLE_INPUT_SYSTEM
             if (UnityEngine.InputSystem.Keyboard.current != null &&
-                UnityEngine.InputSystem.Keyboard.current.f1Key.wasPressedThisFrame)
-            {
-                return true;
-            }
+                UnityEngine.InputSystem.Keyboard.current.f1Key.wasPressedThisFrame) return true;
 #endif
 #if ENABLE_LEGACY_INPUT_MANAGER
-            if (Input.GetKeyDown(KeyCode.F1))
-            {
-                return true;
-            }
+            if (Input.GetKeyDown(KeyCode.F1)) return true;
 #endif
             return false;
         }
@@ -110,14 +100,8 @@ namespace MoonpetalValley.DebugTools
         public void TogglePanel()
         {
             _isOpen = !_isOpen;
-            if (panelRoot != null)
-            {
-                panelRoot.SetActive(_isOpen);
-            }
-            if (_isOpen)
-            {
-                RefreshStatusText();
-            }
+            if (panelRoot != null) panelRoot.SetActive(_isOpen);
+            if (_isOpen) RefreshStatusText();
         }
 
         private void TeleportTo(string spawnId)
@@ -129,48 +113,12 @@ namespace MoonpetalValley.DebugTools
             }
         }
 
-        private void OnClickTimePlus2H()
-        {
-            if (GameRoot.Instance == null || GameRoot.Instance.Time == null) return;
-            GameRoot.Instance.Time.AddHours(2f);
-            RefreshStatusText();
-        }
-
-        private void OnClickTimeSetDusk()
-        {
-            if (GameRoot.Instance == null || GameRoot.Instance.Time == null) return;
-            GameRoot.Instance.Time.SetHour(19.83f);
-            RefreshStatusText();
-        }
-
-        private void OnClickTimeNextDay()
-        {
-            if (GameRoot.Instance == null || GameRoot.Instance.Time == null) return;
-            GameRoot.Instance.Time.AdvanceToNextDay();
-            RefreshStatusText();
-        }
-
-        private void OnClickRestoreStats()
-        {
-            if (GameRoot.Instance == null || GameRoot.Instance.Stats == null) return;
-            GameRoot.Instance.Stats.RestoreStats(100, 100, true);
-            GameEventBus.RaiseToastRequested("Đã hồi đầy Thể lực & Máu Ánh Sáng.");
-            RefreshStatusText();
-        }
-
-        private void OnClickForceExhaust()
-        {
-            if (GameRoot.Instance == null || GameRoot.Instance.Stats == null) return;
-            GameRoot.Instance.Stats.ConsumeStamina(999, true);
-            RefreshStatusText();
-        }
-
-        private void OnClickDamageLightHP()
-        {
-            if (GameRoot.Instance == null || GameRoot.Instance.Stats == null) return;
-            GameRoot.Instance.Stats.TakeLightDamage(25, true);
-            RefreshStatusText();
-        }
+        private void OnClickTimePlus2H() { GameRoot.Instance?.Time?.AddHours(2f); RefreshStatusText(); }
+        private void OnClickTimeSetDusk() { GameRoot.Instance?.Time?.SetHour(19.83f); RefreshStatusText(); }
+        private void OnClickTimeNextDay() { GameRoot.Instance?.Time?.AdvanceToNextDay(); RefreshStatusText(); }
+        private void OnClickRestoreStats() { GameRoot.Instance?.Stats?.RestoreStats(100, 100, true); RefreshStatusText(); }
+        private void OnClickForceExhaust() { GameRoot.Instance?.Stats?.ConsumeStamina(999, true); RefreshStatusText(); }
+        private void OnClickDamageLightHP() { GameRoot.Instance?.Stats?.TakeLightDamage(25, true); RefreshStatusText(); }
 
         private void OnClickGiveTestKit()
         {
@@ -180,7 +128,13 @@ namespace MoonpetalValley.DebugTools
             inv.AddItemById("item_branch_wood", 10, false);
             inv.AddItemById("item_seed_bag_1", 1, false);
             inv.AddItemById("item_dew_barley_seed", 6, false);
-            GameEventBus.RaiseToastRequested("Đã thêm: 2 Bánh Mì Nắng Ấm, 10 Gỗ, 1 Túi Hạt 1, 6 Hạt Lúa Mạch!");
+            GameEventBus.RaiseToastRequested("Đã thêm Bộ Test Đồ (2 Bánh Mì, 10 Gỗ, 1 Túi Hạt, 6 Hạt Lúa Mạch)!");
+            RefreshStatusText();
+        }
+
+        private void OnClickWaterAllCrops()
+        {
+            if (FarmGridManager.Instance != null) FarmGridManager.Instance.WaterAllTilesDebug();
             RefreshStatusText();
         }
 
@@ -200,12 +154,7 @@ namespace MoonpetalValley.DebugTools
             RefreshStatusText();
         }
 
-        private void OnClickClearFlags()
-        {
-            if (GameRoot.Instance == null || GameRoot.Instance.Flags == null) return;
-            GameRoot.Instance.Flags.ClearAllFlags();
-            RefreshStatusText();
-        }
+        private void OnClickClearFlags() { GameRoot.Instance?.Flags?.ClearAllFlags(); RefreshStatusText(); }
 
         private void OnClickTogglePause()
         {
@@ -221,14 +170,9 @@ namespace MoonpetalValley.DebugTools
         public void RefreshStatusText()
         {
             if (statusText == null || GameRoot.Instance == null) return;
-
             var sb = new StringBuilder();
             sb.AppendLine("<b>BẢNG DEBUG MOONPETAL (F1)</b>");
-            sb.AppendLine("State: " + GameRoot.Instance.State.CurrentState);
-            if (GameRoot.Instance.Time != null)
-            {
-                sb.AppendLine(GameRoot.Instance.Time.GetFormattedClockString());
-            }
+            if (GameRoot.Instance.Time != null) sb.AppendLine(GameRoot.Instance.Time.GetFormattedClockString());
             if (GameRoot.Instance.Stats != null)
             {
                 var st = GameRoot.Instance.Stats;
@@ -237,8 +181,10 @@ namespace MoonpetalValley.DebugTools
             }
             if (GameRoot.Instance.Inventory != null)
             {
-                sb.AppendLine("Gỗ: " + GameRoot.Instance.Inventory.GetItemCount("item_branch_wood") +
-                              " | Bánh mì: " + GameRoot.Instance.Inventory.GetItemCount("item_sunshine_bread"));
+                var inv = GameRoot.Instance.Inventory;
+                sb.AppendLine("Gỗ: " + inv.GetItemCount("item_branch_wood") +
+                              " | Lúa Mạch: " + inv.GetItemCount("item_dew_barley") +
+                              " | Hạt: " + inv.GetItemCount("item_dew_barley_seed"));
             }
             statusText.text = sb.ToString();
         }

@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 2305809400519402423}
   - component: {fileID: 9027283492713699132}
   - component: {fileID: 7883255916117151741}
+  - component: {fileID: 8859827294120967651}
   m_Layer: 8
   m_Name: Player_Wen
   m_TagString: Player
@@ -229,4 +230,20 @@ MonoBehaviour:
   rb: {fileID: 974390166397226769}
   inputReader: {fileID: 9027283492713699132}
   spriteRenderer: {fileID: 7853138835585581360}
+  visualTransform: {fileID: 939526190913372012}
+--- !u!114 &8859827294120967651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7376899334052373789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b2ef863dcbf2f74f910fa089d35be88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Player.PlayerToolController
+  statsConfig: {fileID: 11400000, guid: a3bda715abdc4f54ea6a7cab623b1f80, type: 2}
+  playerController: {fileID: 7883255916117151741}
+  inputReader: {fileID: 9027283492713699132}
   visualTransform: {fileID: 939526190913372012}

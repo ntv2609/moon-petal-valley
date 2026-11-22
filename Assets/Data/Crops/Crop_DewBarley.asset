@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 018d7dcb7cb22a14fbc23df63dd7302e, type: 3}
+  m_Name: Crop_DewBarley
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.CropData
+  cropID: crop_dew_barley
+  cropNameKey: name_item_dew_barley
+  seedItem: {fileID: 11400000, guid: 7032f6393ab5ab14bb5e4590c5d4c2d9, type: 2}
+  harvestedItem: {fileID: 11400000, guid: 461e4e5992c791d4b8aae3934d785ce8, type: 2}
+  growDays: 2
+  harvestYield: 1
+  stageSprites:
+  - {fileID: -9165084595783725224, guid: 4c0cbfffc089edc46aa9bf675af91560, type: 3}
+  - {fileID: 8729271389802593531, guid: f5c77c01c718f7e4789e8cf7a02e4c0a, type: 3}
+  - {fileID: 8549192660577931161, guid: fdc739e75debd7f4dbda99b02df9fda5, type: 3}
+  - {fileID: 6599593809026966450, guid: a3c43b4ae4e41fc4ea8f0feb79c1f6bd, type: 3}

@@ -22,5 +22,5 @@ MonoBehaviour:
   lightHPRestore: 0
   clearsExhaustionPenalty: 0
   growDays: 2
-  linkedCropData: {fileID: 0}
+  linkedCropData: {fileID: 11400000, guid: 893a42b711f1b4f4e9813dd4d3c7587f, type: 2}
   isQuestProtected: 1
