@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MoonpetalValley.UI;
 using MoonpetalValley.DebugTools;
+using MoonpetalValley.TimeSystem;
 
 namespace MoonpetalValley.Core
 {
@@ -15,6 +16,7 @@ namespace MoonpetalValley.Core
         [SerializeField] private SceneLoader sceneLoader;
         [SerializeField] private FloatingToastUI toastUI;
         [SerializeField] private RuntimeDebugOverlay debugOverlay;
+        [SerializeField] private TimeOfDayManager timeManager;
 
         private readonly List<ISaveable> _saveables = new List<ISaveable>();
 
@@ -24,6 +26,7 @@ namespace MoonpetalValley.Core
         public SceneLoader Scenes => sceneLoader;
         public FloatingToastUI Toast => toastUI;
         public RuntimeDebugOverlay DebugOverlay => debugOverlay;
+        public TimeOfDayManager Time => timeManager;
 
         private void Awake()
         {
@@ -41,10 +44,8 @@ namespace MoonpetalValley.Core
                 localization.Initialize();
             }
 
-            if (storyFlagManager != null)
-            {
-                RegisterSaveable(storyFlagManager);
-            }
+            if (storyFlagManager != null) RegisterSaveable(storyFlagManager);
+            if (timeManager != null) RegisterSaveable(timeManager);
 
             Debug.Log("[MV] GameRoot khởi tạo thành công.");
         }

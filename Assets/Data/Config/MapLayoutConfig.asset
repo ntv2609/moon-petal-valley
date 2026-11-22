@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b1c62005307484b987602087fb1b48, type: 3}
+  m_Name: MapLayoutConfig
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.MapLayoutConfigSO
+  originX: -22
+  originY: -16
+  asciiMap: 'TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+
+    T############................TTTTTTTTTTTTTTT
+
+    T#GGGGGGGGGG#...W............TT..........TTT
+
+    T#GGGGGGGGGG#..WWW...........T............TT
+
+    T#GGGGGGGGGG#...W....PPPP....T....TTTT.....T
+
+    T#GGGGGGGGGG#........PPPP.........TTTT.....T
+
+    T#GGGGGGGGGG#........PPPP..................T
+
+    T#GGGGGGGGGG#...PPPPPPPPPPPPPPPPPPPPPP.....T
+
+    T#GGGGGGGGGG#...PPPPPPPPPPPPPPPPPPPPPP.....T
+
+    T#GGGGGGGGGG#...PP........PP........PP.....T
+
+    T#####PP#####...PP........PP........PP.....T
+
+    T.....PP........PP..PPPP..PP........PP.....T
+
+    T.....PP........PP..PPPP..PP........PP.....T
+
+    T.....PPPPPPPPPPPP..PPPP..PPPPPPPPPPPP.....T
+
+    T.....PPPPPPPPPPPP..PPPP..PPPPPPPPPPPP.....T
+
+    T...................PPPP...................T
+
+    T...................PPPP...................T
+
+    T..............FFFFFFFFFFFFFF..............T
+
+    T..............F....PPPP....F..............T
+
+    T..............F....PPPP....F..............T
+
+    T..............F....PPPP....F..............T
+
+    T..............F...PPPPPP...F..............T
+
+    T..............F...PPBBPP...F..............T
+
+    T..............F...PPBBPP...F..............T
+
+    T..............F...PPPPPP...F..............T
+
+    T..............F............F..............T
+
+    T..............F............F..............T
+
+    T..............F............F..............T
+
+    T..............FFFFFFFFFFFFFF..............T
+
+    TT........................................TT
+
+    TTT......................................TTT
+
+    TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT'
+  spawnPoints:
+  - id: Spawn_Greenhouse
+    displayName: "Nh\xE0 K\xEDnh C\u1EE7a B\xE0"
+    position: {x: -15, y: 10}
+  - id: Spawn_Village
+    displayName: "Qu\u1EA3ng Tr\u01B0\u1EDDng L\xE0ng Ch\xEDnh"
+    position: {x: 0, y: 3}
+  - id: Spawn_BachGarden
+    displayName: "V\u01B0\u1EDDn Ph\xEDa Nam \xD4ng B\xE1ch"
+    position: {x: 0, y: -5}
+  - id: Spawn_ForestEdge
+    displayName: "R\xECa R\u1EEBng Ph\xEDa \u0110\xF4ng"
+    position: {x: 15, y: 7}
+  cameraMinBounds: {x: -13.5, y: -10.5}
+  cameraMaxBounds: {x: 13.5, y: 10.5}

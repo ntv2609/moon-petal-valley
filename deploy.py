@@ -1,4 +1,4 @@
-# deploy.py — Moonpetal Valley — Step 1.fix 1
+# deploy.py — Moonpetal Valley — Step 3
 import os
 import sys
 import shutil
@@ -19,11 +19,459 @@ if not ASSETS_DIR.is_dir() or not SETTINGS_DIR.is_dir():
     sys.exit(1)
 
 FILES = {
+    # =========================================================================
+    # 1. TIME OF DAY MANAGER (06:00 -> 02:00, ISAVEABLE)
+    # =========================================================================
+    "Assets/Scripts/TimeSystem/TimeOfDayManager.cs": r'''using System;
+using UnityEngine;
+using MoonpetalValley.Core;
+using MoonpetalValley.Data;
+
+namespace MoonpetalValley.TimeSystem
+{
+    public enum DayPhase
+    {
+        Morning,
+        Noon,
+        Dusk,
+        Night
+    }
+
+    public class TimeOfDayManager : MonoBehaviour, ISaveable
+    {
+        [SerializeField] private TimeConfigSO timeConfig;
+
+        public static event Action OnLateNightPassOut;
+
+        public int CurrentDay { get; private set; } = 1;
+        public float CurrentHourFloat { get; private set; } = 6f;
+
+        private int _lastBroadcastTenMinBucket = -1;
+        private bool _passOutTriggeredToday;
+
+        public string SaveKey => "time_of_day";
+
+        public DayPhase CurrentPhase
+        {
+            get
+            {
+                float dusk = timeConfig != null ? timeConfig.duskStartHour : 18f;
+                float night = timeConfig != null ? timeConfig.nightStartHour : 20f;
+                if (CurrentHourFloat < 12f) return DayPhase.Morning;
+                if (CurrentHourFloat < dusk) return DayPhase.Noon;
+                if (CurrentHourFloat < night) return DayPhase.Dusk;
+                return DayPhase.Night;
+            }
+        }
+
+        public bool IsDuskOrNight => CurrentPhase == DayPhase.Dusk || CurrentPhase == DayPhase.Night;
+        public bool IsNight => CurrentPhase == DayPhase.Night;
+
+        [Serializable]
+        private class TimeSaveData
+        {
+            public int day;
+            public float hourFloat;
+        }
+
+        private void Start()
+        {
+            CurrentHourFloat = timeConfig != null ? timeConfig.dayStartHour : 6f;
+            BroadcastTimeImmediate();
+        }
+
+        private void Update()
+        {
+            if (GameRoot.Instance != null && GameRoot.Instance.State != null && GameRoot.Instance.State.IsTimePaused)
+            {
+                return;
+            }
+
+            float dayStart = timeConfig != null ? timeConfig.dayStartHour : 6f;
+            float passOut = timeConfig != null ? timeConfig.passOutHour : 26f;
+            float realSec = timeConfig != null && timeConfig.realSecondsPerGameDay > 1f
+                ? timeConfig.realSecondsPerGameDay
+                : 300f;
+
+            float gameHoursPerRealSecond = (passOut - dayStart) / realSec;
+            CurrentHourFloat += Time.deltaTime * gameHoursPerRealSecond;
+
+            int bucket = Mathf.FloorToInt(CurrentHourFloat * 6f);
+            if (bucket != _lastBroadcastTenMinBucket)
+            {
+                _lastBroadcastTenMinBucket = bucket;
+                GameEventBus.RaiseTimeChanged(CurrentDay, CurrentHourFloat);
+            }
+
+            if (CurrentHourFloat >= passOut && !_passOutTriggeredToday)
+            {
+                _passOutTriggeredToday = true;
+                if (OnLateNightPassOut != null)
+                {
+                    OnLateNightPassOut.Invoke();
+                }
+                else
+                {
+                    GameEventBus.RaiseToastRequested("Đã 02:00 đêm! Bạn kiệt sức và thiếp đi tới sáng hôm sau...");
+                    AdvanceToNextDay();
+                }
+            }
+        }
+
+        public void AddHours(float deltaHours)
+        {
+            float passOut = timeConfig != null ? timeConfig.passOutHour : 26f;
+            CurrentHourFloat = Mathf.Clamp(CurrentHourFloat + deltaHours, 6f, passOut);
+            BroadcastTimeImmediate();
+        }
+
+        public void SetHour(float targetHour)
+        {
+            float dayStart = timeConfig != null ? timeConfig.dayStartHour : 6f;
+            float passOut = timeConfig != null ? timeConfig.passOutHour : 26f;
+            CurrentHourFloat = Mathf.Clamp(targetHour, dayStart, passOut);
+            _passOutTriggeredToday = false;
+            BroadcastTimeImmediate();
+        }
+
+        public void AdvanceToNextDay()
+        {
+            CurrentDay++;
+            CurrentHourFloat = timeConfig != null ? timeConfig.dayStartHour : 6f;
+            _passOutTriggeredToday = false;
+            GameEventBus.RaiseDayStarted(CurrentDay);
+            BroadcastTimeImmediate();
+        }
+
+        public string GetFormattedClockString()
+        {
+            int totalMinutes = Mathf.FloorToInt(CurrentHourFloat * 60f);
+            int displayHour = (totalMinutes / 60) % 24;
+            int displayMin = (totalMinutes % 60 / 10) * 10;
+
+            string phaseText = CurrentPhase switch
+            {
+                DayPhase.Morning => "Sáng",
+                DayPhase.Noon => "Trưa",
+                DayPhase.Dusk => "Chạng vạng",
+                _ => "Đêm"
+            };
+
+            return string.Format("Ngày {0} — {1:00}:{2:00} ({3})", CurrentDay, displayHour, displayMin, phaseText);
+        }
+
+        private void BroadcastTimeImmediate()
+        {
+            _lastBroadcastTenMinBucket = Mathf.FloorToInt(CurrentHourFloat * 6f);
+            GameEventBus.RaiseTimeChanged(CurrentDay, CurrentHourFloat);
+        }
+
+        public string CaptureStateJson()
+        {
+            var data = new TimeSaveData { day = CurrentDay, hourFloat = CurrentHourFloat };
+            return JsonUtility.ToJson(data);
+        }
+
+        public void RestoreStateJson(string json)
+        {
+            if (string.IsNullOrEmpty(json)) return;
+            var data = JsonUtility.FromJson<TimeSaveData>(json);
+            if (data != null)
+            {
+                CurrentDay = Mathf.Max(1, data.day);
+                CurrentHourFloat = Mathf.Clamp(data.hourFloat, 6f, 25.9f);
+                _passOutTriggeredToday = false;
+                BroadcastTimeImmediate();
+            }
+        }
+    }
+}
+''',
+
+    # =========================================================================
+    # 2. DAY / NIGHT AMBIENT LIGHTING & LUMI NIGHT GLOW
+    # =========================================================================
+    "Assets/Scripts/TimeSystem/DayNightLightingController.cs": r'''using UnityEngine;
+using UnityEngine.UI;
+using MoonpetalValley.Core;
+using MoonpetalValley.Data;
+using MoonpetalValley.Player;
+
+namespace MoonpetalValley.TimeSystem
+{
+    public class DayNightLightingController : MonoBehaviour
+    {
+        [SerializeField] private TimeConfigSO timeConfig;
+        [SerializeField] private Image ambientTintImage;
+
+        private Color _targetTint = new Color(1f, 0.94f, 0.78f, 0.06f);
+        private float _targetLumiScale = 1.0f;
+
+        private void OnEnable()
+        {
+            GameEventBus.OnTimeChanged += HandleTimeChanged;
+        }
+
+        private void OnDisable()
+        {
+            GameEventBus.OnTimeChanged -= HandleTimeChanged;
+        }
+
+        private void Start()
+        {
+            if (GameRoot.Instance != null && GameRoot.Instance.Time != null)
+            {
+                HandleTimeChanged(GameRoot.Instance.Time.CurrentDay, GameRoot.Instance.Time.CurrentHourFloat);
+            }
+        }
+
+        private void Update()
+        {
+            if (ambientTintImage != null)
+            {
+                ambientTintImage.color = Color.Lerp(ambientTintImage.color, _targetTint, Time.unscaledDeltaTime * 3.0f);
+            }
+        }
+
+        private void HandleTimeChanged(int day, float hour)
+        {
+            float dusk = timeConfig != null ? timeConfig.duskStartHour : 18f;
+            float night = timeConfig != null ? timeConfig.nightStartHour : 20f;
+
+            Color morningTint = new Color(1.0f, 0.92f, 0.72f, 0.08f);
+            Color noonTint = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            Color duskTint = new Color(0.88f, 0.42f, 0.16f, 0.24f);
+            Color nightTint = new Color(0.06f, 0.09f, 0.24f, 0.50f);
+
+            if (hour < 11f)
+            {
+                float t = Mathf.InverseLerp(6f, 11f, hour);
+                _targetTint = Color.Lerp(morningTint, noonTint, t);
+            }
+            else if (hour < dusk)
+            {
+                float t = Mathf.InverseLerp(16f, dusk, hour);
+                _targetTint = Color.Lerp(noonTint, duskTint, t);
+            }
+            else if (hour < night)
+            {
+                float t = Mathf.InverseLerp(dusk, night, hour);
+                _targetTint = Color.Lerp(duskTint, nightTint, t);
+            }
+            else
+            {
+                _targetTint = nightTint;
+            }
+
+            bool upgraded = GameRoot.Instance != null && GameRoot.Instance.Flags != null &&
+                            GameRoot.Instance.Flags.HasFlag("flag_nv1_completed");
+            float nightScale = upgraded ? 3.2f : 2.0f;
+            _targetLumiScale = hour >= dusk ? nightScale : 1.0f;
+
+            var lumi = UnityEngine.Object.FindAnyObjectByType<LumiCompanionController>();
+            if (lumi != null)
+            {
+                lumi.SetHaloRadiusScale(_targetLumiScale);
+            }
+        }
+    }
+}
+''',
+
+    # =========================================================================
+    # 3. VILLAGE LANTERN (LIGHTS UP AT DUSK & NIGHT)
+    # =========================================================================
+    "Assets/Scripts/TimeSystem/VillageLantern.cs": r'''using UnityEngine;
+using MoonpetalValley.Core;
+
+namespace MoonpetalValley.TimeSystem
+{
+    public class VillageLantern : MonoBehaviour
+    {
+        [SerializeField] private SpriteRenderer glowRenderer;
+
+        private float _targetAlpha;
+        private float _flickerPhase;
+
+        private void OnEnable()
+        {
+            GameEventBus.OnTimeChanged += HandleTimeChanged;
+        }
+
+        private void OnDisable()
+        {
+            GameEventBus.OnTimeChanged -= HandleTimeChanged;
+        }
+
+        private void Start()
+        {
+            _flickerPhase = Random.Range(0f, 6.28f);
+            if (GameRoot.Instance != null && GameRoot.Instance.Time != null)
+            {
+                HandleTimeChanged(GameRoot.Instance.Time.CurrentDay, GameRoot.Instance.Time.CurrentHourFloat);
+            }
+        }
+
+        private void HandleTimeChanged(int day, float hour)
+        {
+            _targetAlpha = hour >= 18f ? 0.78f : 0f;
+        }
+
+        private void Update()
+        {
+            if (glowRenderer == null) return;
+            _flickerPhase += Time.deltaTime * 4f;
+            float flicker = _targetAlpha > 0.01f ? (Mathf.Sin(_flickerPhase) * 0.06f) : 0f;
+            Color c = glowRenderer.color;
+            c.a = Mathf.Lerp(c.a, Mathf.Clamp01(_targetAlpha + flicker), Time.deltaTime * 4f);
+            glowRenderer.color = c;
+        }
+    }
+}
+''',
+
+    # =========================================================================
+    # 4. CLOCK HUD VIEW (TOP-RIGHT TIME DISPLAY)
+    # =========================================================================
+    "Assets/Scripts/UI/ClockHUDView.cs": r'''using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using MoonpetalValley.Core;
+using MoonpetalValley.TimeSystem;
+
+namespace MoonpetalValley.UI
+{
+    public class ClockHUDView : MonoBehaviour
+    {
+        [SerializeField] private TMP_Text clockText;
+        [SerializeField] private Image phaseBadgeImage;
+
+        private void OnEnable()
+        {
+            GameEventBus.OnTimeChanged += HandleTimeChanged;
+            GameEventBus.OnDayStarted += HandleDayStarted;
+        }
+
+        private void OnDisable()
+        {
+            GameEventBus.OnTimeChanged -= HandleTimeChanged;
+            GameEventBus.OnDayStarted -= HandleDayStarted;
+        }
+
+        private void Start()
+        {
+            RefreshDisplay();
+        }
+
+        private void HandleTimeChanged(int day, float hour) => RefreshDisplay();
+        private void HandleDayStarted(int day) => RefreshDisplay();
+
+        public void RefreshDisplay()
+        {
+            if (GameRoot.Instance == null || GameRoot.Instance.Time == null) return;
+            var tm = GameRoot.Instance.Time;
+
+            if (clockText != null)
+            {
+                clockText.text = tm.GetFormattedClockString();
+            }
+
+            if (phaseBadgeImage != null)
+            {
+                phaseBadgeImage.color = tm.CurrentPhase switch
+                {
+                    DayPhase.Morning => new Color(0.95f, 0.80f, 0.35f, 1f),
+                    DayPhase.Noon => new Color(0.98f, 0.90f, 0.42f, 1f),
+                    DayPhase.Dusk => new Color(0.92f, 0.48f, 0.24f, 1f),
+                    _ => new Color(0.36f, 0.50f, 0.88f, 1f)
+                };
+            }
+        }
+    }
+}
+''',
+
+    # =========================================================================
+    # 5. UPDATED GAMEROOT.CS (FULL FILE — ADDS TIMEMANAGER)
+    # =========================================================================
+    "Assets/Scripts/Core/GameRoot.cs": r'''using System.Collections.Generic;
+using UnityEngine;
+using MoonpetalValley.UI;
+using MoonpetalValley.DebugTools;
+using MoonpetalValley.TimeSystem;
+
+namespace MoonpetalValley.Core
+{
+    public class GameRoot : MonoBehaviour
+    {
+        public static GameRoot Instance { get; private set; }
+
+        [SerializeField] private GameStateManager gameStateManager;
+        [SerializeField] private StoryFlagManager storyFlagManager;
+        [SerializeField] private VNLocalization localization;
+        [SerializeField] private SceneLoader sceneLoader;
+        [SerializeField] private FloatingToastUI toastUI;
+        [SerializeField] private RuntimeDebugOverlay debugOverlay;
+        [SerializeField] private TimeOfDayManager timeManager;
+
+        private readonly List<ISaveable> _saveables = new List<ISaveable>();
+
+        public GameStateManager State => gameStateManager;
+        public StoryFlagManager Flags => storyFlagManager;
+        public VNLocalization Loc => localization;
+        public SceneLoader Scenes => sceneLoader;
+        public FloatingToastUI Toast => toastUI;
+        public RuntimeDebugOverlay DebugOverlay => debugOverlay;
+        public TimeOfDayManager Time => timeManager;
+
+        private void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            if (localization != null)
+            {
+                localization.Initialize();
+            }
+
+            if (storyFlagManager != null) RegisterSaveable(storyFlagManager);
+            if (timeManager != null) RegisterSaveable(timeManager);
+
+            Debug.Log("[MV] GameRoot khởi tạo thành công.");
+        }
+
+        public void RegisterSaveable(ISaveable saveable)
+        {
+            if (saveable == null) return;
+            if (!_saveables.Contains(saveable))
+            {
+                _saveables.Add(saveable);
+            }
+        }
+
+        public IReadOnlyList<ISaveable> GetSaveables()
+        {
+            return _saveables;
+        }
+    }
+}
+''',
+
+    # =========================================================================
+    # 6. UPDATED RUNTIMEDEBUGOVERLAY.CS (FULL FILE — ADDS 3 TIME CONTROLS)
+    # =========================================================================
     "Assets/Scripts/DebugTools/RuntimeDebugOverlay.cs": r'''using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using MoonpetalValley.Core;
+using MoonpetalValley.Player;
 
 namespace MoonpetalValley.DebugTools
 {
@@ -35,8 +483,16 @@ namespace MoonpetalValley.DebugTools
         [SerializeField] private Button btnToggleTestFlag;
         [SerializeField] private Button btnClearFlags;
         [SerializeField] private Button btnTogglePause;
+        [SerializeField] private Button btnTpGreenhouse;
+        [SerializeField] private Button btnTpVillage;
+        [SerializeField] private Button btnTpGarden;
+        [SerializeField] private Button btnTpForest;
+        [SerializeField] private Button btnTimePlus2H;
+        [SerializeField] private Button btnTimeSetDusk;
+        [SerializeField] private Button btnTimeNextDay;
 
         private bool _isOpen;
+        private float _refreshTimer;
         private const string TestFlagId = "flag_debug_step1_verified";
 
         private void Awake()
@@ -50,6 +506,14 @@ namespace MoonpetalValley.DebugTools
             if (btnToggleTestFlag != null) btnToggleTestFlag.onClick.AddListener(OnClickToggleTestFlag);
             if (btnClearFlags != null) btnClearFlags.onClick.AddListener(OnClickClearFlags);
             if (btnTogglePause != null) btnTogglePause.onClick.AddListener(OnClickTogglePause);
+            if (btnTpGreenhouse != null) btnTpGreenhouse.onClick.AddListener(() => TeleportTo("Spawn_Greenhouse"));
+            if (btnTpVillage != null) btnTpVillage.onClick.AddListener(() => TeleportTo("Spawn_Village"));
+            if (btnTpGarden != null) btnTpGarden.onClick.AddListener(() => TeleportTo("Spawn_BachGarden"));
+            if (btnTpForest != null) btnTpForest.onClick.AddListener(() => TeleportTo("Spawn_ForestEdge"));
+
+            if (btnTimePlus2H != null) btnTimePlus2H.onClick.AddListener(OnClickTimePlus2H);
+            if (btnTimeSetDusk != null) btnTimeSetDusk.onClick.AddListener(OnClickTimeSetDusk);
+            if (btnTimeNextDay != null) btnTimeNextDay.onClick.AddListener(OnClickTimeNextDay);
         }
 
         private void OnEnable()
@@ -71,6 +535,16 @@ namespace MoonpetalValley.DebugTools
             if (WasF1PressedThisFrame())
             {
                 TogglePanel();
+            }
+
+            if (_isOpen)
+            {
+                _refreshTimer += Time.unscaledDeltaTime;
+                if (_refreshTimer >= 0.25f)
+                {
+                    _refreshTimer = 0f;
+                    RefreshStatusText();
+                }
             }
         }
 
@@ -103,6 +577,43 @@ namespace MoonpetalValley.DebugTools
             {
                 RefreshStatusText();
             }
+        }
+
+        private void TeleportTo(string spawnId)
+        {
+            if (WorldSpawnRegistry.Instance != null)
+            {
+                WorldSpawnRegistry.Instance.TeleportPlayerTo(spawnId);
+                RefreshStatusText();
+            }
+            else
+            {
+                GameEventBus.RaiseToastRequested("Chưa có WorldSpawnRegistry trong scene.");
+            }
+        }
+
+        private void OnClickTimePlus2H()
+        {
+            if (GameRoot.Instance == null || GameRoot.Instance.Time == null) return;
+            GameRoot.Instance.Time.AddHours(2f);
+            GameEventBus.RaiseToastRequested("Tua thời gian +2 giờ: " + GameRoot.Instance.Time.GetFormattedClockString());
+            RefreshStatusText();
+        }
+
+        private void OnClickTimeSetDusk()
+        {
+            if (GameRoot.Instance == null || GameRoot.Instance.Time == null) return;
+            GameRoot.Instance.Time.SetHour(19.83f);
+            GameEventBus.RaiseToastRequested("Đã đặt giờ Chạng vạng (19:50) chuẩn bị sang Đêm!");
+            RefreshStatusText();
+        }
+
+        private void OnClickTimeNextDay()
+        {
+            if (GameRoot.Instance == null || GameRoot.Instance.Time == null) return;
+            GameRoot.Instance.Time.AdvanceToNextDay();
+            GameEventBus.RaiseToastRequested("Bắt đầu " + GameRoot.Instance.Time.GetFormattedClockString());
+            RefreshStatusText();
         }
 
         private void OnClickTestToast()
@@ -148,8 +659,19 @@ namespace MoonpetalValley.DebugTools
             var sb = new StringBuilder();
             sb.AppendLine("<b>BẢNG DEBUG MOONPETAL (F1)</b>");
             sb.AppendLine("Trạng thái: " + GameRoot.Instance.State.CurrentState);
-            sb.AppendLine("Scene: " + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-            sb.Append("StoryFlags đang bật: ");
+            if (GameRoot.Instance.Time != null)
+            {
+                sb.AppendLine("Đồng hồ: " + GameRoot.Instance.Time.GetFormattedClockString());
+            }
+
+            var player = UnityEngine.Object.FindAnyObjectByType<PlayerController2D>();
+            if (player != null)
+            {
+                Vector3 p = player.transform.position;
+                sb.AppendLine(string.Format("Vị trí Wen: ({0:0.0}, {1:0.0})", p.x, p.y));
+            }
+
+            sb.Append("Flags: ");
             var flags = GameRoot.Instance.Flags.GetAllActiveFlags();
             if (flags.Count == 0)
             {
@@ -171,57 +693,254 @@ namespace MoonpetalValley.DebugTools
 }
 ''',
 
-    "Assets/Editor/AutoBuilder_Step1.cs": r'''using System;
-using System.IO;
-using System.Collections.Generic;
+    # =========================================================================
+    # 7. UPDATED PLACEHOLDERGENERATORUTILITY.CS (FULL FILE — ADDS LANTERN ART)
+    # =========================================================================
+    "Assets/Editor/PlaceholderGeneratorUtility.cs": r'''using System.IO;
 using UnityEngine;
+using UnityEditor;
+
+namespace MoonpetalValley.EditorTools
+{
+    public static class PlaceholderGeneratorUtility
+    {
+        public static Sprite EnsureSprite(string assetPath, int width, int height, System.Action<Texture2D> drawAction)
+        {
+            if (!File.Exists(assetPath))
+            {
+                string dir = Path.GetDirectoryName(assetPath);
+                if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
+                {
+                    Directory.CreateDirectory(dir);
+                }
+
+                Texture2D tex = new Texture2D(width, height, TextureFormat.RGBA32, false);
+                tex.filterMode = FilterMode.Point;
+                Color clear = new Color(0f, 0f, 0f, 0f);
+                Color[] pixels = new Color[width * height];
+                for (int i = 0; i < pixels.Length; i++) pixels[i] = clear;
+                tex.SetPixels(pixels);
+
+                drawAction?.Invoke(tex);
+                tex.Apply();
+
+                byte[] png = tex.EncodeToPNG();
+                File.WriteAllBytes(assetPath, png);
+                UnityEngine.Object.DestroyImmediate(tex);
+                AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
+            }
+
+            var importer = AssetImporter.GetAtPath(assetPath) as TextureImporter;
+            if (importer != null)
+            {
+                bool dirty = false;
+                if (importer.textureType != TextureImporterType.Sprite) { importer.textureType = TextureImporterType.Sprite; dirty = true; }
+                if (Mathf.Abs(importer.spritePixelsPerUnit - 16f) > 0.01f) { importer.spritePixelsPerUnit = 16f; dirty = true; }
+                if (importer.filterMode != FilterMode.Point) { importer.filterMode = FilterMode.Point; dirty = true; }
+                if (importer.textureCompression != TextureImporterCompression.Uncompressed) { importer.textureCompression = TextureImporterCompression.Uncompressed; dirty = true; }
+                if (dirty) importer.SaveAndReimport();
+            }
+
+            return AssetDatabase.LoadAssetAtPath<Sprite>(assetPath);
+        }
+
+        public static void FillRect(Texture2D tex, int x, int y, int w, int h, Color c)
+        {
+            for (int py = y; py < y + h; py++)
+            {
+                if (py < 0 || py >= tex.height) continue;
+                for (int px = x; px < x + w; px++)
+                {
+                    if (px < 0 || px >= tex.width) continue;
+                    tex.SetPixel(px, py, c);
+                }
+            }
+        }
+
+        public static void DrawWenSprite(Texture2D tex)
+        {
+            Color boots = new Color(0.32f, 0.20f, 0.12f);
+            Color cloak = new Color(0.20f, 0.56f, 0.36f);
+            Color cloakShade = new Color(0.14f, 0.42f, 0.27f);
+            Color scarf = new Color(0.95f, 0.78f, 0.28f);
+            Color skin = new Color(0.98f, 0.85f, 0.74f);
+            Color hair = new Color(0.24f, 0.18f, 0.16f);
+            Color eye = new Color(0.10f, 0.12f, 0.18f);
+            Color sprout = new Color(0.55f, 0.92f, 0.42f);
+
+            FillRect(tex, 5, 1, 2, 3, boots);
+            FillRect(tex, 9, 1, 2, 3, boots);
+            FillRect(tex, 4, 4, 8, 8, cloak);
+            FillRect(tex, 4, 4, 2, 8, cloakShade);
+            FillRect(tex, 4, 11, 8, 2, scarf);
+            FillRect(tex, 4, 13, 8, 6, skin);
+            tex.SetPixel(6, 15, eye);
+            tex.SetPixel(9, 15, eye);
+            FillRect(tex, 3, 18, 10, 3, hair);
+            FillRect(tex, 3, 15, 1, 4, hair);
+            FillRect(tex, 12, 15, 1, 4, hair);
+            FillRect(tex, 7, 21, 2, 2, sprout);
+            tex.SetPixel(9, 22, sprout);
+        }
+
+        public static void DrawLumiSprite(Texture2D tex)
+        {
+            Color outer = new Color(0.45f, 0.92f, 0.95f, 0.90f);
+            Color inner = new Color(0.85f, 1.0f, 0.98f, 1.0f);
+            Color eye = new Color(0.12f, 0.25f, 0.35f, 1.0f);
+
+            FillRect(tex, 3, 2, 6, 7, outer);
+            FillRect(tex, 4, 1, 4, 9, outer);
+            FillRect(tex, 4, 3, 4, 5, inner);
+            tex.SetPixel(4, 5, eye);
+            tex.SetPixel(7, 5, eye);
+            tex.SetPixel(5, 10, inner);
+            tex.SetPixel(6, 10, inner);
+        }
+
+        public static void DrawRadialHalo(Texture2D tex)
+        {
+            Vector2 center = new Vector2(tex.width * 0.5f, tex.height * 0.5f);
+            float maxR = tex.width * 0.5f;
+            for (int y = 0; y < tex.height; y++)
+            {
+                for (int x = 0; x < tex.width; x++)
+                {
+                    float dist = Vector2.Distance(new Vector2(x + 0.5f, y + 0.5f), center);
+                    float a = Mathf.Clamp01(1f - dist / maxR);
+                    tex.SetPixel(x, y, new Color(0.55f, 0.96f, 0.92f, a * a * 0.42f));
+                }
+            }
+        }
+
+        public static void DrawWarmHalo(Texture2D tex)
+        {
+            Vector2 center = new Vector2(tex.width * 0.5f, tex.height * 0.5f);
+            float maxR = tex.width * 0.5f;
+            for (int y = 0; y < tex.height; y++)
+            {
+                for (int x = 0; x < tex.width; x++)
+                {
+                    float dist = Vector2.Distance(new Vector2(x + 0.5f, y + 0.5f), center);
+                    float a = Mathf.Clamp01(1f - dist / maxR);
+                    tex.SetPixel(x, y, new Color(1.0f, 0.80f, 0.36f, a * a * 0.65f));
+                }
+            }
+        }
+
+        public static void DrawLanternPostSprite(Texture2D tex)
+        {
+            Color wood = new Color(0.36f, 0.24f, 0.14f);
+            Color iron = new Color(0.22f, 0.24f, 0.28f);
+            Color lamp = new Color(1.0f, 0.86f, 0.42f);
+
+            FillRect(tex, 7, 1, 2, 16, wood);
+            FillRect(tex, 5, 1, 6, 2, wood);
+            FillRect(tex, 7, 16, 6, 2, iron);
+            FillRect(tex, 10, 11, 4, 5, lamp);
+            FillRect(tex, 9, 15, 6, 1, iron);
+            FillRect(tex, 9, 10, 6, 1, iron);
+        }
+
+        public static void DrawGrassTile(Texture2D tex)
+        {
+            FillRect(tex, 0, 0, 16, 16, new Color(0.32f, 0.58f, 0.31f));
+            Color light = new Color(0.40f, 0.68f, 0.36f);
+            Color dark = new Color(0.26f, 0.48f, 0.26f);
+            tex.SetPixel(3, 4, light); tex.SetPixel(3, 5, light);
+            tex.SetPixel(11, 10, light); tex.SetPixel(11, 11, light);
+            tex.SetPixel(7, 13, dark); tex.SetPixel(13, 3, dark);
+        }
+
+        public static void DrawPathTile(Texture2D tex)
+        {
+            FillRect(tex, 0, 0, 16, 16, new Color(0.73f, 0.65f, 0.50f));
+            Color pebble = new Color(0.62f, 0.54f, 0.41f);
+            FillRect(tex, 2, 3, 3, 2, pebble);
+            FillRect(tex, 10, 9, 4, 2, pebble);
+            FillRect(tex, 5, 12, 2, 2, new Color(0.82f, 0.76f, 0.62f));
+        }
+
+        public static void DrawGreenhouseFloorTile(Texture2D tex)
+        {
+            FillRect(tex, 0, 0, 16, 16, new Color(0.60f, 0.44f, 0.28f));
+            Color line = new Color(0.46f, 0.33f, 0.20f);
+            FillRect(tex, 0, 0, 16, 1, line);
+            FillRect(tex, 0, 8, 16, 1, line);
+            FillRect(tex, 7, 1, 1, 7, line);
+            FillRect(tex, 13, 9, 1, 7, line);
+        }
+
+        public static void DrawWallTile(Texture2D tex)
+        {
+            FillRect(tex, 0, 0, 16, 16, new Color(0.34f, 0.26f, 0.20f));
+            FillRect(tex, 2, 4, 12, 9, new Color(0.56f, 0.78f, 0.84f));
+            FillRect(tex, 7, 4, 2, 9, new Color(0.34f, 0.26f, 0.20f));
+            FillRect(tex, 0, 14, 16, 2, new Color(0.24f, 0.18f, 0.14f));
+        }
+
+        public static void DrawFenceTile(Texture2D tex)
+        {
+            DrawGrassTile(tex);
+            Color wood = new Color(0.54f, 0.36f, 0.20f);
+            Color woodHi = new Color(0.68f, 0.48f, 0.28f);
+            FillRect(tex, 2, 2, 3, 12, wood);
+            FillRect(tex, 11, 2, 3, 12, wood);
+            FillRect(tex, 0, 5, 16, 2, woodHi);
+            FillRect(tex, 0, 10, 16, 2, woodHi);
+        }
+
+        public static void DrawTreeTile(Texture2D tex)
+        {
+            DrawGrassTile(tex);
+            FillRect(tex, 6, 1, 4, 5, new Color(0.38f, 0.24f, 0.14f));
+            FillRect(tex, 2, 5, 12, 9, new Color(0.14f, 0.36f, 0.22f));
+            FillRect(tex, 4, 7, 8, 7, new Color(0.20f, 0.48f, 0.28f));
+            FillRect(tex, 5, 10, 4, 3, new Color(0.28f, 0.58f, 0.34f));
+        }
+
+        public static void DrawWaterTile(Texture2D tex)
+        {
+            FillRect(tex, 0, 0, 16, 16, new Color(0.22f, 0.52f, 0.78f));
+            FillRect(tex, 3, 5, 5, 1, new Color(0.62f, 0.86f, 0.98f));
+            FillRect(tex, 9, 11, 4, 1, new Color(0.62f, 0.86f, 0.98f));
+        }
+
+        public static void DrawFlowerbedTile(Texture2D tex)
+        {
+            FillRect(tex, 0, 0, 16, 16, new Color(0.54f, 0.54f, 0.58f));
+            FillRect(tex, 2, 2, 12, 12, new Color(0.36f, 0.25f, 0.18f));
+            FillRect(tex, 6, 6, 4, 4, new Color(0.46f, 0.34f, 0.24f));
+        }
+    }
+}
+''',
+
+    # =========================================================================
+    # 8. EDITOR — AUTOBUILDER STEP 3
+    # =========================================================================
+    "Assets/Editor/AutoBuilder_Step3.cs": r'''using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using TMPro;
 using MoonpetalValley.Core;
 using MoonpetalValley.Data;
+using MoonpetalValley.TimeSystem;
 using MoonpetalValley.UI;
 using MoonpetalValley.DebugTools;
 
 namespace MoonpetalValley.EditorTools
 {
-    public static class AutoBuilder_Step1
+    public static class AutoBuilder_Step3
     {
-        private const string FontAssetPath = "Assets/Art/Fonts/VN_DynamicFont.asset";
-        private const string FontCopyTtfPath = "Assets/Art/Fonts/VN_SourceFont.ttf";
-        private const string PlayerStatsPath = "Assets/Data/Config/PlayerStatsConfig.asset";
-        private const string TimeConfigPath = "Assets/Data/Config/TimeConfig.asset";
-        private const string StringTablePath = "Assets/Data/Localization/VNStringTable.asset";
-        private const string GameRootPrefabPath = "Assets/Prefabs/Core/GameRoot.prefab";
-        private const string BootstrapScenePath = "Assets/Scenes/Bootstrap.unity";
         private const string WorldScenePath = "Assets/Scenes/MoonpetalValley_MVP.unity";
+        private const string TimeConfigPath = "Assets/Data/Config/TimeConfig.asset";
+        private const string FontAssetPath = "Assets/Art/Fonts/VN_DynamicFont.asset";
+        private const string GameRootPrefabPath = "Assets/Prefabs/Core/GameRoot.prefab";
 
-        private static readonly string[] RequiredTags =
-        {
-            "NPC", "Enemy", "Interactable", "FarmTile", "ResourceNode", "BlightFog"
-        };
-
-        private static readonly (int index, string name)[] RequiredLayers =
-        {
-            (8, "Player"),
-            (9, "Enemy"),
-            (10, "Obstacle"),
-            (11, "Interactable"),
-            (12, "PlayerHitbox"),
-            (13, "EnemyHitbox"),
-            (14, "TriggerZone")
-        };
-
-        private static readonly string[] RequiredSortingLayers =
-        {
-            "Ground", "FloorDecal", "FarmTile", "Shadows",
-            "WorldObjects", "FogOverlay", "WeatherVFX", "UI"
-        };
-
-        [MenuItem("Moonpetal/Step 1/1. Build Foundation & Scenes")]
-        public static void BuildStep1()
+        [MenuItem("Moonpetal/Step 3/1. Build Time & Day-Night Lighting")]
+        public static void BuildStep3()
         {
             if (EditorApplication.isPlaying || EditorApplication.isCompiling)
             {
@@ -229,584 +948,295 @@ namespace MoonpetalValley.EditorTools
                 return;
             }
 
-            Debug.Log("[MV] === BẮT ĐẦU AUTOBUILDER STEP 1 ===");
-            CheckInputHandlingConfiguration();
-            EnsureFolderStructure();
-            ConfigureTagsLayersAndSortingLayers();
-            ConfigurePhysics2DMatrix();
+            Debug.Log("[MV] === BẮT ĐẦU AUTOBUILDER STEP 3 ===");
 
-            TMP_FontAsset vnFont = EnsureVietnameseTMPFont();
-            EnsurePlayerStatsAsset();
-            EnsureTimeConfigAsset();
-            StringTableSO stringTable = EnsureStringTableAsset();
+            Sprite lanternSpr = PlaceholderGeneratorUtility.EnsureSprite("Assets/Art/Sprites/Environment/spr_prop_lantern.png", 16, 24, PlaceholderGeneratorUtility.DrawLanternPostSprite);
+            Sprite warmHaloSpr = PlaceholderGeneratorUtility.EnsureSprite("Assets/Art/Sprites/Environment/spr_warm_halo.png", 32, 32, PlaceholderGeneratorUtility.DrawWarmHalo);
 
-            GameObject gameRootPrefab = BuildOrUpdateGameRootPrefab(stringTable, vnFont);
-            BuildBootstrapScene(gameRootPrefab);
-            BuildWorldPlaceholderScene(gameRootPrefab, vnFont);
-            ConfigureBuildSettings();
+            UpgradeGameRootWithTimeAndLighting();
 
+            var scene = EditorSceneManager.OpenScene(WorldScenePath, OpenSceneMode.Single);
+            BuildVillageLanterns(lanternSpr, warmHaloSpr);
+
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
 
-            Debug.Log("[MV] === HOÀN TẤT STEP 1! Hãy chạy 'Moonpetal/Step 1/Validate' để kiểm chứng. ===");
+            Debug.Log("[MV] === HOÀN TẤT STEP 3! Chạy 'Moonpetal/Step 3/Validate' để kiểm chứng. ===");
         }
 
-        [MenuItem("Moonpetal/Step 1/Validate")]
-        public static void ValidateStep1()
+        [MenuItem("Moonpetal/Step 3/Validate")]
+        public static void ValidateStep3()
         {
             int errors = 0;
-            Debug.Log("[MV] === BẮT ĐẦU VALIDATE STEP 1 ===");
-
-            var tagManager = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset")[0]);
-            var tagsProp = tagManager.FindProperty("tags");
-            foreach (string reqTag in RequiredTags)
-            {
-                if (!PropertyArrayContainsString(tagsProp, reqTag))
-                {
-                    Debug.LogError("[MV] THIẾU Tag: " + reqTag);
-                    errors++;
-                }
-            }
-
-            var layersProp = tagManager.FindProperty("layers");
-            foreach (var pair in RequiredLayers)
-            {
-                string actual = layersProp.GetArrayElementAtIndex(pair.index).stringValue;
-                if (actual != pair.name)
-                {
-                    Debug.LogError("[MV] SAI Layer " + pair.index + ": cần '" + pair.name + "', hiện tại '" + actual + "'");
-                    errors++;
-                }
-            }
-
-            errors += CheckAssetExists<TMP_FontAsset>(FontAssetPath);
-            errors += CheckAssetExists<PlayerStatsSO>(PlayerStatsPath);
-            errors += CheckAssetExists<TimeConfigSO>(TimeConfigPath);
-            errors += CheckAssetExists<StringTableSO>(StringTablePath);
-            errors += CheckAssetExists<GameObject>(GameRootPrefabPath);
+            Debug.Log("[MV] === BẮT ĐẦU VALIDATE STEP 3 ===");
 
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(GameRootPrefabPath);
-            if (prefab != null)
+            if (prefab == null)
+            {
+                Debug.LogError("[MV] THIẾU GameRoot.prefab");
+                errors++;
+            }
+            else
             {
                 var root = prefab.GetComponent<GameRoot>();
-                if (root == null)
+                var rootSO = new SerializedObject(root);
+                if (rootSO.FindProperty("timeManager").objectReferenceValue == null)
                 {
-                    Debug.LogError("[MV] GameRoot.prefab thiếu component GameRoot.");
+                    Debug.LogError("[MV] GameRoot thiếu tham chiếu timeManager.");
                     errors++;
                 }
-                else
+
+                var tm = prefab.GetComponent<TimeOfDayManager>();
+                if (tm == null || new SerializedObject(tm).FindProperty("timeConfig").objectReferenceValue == null)
                 {
-                    var so = new SerializedObject(root);
-                    string[] fields = { "gameStateManager", "storyFlagManager", "localization", "sceneLoader", "toastUI", "debugOverlay" };
-                    foreach (string f in fields)
-                    {
-                        var p = so.FindProperty(f);
-                        if (p == null || p.objectReferenceValue == null)
-                        {
-                            Debug.LogError("[MV] GameRoot thiếu tham chiếu SerializeField: " + f);
-                            errors++;
-                        }
-                    }
+                    Debug.LogError("[MV] TimeOfDayManager thiếu TimeConfigSO.");
+                    errors++;
+                }
+
+                var lighting = prefab.GetComponentInChildren<DayNightLightingController>(true);
+                if (lighting == null || new SerializedObject(lighting).FindProperty("ambientTintImage").objectReferenceValue == null)
+                {
+                    Debug.LogError("[MV] DayNightLightingController thiếu ambientTintImage.");
+                    errors++;
+                }
+
+                var clock = prefab.GetComponentInChildren<ClockHUDView>(true);
+                if (clock == null || new SerializedObject(clock).FindProperty("clockText").objectReferenceValue == null)
+                {
+                    Debug.LogError("[MV] ClockHUDView thiếu clockText.");
+                    errors++;
                 }
             }
 
-            if (EditorBuildSettings.scenes.Length < 2 ||
-                EditorBuildSettings.scenes[0].path != BootstrapScenePath ||
-                EditorBuildSettings.scenes[1].path != WorldScenePath)
+            var lanterns = UnityEngine.Object.FindObjectsByType<VillageLantern>(FindObjectsInactive.Include);
+            if (lanterns.Length < 4)
             {
-                Debug.LogError("[MV] Build Settings chưa đúng thứ tự Bootstrap (0) -> MoonpetalValley_MVP (1).");
+                Debug.LogError("[MV] Thiếu đèn lồng làng (cần 4, hiện có " + lanterns.Length + ").");
                 errors++;
             }
 
             var allGos = UnityEngine.Object.FindObjectsByType<GameObject>(FindObjectsInactive.Include);
             foreach (var go in allGos)
             {
-                int missing = GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(go);
-                if (missing > 0)
+                if (GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(go) > 0)
                 {
-                    Debug.LogError("[MV] GameObject '" + go.name + "' có " + missing + " Missing Script!");
+                    Debug.LogError("[MV] Missing Script trên: " + go.name);
                     errors++;
                 }
             }
 
             if (errors == 0)
             {
-                Debug.Log("[MV] VALIDATE STEP 1: PASS (0 lỗi). Toàn bộ nền tảng, Font VN, Data SO và Scene đã sẵn sàng!");
+                Debug.Log("[MV] VALIDATE STEP 3: PASS (0 lỗi). Chu kỳ Ngày/Đêm, Đồng hồ HUD và Đèn lồng làng sẵn sàng!");
             }
             else
             {
-                Debug.LogError("[MV] VALIDATE STEP 1: FAIL (" + errors + " lỗi). Xem các dòng lỗi ở trên.");
+                Debug.LogError("[MV] VALIDATE STEP 3: FAIL (" + errors + " lỗi).");
             }
         }
 
-        private static int CheckAssetExists<T>(string path) where T : UnityEngine.Object
+        private static void UpgradeGameRootWithTimeAndLighting()
         {
-            var asset = AssetDatabase.LoadAssetAtPath<T>(path);
-            if (asset == null)
-            {
-                Debug.LogError("[MV] THIẾU Asset: " + path);
-                return 1;
-            }
-            return 0;
-        }
+            TimeConfigSO timeConfig = AssetDatabase.LoadAssetAtPath<TimeConfigSO>(TimeConfigPath);
+            TMP_FontAsset vnFont = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(FontAssetPath);
 
-        private static void CheckInputHandlingConfiguration()
-        {
-#if ENABLE_INPUT_SYSTEM && ENABLE_LEGACY_INPUT_MANAGER
-            Debug.Log("[MV] Input Handling: Both (Input System + Legacy) — Tương thích 100%.");
-#elif ENABLE_INPUT_SYSTEM
-            Debug.Log("[MV] Input Handling: New Input System Only — Tự động gắn InputSystemUIInputModule.");
-#elif ENABLE_LEGACY_INPUT_MANAGER
-            Debug.Log("[MV] Input Handling: Legacy Input Manager Only — Tự động gắn StandaloneInputModule.");
-#else
-            Debug.LogWarning("[MV] Cảnh báo: Không phát hiện Input Backend nào đang bật trong PlayerSettings!");
-#endif
-        }
+            GameObject root = PrefabUtility.LoadPrefabContents(GameRootPrefabPath);
+            if (root == null) return;
 
-        private static void EnsureFolderStructure()
-        {
-            string[] folders =
-            {
-                "Assets/Art/Fonts",
-                "Assets/Art/Sprites/Characters",
-                "Assets/Art/Sprites/Enemies",
-                "Assets/Art/Sprites/Crops",
-                "Assets/Art/Sprites/Environment",
-                "Assets/Art/Sprites/Items",
-                "Assets/Art/Sprites/UI",
-                "Assets/Audio/BGM",
-                "Assets/Audio/SFX",
-                "Assets/Data/Config",
-                "Assets/Data/Localization",
-                "Assets/Data/Items",
-                "Assets/Data/Crops",
-                "Assets/Data/Bundles",
-                "Assets/Data/Enemies",
-                "Assets/Data/NPCs",
-                "Assets/Data/Dialogues",
-                "Assets/Data/Diary",
-                "Assets/Data/Quests",
-                "Assets/Prefabs/Core",
-                "Assets/Prefabs/Characters",
-                "Assets/Prefabs/Enemies",
-                "Assets/Prefabs/World",
-                "Assets/Prefabs/UI",
-                "Assets/Scenes"
-            };
+            var gameRoot = root.GetComponent<GameRoot>();
 
-            foreach (string folder in folders)
-            {
-                if (!Directory.Exists(folder))
-                {
-                    Directory.CreateDirectory(folder);
-                }
-            }
-            AssetDatabase.Refresh();
-        }
-
-        private static void ConfigureTagsLayersAndSortingLayers()
-        {
-            var tagManagerAsset = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset")[0];
-            var so = new SerializedObject(tagManagerAsset);
-
-            var tagsProp = so.FindProperty("tags");
-            foreach (string tag in RequiredTags)
-            {
-                if (!PropertyArrayContainsString(tagsProp, tag))
-                {
-                    int idx = tagsProp.arraySize;
-                    tagsProp.InsertArrayElementAtIndex(idx);
-                    tagsProp.GetArrayElementAtIndex(idx).stringValue = tag;
-                }
-            }
-
-            var layersProp = so.FindProperty("layers");
-            foreach (var pair in RequiredLayers)
-            {
-                var elem = layersProp.GetArrayElementAtIndex(pair.index);
-                elem.stringValue = pair.name;
-            }
-
-            var sortingProp = so.FindProperty("m_SortingLayers");
-            foreach (string slName in RequiredSortingLayers)
-            {
-                bool exists = false;
-                for (int i = 0; i < sortingProp.arraySize; i++)
-                {
-                    if (sortingProp.GetArrayElementAtIndex(i).FindPropertyRelative("name").stringValue == slName)
-                    {
-                        exists = true;
-                        break;
-                    }
-                }
-                if (!exists)
-                {
-                    int idx = sortingProp.arraySize;
-                    sortingProp.InsertArrayElementAtIndex(idx);
-                    var entry = sortingProp.GetArrayElementAtIndex(idx);
-                    entry.FindPropertyRelative("name").stringValue = slName;
-                    entry.FindPropertyRelative("uniqueID").intValue = Mathf.Abs(slName.GetHashCode()) + idx + 1000;
-                }
-            }
-
-            so.ApplyModifiedProperties();
-            EditorUtility.SetDirty(tagManagerAsset);
-            AssetDatabase.SaveAssets();
-            Debug.Log("[MV] Đã ghi bền vững Tags, Layers (8-14) và Sorting Layers vào TagManager.asset.");
-        }
-
-        private static void ConfigurePhysics2DMatrix()
-        {
-            Physics2D.IgnoreLayerCollision(8, 12, true);
-            Physics2D.IgnoreLayerCollision(9, 13, true);
-            Physics2D.IgnoreLayerCollision(12, 13, true);
-            Physics2D.IgnoreLayerCollision(12, 10, true);
-            Physics2D.IgnoreLayerCollision(13, 10, true);
-
-            var physAssets = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/Physics2DSettings.asset");
-            if (physAssets != null && physAssets.Length > 0)
-            {
-                EditorUtility.SetDirty(physAssets[0]);
-            }
-            AssetDatabase.SaveAssets();
-            Debug.Log("[MV] Đã cấu hình và lưu Ma trận va chạm Physics2D.");
-        }
-
-        private static TMP_FontAsset EnsureVietnameseTMPFont()
-        {
-            var existing = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(FontAssetPath);
-            if (existing != null)
-            {
-                return existing;
-            }
-
-            string customTtf = "Assets/Art/Fonts/VNFont.ttf";
-            Font sourceFont = AssetDatabase.LoadAssetAtPath<Font>(customTtf);
-
-            if (sourceFont == null)
-            {
-                string[] windowsCandidates =
-                {
-                    "C:/Windows/Fonts/segoeui.ttf",
-                    "C:/Windows/Fonts/arial.ttf",
-                    "C:/Windows/Fonts/tahoma.ttf"
-                };
-
-                foreach (string sysPath in windowsCandidates)
-                {
-                    if (File.Exists(sysPath))
-                    {
-                        File.Copy(sysPath, FontCopyTtfPath, true);
-                        AssetDatabase.ImportAsset(FontCopyTtfPath, ImportAssetOptions.ForceUpdate);
-                        sourceFont = AssetDatabase.LoadAssetAtPath<Font>(FontCopyTtfPath);
-                        if (sourceFont != null)
-                        {
-                            Debug.Log("[MV] Đã sao chép font Unicode hệ thống: " + sysPath);
-                            break;
-                        }
-                    }
-                }
-            }
-
-            if (sourceFont == null)
-            {
-                Debug.LogWarning("[MV] Không tìm thấy font TTF hệ thống. Hãy chép 1 file font hỗ trợ tiếng Việt vào Assets/Art/Fonts/VNFont.ttf rồi chạy lại menu Step 1.");
-                return TMP_Settings.defaultFontAsset;
-            }
-
-            TMP_FontAsset fontAsset = TMP_FontAsset.CreateFontAsset(sourceFont);
-            if (fontAsset == null)
-            {
-                Debug.LogError("[MV] Không thể khởi tạo TMP_FontAsset Dynamic từ " + sourceFont.name);
-                return null;
-            }
-
-            fontAsset.name = "VN_DynamicFont";
-            fontAsset.atlasPopulationMode = AtlasPopulationMode.Dynamic;
-
-            AssetDatabase.CreateAsset(fontAsset, FontAssetPath);
-            if (fontAsset.material != null)
-            {
-                fontAsset.material.name = "VN_DynamicFont Material";
-                AssetDatabase.AddObjectToAsset(fontAsset.material, FontAssetPath);
-            }
-            if (fontAsset.atlasTexture != null)
-            {
-                fontAsset.atlasTexture.name = "VN_DynamicFont Atlas";
-                AssetDatabase.AddObjectToAsset(fontAsset.atlasTexture, FontAssetPath);
-            }
-
-            EditorUtility.SetDirty(fontAsset);
-            AssetDatabase.SaveAssets();
-            Debug.Log("[MV] Đã tạo thành công Font tiếng Việt Dynamic: " + FontAssetPath);
-            return fontAsset;
-        }
-
-        private static PlayerStatsSO EnsurePlayerStatsAsset()
-        {
-            var asset = AssetDatabase.LoadAssetAtPath<PlayerStatsSO>(PlayerStatsPath);
-            if (asset == null)
-            {
-                asset = ScriptableObject.CreateInstance<PlayerStatsSO>();
-                AssetDatabase.CreateAsset(asset, PlayerStatsPath);
-            }
-            EditorUtility.SetDirty(asset);
-            return asset;
-        }
-
-        private static TimeConfigSO EnsureTimeConfigAsset()
-        {
-            var asset = AssetDatabase.LoadAssetAtPath<TimeConfigSO>(TimeConfigPath);
-            if (asset == null)
-            {
-                asset = ScriptableObject.CreateInstance<TimeConfigSO>();
-                AssetDatabase.CreateAsset(asset, TimeConfigPath);
-            }
-            EditorUtility.SetDirty(asset);
-            return asset;
-        }
-
-        private static StringTableSO EnsureStringTableAsset()
-        {
-            var table = AssetDatabase.LoadAssetAtPath<StringTableSO>(StringTablePath);
-            if (table == null)
-            {
-                table = ScriptableObject.CreateInstance<StringTableSO>();
-                AssetDatabase.CreateAsset(table, StringTablePath);
-            }
-
-            table.SetEntry("ui_game_title", "Thung Lũng Hoa Ánh Trăng");
-            table.SetEntry("ui_step1_banner", "Thung Lũng Hoa Ánh Trăng — Nền tảng Step 1 sẵn sàng!\nBấm phím F1 để mở bảng Debug kiểm thử tiếng Việt & StoryFlag.");
-            table.SetEntry("toast_step1_test", "Chào mừng Wen đến với Thung Lũng Hoa Ánh Trăng! (Tiếng Việt có dấu OK)");
-            table.SetEntry("ui_stamina_label", "Thể lực");
-            table.SetEntry("ui_lighthp_label", "Máu Ánh Sáng");
-            table.SetEntry("ui_day_format", "Ngày {0} — {1:00}:{2:00}");
-
-            EditorUtility.SetDirty(table);
-            return table;
-        }
-
-        private static GameObject BuildOrUpdateGameRootPrefab(StringTableSO stringTable, TMP_FontAsset vnFont)
-        {
-            GameObject rootObj = new GameObject("GameRoot");
-            var gameRoot = rootObj.AddComponent<GameRoot>();
-            var stateMgr = rootObj.AddComponent<GameStateManager>();
-            var flagMgr = rootObj.AddComponent<StoryFlagManager>();
-            var loc = rootObj.AddComponent<VNLocalization>();
-            var sceneLoader = rootObj.AddComponent<SceneLoader>();
-
-            var locSO = new SerializedObject(loc);
-            locSO.FindProperty("stringTable").objectReferenceValue = stringTable;
-            locSO.ApplyModifiedPropertiesWithoutUndo();
-
-            GameObject overlayCanvasGo = CreateUICanvas("SystemOverlayCanvas", rootObj.transform, 100);
-
-            GameObject toastPanel = CreateUIPanel("ToastPanel", overlayCanvasGo.transform,
-                new Vector2(0.5f, 0.88f), new Vector2(0.5f, 0.88f), new Vector2(760f, 68f),
-                new Color(0.10f, 0.14f, 0.22f, 0.90f));
-            var toastGroup = toastPanel.AddComponent<CanvasGroup>();
-            var toastText = CreateTMPText("ToastText", toastPanel.transform, "Thông báo", vnFont, 24, TextAlignmentOptions.Center);
-            var toastUI = toastPanel.AddComponent<FloatingToastUI>();
-            var toastSO = new SerializedObject(toastUI);
-            toastSO.FindProperty("canvasGroup").objectReferenceValue = toastGroup;
-            toastSO.FindProperty("toastText").objectReferenceValue = toastText;
-            toastSO.FindProperty("displayDuration").floatValue = 2.6f;
-            toastSO.ApplyModifiedPropertiesWithoutUndo();
-
-            GameObject debugPanel = CreateUIPanel("DebugPanelRoot", overlayCanvasGo.transform,
-                new Vector2(0.02f, 0.96f), new Vector2(0.02f, 0.96f), new Vector2(460f, 320f),
-                new Color(0.07f, 0.09f, 0.14f, 0.94f));
-            var debugRect = debugPanel.GetComponent<RectTransform>();
-            debugRect.pivot = new Vector2(0f, 1f);
-
-            var vlg = debugPanel.AddComponent<VerticalLayoutGroup>();
-            vlg.padding = new RectOffset(16, 16, 14, 14);
-            vlg.spacing = 8f;
-            vlg.childControlWidth = true;
-            vlg.childControlHeight = false;
-            vlg.childForceExpandWidth = true;
-
-            var statusText = CreateTMPText("DebugStatusText", debugPanel.transform, "BẢNG DEBUG MOONPETAL (F1)", vnFont, 18, TextAlignmentOptions.TopLeft);
-            statusText.GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 110f);
-
-            var btnToast = CreateUIButton("BtnTestToast", debugPanel.transform, "1. Test Toast Tiếng Việt", vnFont);
-            var btnFlag = CreateUIButton("BtnToggleFlag", debugPanel.transform, "2. Bật/Tắt StoryFlag Thử Nghiệm", vnFont);
-            var btnClear = CreateUIButton("BtnClearFlags", debugPanel.transform, "3. Xóa Toàn Bộ StoryFlag", vnFont);
-            var btnPause = CreateUIButton("BtnTogglePause", debugPanel.transform, "4. Đổi Trạng Thái Gameplay / Pause", vnFont);
-
-            var debugCtrl = rootObj.AddComponent<RuntimeDebugOverlay>();
-            var debugSO = new SerializedObject(debugCtrl);
-            debugSO.FindProperty("panelRoot").objectReferenceValue = debugPanel;
-            debugSO.FindProperty("statusText").objectReferenceValue = statusText;
-            debugSO.FindProperty("btnTestToast").objectReferenceValue = btnToast;
-            debugSO.FindProperty("btnToggleTestFlag").objectReferenceValue = btnFlag;
-            debugSO.FindProperty("btnClearFlags").objectReferenceValue = btnClear;
-            debugSO.FindProperty("btnTogglePause").objectReferenceValue = btnPause;
-            debugSO.ApplyModifiedPropertiesWithoutUndo();
+            // 1. TimeOfDayManager
+            var tm = root.GetComponent<TimeOfDayManager>();
+            if (tm == null) tm = root.AddComponent<TimeOfDayManager>();
+            var tmSO = new SerializedObject(tm);
+            tmSO.FindProperty("timeConfig").objectReferenceValue = timeConfig;
+            tmSO.ApplyModifiedPropertiesWithoutUndo();
 
             var rootSO = new SerializedObject(gameRoot);
-            rootSO.FindProperty("gameStateManager").objectReferenceValue = stateMgr;
-            rootSO.FindProperty("storyFlagManager").objectReferenceValue = flagMgr;
-            rootSO.FindProperty("localization").objectReferenceValue = loc;
-            rootSO.FindProperty("sceneLoader").objectReferenceValue = sceneLoader;
-            rootSO.FindProperty("toastUI").objectReferenceValue = toastUI;
-            rootSO.FindProperty("debugOverlay").objectReferenceValue = debugCtrl;
+            rootSO.FindProperty("timeManager").objectReferenceValue = tm;
             rootSO.ApplyModifiedPropertiesWithoutUndo();
 
-            GameObject savedPrefab = PrefabUtility.SaveAsPrefabAsset(rootObj, GameRootPrefabPath);
-            UnityEngine.Object.DestroyImmediate(rootObj);
-            Debug.Log("[MV] Đã tạo/cập nhật Prefab: " + GameRootPrefabPath);
-            return savedPrefab;
-        }
+            // 2. DayNightOverlayCanvas (SortingOrder = 5, raycastTarget = false)
+            Transform oldLighting = root.transform.Find("DayNightOverlayCanvas");
+            if (oldLighting != null) UnityEngine.Object.DestroyImmediate(oldLighting.gameObject);
 
-        private static void BuildBootstrapScene(GameObject gameRootPrefab)
-        {
-            var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
-            PrefabUtility.InstantiatePrefab(gameRootPrefab);
+            GameObject tintCanvasGo = new GameObject("DayNightOverlayCanvas");
+            tintCanvasGo.transform.SetParent(root.transform, false);
+            var tintCanvas = tintCanvasGo.AddComponent<Canvas>();
+            tintCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            tintCanvas.sortingOrder = 5;
 
-            GameObject loaderGo = new GameObject("BootstrapLoader");
-            var loader = loaderGo.AddComponent<BootstrapLoader>();
-            var so = new SerializedObject(loader);
-            so.FindProperty("targetSceneName").stringValue = "MoonpetalValley_MVP";
-            so.ApplyModifiedPropertiesWithoutUndo();
+            GameObject tintImgGo = new GameObject("AmbientTintImage");
+            tintImgGo.transform.SetParent(tintCanvasGo.transform, false);
+            var tintRect = tintImgGo.AddComponent<RectTransform>();
+            tintRect.anchorMin = Vector2.zero;
+            tintRect.anchorMax = Vector2.one;
+            tintRect.offsetMin = Vector2.zero;
+            tintRect.offsetMax = Vector2.zero;
 
-            EditorSceneManager.MarkSceneDirty(scene);
-            EditorSceneManager.SaveScene(scene, BootstrapScenePath);
-            Debug.Log("[MV] Đã tạo Scene: " + BootstrapScenePath);
-        }
+            var tintImg = tintImgGo.AddComponent<Image>();
+            tintImg.color = new Color(1f, 0.92f, 0.72f, 0.08f);
+            tintImg.raycastTarget = false;
 
-        private static void BuildWorldPlaceholderScene(GameObject gameRootPrefab, TMP_FontAsset vnFont)
-        {
-            var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+            var lightCtrl = tintCanvasGo.AddComponent<DayNightLightingController>();
+            var lightSO = new SerializedObject(lightCtrl);
+            lightSO.FindProperty("timeConfig").objectReferenceValue = timeConfig;
+            lightSO.FindProperty("ambientTintImage").objectReferenceValue = tintImg;
+            lightSO.ApplyModifiedPropertiesWithoutUndo();
 
-            GameObject camGo = new GameObject("Main Camera");
-            camGo.tag = "MainCamera";
-            camGo.transform.position = new Vector3(0f, 0f, -10f);
-            var cam = camGo.AddComponent<Camera>();
-            cam.orthographic = true;
-            cam.orthographicSize = 5.5f;
-            cam.backgroundColor = new Color(0.11f, 0.16f, 0.22f, 1f);
-            camGo.AddComponent<AudioListener>();
+            // 3. Clock HUD (Top-Right inside SystemOverlayCanvas or dedicated HUDCanvas SortingOrder = 20)
+            Transform oldClock = root.transform.Find("ClockHUDCanvas");
+            if (oldClock != null) UnityEngine.Object.DestroyImmediate(oldClock.gameObject);
 
-            CreateMatchingEventSystem();
-            PrefabUtility.InstantiatePrefab(gameRootPrefab);
-
-            GameObject canvasGo = CreateUICanvas("Step1VerificationCanvas", null, 10);
-            GameObject panel = CreateUIPanel("BannerPanel", canvasGo.transform,
-                new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(920f, 180f),
-                new Color(0.13f, 0.20f, 0.28f, 0.92f));
-            CreateTMPText("BannerText", panel.transform,
-                "Thung Lũng Hoa Ánh Trăng — Nền tảng Step 1 sẵn sàng!\nBấm phím F1 để mở bảng Debug kiểm thử tiếng Việt & StoryFlag.",
-                vnFont, 28, TextAlignmentOptions.Center);
-
-            EditorSceneManager.MarkSceneDirty(scene);
-            EditorSceneManager.SaveScene(scene, WorldScenePath);
-            Debug.Log("[MV] Đã tạo Scene: " + WorldScenePath);
-        }
-
-        private static void CreateMatchingEventSystem()
-        {
-            GameObject esGo = new GameObject("EventSystem");
-            esGo.AddComponent<EventSystem>();
-
-#if ENABLE_INPUT_SYSTEM && !ENABLE_LEGACY_INPUT_MANAGER
-            Type inputSysModuleType = Type.GetType("UnityEngine.InputSystem.UI.InputSystemUIInputModule, Unity.InputSystem");
-            if (inputSysModuleType != null)
-            {
-                esGo.AddComponent(inputSysModuleType);
-                return;
-            }
-#endif
-            esGo.AddComponent<StandaloneInputModule>();
-        }
-
-        private static void ConfigureBuildSettings()
-        {
-            var scenes = new List<EditorBuildSettingsScene>
-            {
-                new EditorBuildSettingsScene(BootstrapScenePath, true),
-                new EditorBuildSettingsScene(WorldScenePath, true)
-            };
-            EditorBuildSettings.scenes = scenes.ToArray();
-            Debug.Log("[MV] Đã cập nhật Build Settings: [0] Bootstrap, [1] MoonpetalValley_MVP.");
-        }
-
-        private static GameObject CreateUICanvas(string name, Transform parent, int sortOrder)
-        {
-            GameObject go = new GameObject(name);
-            if (parent != null) go.transform.SetParent(parent, false);
-            var canvas = go.AddComponent<Canvas>();
-            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            canvas.sortingOrder = sortOrder;
-
-            var scaler = go.AddComponent<CanvasScaler>();
+            GameObject hudCanvasGo = new GameObject("ClockHUDCanvas");
+            hudCanvasGo.transform.SetParent(root.transform, false);
+            var hudCanvas = hudCanvasGo.AddComponent<Canvas>();
+            hudCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            hudCanvas.sortingOrder = 20;
+            var scaler = hudCanvasGo.AddComponent<CanvasScaler>();
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(1920f, 1080f);
             scaler.matchWidthOrHeight = 0.5f;
 
-            go.AddComponent<GraphicRaycaster>();
-            return go;
+            GameObject badgePanel = new GameObject("ClockBadgePanel");
+            badgePanel.transform.SetParent(hudCanvasGo.transform, false);
+            var bpRect = badgePanel.AddComponent<RectTransform>();
+            bpRect.anchorMin = new Vector2(1f, 1f);
+            bpRect.anchorMax = new Vector2(1f, 1f);
+            bpRect.pivot = new Vector2(1f, 1f);
+            bpRect.anchoredPosition = new Vector2(-24f, -24f);
+            bpRect.sizeDelta = new Vector2(360f, 58f);
+            var bpImg = badgePanel.AddComponent<Image>();
+            bpImg.color = new Color(0.09f, 0.13f, 0.20f, 0.88f);
+
+            GameObject dotGo = new GameObject("PhaseDot");
+            dotGo.transform.SetParent(badgePanel.transform, false);
+            var dotRect = dotGo.AddComponent<RectTransform>();
+            dotRect.anchorMin = new Vector2(0f, 0.5f);
+            dotRect.anchorMax = new Vector2(0f, 0.5f);
+            dotRect.anchoredPosition = new Vector2(24f, 0f);
+            dotRect.sizeDelta = new Vector2(18f, 18f);
+            var dotImg = dotGo.AddComponent<Image>();
+            dotImg.color = new Color(0.95f, 0.80f, 0.35f, 1f);
+
+            GameObject txtGo = new GameObject("ClockText");
+            txtGo.transform.SetParent(badgePanel.transform, false);
+            var txtRect = txtGo.AddComponent<RectTransform>();
+            txtRect.anchorMin = Vector2.zero;
+            txtRect.anchorMax = Vector2.one;
+            txtRect.offsetMin = new Vector2(46f, 4f);
+            txtRect.offsetMax = new Vector2(-12f, -4f);
+            var tmp = txtGo.AddComponent<TextMeshProUGUI>();
+            tmp.text = "Ngày 1 — 06:00 (Sáng)";
+            tmp.fontSize = 21;
+            tmp.alignment = TextAlignmentOptions.MidlineLeft;
+            tmp.color = Color.white;
+            if (vnFont != null) tmp.font = vnFont;
+
+            var clockView = badgePanel.AddComponent<ClockHUDView>();
+            var clockSO = new SerializedObject(clockView);
+            clockSO.FindProperty("clockText").objectReferenceValue = tmp;
+            clockSO.FindProperty("phaseBadgeImage").objectReferenceValue = dotImg;
+            clockSO.ApplyModifiedPropertiesWithoutUndo();
+
+            // 4. Add 3 Time Debug Buttons to DebugPanelRoot
+            Transform debugPanel = root.transform.Find("SystemOverlayCanvas/DebugPanelRoot");
+            var debugCtrl = root.GetComponent<RuntimeDebugOverlay>();
+            if (debugPanel != null && debugCtrl != null)
+            {
+                debugPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(460f, 650f);
+
+                Button btnPlus2H = EnsureDebugButton(debugPanel, "BtnTimePlus2H", "Thời gian: +2 Giờ", vnFont, new Color(0.45f, 0.32f, 0.16f, 1f));
+                Button btnDusk = EnsureDebugButton(debugPanel, "BtnTimeSetDusk", "Đặt 19:50 (Chạng vạng -> Đêm)", vnFont, new Color(0.45f, 0.32f, 0.16f, 1f));
+                Button btnNextDay = EnsureDebugButton(debugPanel, "BtnTimeNextDay", "Qua Ngày Mới (06:00)", vnFont, new Color(0.45f, 0.32f, 0.16f, 1f));
+
+                var dbgSO = new SerializedObject(debugCtrl);
+                dbgSO.FindProperty("btnTimePlus2H").objectReferenceValue = btnPlus2H;
+                dbgSO.FindProperty("btnTimeSetDusk").objectReferenceValue = btnDusk;
+                dbgSO.FindProperty("btnTimeNextDay").objectReferenceValue = btnNextDay;
+                dbgSO.ApplyModifiedPropertiesWithoutUndo();
+            }
+
+            PrefabUtility.SaveAsPrefabAsset(root, GameRootPrefabPath);
+            PrefabUtility.UnloadPrefabContents(root);
+            Debug.Log("[MV] Đã nâng cấp GameRoot.prefab với TimeOfDayManager, DayNightLighting & ClockHUD.");
         }
 
-        private static GameObject CreateUIPanel(string name, Transform parent, Vector2 anchorMin, Vector2 anchorMax, Vector2 sizeDelta, Color bgColor)
+        private static void BuildVillageLanterns(Sprite lanternSpr, Sprite warmHaloSpr)
         {
+            GameObject group = GameObject.Find("VillageLanterns");
+            if (group != null) UnityEngine.Object.DestroyImmediate(group);
+
+            group = new GameObject("VillageLanterns");
+            Vector2[] positions =
+            {
+                new Vector2(-13.5f, 4.5f),   // Trước cửa Nhà Kính
+                new Vector2(-2.5f, 4.5f),    // Quảng Trường Làng Chính
+                new Vector2(2.5f, -3.0f),    // Cổng Vườn Ông Bách
+                new Vector2(12.5f, 7.5f)     // Đường vào Rìa Rừng
+            };
+
+            for (int i = 0; i < positions.Length; i++)
+            {
+                GameObject lanternGo = new GameObject("Lantern_" + (i + 1));
+                lanternGo.transform.SetParent(group.transform, false);
+                lanternGo.transform.position = new Vector3(positions[i].x, positions[i].y, 0f);
+
+                var sr = lanternGo.AddComponent<SpriteRenderer>();
+                sr.sprite = lanternSpr;
+                sr.sortingLayerName = "WorldObjects";
+                sr.sortingOrder = Mathf.RoundToInt(-positions[i].y * 100f);
+
+                GameObject glowGo = new GameObject("WarmGlow");
+                glowGo.transform.SetParent(lanternGo.transform, false);
+                glowGo.transform.localPosition = new Vector3(0.15f, 0.35f, 0f);
+                glowGo.transform.localScale = new Vector3(2.4f, 2.4f, 1f);
+                var glowSr = glowGo.AddComponent<SpriteRenderer>();
+                glowSr.sprite = warmHaloSpr;
+                glowSr.sortingLayerName = "WeatherVFX";
+                glowSr.sortingOrder = 15;
+                glowSr.color = new Color(1f, 0.85f, 0.45f, 0f);
+
+                var comp = lanternGo.AddComponent<VillageLantern>();
+                var so = new SerializedObject(comp);
+                so.FindProperty("glowRenderer").objectReferenceValue = glowSr;
+                so.ApplyModifiedPropertiesWithoutUndo();
+            }
+        }
+
+        private static Button EnsureDebugButton(Transform parent, string name, string label, TMP_FontAsset font, Color bgColor)
+        {
+            Transform existing = parent.Find(name);
+            if (existing != null) return existing.GetComponent<Button>();
+
             GameObject go = new GameObject(name);
             go.transform.SetParent(parent, false);
             var rect = go.AddComponent<RectTransform>();
-            rect.anchorMin = anchorMin;
-            rect.anchorMax = anchorMax;
-            rect.sizeDelta = sizeDelta;
-            rect.anchoredPosition = Vector2.zero;
+            rect.sizeDelta = new Vector2(0f, 36f);
 
             var img = go.AddComponent<Image>();
             img.color = bgColor;
-            return go;
-        }
-
-        private static TMP_Text CreateTMPText(string name, Transform parent, string text, TMP_FontAsset font, float fontSize, TextAlignmentOptions align)
-        {
-            GameObject go = new GameObject(name);
-            go.transform.SetParent(parent, false);
-            var rect = go.AddComponent<RectTransform>();
-            rect.anchorMin = Vector2.zero;
-            rect.anchorMax = Vector2.one;
-            rect.offsetMin = new Vector2(12f, 8f);
-            rect.offsetMax = new Vector2(-12f, -8f);
-
-            var tmp = go.AddComponent<TextMeshProUGUI>();
-            tmp.text = text;
-            tmp.fontSize = fontSize;
-            tmp.alignment = align;
-            tmp.color = Color.white;
-            tmp.textWrappingMode = TextWrappingModes.Normal;
-            if (font != null) tmp.font = font;
-            return tmp;
-        }
-
-        private static Button CreateUIButton(string name, Transform parent, string label, TMP_FontAsset font)
-        {
-            GameObject go = new GameObject(name);
-            go.transform.SetParent(parent, false);
-            var rect = go.AddComponent<RectTransform>();
-            rect.sizeDelta = new Vector2(0f, 38f);
-
-            var img = go.AddComponent<Image>();
-            img.color = new Color(0.22f, 0.36f, 0.52f, 1f);
-
             var btn = go.AddComponent<Button>();
             btn.targetGraphic = img;
 
-            CreateTMPText("Label", go.transform, label, font, 17, TextAlignmentOptions.Center);
-            return btn;
-        }
+            GameObject txtGo = new GameObject("Label");
+            txtGo.transform.SetParent(go.transform, false);
+            var txtRect = txtGo.AddComponent<RectTransform>();
+            txtRect.anchorMin = Vector2.zero;
+            txtRect.anchorMax = Vector2.one;
+            txtRect.offsetMin = Vector2.zero;
+            txtRect.offsetMax = Vector2.zero;
 
-        private static bool PropertyArrayContainsString(SerializedProperty arrayProp, string target)
-        {
-            for (int i = 0; i < arrayProp.arraySize; i++)
-            {
-                if (arrayProp.GetArrayElementAtIndex(i).stringValue == target) return true;
-            }
-            return false;
+            var tmp = txtGo.AddComponent<TextMeshProUGUI>();
+            tmp.text = label;
+            tmp.fontSize = 16;
+            tmp.alignment = TextAlignmentOptions.Center;
+            tmp.color = Color.white;
+            if (font != null) tmp.font = font;
+
+            return btn;
         }
     }
 }
@@ -815,10 +1245,10 @@ namespace MoonpetalValley.EditorTools
 
 def deploy():
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    backup_root = PROJECT_ROOT / "_deploy_backup" / f"Step_1_fix_1_{timestamp}"
+    backup_root = PROJECT_ROOT / "_deploy_backup" / f"Step_3_{timestamp}"
     backed_up_count = 0
 
-    print("=== MOONPETAL VALLEY — DEPLOY STEP 1.FIX 1 ===")
+    print("=== MOONPETAL VALLEY — DEPLOY STEP 3 ===")
     for rel_path, content in FILES.items():
         target_path = PROJECT_ROOT / rel_path
         target_path.parent.mkdir(parents=True, exist_ok=True)
@@ -848,9 +1278,9 @@ def deploy():
         print(f"[BACKUP] Đã sao lưu {backed_up_count} file cũ tại: {backup_root}")
 
     print("\n--- HƯỚNG DẪN TIẾP THEO ---")
-    print("1. Quay lại Unity Editor, chờ compile xong (kiểm tra Console sạch 0 lỗi, 0 warning từ code dự án).")
-    print("2. Chạy menu: Moonpetal/Step 1/1. Build Foundation & Scenes.")
-    print("3. Chạy menu: Moonpetal/Step 1/Validate rồi bấm Play để kiểm thử.")
+    print("1. Quay lại Unity Editor và chờ compile xong (0 lỗi đỏ, 0 warning).")
+    print("2. Chạy menu: Moonpetal/Step 3/1. Build Time & Day-Night Lighting.")
+    print("3. Chạy menu: Moonpetal/Step 3/Validate rồi bấm Play kiểm thử chu kỳ Ngày/Đêm!")
 
 if __name__ == "__main__":
     deploy()
