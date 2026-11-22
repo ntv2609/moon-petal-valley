@@ -7,41 +7,35 @@ namespace MoonpetalValley.EditorTools
     {
         private void OnPreprocessTexture()
         {
-            if (!assetPath.StartsWith("Assets/Art/Sprites/")) return;
+            string p = assetPath.Replace("\\", "/");
+            if (!p.EndsWith(".png")) return;
+
+            bool isWen = p.Contains("/Art/Sprites/Animations/Wen/");
+            bool isLumi = p.Contains("/Art/Sprites/Animations/Lumi/");
+            bool isSlime = p.Contains("/Art/Sprites/Animations/GloomSlime/");
+            bool isNpc = p.Contains("/Art/Sprites/Animations/NPCs/");
+            bool isEnv = p.Contains("/Art/Sprites/Environment/");
+
+            if (!isWen && !isLumi && !isSlime && !isNpc && !isEnv) return;
 
             var importer = (TextureImporter)assetImporter;
             importer.textureType = TextureImporterType.Sprite;
             importer.spriteImportMode = SpriteImportMode.Single;
             importer.filterMode = FilterMode.Point;
             importer.textureCompression = TextureImporterCompression.Uncompressed;
-            importer.alphaIsTransparency = true;
             importer.mipmapEnabled = false;
+            importer.alphaIsTransparency = true;
 
-            bool isAnimSprite = assetPath.StartsWith("Assets/Art/Sprites/Animations/");
-            if (assetPath.StartsWith("Assets/Art/Sprites/Animations/Wen/") ||
-                assetPath.StartsWith("Assets/Art/Sprites/Animations/Lumi/") ||
-                assetPath.StartsWith("Assets/Art/Sprites/Animations/NPCs/"))
-            {
-                importer.spritePixelsPerUnit = 20;
-            }
-            else if (assetPath.StartsWith("Assets/Art/Sprites/Animations/GloomSlime/"))
-            {
-                importer.spritePixelsPerUnit = 32;
-            }
-            else
-            {
-                importer.spritePixelsPerUnit = 16;
-            }
+            if (isSlime) importer.spritePixelsPerUnit = 32f;
+            else if (isEnv) importer.spritePixelsPerUnit = 16f;
+            else importer.spritePixelsPerUnit = 20f;
 
-            if (isAnimSprite)
-            {
-                var settings = new TextureImporterSettings();
-                importer.ReadTextureSettings(settings);
-                settings.spriteMeshType = SpriteMeshType.FullRect;
-                settings.spriteAlignment = (int)SpriteAlignment.Center;
-                settings.spriteGenerateFallbackPhysicsShape = false;
-                importer.SetTextureSettings(settings);
-            }
+            var settings = new TextureImporterSettings();
+            importer.ReadTextureSettings(settings);
+            settings.spriteMeshType = SpriteMeshType.FullRect;
+            settings.spriteAlignment = (int)SpriteAlignment.Center;
+            settings.spritePivot = new Vector2(0.5f, 0.5f);
+            importer.SetTextureSettings(settings);
         }
     }
 }

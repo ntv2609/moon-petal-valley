@@ -1,0 +1,11 @@
+{
+  "name": "tinh_linh_lumi",
+  "frame_size": [
+    16,
+    16
+  ],
+  "animations": {
+    "float": 4,
+    "moon_pulse": 4
+  }
+}

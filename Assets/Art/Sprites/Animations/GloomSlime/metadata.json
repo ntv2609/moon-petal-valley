@@ -1,0 +1,14 @@
+{
+  "name": "bot_suong_den",
+  "frame_size": [
+    32,
+    32
+  ],
+  "animations": {
+    "idle": 4,
+    "telegraph": 3,
+    "jump": 4,
+    "hit_hurt": 3,
+    "purify_die": 4
+  }
+}

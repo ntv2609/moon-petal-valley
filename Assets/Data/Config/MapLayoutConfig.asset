@@ -16,13 +16,13 @@ MonoBehaviour:
   originY: -16
   asciiMap: 'TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
 
-    T############................TTTTTTTTTTTTTTT
+    T############....WWWW........TTTTTTTTTTTTTTT
 
-    T#GGGGGGGGGG#...W............TT..........TTT
+    T#GGGGGGGGGG#...WWWWWW.......TT..........TTT
 
-    T#GGGGGGGGGG#..WWW...........T............TT
+    T#GGGGGGGGGG#...WWWWWW.......T............TT
 
-    T#GGGGGGGGGG#...W....PPPP....T....TTTT.....T
+    T#GGGGGGGGGG#....WWWW........T....TTTT.....T
 
     T#GGGGGGGGGG#........PPPP.........TTTT.....T
 
@@ -48,7 +48,7 @@ MonoBehaviour:
 
     T...................PPPP...................T
 
-    T..............FFFFFFFFFFFFFF..............T
+    T..............FFFFFPPPPFFFFF..............T
 
     T..............F....PPPP....F..............T
 

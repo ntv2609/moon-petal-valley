@@ -1,0 +1,14 @@
+{
+  "step": 18,
+  "count": 8,
+  "files": [
+    "Buildings/tree_hero_oak.png",
+    "Buildings/tree_hero_blossom.png",
+    "Buildings/tree_hero_pine.png",
+    "Buildings/house_bakery.png",
+    "Buildings/house_shed.png",
+    "Buildings/otis_notice_board.png",
+    "Decor/decor_bush.png",
+    "Decor/decor_rock.png"
+  ]
+}

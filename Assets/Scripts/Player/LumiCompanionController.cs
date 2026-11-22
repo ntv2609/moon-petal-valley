@@ -11,28 +11,27 @@ namespace MoonpetalValley.Player
         [SerializeField] private Vector2 followOffset = new Vector2(-0.75f, 0.75f);
         [SerializeField] private float smoothSpeed = 6.5f;
 
-        [Header("Animation Frames")]
+        [Header("Pixel Art Animations (FullRect)")]
         [SerializeField] private Sprite[] floatFrames;
-        [SerializeField] private Sprite[] moonPulseFrames;
-        [SerializeField] private float floatFps = 7f;
-        [SerializeField] private float pulseFps = 11f;
+        [SerializeField] private Sprite[] pulseFrames;
+        [SerializeField] private float floatFps = 6f;
+        [SerializeField] private float pulseFps = 8f;
+        [SerializeField] private float autoPulseInterval = 4.5f;
 
         private float _bobTime;
         private float _animTimer;
-        private int _frameIndex;
-        private bool _isPlayingPulse;
-        private float _haloBaseScale = 1.0f;
+        private int _frameIdx;
+        private float _pulseRemaining;
+        private float _autoPulseCooldown = 2.5f;
+        private Vector3 _lastPos;
 
-        public void PlayMoonPulseAnimation()
+        private void Awake()
         {
-            if (moonPulseFrames == null || moonPulseFrames.Length == 0) return;
-            _isPlayingPulse = true;
-            _frameIndex = 0;
-            _animTimer = 0f;
-            if (spriteRenderer != null && moonPulseFrames[0] != null)
+            if (spriteRenderer == null && visualTransform != null)
             {
-                spriteRenderer.sprite = moonPulseFrames[0];
+                spriteRenderer = visualTransform.GetComponent<SpriteRenderer>();
             }
+            _lastPos = transform.position;
         }
 
         private void LateUpdate()
@@ -47,68 +46,84 @@ namespace MoonpetalValley.Player
             Vector3 desired = followTarget.position + new Vector3(followOffset.x, followOffset.y, 0f);
             transform.position = Vector3.Lerp(transform.position, desired, Time.deltaTime * smoothSpeed);
 
+            float dx = transform.position.x - _lastPos.x;
+            if (spriteRenderer != null && Mathf.Abs(dx) > 0.002f)
+            {
+                spriteRenderer.flipX = dx < 0f;
+            }
+            _lastPos = transform.position;
+
             _bobTime += Time.deltaTime * 3.2f;
             if (visualTransform != null)
             {
-                visualTransform.localPosition = new Vector3(0f, Mathf.Sin(_bobTime) * 0.12f, 0f);
+                visualTransform.localPosition = new Vector3(0f, Mathf.Sin(_bobTime) * 0.14f, 0f);
             }
 
             if (haloRenderer != null)
             {
-                float pulse = _haloBaseScale * (0.88f + Mathf.Sin(_bobTime * 1.5f) * 0.12f);
+                float boost = _pulseRemaining > 0f ? 0.22f : 0f;
+                float pulse = 0.85f + boost + Mathf.Sin(_bobTime * 1.5f) * 0.15f;
                 haloRenderer.transform.localScale = new Vector3(pulse, pulse, 1f);
             }
 
-            TickSpriteAnimation(Time.deltaTime);
-        }
-
-        private void TickSpriteAnimation(float dt)
-        {
-            if (spriteRenderer == null) return;
-
-            Sprite[] active = _isPlayingPulse ? moonPulseFrames : floatFrames;
-            if (active == null || active.Length == 0)
+            if (_pulseRemaining > 0f)
             {
-                _isPlayingPulse = false;
-                return;
+                _pulseRemaining -= Time.deltaTime;
             }
-
-            float fps = _isPlayingPulse ? pulseFps : floatFps;
-            float dur = fps > 0.01f ? (1f / fps) : 0.14f;
-            _animTimer += dt;
-
-            if (_animTimer >= dur)
+            else if (autoPulseInterval > 0f && pulseFrames != null && pulseFrames.Length > 0)
             {
-                _animTimer -= dur;
-                _frameIndex++;
-                if (_frameIndex >= active.Length)
+                _autoPulseCooldown -= Time.deltaTime;
+                if (_autoPulseCooldown <= 0f)
                 {
-                    if (_isPlayingPulse)
-                    {
-                        _isPlayingPulse = false;
-                        _frameIndex = 0;
-                        active = floatFrames;
-                    }
-                    else
-                    {
-                        _frameIndex = 0;
-                    }
+                    TriggerPulse(0.65f);
+                    _autoPulseCooldown = autoPulseInterval;
                 }
             }
 
-            if (active != null && active.Length > 0)
+            UpdateSpriteAnimation();
+        }
+
+        private void UpdateSpriteAnimation()
+        {
+            if (spriteRenderer == null) return;
+
+            bool isPulsing = _pulseRemaining > 0f && pulseFrames != null && pulseFrames.Length > 0;
+            Sprite[] active = isPulsing ? pulseFrames : floatFrames;
+            if (active == null || active.Length == 0) return;
+
+            float fps = isPulsing ? pulseFps : floatFps;
+            _animTimer += Time.deltaTime;
+            float interval = 1f / Mathf.Max(1f, fps);
+            if (_animTimer >= interval)
             {
-                int idx = Mathf.Clamp(_frameIndex, 0, active.Length - 1);
-                if (active[idx] != null) spriteRenderer.sprite = active[idx];
+                _animTimer -= interval;
+                _frameIdx = (_frameIdx + 1) % active.Length;
             }
+
+            int safeIdx = _frameIdx % active.Length;
+            if (active[safeIdx] != null)
+            {
+                spriteRenderer.sprite = active[safeIdx];
+            }
+        }
+
+        public void PlayMoonPulseAnimation(float duration = 0.7f)
+        {
+            TriggerPulse(duration);
+        }
+
+        public void TriggerPulse(float duration = 0.7f)
+        {
+            _pulseRemaining = Mathf.Max(_pulseRemaining, duration);
+            _frameIdx = 0;
+            _animTimer = 0f;
         }
 
         public void SetHaloRadiusScale(float scale)
         {
-            _haloBaseScale = Mathf.Max(0.5f, scale);
             if (haloRenderer != null)
             {
-                haloRenderer.transform.localScale = new Vector3(_haloBaseScale, _haloBaseScale, 1f);
+                haloRenderer.transform.localScale = new Vector3(scale, scale, 1f);
             }
         }
     }

@@ -25,18 +25,19 @@ namespace MoonpetalValley.Combat
         [SerializeField] private GameObject hpBarRoot;
         [SerializeField] private GameObject lootDropPrefab;
         [SerializeField] private BlightEncounterZone encounterZone;
+        [SerializeField] private GameObject groundShadow;
 
-        [Header("Animation Frames")]
+        [Header("Pixel Art Animations (FullRect)")]
         [SerializeField] private Sprite[] idleFrames;
         [SerializeField] private Sprite[] telegraphFrames;
         [SerializeField] private Sprite[] jumpFrames;
-        [SerializeField] private Sprite[] hitHurtFrames;
-        [SerializeField] private Sprite[] purifyDieFrames;
+        [SerializeField] private Sprite[] hitFrames;
+        [SerializeField] private Sprite[] dieFrames;
         [SerializeField] private float idleFps = 6f;
-        [SerializeField] private float telegraphFps = 9f;
+        [SerializeField] private float telegraphFps = 7f;
         [SerializeField] private float jumpFps = 10f;
-        [SerializeField] private float hitFps = 13f;
-        [SerializeField] private float dieFps = 10f;
+        [SerializeField] private float hitFps = 11f;
+        [SerializeField] private float dieFps = 8f;
 
         private SlimeState _state = SlimeState.Idle;
         private SlimeState _lastAnimState = SlimeState.Idle;
@@ -44,28 +45,35 @@ namespace MoonpetalValley.Combat
         private float _stateTimer;
         private float _flashTimer;
         private float _animTimer;
-        private int _frameIndex;
+        private int _animFrame;
         private Vector2 _jumpVelocity;
         private Vector2 _knockbackVelocity;
         private PlayerController2D _player;
         private bool _isDefeated;
 
         public bool IsDefeated => _isDefeated;
-        private bool HasSpriteAnimations => idleFrames != null && idleFrames.Length > 0;
 
         private void Start()
         {
             _currentHP = enemyData != null ? enemyData.maxHP : 45;
             if (hpBarRoot != null) hpBarRoot.SetActive(false);
-            ApplyAnimFrame();
+            if (groundShadow == null)
+            {
+                Transform sh = transform.Find("GroundShadow");
+                if (sh != null) groundShadow = sh.gameObject;
+            }
+            if (spriteRenderer != null && idleFrames != null && idleFrames.Length > 0 && idleFrames[0] != null)
+            {
+                spriteRenderer.sprite = idleFrames[0];
+            }
         }
 
         private void Update()
         {
             if (_state == SlimeState.Dying)
             {
-                TickAnimation(Time.deltaTime);
                 _stateTimer -= Time.deltaTime;
+                UpdateAnimation(false);
                 if (_stateTimer <= 0f)
                 {
                     Destroy(gameObject);
@@ -102,11 +110,11 @@ namespace MoonpetalValley.Combat
                     if (_player != null && Vector2.Distance(transform.position, _player.transform.position) <= detectR)
                     {
                         _state = SlimeState.Telegraph;
-                        _stateTimer = 0.35f;
+                        _stateTimer = 0.45f;
                         if (spriteRenderer != null)
                         {
-                            if (!HasSpriteAnimations) spriteRenderer.transform.localScale = new Vector3(1.22f, 0.78f, 1f);
                             spriteRenderer.color = new Color(1f, 0.90f, 0.65f, 1f);
+                            spriteRenderer.flipX = _player.transform.position.x < transform.position.x;
                         }
                     }
                     break;
@@ -120,8 +128,8 @@ namespace MoonpetalValley.Combat
                         _stateTimer = 0.42f;
                         if (spriteRenderer != null)
                         {
-                            if (!HasSpriteAnimations) spriteRenderer.transform.localScale = new Vector3(0.88f, 1.18f, 1f);
                             spriteRenderer.color = Color.white;
+                            if (Mathf.Abs(dir.x) > 0.05f) spriteRenderer.flipX = dir.x < 0f;
                         }
                     }
                     break;
@@ -145,9 +153,62 @@ namespace MoonpetalValley.Combat
                     break;
             }
 
-            TickAnimation(Time.deltaTime);
-
+            UpdateAnimation(true);
             if (spriteRenderer != null) spriteRenderer.sortingOrder = Mathf.RoundToInt(-transform.position.y * 100f);
+        }
+
+        private void UpdateAnimation(bool loop)
+        {
+            if (spriteRenderer == null) return;
+
+            if (_state != _lastAnimState)
+            {
+                _lastAnimState = _state;
+                _animFrame = 0;
+                _animTimer = 0f;
+            }
+
+            Sprite[] frames = idleFrames;
+            float fps = idleFps;
+            bool shouldLoop = loop;
+
+            switch (_state)
+            {
+                case SlimeState.Telegraph:
+                    frames = (telegraphFrames != null && telegraphFrames.Length > 0) ? telegraphFrames : idleFrames;
+                    fps = telegraphFps;
+                    shouldLoop = false;
+                    break;
+                case SlimeState.Jumping:
+                    frames = (jumpFrames != null && jumpFrames.Length > 0) ? jumpFrames : idleFrames;
+                    fps = jumpFps;
+                    shouldLoop = true;
+                    break;
+                case SlimeState.HitStun:
+                    frames = (hitFrames != null && hitFrames.Length > 0) ? hitFrames : idleFrames;
+                    fps = hitFps;
+                    shouldLoop = false;
+                    break;
+                case SlimeState.Dying:
+                    frames = (dieFrames != null && dieFrames.Length > 0) ? dieFrames : idleFrames;
+                    fps = dieFps;
+                    shouldLoop = false;
+                    break;
+            }
+
+            if (frames == null || frames.Length == 0) return;
+
+            _animTimer += Time.deltaTime;
+            float step = 1f / Mathf.Max(1f, fps);
+            if (_animTimer >= step)
+            {
+                _animTimer -= step;
+                if (shouldLoop) _animFrame = (_animFrame + 1) % frames.Length;
+                else _animFrame = Mathf.Min(_animFrame + 1, frames.Length - 1);
+            }
+
+            int idx = Mathf.Clamp(_animFrame, 0, frames.Length - 1);
+            if (frames[idx] != null) spriteRenderer.sprite = frames[idx];
         }
 
         private void FixedUpdate()
@@ -157,7 +218,6 @@ namespace MoonpetalValley.Combat
                 if (rb != null) rb.linearVelocity = Vector2.zero;
                 return;
             }
-
             bool gameplayActive = GameRoot.Instance == null || GameRoot.Instance.State == null || GameRoot.Instance.State.IsGameplayActive;
             if (!gameplayActive) { rb.linearVelocity = Vector2.zero; return; }
 
@@ -192,10 +252,10 @@ namespace MoonpetalValley.Combat
             _currentHP = Mathf.Max(0, _currentHP - amount);
 
             _state = SlimeState.HitStun;
-            _stateTimer = 0.22f;
+            _stateTimer = 0.28f;
             _knockbackVelocity = knockbackDir.normalized * knockbackForce;
 
-            _flashTimer = 0.14f;
+            _flashTimer = 0.16f;
             if (spriteRenderer != null) spriteRenderer.color = new Color(0.75f, 1f, 1f, 1f);
 
             JuiceEffectsManager.Instance?.SpawnFloatingNumber(transform.position + Vector3.up * 0.55f, "-" + amount, new Color(0.70f, 0.98f, 1f));
@@ -210,100 +270,21 @@ namespace MoonpetalValley.Combat
         private void DieAndSpawnLoot()
         {
             _isDefeated = true;
+            _state = SlimeState.Dying;
+            _stateTimer = (dieFrames != null && dieFrames.Length > 0) ? (dieFrames.Length / Mathf.Max(1f, dieFps)) + 0.05f : 0.05f;
+
             if (rb != null) rb.linearVelocity = Vector2.zero;
             if (hpBarRoot != null) hpBarRoot.SetActive(false);
+            if (groundShadow != null) groundShadow.SetActive(false);
+            if (spriteRenderer != null) spriteRenderer.color = Color.white;
 
-            var cols = GetComponentsInChildren<Collider2D>(true);
+            var cols = GetComponentsInChildren<Collider2D>();
             for (int i = 0; i < cols.Length; i++) cols[i].enabled = false;
 
             SpawnLoot();
             string id = enemyData != null ? enemyData.enemyID : "enemy_gloom_slime";
             GameEventBus.RaiseEnemyDefeated(id);
             encounterZone?.NotifySlimeDefeated(this);
-
-            if (purifyDieFrames != null && purifyDieFrames.Length > 0 && spriteRenderer != null)
-            {
-                _state = SlimeState.Dying;
-                _lastAnimState = SlimeState.Dying;
-                _frameIndex = 0;
-                _animTimer = 0f;
-                spriteRenderer.color = Color.white;
-                spriteRenderer.transform.localScale = Vector3.one;
-                ApplyAnimFrame();
-                _stateTimer = (purifyDieFrames.Length / Mathf.Max(1f, dieFps)) + 0.05f;
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }
-
-        private void TickAnimation(float dt)
-        {
-            if (!HasSpriteAnimations || spriteRenderer == null) return;
-
-            SlimeState visualState = _state == SlimeState.Cooldown ? SlimeState.Idle : _state;
-            if (visualState != _lastAnimState)
-            {
-                _lastAnimState = visualState;
-                _frameIndex = 0;
-                _animTimer = 0f;
-                ApplyAnimFrame();
-                return;
-            }
-
-            Sprite[] frames = GetFramesForState(visualState);
-            if (frames == null || frames.Length == 0) return;
-
-            float fps = GetFpsForState(visualState);
-            float dur = fps > 0.01f ? (1f / fps) : 0.15f;
-            _animTimer += dt;
-
-            if (_animTimer >= dur)
-            {
-                _animTimer -= dur;
-                _frameIndex++;
-                if (_frameIndex >= frames.Length)
-                {
-                    _frameIndex = visualState == SlimeState.Idle ? 0 : frames.Length - 1;
-                }
-                ApplyAnimFrame();
-            }
-        }
-
-        private void ApplyAnimFrame()
-        {
-            if (!HasSpriteAnimations || spriteRenderer == null) return;
-            SlimeState visualState = _state == SlimeState.Cooldown ? SlimeState.Idle : _state;
-            Sprite[] frames = GetFramesForState(visualState);
-            if (frames == null || frames.Length == 0) return;
-
-            int idx = Mathf.Clamp(_frameIndex, 0, frames.Length - 1);
-            if (frames[idx] != null) spriteRenderer.sprite = frames[idx];
-        }
-
-        private Sprite[] GetFramesForState(SlimeState st)
-        {
-            return st switch
-            {
-                SlimeState.Telegraph => (telegraphFrames != null && telegraphFrames.Length > 0) ? telegraphFrames : idleFrames,
-                SlimeState.Jumping => (jumpFrames != null && jumpFrames.Length > 0) ? jumpFrames : idleFrames,
-                SlimeState.HitStun => (hitHurtFrames != null && hitHurtFrames.Length > 0) ? hitHurtFrames : idleFrames,
-                SlimeState.Dying => (purifyDieFrames != null && purifyDieFrames.Length > 0) ? purifyDieFrames : idleFrames,
-                _ => idleFrames
-            };
-        }
-
-        private float GetFpsForState(SlimeState st)
-        {
-            return st switch
-            {
-                SlimeState.Telegraph => telegraphFps,
-                SlimeState.Jumping => jumpFps,
-                SlimeState.HitStun => hitFps,
-                SlimeState.Dying => dieFps,
-                _ => idleFps
-            };
         }
 
         private void SpawnLoot()

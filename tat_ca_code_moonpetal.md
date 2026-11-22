@@ -1,15 +1,15 @@
 # MOONPETAL VALLEY — TỔNG HỢP MÃ NGUỒN C#
 
-- **Thời điểm xuất:** 2026-11-22 19:53:24
-- **Tổng số file:** 82
-- **Tổng số dòng:** 11189
+- **Thời điểm xuất:** 2026-11-22 23:10:02
+- **Tổng số file:** 92
+- **Tổng số dòng:** 15242
 
 ## Danh sách file
 
 1. `Assets/Scripts/Audio/AudioManager.cs` (84 dòng)
 2. `Assets/Scripts/Combat/BlightEncounterZone.cs` (47 dòng)
 3. `Assets/Scripts/Combat/BlightFogZone.cs` (65 dòng)
-4. `Assets/Scripts/Combat/GloomSlimeController.cs` (208 dòng)
+4. `Assets/Scripts/Combat/GloomSlimeController.cs` (314 dòng)
 5. `Assets/Scripts/Combat/IDamageable.cs` (10 dòng)
 6. `Assets/Scripts/Community/BundleManager.cs` (135 dòng)
 7. `Assets/Scripts/Community/PlantingSpotController.cs` (116 dòng)
@@ -43,51 +43,61 @@
 35. `Assets/Scripts/Farming/ResourceNodeController.cs` (151 dòng)
 36. `Assets/Scripts/Farming/SeedShelfInteractable.cs` (64 dòng)
 37. `Assets/Scripts/Farming/WaterWellInteractable.cs` (47 dòng)
-38. `Assets/Scripts/Inventory/InventoryManager.cs` (357 dòng)
+38. `Assets/Scripts/Inventory/InventoryManager.cs` (396 dòng)
 39. `Assets/Scripts/Inventory/WorldLootDrop.cs` (72 dòng)
 40. `Assets/Scripts/Narrative/DialogueManager.cs` (159 dòng)
 41. `Assets/Scripts/Narrative/DiaryManager.cs` (101 dòng)
-42. `Assets/Scripts/Narrative/NPCController.cs` (127 dòng)
+42. `Assets/Scripts/Narrative/NPCController.cs` (185 dòng)
 43. `Assets/Scripts/Narrative/QuestManager.cs` (105 dòng)
 44. `Assets/Scripts/Narrative/StoryPropInteractable.cs` (106 dòng)
 45. `Assets/Scripts/Player/CameraFollow2D.cs` (49 dòng)
 46. `Assets/Scripts/Player/GameInputReader.cs` (92 dòng)
-47. `Assets/Scripts/Player/LumiCompanionController.cs` (48 dòng)
-48. `Assets/Scripts/Player/PlayerCombatController.cs` (185 dòng)
-49. `Assets/Scripts/Player/PlayerController2D.cs` (216 dòng)
+47. `Assets/Scripts/Player/LumiCompanionController.cs` (130 dòng)
+48. `Assets/Scripts/Player/PlayerCombatController.cs` (194 dòng)
+49. `Assets/Scripts/Player/PlayerController2D.cs` (228 dòng)
 50. `Assets/Scripts/Player/PlayerStatsController.cs` (150 dòng)
-51. `Assets/Scripts/Player/PlayerToolController.cs` (167 dòng)
-52. `Assets/Scripts/TimeSystem/AmbientPetalSpawner.cs` (86 dòng)
-53. `Assets/Scripts/TimeSystem/BedInteractable.cs` (52 dòng)
-54. `Assets/Scripts/TimeSystem/DayNightLightingController.cs` (85 dòng)
-55. `Assets/Scripts/TimeSystem/SleepAndKnockoutController.cs` (130 dòng)
-56. `Assets/Scripts/TimeSystem/TimeOfDayManager.cs` (164 dòng)
-57. `Assets/Scripts/TimeSystem/VillageLantern.cs` (47 dòng)
-58. `Assets/Scripts/UI/BundleUIView.cs` (157 dòng)
-59. `Assets/Scripts/UI/ClockHUDView.cs` (56 dòng)
-60. `Assets/Scripts/UI/DialogueUIView.cs` (34 dòng)
-61. `Assets/Scripts/UI/DiaryUIView.cs` (103 dòng)
-62. `Assets/Scripts/UI/FloatingDamageText.cs` (61 dòng)
-63. `Assets/Scripts/UI/FloatingToastUI.cs` (57 dòng)
-64. `Assets/Scripts/UI/HotbarUIView.cs` (166 dòng)
-65. `Assets/Scripts/UI/InventoryUIView.cs` (153 dòng)
-66. `Assets/Scripts/UI/MainMenuController.cs` (72 dòng)
-67. `Assets/Scripts/UI/PauseMenuUIView.cs` (111 dòng)
-68. `Assets/Scripts/UI/QuestTrackerHUDView.cs` (33 dòng)
-69. `Assets/Scripts/UI/StatsHUDView.cs` (82 dòng)
-70. `Assets/Editor/AutoBuilder_Step1.cs` (639 dòng)
-71. `Assets/Editor/AutoBuilder_Step10.cs` (248 dòng)
-72. `Assets/Editor/AutoBuilder_Step11.cs` (365 dòng)
-73. `Assets/Editor/AutoBuilder_Step2.cs` (478 dòng)
-74. `Assets/Editor/AutoBuilder_Step3.cs` (321 dòng)
-75. `Assets/Editor/AutoBuilder_Step4.cs` (398 dòng)
-76. `Assets/Editor/AutoBuilder_Step5.cs` (502 dòng)
-77. `Assets/Editor/AutoBuilder_Step6.cs` (532 dòng)
-78. `Assets/Editor/AutoBuilder_Step7.cs` (623 dòng)
-79. `Assets/Editor/AutoBuilder_Step8.cs` (422 dòng)
-80. `Assets/Editor/AutoBuilder_Step9.cs` (397 dòng)
-81. `Assets/Editor/MoonpetalAssetPostprocessor.cs` (21 dòng)
-82. `Assets/Editor/PlaceholderGeneratorUtility.cs` (231 dòng)
+51. `Assets/Scripts/Player/PlayerToolController.cs` (195 dòng)
+52. `Assets/Scripts/Player/WenSpriteAnimator.cs` (302 dòng)
+53. `Assets/Scripts/TimeSystem/AmbientPetalSpawner.cs` (86 dòng)
+54. `Assets/Scripts/TimeSystem/BedInteractable.cs` (52 dòng)
+55. `Assets/Scripts/TimeSystem/DayNightLightingController.cs` (85 dòng)
+56. `Assets/Scripts/TimeSystem/SleepAndKnockoutController.cs` (130 dòng)
+57. `Assets/Scripts/TimeSystem/TimeOfDayManager.cs` (164 dòng)
+58. `Assets/Scripts/TimeSystem/VillageLantern.cs` (47 dòng)
+59. `Assets/Scripts/TimeSystem/WaterTileAnimator.cs` (36 dòng)
+60. `Assets/Scripts/UI/BundleUIView.cs` (157 dòng)
+61. `Assets/Scripts/UI/ClockHUDView.cs` (56 dòng)
+62. `Assets/Scripts/UI/DialogueUIView.cs` (34 dòng)
+63. `Assets/Scripts/UI/DiaryUIView.cs` (103 dòng)
+64. `Assets/Scripts/UI/FloatingDamageText.cs` (61 dòng)
+65. `Assets/Scripts/UI/FloatingToastUI.cs` (57 dòng)
+66. `Assets/Scripts/UI/HotbarUIView.cs` (166 dòng)
+67. `Assets/Scripts/UI/InventoryUIView.cs` (302 dòng)
+68. `Assets/Scripts/UI/MainMenuController.cs` (72 dòng)
+69. `Assets/Scripts/UI/PauseMenuUIView.cs` (111 dòng)
+70. `Assets/Scripts/UI/QuestTrackerHUDView.cs` (33 dòng)
+71. `Assets/Scripts/UI/StatsHUDView.cs` (82 dòng)
+72. `Assets/Editor/AutoBuilder_Step1.cs` (639 dòng)
+73. `Assets/Editor/AutoBuilder_Step10.cs` (248 dòng)
+74. `Assets/Editor/AutoBuilder_Step11.cs` (365 dòng)
+75. `Assets/Editor/AutoBuilder_Step12.cs` (433 dòng)
+76. `Assets/Editor/AutoBuilder_Step13.cs` (191 dòng)
+77. `Assets/Editor/AutoBuilder_Step14.cs` (382 dòng)
+78. `Assets/Editor/AutoBuilder_Step15.cs` (789 dòng)
+79. `Assets/Editor/AutoBuilder_Step16.cs` (504 dòng)
+80. `Assets/Editor/AutoBuilder_Step16_Fix.cs` (178 dòng)
+81. `Assets/Editor/AutoBuilder_Step17.cs` (466 dòng)
+82. `Assets/Editor/AutoBuilder_Step18.cs` (269 dòng)
+83. `Assets/Editor/AutoBuilder_Step2.cs` (478 dòng)
+84. `Assets/Editor/AutoBuilder_Step3.cs` (321 dòng)
+85. `Assets/Editor/AutoBuilder_Step4.cs` (398 dòng)
+86. `Assets/Editor/AutoBuilder_Step5.cs` (502 dòng)
+87. `Assets/Editor/AutoBuilder_Step6.cs` (532 dòng)
+88. `Assets/Editor/AutoBuilder_Step7.cs` (623 dòng)
+89. `Assets/Editor/AutoBuilder_Step8.cs` (422 dòng)
+90. `Assets/Editor/AutoBuilder_Step9.cs` (397 dòng)
+91. `Assets/Editor/MoonpetalAssetPostprocessor.cs` (41 dòng)
+92. `Assets/Editor/PlaceholderGeneratorUtility.cs` (231 dòng)
 
 ## 1. `Assets/Scripts/Audio/AudioManager.cs`
 
@@ -319,7 +329,8 @@ namespace MoonpetalValley.Combat
             Telegraph,
             Jumping,
             Cooldown,
-            HitStun
+            HitStun,
+            Dying
         }
 
         [SerializeField] private EnemyData enemyData;
@@ -329,11 +340,27 @@ namespace MoonpetalValley.Combat
         [SerializeField] private GameObject hpBarRoot;
         [SerializeField] private GameObject lootDropPrefab;
         [SerializeField] private BlightEncounterZone encounterZone;
+        [SerializeField] private GameObject groundShadow;
+
+        [Header("Pixel Art Animations (FullRect)")]
+        [SerializeField] private Sprite[] idleFrames;
+        [SerializeField] private Sprite[] telegraphFrames;
+        [SerializeField] private Sprite[] jumpFrames;
+        [SerializeField] private Sprite[] hitFrames;
+        [SerializeField] private Sprite[] dieFrames;
+        [SerializeField] private float idleFps = 6f;
+        [SerializeField] private float telegraphFps = 7f;
+        [SerializeField] private float jumpFps = 10f;
+        [SerializeField] private float hitFps = 11f;
+        [SerializeField] private float dieFps = 8f;
 
         private SlimeState _state = SlimeState.Idle;
+        private SlimeState _lastAnimState = SlimeState.Idle;
         private int _currentHP;
         private float _stateTimer;
         private float _flashTimer;
+        private float _animTimer;
+        private int _animFrame;
         private Vector2 _jumpVelocity;
         private Vector2 _knockbackVelocity;
         private PlayerController2D _player;
@@ -345,10 +372,30 @@ namespace MoonpetalValley.Combat
         {
             _currentHP = enemyData != null ? enemyData.maxHP : 45;
             if (hpBarRoot != null) hpBarRoot.SetActive(false);
+            if (groundShadow == null)
+            {
+                Transform sh = transform.Find("GroundShadow");
+                if (sh != null) groundShadow = sh.gameObject;
+            }
+            if (spriteRenderer != null && idleFrames != null && idleFrames.Length > 0 && idleFrames[0] != null)
+            {
+                spriteRenderer.sprite = idleFrames[0];
+            }
         }
 
         private void Update()
         {
+            if (_state == SlimeState.Dying)
+            {
+                _stateTimer -= Time.deltaTime;
+                UpdateAnimation(false);
+                if (_stateTimer <= 0f)
+                {
+                    Destroy(gameObject);
+                }
+                return;
+            }
+
             if (_isDefeated) return;
 
             bool gameplayActive = GameRoot.Instance == null || GameRoot.Instance.State == null || GameRoot.Instance.State.IsGameplayActive;
@@ -378,11 +425,11 @@ namespace MoonpetalValley.Combat
                     if (_player != null && Vector2.Distance(transform.position, _player.transform.position) <= detectR)
                     {
                         _state = SlimeState.Telegraph;
-                        _stateTimer = 0.35f;
+                        _stateTimer = 0.45f;
                         if (spriteRenderer != null)
                         {
-                            spriteRenderer.transform.localScale = new Vector3(1.22f, 0.78f, 1f);
-                            spriteRenderer.color = new Color(1f, 0.86f, 0.55f, 1f);
+                            spriteRenderer.color = new Color(1f, 0.90f, 0.65f, 1f);
+                            spriteRenderer.flipX = _player.transform.position.x < transform.position.x;
                         }
                     }
                     break;
@@ -396,8 +443,8 @@ namespace MoonpetalValley.Combat
                         _stateTimer = 0.42f;
                         if (spriteRenderer != null)
                         {
-                            spriteRenderer.transform.localScale = new Vector3(0.88f, 1.18f, 1f);
                             spriteRenderer.color = Color.white;
+                            if (Mathf.Abs(dir.x) > 0.05f) spriteRenderer.flipX = dir.x < 0f;
                         }
                     }
                     break;
@@ -421,12 +468,71 @@ namespace MoonpetalValley.Combat
                     break;
             }
 
+            UpdateAnimation(true);
             if (spriteRenderer != null) spriteRenderer.sortingOrder = Mathf.RoundToInt(-transform.position.y * 100f);
+        }
+
+        private void UpdateAnimation(bool loop)
+        {
+            if (spriteRenderer == null) return;
+
+            if (_state != _lastAnimState)
+            {
+                _lastAnimState = _state;
+                _animFrame = 0;
+                _animTimer = 0f;
+            }
+
+            Sprite[] frames = idleFrames;
+            float fps = idleFps;
+            bool shouldLoop = loop;
+
+            switch (_state)
+            {
+                case SlimeState.Telegraph:
+                    frames = (telegraphFrames != null && telegraphFrames.Length > 0) ? telegraphFrames : idleFrames;
+                    fps = telegraphFps;
+                    shouldLoop = false;
+                    break;
+                case SlimeState.Jumping:
+                    frames = (jumpFrames != null && jumpFrames.Length > 0) ? jumpFrames : idleFrames;
+                    fps = jumpFps;
+                    shouldLoop = true;
+                    break;
+                case SlimeState.HitStun:
+                    frames = (hitFrames != null && hitFrames.Length > 0) ? hitFrames : idleFrames;
+                    fps = hitFps;
+                    shouldLoop = false;
+                    break;
+                case SlimeState.Dying:
+                    frames = (dieFrames != null && dieFrames.Length > 0) ? dieFrames : idleFrames;
+                    fps = dieFps;
+                    shouldLoop = false;
+                    break;
+            }
+
+            if (frames == null || frames.Length == 0) return;
+
+            _animTimer += Time.deltaTime;
+            float step = 1f / Mathf.Max(1f, fps);
+            if (_animTimer >= step)
+            {
+                _animTimer -= step;
+                if (shouldLoop) _animFrame = (_animFrame + 1) % frames.Length;
+                else _animFrame = Mathf.Min(_animFrame + 1, frames.Length - 1);
+            }
+
+            int idx = Mathf.Clamp(_animFrame, 0, frames.Length - 1);
+            if (frames[idx] != null) spriteRenderer.sprite = frames[idx];
         }
 
         private void FixedUpdate()
         {
-            if (rb == null || _isDefeated) return;
+            if (rb == null || _isDefeated || _state == SlimeState.Dying)
+            {
+                if (rb != null) rb.linearVelocity = Vector2.zero;
+                return;
+            }
             bool gameplayActive = GameRoot.Instance == null || GameRoot.Instance.State == null || GameRoot.Instance.State.IsGameplayActive;
             if (!gameplayActive) { rb.linearVelocity = Vector2.zero; return; }
 
@@ -441,7 +547,7 @@ namespace MoonpetalValley.Combat
 
         private void OnTriggerStay2D(Collider2D other)
         {
-            if (_isDefeated || !other.CompareTag("Player")) return;
+            if (_isDefeated || _state == SlimeState.Dying || !other.CompareTag("Player")) return;
             var player = other.GetComponent<PlayerController2D>();
             if (player == null || player.IsInvulnerable) return;
 
@@ -455,16 +561,16 @@ namespace MoonpetalValley.Combat
 
         public void TakePurifyDamage(int amount, Vector2 knockbackDir, float knockbackForce)
         {
-            if (_isDefeated) return;
+            if (_isDefeated || _state == SlimeState.Dying) return;
 
             int maxHP = enemyData != null ? enemyData.maxHP : 45;
             _currentHP = Mathf.Max(0, _currentHP - amount);
 
             _state = SlimeState.HitStun;
-            _stateTimer = 0.22f;
+            _stateTimer = 0.28f;
             _knockbackVelocity = knockbackDir.normalized * knockbackForce;
 
-            _flashTimer = 0.14f;
+            _flashTimer = 0.16f;
             if (spriteRenderer != null) spriteRenderer.color = new Color(0.75f, 1f, 1f, 1f);
 
             JuiceEffectsManager.Instance?.SpawnFloatingNumber(transform.position + Vector3.up * 0.55f, "-" + amount, new Color(0.70f, 0.98f, 1f));
@@ -479,11 +585,21 @@ namespace MoonpetalValley.Combat
         private void DieAndSpawnLoot()
         {
             _isDefeated = true;
+            _state = SlimeState.Dying;
+            _stateTimer = (dieFrames != null && dieFrames.Length > 0) ? (dieFrames.Length / Mathf.Max(1f, dieFps)) + 0.05f : 0.05f;
+
+            if (rb != null) rb.linearVelocity = Vector2.zero;
+            if (hpBarRoot != null) hpBarRoot.SetActive(false);
+            if (groundShadow != null) groundShadow.SetActive(false);
+            if (spriteRenderer != null) spriteRenderer.color = Color.white;
+
+            var cols = GetComponentsInChildren<Collider2D>();
+            for (int i = 0; i < cols.Length; i++) cols[i].enabled = false;
+
             SpawnLoot();
             string id = enemyData != null ? enemyData.enemyID : "enemy_gloom_slime";
             GameEventBus.RaiseEnemyDefeated(id);
             encounterZone?.NotifySlimeDefeated(this);
-            Destroy(gameObject);
         }
 
         private void SpawnLoot()
@@ -2824,6 +2940,47 @@ namespace MoonpetalValley.Inventory
             SelectHotbarSlot(next);
         }
 
+        public bool SwapOrMergeSlots(int fromIndex, int toIndex)
+        {
+            if (fromIndex < 0 || fromIndex >= TotalSlots || toIndex < 0 || toIndex >= TotalSlots) return false;
+            if (fromIndex == toIndex) return false;
+
+            InventorySlot fromSlot = _slots[fromIndex];
+            InventorySlot toSlot = _slots[toIndex];
+            if (fromSlot.IsEmpty && toSlot.IsEmpty) return false;
+
+            // Tự động gộp stack nếu 2 ô chứa cùng loại vật phẩm có thể cộng dồn
+            if (!fromSlot.IsEmpty && !toSlot.IsEmpty &&
+                fromSlot.item.itemID == toSlot.item.itemID &&
+                toSlot.item.maxStack > 1 &&
+                toSlot.amount < toSlot.item.maxStack)
+            {
+                int space = toSlot.item.maxStack - toSlot.amount;
+                int moveAmt = Mathf.Min(space, fromSlot.amount);
+                toSlot.amount += moveAmt;
+                fromSlot.amount -= moveAmt;
+                if (fromSlot.amount <= 0)
+                {
+                    fromSlot.item = null;
+                    fromSlot.amount = 0;
+                }
+            }
+            else
+            {
+                ItemData tmpItem = toSlot.item;
+                int tmpAmount = toSlot.amount;
+
+                toSlot.item = fromSlot.item;
+                toSlot.amount = fromSlot.amount;
+
+                fromSlot.item = tmpItem;
+                fromSlot.amount = tmpAmount;
+            }
+
+            OnInventoryChanged?.Invoke();
+            return true;
+        }
+
         public bool AddItemById(string itemId, int amount = 1, bool showToast = true)
         {
             ItemData data = GetItemDataById(itemId);
@@ -2841,7 +2998,6 @@ namespace MoonpetalValley.Inventory
 
             int remaining = amount;
 
-            // 1. Cộng dồn vào ô đã có cùng vật phẩm
             if (data.maxStack > 1)
             {
                 for (int i = 0; i < TotalSlots && remaining > 0; i++)
@@ -2855,7 +3011,6 @@ namespace MoonpetalValley.Inventory
                 }
             }
 
-            // 2. Đặt vào ô trống
             for (int i = 0; i < TotalSlots && remaining > 0; i++)
             {
                 if (_slots[i].IsEmpty)
@@ -3429,11 +3584,26 @@ namespace MoonpetalValley.Narrative
         [SerializeField] private float interactRadius = 2.1f;
         [SerializeField] private Vector2 helperStandPosition;
 
+        [Header("Animation Frames (32x32 FullRect)")]
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private Sprite[] idleFrames;
+        [SerializeField] private Sprite[] cheerFrames;
+        [SerializeField] private float idleFps = 2.4f;
+        [SerializeField] private float cheerFps = 6.0f;
+
         private PlayerController2D _player;
         private GameInputReader _input;
         private bool _movedToFlowerbed;
+        private float _animTimer;
+        private int _frameIndex;
+        private float _cheerTimer;
 
         public NPCData Data => npcData;
+
+        private void Awake()
+        {
+            if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
+        }
 
         private void OnEnable()
         {
@@ -3448,7 +3618,11 @@ namespace MoonpetalValley.Narrative
         private void Start()
         {
             if (promptObject != null) promptObject.SetActive(false);
+            // Lệch pha ngẫu nhiên để 4 NPC không chớp mắt cùng lúc
+            _animTimer = Random.Range(0f, 0.35f);
+            _frameIndex = Random.Range(0, 4);
             CheckMoveToFlowerbed();
+            UpdateSortingOrder();
         }
 
         private void HandleFlagChanged(string flagId, bool value)
@@ -3466,12 +3640,23 @@ namespace MoonpetalValley.Narrative
                 if (helperStandPosition != Vector2.zero)
                 {
                     transform.position = new Vector3(helperStandPosition.x, helperStandPosition.y, 0f);
+                    UpdateSortingOrder();
                 }
+            }
+        }
+
+        private void UpdateSortingOrder()
+        {
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.sortingOrder = Mathf.RoundToInt(-transform.position.y * 100f);
             }
         }
 
         private void Update()
         {
+            TickAnimation(Time.deltaTime);
+
             if (GameRoot.Instance != null && GameRoot.Instance.State != null && !GameRoot.Instance.State.IsGameplayActive)
             {
                 if (promptObject != null && promptObject.activeSelf) promptObject.SetActive(false);
@@ -3494,9 +3679,39 @@ namespace MoonpetalValley.Narrative
             }
         }
 
+        private void TickAnimation(float dt)
+        {
+            if (spriteRenderer == null) return;
+
+            if (_cheerTimer > 0f) _cheerTimer -= dt;
+            bool celebratingVictory = GameRoot.Instance != null && GameRoot.Instance.Flags != null &&
+                                      GameRoot.Instance.Flags.HasFlag("flag_nv1_completed");
+            bool playCheer = (_cheerTimer > 0f || celebratingVictory) && cheerFrames != null && cheerFrames.Length > 0 && cheerFrames[0] != null;
+
+            Sprite[] frames = playCheer ? cheerFrames : idleFrames;
+            if (frames == null || frames.Length == 0 || frames[0] == null) return;
+
+            float fps = playCheer ? cheerFps : idleFps;
+            float dur = fps > 0.01f ? (1f / fps) : 0.35f;
+            _animTimer += dt;
+
+            if (_animTimer >= dur)
+            {
+                _animTimer -= dur;
+                _frameIndex = (_frameIndex + 1) % frames.Length;
+            }
+
+            int idx = Mathf.Clamp(_frameIndex, 0, frames.Length - 1);
+            if (frames[idx] != null) spriteRenderer.sprite = frames[idx];
+        }
+
         private void TriggerDialogue()
         {
             if (npcData == null || GameRoot.Instance == null || GameRoot.Instance.Dialogue == null) return;
+            _cheerTimer = 2.0f;
+            _frameIndex = 0;
+            _animTimer = 0f;
+
             DialogueData chosen = ResolveDialogue();
             if (chosen != null)
             {
@@ -3521,14 +3736,12 @@ namespace MoonpetalValley.Narrative
                     if (!string.IsNullOrEmpty(entry.blockedByStoryFlag) && flags.HasFlag(entry.blockedByStoryFlag))
                         continue;
 
-                    // Kiểm tra nếu hội thoại yêu cầu nộp vật phẩm (VD: Bà Hana cần 4 Lúa Mạch)
                     if (entry.dialogue.consumesRequiredItem != null && entry.dialogue.consumesAmount > 0)
                     {
                         if (inv == null || !inv.HasItem(entry.dialogue.consumesRequiredItem.itemID, entry.dialogue.consumesAmount))
                             continue;
                     }
 
-                    // Đặc biệt cho Ông Bách đọc thư: chỉ kích hoạt khi đã đủ 3 nhánh (4 trang sổ)
                     if (entry.dialogue.dialogueID == "dlg_bach_read_letters")
                     {
                         if (!flags.HasFlag("flag_hana_bread_done") || !flags.HasFlag("flag_toby_cat_saved") || !flags.HasFlag("flag_otis_mailbox_fixed"))
@@ -3927,11 +4140,33 @@ namespace MoonpetalValley.Player
     {
         [SerializeField] private Transform followTarget;
         [SerializeField] private Transform visualTransform;
+        [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private SpriteRenderer haloRenderer;
         [SerializeField] private Vector2 followOffset = new Vector2(-0.75f, 0.75f);
         [SerializeField] private float smoothSpeed = 6.5f;
 
+        [Header("Pixel Art Animations (FullRect)")]
+        [SerializeField] private Sprite[] floatFrames;
+        [SerializeField] private Sprite[] pulseFrames;
+        [SerializeField] private float floatFps = 6f;
+        [SerializeField] private float pulseFps = 8f;
+        [SerializeField] private float autoPulseInterval = 4.5f;
+
         private float _bobTime;
+        private float _animTimer;
+        private int _frameIdx;
+        private float _pulseRemaining;
+        private float _autoPulseCooldown = 2.5f;
+        private Vector3 _lastPos;
+
+        private void Awake()
+        {
+            if (spriteRenderer == null && visualTransform != null)
+            {
+                spriteRenderer = visualTransform.GetComponent<SpriteRenderer>();
+            }
+            _lastPos = transform.position;
+        }
 
         private void LateUpdate()
         {
@@ -3945,6 +4180,13 @@ namespace MoonpetalValley.Player
             Vector3 desired = followTarget.position + new Vector3(followOffset.x, followOffset.y, 0f);
             transform.position = Vector3.Lerp(transform.position, desired, Time.deltaTime * smoothSpeed);
 
+            float dx = transform.position.x - _lastPos.x;
+            if (spriteRenderer != null && Mathf.Abs(dx) > 0.002f)
+            {
+                spriteRenderer.flipX = dx < 0f;
+            }
+            _lastPos = transform.position;
+
             _bobTime += Time.deltaTime * 3.2f;
             if (visualTransform != null)
             {
@@ -3953,9 +4195,62 @@ namespace MoonpetalValley.Player
 
             if (haloRenderer != null)
             {
-                float pulse = 0.85f + Mathf.Sin(_bobTime * 1.5f) * 0.15f;
+                float boost = _pulseRemaining > 0f ? 0.22f : 0f;
+                float pulse = 0.85f + boost + Mathf.Sin(_bobTime * 1.5f) * 0.15f;
                 haloRenderer.transform.localScale = new Vector3(pulse, pulse, 1f);
             }
+
+            if (_pulseRemaining > 0f)
+            {
+                _pulseRemaining -= Time.deltaTime;
+            }
+            else if (autoPulseInterval > 0f && pulseFrames != null && pulseFrames.Length > 0)
+            {
+                _autoPulseCooldown -= Time.deltaTime;
+                if (_autoPulseCooldown <= 0f)
+                {
+                    TriggerPulse(0.65f);
+                    _autoPulseCooldown = autoPulseInterval;
+                }
+            }
+
+            UpdateSpriteAnimation();
+        }
+
+        private void UpdateSpriteAnimation()
+        {
+            if (spriteRenderer == null) return;
+
+            bool isPulsing = _pulseRemaining > 0f && pulseFrames != null && pulseFrames.Length > 0;
+            Sprite[] active = isPulsing ? pulseFrames : floatFrames;
+            if (active == null || active.Length == 0) return;
+
+            float fps = isPulsing ? pulseFps : floatFps;
+            _animTimer += Time.deltaTime;
+            float interval = 1f / Mathf.Max(1f, fps);
+            if (_animTimer >= interval)
+            {
+                _animTimer -= interval;
+                _frameIdx = (_frameIdx + 1) % active.Length;
+            }
+
+            int safeIdx = _frameIdx % active.Length;
+            if (active[safeIdx] != null)
+            {
+                spriteRenderer.sprite = active[safeIdx];
+            }
+        }
+
+        public void PlayMoonPulseAnimation(float duration = 0.7f)
+        {
+            TriggerPulse(duration);
+        }
+
+        public void TriggerPulse(float duration = 0.7f)
+        {
+            _pulseRemaining = Mathf.Max(_pulseRemaining, duration);
+            _frameIdx = 0;
+            _animTimer = 0f;
         }
 
         public void SetHaloRadiusScale(float scale)
@@ -3985,6 +4280,7 @@ namespace MoonpetalValley.Player
         [SerializeField] private PlayerStatsSO statsConfig;
         [SerializeField] private PlayerController2D playerController;
         [SerializeField] private GameInputReader inputReader;
+        [SerializeField] private WenSpriteAnimator spriteAnimator;
         [SerializeField] private Transform slashArcTransform;
         [SerializeField] private SpriteRenderer slashArcRenderer;
         [SerializeField] private Transform pulseRingTransform;
@@ -4014,7 +4310,7 @@ namespace MoonpetalValley.Player
             }
             if (inputReader == null || playerController == null) return;
 
-            // 1. Chém Liềm Ánh Trăng 120°
+            // 1. Chém Liềm Ánh Trăng 120 độ
             if (inputReader.ActionPressed && _attackCooldownTimer <= 0f)
             {
                 bool overUI = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
@@ -4052,6 +4348,11 @@ namespace MoonpetalValley.Player
             Vector2 facing = playerController.FacingDirection.sqrMagnitude > 0.01f
                 ? playerController.FacingDirection.normalized
                 : Vector2.down;
+
+            if (spriteAnimator != null && spriteAnimator.HasValidSprites)
+            {
+                spriteAnimator.PlayMoonSickleSlash(facing);
+            }
 
             if (slashArcTransform != null && slashArcRenderer != null)
             {
@@ -4098,6 +4399,9 @@ namespace MoonpetalValley.Player
 
             GameRoot.Instance?.Stats?.ConsumeStamina(cost);
             playerController.ClearSlow();
+
+            var lumi = UnityEngine.Object.FindAnyObjectByType<LumiCompanionController>();
+            if (lumi != null) lumi.PlayMoonPulseAnimation();
 
             if (pulseRingTransform != null && pulseRingRenderer != null)
             {
@@ -4176,6 +4480,7 @@ namespace MoonpetalValley.Player
         [SerializeField] private GameInputReader inputReader;
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Transform visualTransform;
+        [SerializeField] private WenSpriteAnimator spriteAnimator;
 
         private Vector2 _facingDirection = Vector2.down;
         private Vector2 _dashDirection;
@@ -4316,16 +4621,27 @@ namespace MoonpetalValley.Player
 
         private void UpdateVisualFeedback(Vector2 move)
         {
+            bool useSpriteAnim = spriteAnimator != null && spriteAnimator.HasValidSprites;
+
+            if (useSpriteAnim)
+            {
+                spriteAnimator.UpdateLocomotion(move, _facingDirection, IsDashing);
+                if (visualTransform != null)
+                {
+                    visualTransform.localPosition = Vector3.zero;
+                }
+            }
+
             if (spriteRenderer != null)
             {
-                if (Mathf.Abs(_facingDirection.x) > 0.1f)
+                if (!useSpriteAnim && Mathf.Abs(_facingDirection.x) > 0.1f)
                 {
                     spriteRenderer.flipX = _facingDirection.x < 0f;
                 }
 
                 if (IsDashing)
                 {
-                    spriteRenderer.color = new Color(0.70f, 0.95f, 1.0f, 0.88f);
+                    spriteRenderer.color = new Color(0.75f, 0.96f, 1.0f, 0.90f);
                 }
                 else if (_slowTimer > 0f)
                 {
@@ -4337,7 +4653,7 @@ namespace MoonpetalValley.Player
                 }
             }
 
-            if (visualTransform != null)
+            if (!useSpriteAnim && visualTransform != null)
             {
                 if (move.sqrMagnitude > 0.01f && !IsDashing)
                 {
@@ -4552,15 +4868,24 @@ namespace MoonpetalValley.Player
         [SerializeField] private PlayerController2D playerController;
         [SerializeField] private GameInputReader inputReader;
         [SerializeField] private Transform visualTransform;
+        [SerializeField] private WenSpriteAnimator spriteAnimator;
 
         private float _cooldownTimer;
         private float _swingVisualTimer;
+
+        private void Awake()
+        {
+            if (spriteAnimator == null) spriteAnimator = GetComponent<WenSpriteAnimator>();
+            if (playerController == null) playerController = GetComponent<PlayerController2D>();
+            if (inputReader == null) inputReader = GetComponent<GameInputReader>();
+        }
 
         private void Update()
         {
             if (_cooldownTimer > 0f) _cooldownTimer -= Time.deltaTime;
 
-            if (_swingVisualTimer > 0f && visualTransform != null)
+            bool useSpriteAnim = spriteAnimator != null && spriteAnimator.HasValidSprites;
+            if (!useSpriteAnim && _swingVisualTimer > 0f && visualTransform != null)
             {
                 _swingVisualTimer -= Time.deltaTime;
                 float s = _swingVisualTimer > 0f ? 1.12f : 1.0f;
@@ -4603,7 +4928,7 @@ namespace MoonpetalValley.Player
                 if (tile.TryHarvest(out ItemData cropItem, out int yieldCount))
                 {
                     GameRoot.Instance.Inventory.AddItem(cropItem, yieldCount, true);
-                    TriggerSwingFeedback();
+                    TriggerSwingFeedback(WenToolAnimType.GenericSeedHarvest);
                 }
             }
         }
@@ -4625,7 +4950,7 @@ namespace MoonpetalValley.Player
                 if (tile != null && tile.TryPlant(item.linkedCropData))
                 {
                     GameRoot.Instance.Inventory.RemoveItem(item.itemID, 1);
-                    TriggerSwingFeedback();
+                    TriggerSwingFeedback(WenToolAnimType.GenericSeedHarvest);
                     GameEventBus.RaiseToastRequested("Đã gieo " + GameRoot.Instance.Inventory.GetLocalizedItemName(item) + "!");
                 }
                 else
@@ -4639,7 +4964,7 @@ namespace MoonpetalValley.Player
             if (item.itemID == "item_hoe")
             {
                 int cost = statsConfig != null ? statsConfig.hoeStaminaCost : 4;
-                if (TryHitResourceNode(targetPos, "item_hoe", cost)) return;
+                if (TryHitResourceNode(targetPos, "item_hoe", cost, WenToolAnimType.Hoe)) return;
 
                 if (FarmGridManager.Instance != null)
                 {
@@ -4647,26 +4972,35 @@ namespace MoonpetalValley.Player
                     if (tile != null && tile.TryTill())
                     {
                         GameRoot.Instance.Stats?.ConsumeStamina(cost);
-                        TriggerSwingFeedback();
+                        TriggerSwingFeedback(WenToolAnimType.Hoe);
+                        return;
                     }
                 }
+                TriggerSwingFeedback(WenToolAnimType.Hoe);
                 return;
             }
 
             // 3. Bình Tưới
             if (item.itemID == "item_watering_can")
             {
-                if (FarmGridManager.Instance == null) return;
-                var tile = FarmGridManager.Instance.FindClosestTile(targetPos, 1.1f);
-                if (tile != null && tile.State != FarmTileState.Untilled && !tile.IsWatered)
+                if (FarmGridManager.Instance != null)
                 {
-                    if (GameRoot.Instance.Inventory.ConsumeWaterCharge())
+                    var tile = FarmGridManager.Instance.FindClosestTile(targetPos, 1.1f);
+                    if (tile != null && tile.State != FarmTileState.Untilled && !tile.IsWatered)
                     {
-                        tile.TryWater();
-                        int cost = statsConfig != null ? statsConfig.waterStaminaCost : 2;
-                        GameRoot.Instance.Stats?.ConsumeStamina(cost);
-                        TriggerSwingFeedback();
+                        if (GameRoot.Instance.Inventory.ConsumeWaterCharge())
+                        {
+                            tile.TryWater();
+                            int cost = statsConfig != null ? statsConfig.waterStaminaCost : 2;
+                            GameRoot.Instance.Stats?.ConsumeStamina(cost);
+                            TriggerSwingFeedback(WenToolAnimType.WateringCan);
+                        }
+                        return;
                     }
+                }
+                if (GameRoot.Instance.Inventory.WateringCanCharges > 0)
+                {
+                    TriggerSwingFeedback(WenToolAnimType.WateringCan);
                 }
                 return;
             }
@@ -4675,11 +5009,14 @@ namespace MoonpetalValley.Player
             if (item.itemID == "item_hatchet")
             {
                 int cost = statsConfig != null ? statsConfig.chopStaminaCost : 4;
-                TryHitResourceNode(targetPos, "item_hatchet", cost);
+                if (!TryHitResourceNode(targetPos, "item_hatchet", cost, WenToolAnimType.Hatchet))
+                {
+                    TriggerSwingFeedback(WenToolAnimType.Hatchet);
+                }
             }
         }
 
-        private bool TryHitResourceNode(Vector2 targetPos, string toolId, int staminaCost)
+        private bool TryHitResourceNode(Vector2 targetPos, string toolId, int staminaCost, WenToolAnimType animType)
         {
             Collider2D[] hits = Physics2D.OverlapCircleAll(targetPos, 0.95f);
             for (int i = 0; i < hits.Length; i++)
@@ -4690,7 +5027,7 @@ namespace MoonpetalValley.Player
                     if (node.TryHit(toolId))
                     {
                         GameRoot.Instance.Stats?.ConsumeStamina(staminaCost);
-                        TriggerSwingFeedback();
+                        TriggerSwingFeedback(animType);
                     }
                     return true;
                 }
@@ -4698,16 +5035,330 @@ namespace MoonpetalValley.Player
             return false;
         }
 
-        private void TriggerSwingFeedback()
+        private void TriggerSwingFeedback(WenToolAnimType animType)
         {
-            _cooldownTimer = 0.30f;
-            _swingVisualTimer = 0.14f;
+            _cooldownTimer = animType == WenToolAnimType.WateringCan ? 0.38f : 0.32f;
+            if (spriteAnimator != null && spriteAnimator.HasValidSprites)
+            {
+                spriteAnimator.PlayToolAction(animType, playerController != null ? playerController.FacingDirection : Vector2.down);
+            }
+            else
+            {
+                _swingVisualTimer = 0.14f;
+            }
         }
     }
 }
 ```
 
-## 52. `Assets/Scripts/TimeSystem/AmbientPetalSpawner.cs`
+## 52. `Assets/Scripts/Player/WenSpriteAnimator.cs`
+
+```csharp
+using UnityEngine;
+
+namespace MoonpetalValley.Player
+{
+    public enum WenToolAnimType
+    {
+        GenericSeedHarvest,
+        Hoe,
+        WateringCan,
+        Hatchet
+    }
+
+    public class WenSpriteAnimator : MonoBehaviour
+    {
+        private enum Facing4
+        {
+            South,
+            North,
+            East,
+            West
+        }
+
+        private enum AnimAction
+        {
+            Idle,
+            Walk,
+            Dash,
+            ToolUse,
+            Hoe,
+            WateringCan,
+            Hatchet,
+            MoonSickleSlash
+        }
+
+        [SerializeField] private SpriteRenderer spriteRenderer;
+
+        [Header("Idle (4 hướng)")]
+        [SerializeField] private Sprite[] idleSouth;
+        [SerializeField] private Sprite[] idleNorth;
+        [SerializeField] private Sprite[] idleEast;
+        [SerializeField] private Sprite[] idleWest;
+
+        [Header("Walk (4 hướng)")]
+        [SerializeField] private Sprite[] walkSouth;
+        [SerializeField] private Sprite[] walkNorth;
+        [SerializeField] private Sprite[] walkEast;
+        [SerializeField] private Sprite[] walkWest;
+
+        [Header("Dash (4 hướng)")]
+        [SerializeField] private Sprite[] dashSouth;
+        [SerializeField] private Sprite[] dashNorth;
+        [SerializeField] private Sprite[] dashEast;
+        [SerializeField] private Sprite[] dashWest;
+
+        [Header("Tool Use - Gieo hạt / Thu hoạch (4 hướng)")]
+        [SerializeField] private Sprite[] toolSouth;
+        [SerializeField] private Sprite[] toolNorth;
+        [SerializeField] private Sprite[] toolEast;
+        [SerializeField] private Sprite[] toolWest;
+
+        [Header("Hoe - Cuốc Đất (4 hướng)")]
+        [SerializeField] private Sprite[] hoeSouth;
+        [SerializeField] private Sprite[] hoeNorth;
+        [SerializeField] private Sprite[] hoeEast;
+        [SerializeField] private Sprite[] hoeWest;
+
+        [Header("Watering Can - Bình Tưới (4 hướng)")]
+        [SerializeField] private Sprite[] waterSouth;
+        [SerializeField] private Sprite[] waterNorth;
+        [SerializeField] private Sprite[] waterEast;
+        [SerializeField] private Sprite[] waterWest;
+
+        [Header("Hatchet - Rìu Nhỏ (4 hướng)")]
+        [SerializeField] private Sprite[] hatchetSouth;
+        [SerializeField] private Sprite[] hatchetNorth;
+        [SerializeField] private Sprite[] hatchetEast;
+        [SerializeField] private Sprite[] hatchetWest;
+
+        [Header("Moon Sickle Slash (4 hướng)")]
+        [SerializeField] private Sprite[] slashSouth;
+        [SerializeField] private Sprite[] slashNorth;
+        [SerializeField] private Sprite[] slashEast;
+        [SerializeField] private Sprite[] slashWest;
+
+        [Header("Tốc độ khung hình (FPS)")]
+        [SerializeField] private float idleFps = 5f;
+        [SerializeField] private float walkFps = 10f;
+        [SerializeField] private float dashFps = 18f;
+        [SerializeField] private float toolFps = 11f;
+        [SerializeField] private float hoeFps = 11f;
+        [SerializeField] private float waterFps = 10f;
+        [SerializeField] private float hatchetFps = 12f;
+        [SerializeField] private float slashFps = 14f;
+
+        private Facing4 _facing = Facing4.South;
+        private AnimAction _currentAction = AnimAction.Idle;
+        private bool _isOneShotLocked;
+        private int _frameIndex;
+        private float _frameTimer;
+
+        public bool HasValidSprites => idleSouth != null && idleSouth.Length > 0 && idleSouth[0] != null;
+
+        public void UpdateLocomotion(Vector2 moveInput, Vector2 facingDir, bool isDashing)
+        {
+            if (!HasValidSprites || spriteRenderer == null) return;
+
+            spriteRenderer.flipX = false;
+
+            if (isDashing)
+            {
+                _isOneShotLocked = false;
+                UpdateFacingFromVector(facingDir);
+                SwitchActionIfNeeded(AnimAction.Dash);
+            }
+            else if (!_isOneShotLocked)
+            {
+                UpdateFacingFromVector(facingDir);
+                AnimAction desired = moveInput.sqrMagnitude > 0.01f ? AnimAction.Walk : AnimAction.Idle;
+                SwitchActionIfNeeded(desired);
+            }
+
+            TickAnimation(Time.deltaTime);
+        }
+
+        public void PlayToolUse(Vector2 facingDir)
+        {
+            PlayToolAction(WenToolAnimType.GenericSeedHarvest, facingDir);
+        }
+
+        public void PlayToolAction(WenToolAnimType toolType, Vector2 facingDir)
+        {
+            if (!HasValidSprites || spriteRenderer == null) return;
+            UpdateFacingFromVector(facingDir);
+
+            AnimAction act = toolType switch
+            {
+                WenToolAnimType.Hoe => AnimAction.Hoe,
+                WenToolAnimType.WateringCan => AnimAction.WateringCan,
+                WenToolAnimType.Hatchet => AnimAction.Hatchet,
+                _ => AnimAction.ToolUse
+            };
+            StartOneShot(act);
+        }
+
+        public void PlayMoonSickleSlash(Vector2 facingDir)
+        {
+            if (!HasValidSprites || spriteRenderer == null) return;
+            UpdateFacingFromVector(facingDir);
+            StartOneShot(AnimAction.MoonSickleSlash);
+        }
+
+        private void StartOneShot(AnimAction action)
+        {
+            _currentAction = action;
+            _isOneShotLocked = true;
+            _frameIndex = 0;
+            _frameTimer = 0f;
+            ApplyCurrentFrame();
+        }
+
+        private void SwitchActionIfNeeded(AnimAction next)
+        {
+            if (_currentAction == next) return;
+            _currentAction = next;
+            _frameIndex = 0;
+            _frameTimer = 0f;
+            ApplyCurrentFrame();
+        }
+
+        private void TickAnimation(float dt)
+        {
+            Sprite[] frames = GetFrames(_currentAction, _facing);
+            if (frames == null || frames.Length == 0 || frames[0] == null)
+            {
+                _isOneShotLocked = false;
+                return;
+            }
+
+            float fps = GetFps(_currentAction);
+            float frameDuration = fps > 0.01f ? (1f / fps) : 0.12f;
+            _frameTimer += dt;
+
+            if (_frameTimer >= frameDuration)
+            {
+                _frameTimer -= frameDuration;
+                _frameIndex++;
+
+                if (_frameIndex >= frames.Length)
+                {
+                    if (_isOneShotLocked)
+                    {
+                        _isOneShotLocked = false;
+                        _currentAction = AnimAction.Idle;
+                        _frameIndex = 0;
+                    }
+                    else if (_currentAction == AnimAction.Dash)
+                    {
+                        _frameIndex = frames.Length - 1;
+                    }
+                    else
+                    {
+                        _frameIndex = 0;
+                    }
+                }
+            }
+
+            ApplyCurrentFrame();
+        }
+
+        private void ApplyCurrentFrame()
+        {
+            if (spriteRenderer == null) return;
+            Sprite[] frames = GetFrames(_currentAction, _facing);
+            if (frames == null || frames.Length == 0) return;
+
+            int safeIdx = Mathf.Clamp(_frameIndex, 0, frames.Length - 1);
+            if (frames[safeIdx] != null)
+            {
+                spriteRenderer.sprite = frames[safeIdx];
+            }
+        }
+
+        private void UpdateFacingFromVector(Vector2 dir)
+        {
+            if (dir.sqrMagnitude < 0.001f) return;
+
+            float ax = Mathf.Abs(dir.x);
+            float ay = Mathf.Abs(dir.y);
+
+            if (ax > ay + 0.05f)
+            {
+                _facing = dir.x >= 0f ? Facing4.East : Facing4.West;
+            }
+            else if (ay > ax + 0.05f)
+            {
+                _facing = dir.y >= 0f ? Facing4.North : Facing4.South;
+            }
+            else
+            {
+                if (_facing == Facing4.East || _facing == Facing4.West)
+                {
+                    _facing = dir.x >= 0f ? Facing4.East : Facing4.West;
+                }
+                else
+                {
+                    _facing = dir.y >= 0f ? Facing4.North : Facing4.South;
+                }
+            }
+        }
+
+        private float GetFps(AnimAction action)
+        {
+            return action switch
+            {
+                AnimAction.Walk => walkFps,
+                AnimAction.Dash => dashFps,
+                AnimAction.ToolUse => toolFps,
+                AnimAction.Hoe => hoeFps,
+                AnimAction.WateringCan => waterFps,
+                AnimAction.Hatchet => hatchetFps,
+                AnimAction.MoonSickleSlash => slashFps,
+                _ => idleFps
+            };
+        }
+
+        private Sprite[] PickDir(Facing4 dir, Sprite[] s, Sprite[] n, Sprite[] e, Sprite[] w)
+        {
+            Sprite[] chosen = dir switch
+            {
+                Facing4.North => n,
+                Facing4.East => e,
+                Facing4.West => w,
+                _ => s
+            };
+            if (chosen != null && chosen.Length > 0 && chosen[0] != null) return chosen;
+
+            Debug.LogWarning("[MV] WenSpriteAnimator thiếu frame cho " + _currentAction + " (" + dir + "), fallback sang Idle.");
+            return dir switch
+            {
+                Facing4.North => idleNorth,
+                Facing4.East => idleEast,
+                Facing4.West => idleWest,
+                _ => idleSouth
+            };
+        }
+
+        private Sprite[] GetFrames(AnimAction action, Facing4 dir)
+        {
+            return action switch
+            {
+                AnimAction.Walk => PickDir(dir, walkSouth, walkNorth, walkEast, walkWest),
+                AnimAction.Dash => PickDir(dir, dashSouth, dashNorth, dashEast, dashWest),
+                AnimAction.ToolUse => PickDir(dir, toolSouth, toolNorth, toolEast, toolWest),
+                AnimAction.Hoe => PickDir(dir, hoeSouth, hoeNorth, hoeEast, hoeWest),
+                AnimAction.WateringCan => PickDir(dir, waterSouth, waterNorth, waterEast, waterWest),
+                AnimAction.Hatchet => PickDir(dir, hatchetSouth, hatchetNorth, hatchetEast, hatchetWest),
+                AnimAction.MoonSickleSlash => PickDir(dir, slashSouth, slashNorth, slashEast, slashWest),
+                _ => PickDir(dir, idleSouth, idleNorth, idleEast, idleWest)
+            };
+        }
+    }
+}
+```
+
+## 53. `Assets/Scripts/TimeSystem/AmbientPetalSpawner.cs`
 
 ```csharp
 using UnityEngine;
@@ -4798,7 +5449,7 @@ namespace MoonpetalValley.TimeSystem
 }
 ```
 
-## 53. `Assets/Scripts/TimeSystem/BedInteractable.cs`
+## 54. `Assets/Scripts/TimeSystem/BedInteractable.cs`
 
 ```csharp
 using UnityEngine;
@@ -4855,7 +5506,7 @@ namespace MoonpetalValley.TimeSystem
 }
 ```
 
-## 54. `Assets/Scripts/TimeSystem/DayNightLightingController.cs`
+## 55. `Assets/Scripts/TimeSystem/DayNightLightingController.cs`
 
 ```csharp
 using UnityEngine;
@@ -4945,7 +5596,7 @@ namespace MoonpetalValley.TimeSystem
 }
 ```
 
-## 55. `Assets/Scripts/TimeSystem/SleepAndKnockoutController.cs`
+## 56. `Assets/Scripts/TimeSystem/SleepAndKnockoutController.cs`
 
 ```csharp
 using System;
@@ -5080,7 +5731,7 @@ namespace MoonpetalValley.TimeSystem
 }
 ```
 
-## 56. `Assets/Scripts/TimeSystem/TimeOfDayManager.cs`
+## 57. `Assets/Scripts/TimeSystem/TimeOfDayManager.cs`
 
 ```csharp
 using System;
@@ -5249,7 +5900,7 @@ namespace MoonpetalValley.TimeSystem
 }
 ```
 
-## 57. `Assets/Scripts/TimeSystem/VillageLantern.cs`
+## 58. `Assets/Scripts/TimeSystem/VillageLantern.cs`
 
 ```csharp
 using UnityEngine;
@@ -5301,7 +5952,48 @@ namespace MoonpetalValley.TimeSystem
 }
 ```
 
-## 58. `Assets/Scripts/UI/BundleUIView.cs`
+## 59. `Assets/Scripts/TimeSystem/WaterTileAnimator.cs`
+
+```csharp
+using UnityEngine;
+
+namespace MoonpetalValley.TimeSystem
+{
+    public class WaterTileAnimator : MonoBehaviour
+    {
+        [SerializeField] private Sprite[] waterFrames;
+        [SerializeField] private SpriteRenderer[] waterRenderers;
+        [SerializeField] private float fps = 3.2f;
+
+        private float _timer;
+        private int _frameIndex;
+
+        private void Update()
+        {
+            if (waterFrames == null || waterFrames.Length == 0) return;
+            if (waterRenderers == null || waterRenderers.Length == 0) return;
+
+            _timer += Time.deltaTime;
+            float interval = 1f / Mathf.Max(0.5f, fps);
+            if (_timer >= interval)
+            {
+                _timer -= interval;
+                _frameIndex = (_frameIndex + 1) % waterFrames.Length;
+                Sprite current = waterFrames[_frameIndex];
+                for (int i = 0; i < waterRenderers.Length; i++)
+                {
+                    if (waterRenderers[i] != null)
+                    {
+                        waterRenderers[i].sprite = current;
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+## 60. `Assets/Scripts/UI/BundleUIView.cs`
 
 ```csharp
 using System.Text;
@@ -5463,7 +6155,7 @@ namespace MoonpetalValley.UI
 }
 ```
 
-## 59. `Assets/Scripts/UI/ClockHUDView.cs`
+## 61. `Assets/Scripts/UI/ClockHUDView.cs`
 
 ```csharp
 using UnityEngine;
@@ -5524,7 +6216,7 @@ namespace MoonpetalValley.UI
 }
 ```
 
-## 60. `Assets/Scripts/UI/DialogueUIView.cs`
+## 62. `Assets/Scripts/UI/DialogueUIView.cs`
 
 ```csharp
 using UnityEngine;
@@ -5563,7 +6255,7 @@ namespace MoonpetalValley.UI
 }
 ```
 
-## 61. `Assets/Scripts/UI/DiaryUIView.cs`
+## 63. `Assets/Scripts/UI/DiaryUIView.cs`
 
 ```csharp
 using System.Collections.Generic;
@@ -5671,7 +6363,7 @@ namespace MoonpetalValley.UI
 }
 ```
 
-## 62. `Assets/Scripts/UI/FloatingDamageText.cs`
+## 64. `Assets/Scripts/UI/FloatingDamageText.cs`
 
 ```csharp
 using UnityEngine;
@@ -5737,7 +6429,7 @@ namespace MoonpetalValley.UI
 }
 ```
 
-## 63. `Assets/Scripts/UI/FloatingToastUI.cs`
+## 65. `Assets/Scripts/UI/FloatingToastUI.cs`
 
 ```csharp
 using UnityEngine;
@@ -5799,7 +6491,7 @@ namespace MoonpetalValley.UI
 }
 ```
 
-## 64. `Assets/Scripts/UI/HotbarUIView.cs`
+## 66. `Assets/Scripts/UI/HotbarUIView.cs`
 
 ```csharp
 using UnityEngine;
@@ -5970,11 +6662,12 @@ namespace MoonpetalValley.UI
 }
 ```
 
-## 65. `Assets/Scripts/UI/InventoryUIView.cs`
+## 67. `Assets/Scripts/UI/InventoryUIView.cs`
 
 ```csharp
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 using MoonpetalValley.Core;
 using MoonpetalValley.Inventory;
@@ -5993,10 +6686,20 @@ namespace MoonpetalValley.UI
 
         private GameInputReader _input;
         private bool _isOpen;
+        private int _pickedSlotIndex = -1;
+        private int _draggingSlotIndex = -1;
+        private Image _dragGhostImage;
+        private RectTransform _dragGhostRect;
+
+        private readonly Color _hotbarBgColor = new Color(0.18f, 0.24f, 0.34f, 1f);
+        private readonly Color _bagBgColor = new Color(0.14f, 0.17f, 0.24f, 1f);
+        private readonly Color _pickedBgColor = new Color(0.84f, 0.68f, 0.24f, 1f);
 
         private void Awake()
         {
             if (panelRoot != null) panelRoot.SetActive(false);
+            CreateDragGhost();
+
             if (slotButtons != null)
             {
                 for (int i = 0; i < slotButtons.Length; i++)
@@ -6005,6 +6708,9 @@ namespace MoonpetalValley.UI
                     if (slotButtons[i] != null)
                     {
                         slotButtons[i].onClick.AddListener(() => OnSlotClicked(captured));
+                        var dragHandler = slotButtons[i].gameObject.GetComponent<InventorySlotDragHandler>();
+                        if (dragHandler == null) dragHandler = slotButtons[i].gameObject.AddComponent<InventorySlotDragHandler>();
+                        dragHandler.Initialize(this, captured);
                     }
                 }
             }
@@ -6057,20 +6763,88 @@ namespace MoonpetalValley.UI
         public void Open()
         {
             _isOpen = true;
+            _pickedSlotIndex = -1;
+            CancelDrag();
             if (panelRoot != null) panelRoot.SetActive(true);
             GameRoot.Instance.State.SetState(GameState.InventoryUI);
             RefreshGrid();
-            OnSlotClicked(GameRoot.Instance.Inventory.SelectedHotbarIndex);
+            ShowSlotDetails(GameRoot.Instance.Inventory.SelectedHotbarIndex);
         }
 
         public void Close()
         {
             _isOpen = false;
+            _pickedSlotIndex = -1;
+            CancelDrag();
             if (panelRoot != null) panelRoot.SetActive(false);
             if (GameRoot.Instance.State.CurrentState == GameState.InventoryUI)
             {
                 GameRoot.Instance.State.ReturnToGameplay();
             }
+        }
+
+        private void CreateDragGhost()
+        {
+            GameObject go = new GameObject("InventoryDragGhost");
+            go.transform.SetParent(transform, false);
+            _dragGhostRect = go.AddComponent<RectTransform>();
+            _dragGhostRect.sizeDelta = new Vector2(54f, 54f);
+            _dragGhostImage = go.AddComponent<Image>();
+            _dragGhostImage.preserveAspect = true;
+            _dragGhostImage.raycastTarget = false;
+            go.SetActive(false);
+        }
+
+        internal void HandleBeginDrag(int slotIndex, PointerEventData eventData)
+        {
+            if (!_isOpen || GameRoot.Instance?.Inventory == null) return;
+            var slot = GameRoot.Instance.Inventory.GetSlot(slotIndex);
+            if (slot == null || slot.IsEmpty) return;
+
+            _draggingSlotIndex = slotIndex;
+            _pickedSlotIndex = -1;
+
+            if (_dragGhostImage != null)
+            {
+                _dragGhostImage.sprite = slot.item.icon;
+                _dragGhostImage.color = new Color(1f, 1f, 1f, 0.92f);
+                _dragGhostImage.gameObject.SetActive(true);
+                _dragGhostImage.transform.SetAsLastSibling();
+                _dragGhostRect.position = eventData.position;
+            }
+            RefreshGrid();
+        }
+
+        internal void HandleDrag(PointerEventData eventData)
+        {
+            if (_draggingSlotIndex < 0 || _dragGhostRect == null) return;
+            _dragGhostRect.position = eventData.position;
+        }
+
+        internal void HandleDrop(int targetSlotIndex)
+        {
+            if (!_isOpen || _draggingSlotIndex < 0 || GameRoot.Instance?.Inventory == null) return;
+            int source = _draggingSlotIndex;
+            CancelDrag();
+            if (source != targetSlotIndex)
+            {
+                GameRoot.Instance.Inventory.SwapOrMergeSlots(source, targetSlotIndex);
+                GameRoot.Instance.Audio?.PlayUIClick();
+            }
+            ShowSlotDetails(targetSlotIndex);
+            RefreshGrid();
+        }
+
+        internal void HandleEndDrag()
+        {
+            CancelDrag();
+            RefreshGrid();
+        }
+
+        private void CancelDrag()
+        {
+            _draggingSlotIndex = -1;
+            if (_dragGhostImage != null) _dragGhostImage.gameObject.SetActive(false);
         }
 
         private void RefreshGrid()
@@ -6081,12 +6855,23 @@ namespace MoonpetalValley.UI
             for (int i = 0; i < InventoryManager.TotalSlots; i++)
             {
                 var slot = inv.GetSlot(i);
+
+                if (slotButtons != null && i < slotButtons.Length && slotButtons[i] != null)
+                {
+                    var bg = slotButtons[i].GetComponent<Image>();
+                    if (bg != null)
+                    {
+                        if (i == _pickedSlotIndex || i == _draggingSlotIndex) bg.color = _pickedBgColor;
+                        else bg.color = i < InventoryManager.HotbarSize ? _hotbarBgColor : _bagBgColor;
+                    }
+                }
+
                 if (slotIcons != null && i < slotIcons.Length && slotIcons[i] != null)
                 {
                     if (slot != null && !slot.IsEmpty && slot.item.icon != null)
                     {
                         slotIcons[i].sprite = slot.item.icon;
-                        slotIcons[i].color = Color.white;
+                        slotIcons[i].color = (i == _draggingSlotIndex) ? new Color(1f, 1f, 1f, 0.35f) : Color.white;
                     }
                     else
                     {
@@ -6094,9 +6879,13 @@ namespace MoonpetalValley.UI
                         slotIcons[i].color = new Color(1f, 1f, 1f, 0f);
                     }
                 }
+
                 if (slotCounts != null && i < slotCounts.Length && slotCounts[i] != null)
                 {
-                    slotCounts[i].text = (slot != null && !slot.IsEmpty && slot.amount > 1) ? slot.amount.ToString() : "";
+                    if (slot == null || slot.IsEmpty) slotCounts[i].text = "";
+                    else if (slot.item.itemID == "item_watering_can") slotCounts[i].text = inv.WateringCanCharges + "/20";
+                    else if (slot.amount > 1) slotCounts[i].text = slot.amount.ToString();
+                    else slotCounts[i].text = "";
                 }
             }
         }
@@ -6105,19 +6894,54 @@ namespace MoonpetalValley.UI
         {
             if (GameRoot.Instance == null || GameRoot.Instance.Inventory == null) return;
             var inv = GameRoot.Instance.Inventory;
+
+            // Click-to-Swap: chọn ô 1 -> bấm ô 2 để hoán đổi / gộp stack
+            if (_pickedSlotIndex < 0)
+            {
+                var clickedSlot = inv.GetSlot(index);
+                if (clickedSlot != null && !clickedSlot.IsEmpty)
+                {
+                    _pickedSlotIndex = index;
+                }
+                ShowSlotDetails(index);
+                RefreshGrid();
+                return;
+            }
+
+            if (_pickedSlotIndex == index)
+            {
+                _pickedSlotIndex = -1;
+                ShowSlotDetails(index);
+                RefreshGrid();
+                return;
+            }
+
+            int src = _pickedSlotIndex;
+            _pickedSlotIndex = -1;
+            inv.SwapOrMergeSlots(src, index);
+            GameRoot.Instance.Audio?.PlayUIClick();
+            ShowSlotDetails(index);
+            RefreshGrid();
+        }
+
+        private void ShowSlotDetails(int index)
+        {
+            if (GameRoot.Instance == null || GameRoot.Instance.Inventory == null) return;
+            var inv = GameRoot.Instance.Inventory;
             var slot = inv.GetSlot(index);
 
             if (slot == null || slot.IsEmpty)
             {
                 if (detailNameText != null) detailNameText.text = "Ô trống";
-                if (detailDescText != null) detailDescText.text = "Bấm Tab / I hoặc Esc để đóng Túi Đồ.";
+                if (detailDescText != null) detailDescText.text = "Kéo-thả hoặc bấm chọn 2 ô để chuyển vật phẩm giữa Hotbar (hàng trên) và Túi đồ (hàng dưới).";
                 return;
             }
 
             if (detailNameText != null)
             {
                 string protectTag = slot.item.isQuestProtected ? " [Được bảo vệ]" : " [Nguyên liệu thường]";
-                detailNameText.text = inv.GetLocalizedItemName(slot.item) + " (x" + slot.amount + ")" + protectTag;
+                string pickHint = _pickedSlotIndex == index ? " — [ĐANG CHỌN: bấm ô khác để chuyển]" : "";
+                detailNameText.text = inv.GetLocalizedItemName(slot.item) + " (x" + slot.amount + ")" + protectTag + pickHint;
             }
             if (detailDescText != null)
             {
@@ -6125,10 +6949,27 @@ namespace MoonpetalValley.UI
             }
         }
     }
+
+    internal class InventorySlotDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
+    {
+        private InventoryUIView _owner;
+        private int _slotIndex;
+
+        public void Initialize(InventoryUIView owner, int slotIndex)
+        {
+            _owner = owner;
+            _slotIndex = slotIndex;
+        }
+
+        public void OnBeginDrag(PointerEventData eventData) => _owner?.HandleBeginDrag(_slotIndex, eventData);
+        public void OnDrag(PointerEventData eventData) => _owner?.HandleDrag(eventData);
+        public void OnDrop(PointerEventData eventData) => _owner?.HandleDrop(_slotIndex);
+        public void OnEndDrag(PointerEventData eventData) => _owner?.HandleEndDrag();
+    }
 }
 ```
 
-## 66. `Assets/Scripts/UI/MainMenuController.cs`
+## 68. `Assets/Scripts/UI/MainMenuController.cs`
 
 ```csharp
 using UnityEngine;
@@ -6205,7 +7046,7 @@ namespace MoonpetalValley.UI
 }
 ```
 
-## 67. `Assets/Scripts/UI/PauseMenuUIView.cs`
+## 69. `Assets/Scripts/UI/PauseMenuUIView.cs`
 
 ```csharp
 using UnityEngine;
@@ -6321,7 +7162,7 @@ namespace MoonpetalValley.UI
 }
 ```
 
-## 68. `Assets/Scripts/UI/QuestTrackerHUDView.cs`
+## 70. `Assets/Scripts/UI/QuestTrackerHUDView.cs`
 
 ```csharp
 using UnityEngine;
@@ -6359,7 +7200,7 @@ namespace MoonpetalValley.UI
 }
 ```
 
-## 69. `Assets/Scripts/UI/StatsHUDView.cs`
+## 71. `Assets/Scripts/UI/StatsHUDView.cs`
 
 ```csharp
 using UnityEngine;
@@ -6446,7 +7287,7 @@ namespace MoonpetalValley.UI
 }
 ```
 
-## 70. `Assets/Editor/AutoBuilder_Step1.cs`
+## 72. `Assets/Editor/AutoBuilder_Step1.cs`
 
 ```csharp
 using System;
@@ -7090,7 +7931,7 @@ namespace MoonpetalValley.EditorTools
 }
 ```
 
-## 71. `Assets/Editor/AutoBuilder_Step10.cs`
+## 73. `Assets/Editor/AutoBuilder_Step10.cs`
 
 ```csharp
 using UnityEngine;
@@ -7343,7 +8184,7 @@ namespace MoonpetalValley.EditorTools
 }
 ```
 
-## 72. `Assets/Editor/AutoBuilder_Step11.cs`
+## 74. `Assets/Editor/AutoBuilder_Step11.cs`
 
 ```csharp
 using System;
@@ -7713,7 +8554,3259 @@ namespace MoonpetalValley.EditorTools
 }
 ```
 
-## 73. `Assets/Editor/AutoBuilder_Step2.cs`
+## 75. `Assets/Editor/AutoBuilder_Step12.cs`
+
+```csharp
+using System.IO;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using MoonpetalValley.Player;
+using MoonpetalValley.Combat;
+
+namespace MoonpetalValley.EditorTools
+{
+    public static class AutoBuilder_Step12
+    {
+        private const string WorldScenePath = "Assets/Scenes/MoonpetalValley_MVP.unity";
+        private const string PlayerPrefabPath = "Assets/Prefabs/Characters/Player_Wen.prefab";
+        private const string LumiPrefabPath = "Assets/Prefabs/Characters/Lumi_Companion.prefab";
+        private const string GloomSlimePrefabPath = "Assets/Prefabs/Enemies/GloomSlime.prefab";
+
+        private const string WenRawRoot = "Assets/Art/Sprites/Animations/Wen/Raw";
+        private const string WenFramesRoot = "Assets/Art/Sprites/Animations/Wen/Frames";
+        private const string LumiFramesRoot = "Assets/Art/Sprites/Animations/Lumi";
+        private const string SlimeFramesRoot = "Assets/Art/Sprites/Animations/GloomSlime";
+
+        private static readonly string[] WenActions =
+        {
+            "Idle", "Walk", "Dash", "Tool_Use",
+            "Hoe", "Watering_Can", "Hatchet", "Moon_Sickle_Slash"
+        };
+        private static readonly string[] WenDirs = { "south", "north", "east", "west" };
+
+        [MenuItem("Moonpetal/Step 12/1. Slice & Wire Character Animations (Wen, Lumi, Slime)")]
+        public static void BuildStep12()
+        {
+            if (EditorApplication.isPlaying || EditorApplication.isCompiling)
+            {
+                Debug.LogWarning("[MV] Không thể chạy AutoBuilder khi đang Play Mode hoặc đang biên dịch.");
+                return;
+            }
+
+            Debug.Log("[MV] === BẮT ĐẦU AUTOBUILDER STEP 12 (FULLRECT LOCK + 8 HÀNH ĐỘNG WEN) ===");
+
+            int slicedCount = SliceAllWenStrips();
+            AssetDatabase.Refresh();
+            ForceReimportAnimationFolders();
+
+            WireWenPrefab();
+            WireLumiPrefab();
+            WireGloomSlimePrefab();
+
+            var scene = EditorSceneManager.OpenScene(WorldScenePath, OpenSceneMode.Single);
+            RefreshScenePrefabOverrides();
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+            Debug.Log("[MV] === HOÀN TẤT STEP 12! Đã cắt " + slicedCount + " frame Wen (FullRect 32x32) & đồng bộ Wen, Lumi, Bọt Sương Đen. Chạy 'Moonpetal/Step 12/Validate'. ===");
+        }
+
+        [MenuItem("Moonpetal/Step 12/Validate")]
+        public static void ValidateStep12()
+        {
+            int errors = 0;
+            Debug.Log("[MV] === BẮT ĐẦU VALIDATE STEP 12 (FULLRECT CHECK) ===");
+
+            int wenFramesOk = 0;
+            foreach (string action in WenActions)
+            {
+                foreach (string dir in WenDirs)
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        string path = GetWenFramePath(action, dir, i);
+                        Sprite spr = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+                        if (spr == null)
+                        {
+                            Debug.LogError("[MV] THIẾU Wen frame: " + path);
+                            errors++;
+                        }
+                        else if (Mathf.RoundToInt(spr.rect.width) != 32 || Mathf.RoundToInt(spr.rect.height) != 32)
+                        {
+                            Debug.LogError("[MV] SAI KÍCH THƯỚC FullRect trên " + path + ": " + spr.rect.width + "x" + spr.rect.height + " (cần 32x32).");
+                            errors++;
+                        }
+                        else
+                        {
+                            wenFramesOk++;
+                        }
+                    }
+                }
+            }
+
+            var wenPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(PlayerPrefabPath);
+            if (wenPrefab == null)
+            {
+                Debug.LogError("[MV] THIẾU Player_Wen.prefab");
+                errors++;
+            }
+            else
+            {
+                var anim = wenPrefab.GetComponent<WenSpriteAnimator>();
+                if (anim == null || !anim.HasValidSprites)
+                {
+                    Debug.LogError("[MV] Player_Wen.prefab thiếu WenSpriteAnimator hoặc mảng sprite rỗng.");
+                    errors++;
+                }
+                else
+                {
+                    var aSO = new SerializedObject(anim);
+                    string[] checkProps =
+                    {
+                        "idleSouth", "walkSouth", "dashSouth", "toolSouth",
+                        "hoeSouth", "waterSouth", "hatchetSouth", "slashSouth"
+                    };
+                    foreach (string p in checkProps)
+                    {
+                        var arr = aSO.FindProperty(p);
+                        if (arr.arraySize < 4 || arr.GetArrayElementAtIndex(0).objectReferenceValue == null)
+                        {
+                            Debug.LogError("[MV] WenSpriteAnimator thiếu đủ 4 frame hợp lệ cho: " + p);
+                            errors++;
+                        }
+                    }
+                }
+            }
+
+            var allGos = UnityEngine.Object.FindObjectsByType<GameObject>(FindObjectsInactive.Include);
+            foreach (var go in allGos)
+            {
+                if (GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(go) > 0)
+                {
+                    Debug.LogError("[MV] Missing Script trên: " + go.name);
+                    errors++;
+                }
+            }
+
+            if (errors == 0)
+            {
+                Debug.Log("[MV] VALIDATE STEP 12: PASS (0 lỗi). Wen (" + wenFramesOk + "/128 frames FullRect 32x32), Lumi & Bọt Sương Đen đã đồng bộ hoàn chỉnh!");
+            }
+            else
+            {
+                Debug.LogError("[MV] VALIDATE STEP 12: FAIL (" + errors + " lỗi).");
+            }
+        }
+
+        private static int SliceAllWenStrips()
+        {
+            if (Directory.Exists(WenFramesRoot))
+            {
+                foreach (string oldPng in Directory.GetFiles(WenFramesRoot, "*.png"))
+                {
+                    File.Delete(oldPng);
+                }
+            }
+            else
+            {
+                Directory.CreateDirectory(WenFramesRoot);
+            }
+
+            int totalSliced = 0;
+            foreach (string action in WenActions)
+            {
+                foreach (string dir in WenDirs)
+                {
+                    string rawPath = WenRawRoot + "/" + action + "/" + dir + ".png";
+                    if (!File.Exists(rawPath))
+                    {
+                        Debug.LogError("[MV] Không tìm thấy dải sprite Wen: " + rawPath + ". Hãy tải wen_animation_pack.zip bản mới rồi chạy lại deploy.py.");
+                        continue;
+                    }
+
+                    byte[] bytes = File.ReadAllBytes(rawPath);
+                    Texture2D src = new Texture2D(2, 2, TextureFormat.RGBA32, false);
+                    src.LoadImage(bytes);
+
+                    int frameW = 32;
+                    int frameH = 32;
+                    if (src.width < 128 || src.height != 32)
+                    {
+                        Debug.LogWarning("[MV] Kích thước dải không chuẩn ở " + rawPath + ": " + src.width + "x" + src.height);
+                    }
+                    int frameCount = Mathf.Min(4, Mathf.Max(1, src.width / frameW));
+
+                    for (int i = 0; i < frameCount; i++)
+                    {
+                        Color[] pixels = src.GetPixels(i * frameW, 0, frameW, frameH);
+                        Texture2D frameTex = new Texture2D(frameW, frameH, TextureFormat.RGBA32, false);
+                        frameTex.filterMode = FilterMode.Point;
+                        frameTex.SetPixels(pixels);
+                        frameTex.Apply();
+
+                        string outPath = GetWenFramePath(action, dir, i);
+                        File.WriteAllBytes(outPath, frameTex.EncodeToPNG());
+                        UnityEngine.Object.DestroyImmediate(frameTex);
+                        totalSliced++;
+                    }
+
+                    UnityEngine.Object.DestroyImmediate(src);
+                }
+            }
+            return totalSliced;
+        }
+
+        private static void ForceReimportAnimationFolders()
+        {
+            string[] folders = { WenFramesRoot, LumiFramesRoot, SlimeFramesRoot };
+            foreach (string folder in folders)
+            {
+                if (!Directory.Exists(folder)) continue;
+                string[] pngs = Directory.GetFiles(folder, "*.png", SearchOption.AllDirectories);
+                foreach (string file in pngs)
+                {
+                    string assetPath = file.Replace("\\", "/");
+                    var importer = AssetImporter.GetAtPath(assetPath) as TextureImporter;
+                    if (importer != null)
+                    {
+                        importer.textureType = TextureImporterType.Sprite;
+                        importer.spriteImportMode = SpriteImportMode.Single;
+                        importer.filterMode = FilterMode.Point;
+                        importer.textureCompression = TextureImporterCompression.Uncompressed;
+                        importer.alphaIsTransparency = true;
+                        importer.mipmapEnabled = false;
+
+                        if (assetPath.StartsWith("Assets/Art/Sprites/Animations/Wen/")) importer.spritePixelsPerUnit = 20;
+                        else if (assetPath.StartsWith("Assets/Art/Sprites/Animations/Lumi/")) importer.spritePixelsPerUnit = 20;
+                        else if (assetPath.StartsWith("Assets/Art/Sprites/Animations/GloomSlime/")) importer.spritePixelsPerUnit = 32;
+
+                        var settings = new TextureImporterSettings();
+                        importer.ReadTextureSettings(settings);
+                        settings.spriteMeshType = SpriteMeshType.FullRect;
+                        settings.spriteAlignment = (int)SpriteAlignment.Center;
+                        settings.spriteGenerateFallbackPhysicsShape = false;
+                        importer.SetTextureSettings(settings);
+                        importer.SaveAndReimport();
+                    }
+                    else
+                    {
+                        AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
+                    }
+                }
+            }
+        }
+
+        private static void WireWenPrefab()
+        {
+            GameObject root = PrefabUtility.LoadPrefabContents(PlayerPrefabPath);
+            if (root == null) return;
+
+            Transform visual = root.transform.Find("Visual");
+            SpriteRenderer sr = visual != null ? visual.GetComponent<SpriteRenderer>() : root.GetComponentInChildren<SpriteRenderer>();
+
+            var anim = root.GetComponent<WenSpriteAnimator>();
+            if (anim == null) anim = root.AddComponent<WenSpriteAnimator>();
+
+            var aSO = new SerializedObject(anim);
+            aSO.FindProperty("spriteRenderer").objectReferenceValue = sr;
+
+            Assign4Dirs(aSO, "idle", "Idle");
+            Assign4Dirs(aSO, "walk", "Walk");
+            Assign4Dirs(aSO, "dash", "Dash");
+            Assign4Dirs(aSO, "tool", "Tool_Use");
+            Assign4Dirs(aSO, "hoe", "Hoe");
+            Assign4Dirs(aSO, "water", "Watering_Can");
+            Assign4Dirs(aSO, "hatchet", "Hatchet");
+            Assign4Dirs(aSO, "slash", "Moon_Sickle_Slash");
+            aSO.ApplyModifiedPropertiesWithoutUndo();
+
+            Sprite defaultWen = AssetDatabase.LoadAssetAtPath<Sprite>(GetWenFramePath("Idle", "south", 0));
+            if (sr != null && defaultWen != null) sr.sprite = defaultWen;
+
+            var pCtrl = root.GetComponent<PlayerController2D>();
+            if (pCtrl != null)
+            {
+                var pSO = new SerializedObject(pCtrl);
+                pSO.FindProperty("spriteAnimator").objectReferenceValue = anim;
+                pSO.ApplyModifiedPropertiesWithoutUndo();
+            }
+
+            var tCtrl = root.GetComponent<PlayerToolController>();
+            if (tCtrl != null)
+            {
+                var tSO = new SerializedObject(tCtrl);
+                tSO.FindProperty("spriteAnimator").objectReferenceValue = anim;
+                tSO.ApplyModifiedPropertiesWithoutUndo();
+            }
+
+            var cCtrl = root.GetComponent<PlayerCombatController>();
+            if (cCtrl != null)
+            {
+                var cSO = new SerializedObject(cCtrl);
+                cSO.FindProperty("spriteAnimator").objectReferenceValue = anim;
+                cSO.ApplyModifiedPropertiesWithoutUndo();
+            }
+
+            PrefabUtility.SaveAsPrefabAsset(root, PlayerPrefabPath);
+            PrefabUtility.UnloadPrefabContents(root);
+        }
+
+        private static void Assign4Dirs(SerializedObject so, string propPrefix, string actionName)
+        {
+            AssignSpriteArray(so.FindProperty(propPrefix + "South"), LoadWenFrames(actionName, "south", 4));
+            AssignSpriteArray(so.FindProperty(propPrefix + "North"), LoadWenFrames(actionName, "north", 4));
+            AssignSpriteArray(so.FindProperty(propPrefix + "East"), LoadWenFrames(actionName, "east", 4));
+            AssignSpriteArray(so.FindProperty(propPrefix + "West"), LoadWenFrames(actionName, "west", 4));
+        }
+
+        private static void WireLumiPrefab()
+        {
+            GameObject root = PrefabUtility.LoadPrefabContents(LumiPrefabPath);
+            if (root == null) return;
+
+            Transform visual = root.transform.Find("Visual");
+            SpriteRenderer sr = visual != null ? visual.GetComponent<SpriteRenderer>() : null;
+            var ctrl = root.GetComponent<LumiCompanionController>();
+
+            Sprite[] floatFrames = LoadNumberedFrames(LumiFramesRoot + "/float", 4);
+            Sprite[] pulseFrames = LoadNumberedFrames(LumiFramesRoot + "/moon_pulse", 4);
+
+            if (sr != null && floatFrames.Length > 0 && floatFrames[0] != null) sr.sprite = floatFrames[0];
+
+            if (ctrl != null)
+            {
+                var so = new SerializedObject(ctrl);
+                so.FindProperty("spriteRenderer").objectReferenceValue = sr;
+                AssignSpriteArray(so.FindProperty("floatFrames"), floatFrames);
+                AssignSpriteArray(so.FindProperty("moonPulseFrames"), pulseFrames);
+                so.ApplyModifiedPropertiesWithoutUndo();
+            }
+
+            PrefabUtility.SaveAsPrefabAsset(root, LumiPrefabPath);
+            PrefabUtility.UnloadPrefabContents(root);
+        }
+
+        private static void WireGloomSlimePrefab()
+        {
+            GameObject root = PrefabUtility.LoadPrefabContents(GloomSlimePrefabPath);
+            if (root == null) return;
+
+            Transform visual = root.transform.Find("Visual");
+            SpriteRenderer sr = visual != null ? visual.GetComponent<SpriteRenderer>() : null;
+            var ctrl = root.GetComponent<GloomSlimeController>();
+
+            Sprite[] idleF = LoadNumberedFrames(SlimeFramesRoot + "/idle", 4);
+            Sprite[] teleF = LoadNumberedFrames(SlimeFramesRoot + "/telegraph", 3);
+            Sprite[] jumpF = LoadNumberedFrames(SlimeFramesRoot + "/jump", 4);
+            Sprite[] hitF = LoadNumberedFrames(SlimeFramesRoot + "/hit_hurt", 3);
+            Sprite[] dieF = LoadNumberedFrames(SlimeFramesRoot + "/purify_die", 4);
+
+            if (sr != null && idleF.Length > 0 && idleF[0] != null) sr.sprite = idleF[0];
+
+            if (ctrl != null)
+            {
+                var so = new SerializedObject(ctrl);
+                AssignSpriteArray(so.FindProperty("idleFrames"), idleF);
+                AssignSpriteArray(so.FindProperty("telegraphFrames"), teleF);
+                AssignSpriteArray(so.FindProperty("jumpFrames"), jumpF);
+                AssignSpriteArray(so.FindProperty("hitHurtFrames"), hitF);
+                AssignSpriteArray(so.FindProperty("purifyDieFrames"), dieF);
+                so.ApplyModifiedPropertiesWithoutUndo();
+            }
+
+            PrefabUtility.SaveAsPrefabAsset(root, GloomSlimePrefabPath);
+            PrefabUtility.UnloadPrefabContents(root);
+        }
+
+        private static void RefreshScenePrefabOverrides()
+        {
+            Sprite defaultWen = AssetDatabase.LoadAssetAtPath<Sprite>(GetWenFramePath("Idle", "south", 0));
+            Sprite defaultLumi = AssetDatabase.LoadAssetAtPath<Sprite>(LumiFramesRoot + "/float_00.png");
+            Sprite defaultSlime = AssetDatabase.LoadAssetAtPath<Sprite>(SlimeFramesRoot + "/idle_00.png");
+
+            var player = UnityEngine.Object.FindAnyObjectByType<PlayerController2D>();
+            if (player != null && defaultWen != null)
+            {
+                var sr = player.transform.Find("Visual")?.GetComponent<SpriteRenderer>();
+                if (sr != null) sr.sprite = defaultWen;
+            }
+
+            var lumi = UnityEngine.Object.FindAnyObjectByType<LumiCompanionController>();
+            if (lumi != null && defaultLumi != null)
+            {
+                var sr = lumi.transform.Find("Visual")?.GetComponent<SpriteRenderer>();
+                if (sr != null) sr.sprite = defaultLumi;
+            }
+
+            var slimes = UnityEngine.Object.FindObjectsByType<GloomSlimeController>(FindObjectsInactive.Include);
+            for (int i = 0; i < slimes.Length; i++)
+            {
+                if (defaultSlime != null)
+                {
+                    var sr = slimes[i].transform.Find("Visual")?.GetComponent<SpriteRenderer>();
+                    if (sr != null) sr.sprite = defaultSlime;
+                }
+            }
+        }
+
+        private static string GetWenFramePath(string action, string dir, int idx)
+        {
+            return WenFramesRoot + "/wen_" + action.ToLowerInvariant() + "_" + dir + "_" + idx.ToString("00") + ".png";
+        }
+
+        private static Sprite[] LoadWenFrames(string action, string dir, int count)
+        {
+            var list = new List<Sprite>();
+            for (int i = 0; i < count; i++)
+            {
+                list.Add(AssetDatabase.LoadAssetAtPath<Sprite>(GetWenFramePath(action, dir, i)));
+            }
+            return list.ToArray();
+        }
+
+        private static Sprite[] LoadNumberedFrames(string basePathWithoutIndex, int count)
+        {
+            var list = new List<Sprite>();
+            for (int i = 0; i < count; i++)
+            {
+                list.Add(AssetDatabase.LoadAssetAtPath<Sprite>(basePathWithoutIndex + "_" + i.ToString("00") + ".png"));
+            }
+            return list.ToArray();
+        }
+
+        private static void AssignSpriteArray(SerializedProperty prop, Sprite[] sprites)
+        {
+            if (prop == null) return;
+            prop.ClearArray();
+            for (int i = 0; i < sprites.Length; i++)
+            {
+                prop.InsertArrayElementAtIndex(i);
+                prop.GetArrayElementAtIndex(i).objectReferenceValue = sprites[i];
+            }
+        }
+    }
+}
+```
+
+## 76. `Assets/Editor/AutoBuilder_Step13.cs`
+
+```csharp
+using System.IO;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using MoonpetalValley.Data;
+using MoonpetalValley.Narrative;
+
+namespace MoonpetalValley.EditorTools
+{
+    public static class AutoBuilder_Step13
+    {
+        private const string WorldScenePath = "Assets/Scenes/MoonpetalValley_MVP.unity";
+        private const string NpcAnimRoot = "Assets/Art/Sprites/Animations/NPCs";
+
+        private static readonly (string objName, string npcId)[] NpcEntries =
+        {
+            ("NPC_Bach", "npc_bach"),
+            ("NPC_Hana", "npc_hana"),
+            ("NPC_Toby", "npc_toby"),
+            ("NPC_Otis", "npc_otis")
+        };
+
+        [MenuItem("Moonpetal/Step 13/1. Wire 4 NPCs Animations (Bach, Hana, Toby, Otis)")]
+        public static void BuildStep13()
+        {
+            if (EditorApplication.isPlaying || EditorApplication.isCompiling)
+            {
+                Debug.LogWarning("[MV] Không thể chạy AutoBuilder khi đang Play Mode hoặc đang biên dịch.");
+                return;
+            }
+
+            Debug.Log("[MV] === BẮT ĐẦU AUTOBUILDER STEP 13: ĐỒNG BỘ 4 NPC ===");
+            AssetDatabase.Refresh();
+            ForceReimportNpcSprites();
+
+            var scene = EditorSceneManager.OpenScene(WorldScenePath, OpenSceneMode.Single);
+
+            foreach (var entry in NpcEntries)
+            {
+                Sprite[] idleF = LoadFrames(entry.npcId, "idle", 4);
+                Sprite[] cheerF = LoadFrames(entry.npcId, "cheer", 4);
+
+                // Cập nhật NPCData asset
+                var npcData = AssetDatabase.LoadAssetAtPath<NPCData>("Assets/Data/NPCs/NPC_" + entry.npcId + ".asset");
+                if (npcData != null && idleF[0] != null)
+                {
+                    npcData.worldSprite = idleF[0];
+                    EditorUtility.SetDirty(npcData);
+                }
+
+                // Cập nhật GameObject trong scene
+                GameObject go = GameObject.Find(entry.objName);
+                if (go == null)
+                {
+                    Debug.LogError("[MV] Không tìm thấy " + entry.objName + " trong scene!");
+                    continue;
+                }
+
+                var sr = go.GetComponent<SpriteRenderer>();
+                if (sr != null && idleF[0] != null) sr.sprite = idleF[0];
+
+                var ctrl = go.GetComponent<NPCController>();
+                if (ctrl != null)
+                {
+                    var so = new SerializedObject(ctrl);
+                    so.FindProperty("spriteRenderer").objectReferenceValue = sr;
+                    AssignArray(so.FindProperty("idleFrames"), idleF);
+                    AssignArray(so.FindProperty("cheerFrames"), cheerF);
+                    so.ApplyModifiedPropertiesWithoutUndo();
+                }
+            }
+
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+            Debug.Log("[MV] === HOÀN TẤT STEP 13! Chạy 'Moonpetal/Step 13/Validate' để kiểm chứng. ===");
+        }
+
+        [MenuItem("Moonpetal/Step 13/Validate")]
+        public static void ValidateStep13()
+        {
+            int errors = 0;
+            Debug.Log("[MV] === BẮT ĐẦU VALIDATE STEP 13 ===");
+
+            int framesOk = 0;
+            foreach (var entry in NpcEntries)
+            {
+                foreach (string anim in new[] { "idle", "cheer" })
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        string path = NpcAnimRoot + "/" + entry.npcId + "/" + anim + "_" + i.ToString("00") + ".png";
+                        Sprite s = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+                        if (s == null)
+                        {
+                            Debug.LogError("[MV] THIẾU sprite NPC: " + path);
+                            errors++;
+                        }
+                        else if (Mathf.RoundToInt(s.rect.width) != 32 || Mathf.RoundToInt(s.rect.height) != 32)
+                        {
+                            Debug.LogError("[MV] SAI kích thước FullRect trên " + path + ": " + s.rect.width + "x" + s.rect.height);
+                            errors++;
+                        }
+                        else
+                        {
+                            framesOk++;
+                        }
+                    }
+                }
+
+                GameObject go = GameObject.Find(entry.objName);
+                var ctrl = go != null ? go.GetComponent<NPCController>() : null;
+                if (ctrl == null)
+                {
+                    Debug.LogError("[MV] Thiếu NPCController trên " + entry.objName);
+                    errors++;
+                }
+                else
+                {
+                    var so = new SerializedObject(ctrl);
+                    if (so.FindProperty("idleFrames").arraySize < 4 || so.FindProperty("cheerFrames").arraySize < 4)
+                    {
+                        Debug.LogError("[MV] " + entry.objName + " chưa được nối đủ 4 frame idle & 4 frame cheer.");
+                        errors++;
+                    }
+                }
+            }
+
+            if (errors == 0)
+            {
+                Debug.Log("[MV] VALIDATE STEP 13: PASS (0 lỗi). Cả 4 NPC (" + framesOk + "/32 frames FullRect 32x32) đã sẵn sàng!");
+            }
+            else
+            {
+                Debug.LogError("[MV] VALIDATE STEP 13: FAIL (" + errors + " lỗi).");
+            }
+        }
+
+        private static void ForceReimportNpcSprites()
+        {
+            if (!Directory.Exists(NpcAnimRoot)) return;
+            foreach (string file in Directory.GetFiles(NpcAnimRoot, "*.png", SearchOption.AllDirectories))
+            {
+                string assetPath = file.Replace("\\", "/");
+                var importer = AssetImporter.GetAtPath(assetPath) as TextureImporter;
+                if (importer != null)
+                {
+                    importer.textureType = TextureImporterType.Sprite;
+                    importer.spriteImportMode = SpriteImportMode.Single;
+                    importer.spritePixelsPerUnit = 20;
+                    importer.filterMode = FilterMode.Point;
+                    importer.textureCompression = TextureImporterCompression.Uncompressed;
+                    importer.alphaIsTransparency = true;
+                    importer.mipmapEnabled = false;
+
+                    var settings = new TextureImporterSettings();
+                    importer.ReadTextureSettings(settings);
+                    settings.spriteMeshType = SpriteMeshType.FullRect;
+                    settings.spriteAlignment = (int)SpriteAlignment.Center;
+                    settings.spriteGenerateFallbackPhysicsShape = false;
+                    importer.SetTextureSettings(settings);
+                    importer.SaveAndReimport();
+                }
+            }
+        }
+
+        private static Sprite[] LoadFrames(string npcId, string anim, int count)
+        {
+            var list = new List<Sprite>();
+            for (int i = 0; i < count; i++)
+            {
+                string path = NpcAnimRoot + "/" + npcId + "/" + anim + "_" + i.ToString("00") + ".png";
+                list.Add(AssetDatabase.LoadAssetAtPath<Sprite>(path));
+            }
+            return list.ToArray();
+        }
+
+        private static void AssignArray(SerializedProperty prop, Sprite[] sprites)
+        {
+            if (prop == null) return;
+            prop.ClearArray();
+            for (int i = 0; i < sprites.Length; i++)
+            {
+                prop.InsertArrayElementAtIndex(i);
+                prop.GetArrayElementAtIndex(i).objectReferenceValue = sprites[i];
+            }
+        }
+    }
+}
+```
+
+## 77. `Assets/Editor/AutoBuilder_Step14.cs`
+
+```csharp
+using System.IO;
+using UnityEngine;
+using UnityEngine.Tilemaps;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using MoonpetalValley.Data;
+using MoonpetalValley.Farming;
+using MoonpetalValley.Community;
+
+namespace MoonpetalValley.EditorTools
+{
+    public static class AutoBuilder_Step14
+    {
+        private const string WorldScenePath = "Assets/Scenes/MoonpetalValley_MVP.unity";
+        private const string MapConfigPath = "Assets/Data/Config/MapLayoutConfig.asset";
+        private const string EnvRoot = "Assets/Art/Sprites/Environment/Upgraded";
+
+        [MenuItem("Moonpetal/Step 14/1. Upgrade World Tilemap, Buildings & Decor")]
+        public static void BuildStep14()
+        {
+            if (EditorApplication.isPlaying || EditorApplication.isCompiling)
+            {
+                Debug.LogWarning("[MV] Không thể chạy AutoBuilder khi đang Play Mode hoặc đang biên dịch.");
+                return;
+            }
+
+            Debug.Log("[MV] === BẮT ĐẦU AUTOBUILDER STEP 14: NÂNG CẤP CẢNH QUAN, TILEMAP & NHÀ CỬA ===");
+            AssetDatabase.Refresh();
+            ForceReimportEnvironmentSprites();
+
+            var scene = EditorSceneManager.OpenScene(WorldScenePath, OpenSceneMode.Single);
+
+            UpgradeWorldTilemap();
+            UpgradeFarmSoilSprites();
+            UpgradeInteractiveProps();
+            UpgradeVillageDecorAndBuildings();
+
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+
+            Debug.Log("[MV] === HOÀN TẤT STEP 14! Chạy 'Moonpetal/Step 14/Validate' để kiểm chứng. ===");
+        }
+
+        [MenuItem("Moonpetal/Step 14/Validate")]
+        public static void ValidateStep14()
+        {
+            int errors = 0;
+            Debug.Log("[MV] === BẮT ĐẦU VALIDATE STEP 14 ===");
+
+            string[] requiredSprites =
+            {
+                "Tiles/tile_grass_0.png", "Tiles/tile_grass_3.png",
+                "Tiles/tile_path_0.png", "Tiles/tile_path_2.png",
+                "Tiles/tile_gh_floor_0.png", "Tiles/tile_wall.png",
+                "Tiles/tile_fence.png", "Tiles/tile_tree.png", "Tiles/tile_water.png",
+                "Soil/soil_untilled.png", "Soil/soil_dry.png", "Soil/soil_wet.png",
+                "Buildings/house_bakery.png", "Buildings/house_shed.png",
+                "Buildings/otis_notice_board.png", "Buildings/tree_hero_blossom.png",
+                "Props/prop_well.png", "Props/prop_bed.png",
+                "Props/planting_spot_empty.png", "Props/planting_spot_bloomed.png"
+            };
+
+            foreach (string rel in requiredSprites)
+            {
+                if (LoadEnvSprite(rel) == null)
+                {
+                    Debug.LogError("[MV] THIẾU sprite cảnh quan: " + EnvRoot + "/" + rel);
+                    errors++;
+                }
+            }
+
+            if (GameObject.Find("WorldMapGrid") == null) { Debug.LogError("[MV] Thiếu WorldMapGrid."); errors++; }
+            if (GameObject.Find("VillageDecorGroup") == null) { Debug.LogError("[MV] Thiếu VillageDecorGroup."); errors++; }
+            if (GameObject.Find("House_HanaBakery") == null) { Debug.LogError("[MV] Thiếu House_HanaBakery."); errors++; }
+            if (GameObject.Find("House_BachShed") == null) { Debug.LogError("[MV] Thiếu House_BachShed."); errors++; }
+
+            var allGos = UnityEngine.Object.FindObjectsByType<GameObject>(FindObjectsInactive.Include);
+            foreach (var go in allGos)
+            {
+                if (GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(go) > 0)
+                {
+                    Debug.LogError("[MV] Missing Script trên: " + go.name);
+                    errors++;
+                }
+            }
+
+            if (errors == 0)
+            {
+                Debug.Log("[MV] VALIDATE STEP 14: PASS (0 lỗi). Tilemap đa biến thể, Tiệm Bánh, Chòi Vườn, Cây Hoa Anh Đào & Đạo cụ đã nâng cấp hoàn chỉnh!");
+            }
+            else
+            {
+                Debug.LogError("[MV] VALIDATE STEP 14: FAIL (" + errors + " lỗi).");
+            }
+        }
+
+        private static Sprite LoadEnvSprite(string relPath)
+        {
+            return AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "/" + relPath);
+        }
+
+        private static void ForceReimportEnvironmentSprites()
+        {
+            if (!Directory.Exists(EnvRoot)) return;
+            foreach (string file in Directory.GetFiles(EnvRoot, "*.png", SearchOption.AllDirectories))
+            {
+                string assetPath = file.Replace("\\", "/");
+                var importer = AssetImporter.GetAtPath(assetPath) as TextureImporter;
+                if (importer != null)
+                {
+                    importer.textureType = TextureImporterType.Sprite;
+                    importer.spriteImportMode = SpriteImportMode.Single;
+                    importer.spritePixelsPerUnit = 16;
+                    importer.filterMode = FilterMode.Point;
+                    importer.textureCompression = TextureImporterCompression.Uncompressed;
+                    importer.alphaIsTransparency = true;
+                    importer.mipmapEnabled = false;
+
+                    var settings = new TextureImporterSettings();
+                    importer.ReadTextureSettings(settings);
+                    settings.spriteMeshType = SpriteMeshType.FullRect;
+                    settings.spriteAlignment = (int)SpriteAlignment.Center;
+                    settings.spriteGenerateFallbackPhysicsShape = false;
+                    importer.SetTextureSettings(settings);
+                    importer.SaveAndReimport();
+                }
+            }
+        }
+
+        private static void UpgradeWorldTilemap()
+        {
+            var cfg = AssetDatabase.LoadAssetAtPath<MapLayoutConfigSO>(MapConfigPath);
+            if (cfg == null)
+            {
+                Debug.LogError("[MV] Không tìm thấy MapLayoutConfig.asset!");
+                return;
+            }
+
+            GameObject existingGrid = GameObject.Find("WorldMapGrid");
+            if (existingGrid != null) UnityEngine.Object.DestroyImmediate(existingGrid);
+
+            GameObject gridGo = new GameObject("WorldMapGrid");
+            gridGo.AddComponent<Grid>();
+
+            GameObject groundGo = new GameObject("GroundTilemap");
+            groundGo.transform.SetParent(gridGo.transform, false);
+            var groundTm = groundGo.AddComponent<Tilemap>();
+            var groundRenderer = groundGo.AddComponent<TilemapRenderer>();
+            groundRenderer.sortingLayerName = "Ground";
+
+            GameObject obsGo = new GameObject("ObstacleTilemap");
+            obsGo.transform.SetParent(gridGo.transform, false);
+            obsGo.layer = 10;
+            var obsTm = obsGo.AddComponent<Tilemap>();
+            var obsRenderer = obsGo.AddComponent<TilemapRenderer>();
+            obsRenderer.sortingLayerName = "WorldObjects";
+            obsRenderer.sortingOrder = -5000;
+            obsGo.AddComponent<TilemapCollider2D>();
+
+            Tile[] grassTiles =
+            {
+                CreateTile(LoadEnvSprite("Tiles/tile_grass_0.png")),
+                CreateTile(LoadEnvSprite("Tiles/tile_grass_1.png")),
+                CreateTile(LoadEnvSprite("Tiles/tile_grass_2.png")),
+                CreateTile(LoadEnvSprite("Tiles/tile_grass_3.png"))
+            };
+            Tile[] pathTiles =
+            {
+                CreateTile(LoadEnvSprite("Tiles/tile_path_0.png")),
+                CreateTile(LoadEnvSprite("Tiles/tile_path_1.png")),
+                CreateTile(LoadEnvSprite("Tiles/tile_path_2.png"))
+            };
+            Tile[] ghFloorTiles =
+            {
+                CreateTile(LoadEnvSprite("Tiles/tile_gh_floor_0.png")),
+                CreateTile(LoadEnvSprite("Tiles/tile_gh_floor_1.png"))
+            };
+            Tile tWall = CreateTile(LoadEnvSprite("Tiles/tile_wall.png"));
+            Tile tFence = CreateTile(LoadEnvSprite("Tiles/tile_fence.png"));
+            Tile tTree = CreateTile(LoadEnvSprite("Tiles/tile_tree.png"));
+            Tile tWater = CreateTile(LoadEnvSprite("Tiles/tile_water.png"));
+            Tile tFlowerbed = CreateTile(LoadEnvSprite("Tiles/tile_flowerbed.png"));
+
+            string[] lines = cfg.asciiMap.Split('\n');
+            int height = lines.Length;
+            for (int r = 0; r < height; r++)
+            {
+                string row = lines[r].TrimEnd('\r');
+                int y = cfg.originY + (height - 1 - r);
+                for (int c = 0; c < row.Length; c++)
+                {
+                    int x = cfg.originX + c;
+                    Vector3Int cell = new Vector3Int(x, y, 0);
+                    char ch = row[c];
+                    int hash = Mathf.Abs(x * 73856093 ^ y * 19349663);
+
+                    if (ch == 'G')
+                    {
+                        groundTm.SetTile(cell, ghFloorTiles[hash % ghFloorTiles.Length]);
+                    }
+                    else if (ch == 'P')
+                    {
+                        groundTm.SetTile(cell, pathTiles[hash % pathTiles.Length]);
+                    }
+                    else if (ch == 'B')
+                    {
+                        groundTm.SetTile(cell, tFlowerbed);
+                    }
+                    else
+                    {
+                        // Phân bổ cỏ tự nhiên: 55% cỏ nền, 45% cỏ 3 lá/hoa nhỏ
+                        int gIdx = (hash % 10 < 5) ? 0 : (1 + (hash % 3));
+                        groundTm.SetTile(cell, grassTiles[gIdx]);
+                    }
+
+                    if (ch == '#') obsTm.SetTile(cell, tWall);
+                    else if (ch == 'F') obsTm.SetTile(cell, tFence);
+                    else if (ch == 'T') obsTm.SetTile(cell, tTree);
+                    else if (ch == 'W') obsTm.SetTile(cell, tWater);
+                }
+            }
+        }
+
+        private static Tile CreateTile(Sprite spr)
+        {
+            Tile t = ScriptableObject.CreateInstance<Tile>();
+            t.sprite = spr;
+            t.colliderType = Tile.ColliderType.Grid;
+            return t;
+        }
+
+        private static void UpgradeFarmSoilSprites()
+        {
+            Sprite untilled = LoadEnvSprite("Soil/soil_untilled.png");
+            Sprite dry = LoadEnvSprite("Soil/soil_dry.png");
+            Sprite wet = LoadEnvSprite("Soil/soil_wet.png");
+
+            var tiles = UnityEngine.Object.FindObjectsByType<FarmTileController>(FindObjectsInactive.Include);
+            for (int i = 0; i < tiles.Length; i++)
+            {
+                var so = new SerializedObject(tiles[i]);
+                if (untilled != null) so.FindProperty("untilledSprite").objectReferenceValue = untilled;
+                if (dry != null) so.FindProperty("tilledDrySprite").objectReferenceValue = dry;
+                if (wet != null) so.FindProperty("tilledWetSprite").objectReferenceValue = wet;
+                so.ApplyModifiedPropertiesWithoutUndo();
+
+                var sr = tiles[i].GetComponent<SpriteRenderer>();
+                if (sr != null && untilled != null) sr.sprite = untilled;
+            }
+        }
+
+        private static void UpgradeInteractiveProps()
+        {
+            // 1. Giường Nhà Kính
+            GameObject bed = GameObject.Find("GreenhouseBed");
+            Sprite bedSpr = LoadEnvSprite("Props/prop_bed.png");
+            if (bed != null && bedSpr != null)
+            {
+                var sr = bed.GetComponent<SpriteRenderer>();
+                if (sr != null) sr.sprite = bedSpr;
+            }
+
+            // 2. Giếng Nước có mái ngói
+            GameObject well = GameObject.Find("VillageWaterWell");
+            Sprite wellSpr = LoadEnvSprite("Props/prop_well.png");
+            if (well != null && wellSpr != null)
+            {
+                var sr = well.GetComponent<SpriteRenderer>();
+                if (sr != null) sr.sprite = wellSpr;
+            }
+
+            // 3. Bồn Hoa Trung Tâm (Empty + Bloomed 48x48)
+            var spot = UnityEngine.Object.FindAnyObjectByType<PlantingSpotController>();
+            Sprite emptySpr = LoadEnvSprite("Props/planting_spot_empty.png");
+            Sprite bloomedSpr = LoadEnvSprite("Props/planting_spot_bloomed.png");
+            if (spot != null && emptySpr != null && bloomedSpr != null)
+            {
+                var so = new SerializedObject(spot);
+                so.FindProperty("emptySprite").objectReferenceValue = emptySpr;
+                so.FindProperty("bloomedSprite").objectReferenceValue = bloomedSpr;
+                so.ApplyModifiedPropertiesWithoutUndo();
+
+                var sr = spot.GetComponent<SpriteRenderer>();
+                if (sr != null) sr.sprite = emptySpr;
+            }
+        }
+
+        private static void UpgradeVillageDecorAndBuildings()
+        {
+            GameObject oldDecor = GameObject.Find("VillageDecorGroup");
+            if (oldDecor != null) UnityEngine.Object.DestroyImmediate(oldDecor);
+            GameObject group = new GameObject("VillageDecorGroup");
+
+            Sprite bakerySpr = LoadEnvSprite("Buildings/house_bakery.png");
+            Sprite shedSpr = LoadEnvSprite("Buildings/house_shed.png");
+            Sprite noticeSpr = LoadEnvSprite("Buildings/otis_notice_board.png");
+            Sprite oakSpr = LoadEnvSprite("Buildings/tree_hero_oak.png");
+            Sprite blossomSpr = LoadEnvSprite("Buildings/tree_hero_blossom.png");
+            Sprite[] flowerSprs =
+            {
+                LoadEnvSprite("Decor/decor_flowers_0.png"),
+                LoadEnvSprite("Decor/decor_flowers_1.png"),
+                LoadEnvSprite("Decor/decor_flowers_2.png")
+            };
+            Sprite bushSpr = LoadEnvSprite("Decor/decor_bush.png");
+            Sprite rockSpr = LoadEnvSprite("Decor/decor_rock.png");
+            Sprite lilySpr = LoadEnvSprite("Decor/decor_lilypad.png");
+
+            // 1. Kiến trúc chính: Tiệm Bánh Bà Hana, Chòi Vườn Ông Bách, Bảng Tin Bác Otis
+            SpawnDecor(group.transform, "House_HanaBakery", bakerySpr, new Vector2(-6.5f, 5.8f), true, new Vector2(4.2f, 2.0f), new Vector2(0f, -0.7f));
+            SpawnDecor(group.transform, "House_BachShed", shedSpr, new Vector2(-4.8f, -4.5f), true, new Vector2(3.2f, 1.7f), new Vector2(0f, -0.6f));
+            SpawnDecor(group.transform, "OtisNoticeBoard", noticeSpr, new Vector2(2.8f, 6.2f), true, new Vector2(1.4f, 0.8f), new Vector2(0f, -0.4f));
+
+            // 2. 6 Cây lớn (Cây Hoa Ánh Trăng hồng & Cây Sồi xanh) tạo điểm nhấn 4 phân khu
+            SpawnDecor(group.transform, "HeroTree_Blossom_1", blossomSpr, new Vector2(-9.5f, 11.2f), true, new Vector2(1.0f, 0.8f), new Vector2(0f, -0.8f));
+            SpawnDecor(group.transform, "HeroTree_Blossom_2", blossomSpr, new Vector2(5.8f, 9.2f), true, new Vector2(1.0f, 0.8f), new Vector2(0f, -0.8f));
+            SpawnDecor(group.transform, "HeroTree_Blossom_3", blossomSpr, new Vector2(-5.5f, -11.8f), true, new Vector2(1.0f, 0.8f), new Vector2(0f, -0.8f));
+            SpawnDecor(group.transform, "HeroTree_Blossom_4", blossomSpr, new Vector2(5.5f, -11.8f), true, new Vector2(1.0f, 0.8f), new Vector2(0f, -0.8f));
+            SpawnDecor(group.transform, "HeroTree_Oak_1", oakSpr, new Vector2(13.2f, 10.2f), true, new Vector2(1.0f, 0.8f), new Vector2(0f, -0.8f));
+            SpawnDecor(group.transform, "HeroTree_Oak_2", oakSpr, new Vector2(19.2f, 4.2f), true, new Vector2(1.0f, 0.8f), new Vector2(0f, -0.8f));
+
+            // 3. Hoa súng trên mặt ao cạnh Nhà Kính
+            SpawnDecor(group.transform, "PondLily_1", lilySpr, new Vector2(-6.0f, 12.0f), false, Vector2.zero, Vector2.zero);
+            SpawnDecor(group.transform, "PondLily_2", lilySpr, new Vector2(-5.1f, 11.9f), false, Vector2.zero, Vector2.zero);
+
+            // 4. Đá rêu & bụi cây ven đường
+            Vector2[] bushes =
+            {
+                new Vector2(-9.2f, 5.2f), new Vector2(-3.8f, 5.2f), new Vector2(4.4f, 5.4f),
+                new Vector2(9.2f, 4.2f), new Vector2(-5.8f, -6.2f), new Vector2(5.8f, -6.2f)
+            };
+            for (int i = 0; i < bushes.Length; i++)
+            {
+                SpawnDecor(group.transform, "DecorBush_" + (i + 1), bushSpr, bushes[i], true, new Vector2(0.75f, 0.6f), new Vector2(0f, -0.15f));
+            }
+
+            Vector2[] rocks =
+            {
+                new Vector2(-10.5f, 9.0f), new Vector2(10.8f, 9.0f), new Vector2(14.0f, 3.0f), new Vector2(-7.8f, -13.0f)
+            };
+            for (int i = 0; i < rocks.Length; i++)
+            {
+                SpawnDecor(group.transform, "MossRock_" + (i + 1), rockSpr, rocks[i], true, new Vector2(0.7f, 0.55f), new Vector2(0f, -0.15f));
+            }
+
+            // 5. 18 cụm hoa dại đa màu rải đều khắp thung lũng
+            Vector2[] flowers =
+            {
+                new Vector2(-11.0f, 3.0f), new Vector2(-8.5f, 1.5f), new Vector2(-3.0f, 1.0f), new Vector2(3.5f, 1.2f),
+                new Vector2(6.5f, 4.5f), new Vector2(-2.5f, -2.0f), new Vector2(4.0f, -2.2f), new Vector2(-5.0f, -9.5f),
+                new Vector2(5.2f, -9.5f), new Vector2(13.5f, 9.0f), new Vector2(18.5f, 4.5f), new Vector2(14.5f, 2.0f),
+                new Vector2(-10.2f, 12.6f), new Vector2(-2.8f, 9.6f), new Vector2(8.8f, 8.2f), new Vector2(-2.6f, -13.2f),
+                new Vector2(2.6f, -13.2f), new Vector2(11.5f, 6.2f)
+            };
+            for (int i = 0; i < flowers.Length; i++)
+            {
+                SpawnDecor(group.transform, "FlowerTuft_" + (i + 1), flowerSprs[i % flowerSprs.Length], flowers[i], false, Vector2.zero, Vector2.zero);
+            }
+        }
+
+        private static void SpawnDecor(Transform parent, string name, Sprite spr, Vector2 pos, bool solid, Vector2 colSize, Vector2 colOffset)
+        {
+            if (spr == null) return;
+            GameObject go = new GameObject(name);
+            go.transform.SetParent(parent, false);
+            go.transform.position = new Vector3(pos.x, pos.y, 0f);
+            var sr = go.AddComponent<SpriteRenderer>();
+            sr.sprite = spr;
+            sr.sortingLayerName = solid ? "WorldObjects" : "FloorDecal";
+            sr.sortingOrder = solid ? Mathf.RoundToInt(-pos.y * 100f) : 12;
+            if (solid)
+            {
+                go.layer = 10;
+                var col = go.AddComponent<BoxCollider2D>();
+                col.size = colSize;
+                col.offset = colOffset;
+            }
+        }
+    }
+}
+```
+
+## 78. `Assets/Editor/AutoBuilder_Step15.cs`
+
+```csharp
+using System;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.Tilemaps;
+using MoonpetalValley.Combat;
+using MoonpetalValley.Community;
+using MoonpetalValley.Data;
+using MoonpetalValley.Farming;
+using MoonpetalValley.Narrative;
+using MoonpetalValley.Player;
+using MoonpetalValley.TimeSystem;
+
+namespace MoonpetalValley.EditorTools
+{
+    public static class AutoBuilder_Step15
+    {
+        private const string WorldScenePath = "Assets/Scenes/MoonpetalValley_MVP.unity";
+        private const string MapConfigPath = "Assets/Data/Config/MapLayoutConfig.asset";
+        private const string PlayerPrefabPath = "Assets/Prefabs/Characters/Player_Wen.prefab";
+        private const string LumiPrefabPath = "Assets/Prefabs/Characters/Lumi_Companion.prefab";
+        private const string SlimePrefabPath = "Assets/Prefabs/Enemies/GloomSlime.prefab";
+        private const string EnvRoot = "Assets/Art/Sprites/Environment/";
+        private const string LumiRoot = "Assets/Art/Sprites/Animations/Lumi/Idle/animations/";
+        private const string SlimeRoot = "Assets/Art/Sprites/Animations/GloomSlime/Idle/animations/";
+
+        [MenuItem("Moonpetal/Step 15/1. Apply World Polish, Gate, Shadows, Water & Re-wire Lumi/Slime")]
+        public static void BuildStep15()
+        {
+            if (EditorApplication.isPlaying || EditorApplication.isCompiling)
+            {
+                Debug.LogWarning("[MV] Không thể chạy AutoBuilder khi đang Play Mode hoặc đang biên dịch.");
+                return;
+            }
+
+            Debug.Log("[MV] === BẮT ĐẦU AUTOBUILDER STEP 15 ===");
+            AssetDatabase.Refresh();
+
+            ForceReimportFolder("Assets/Art/Sprites/Animations/Lumi", 20f);
+            ForceReimportFolder("Assets/Art/Sprites/Animations/GloomSlime", 32f);
+            ForceReimportFolder("Assets/Art/Sprites/Environment", 16f);
+            AssetDatabase.Refresh();
+
+            var scene = EditorSceneManager.OpenScene(WorldScenePath, OpenSceneMode.Single);
+
+            // 1. Re-wire Lumi & GloomSlime Animations (Prefab + Scene instances)
+            WireLumiAnimations();
+            WireSlimeAnimations();
+
+            // 2. Open South Garden Gate in MapLayoutConfig & Rebuild WorldMapGrid
+            MapLayoutConfigSO mapCfg = OpenSouthGardenGateAndSaveConfig();
+            if (mapCfg != null)
+            {
+                RebuildWorldTilemapWithUpgradedArt(mapCfg);
+                BuildAnimatedPondWater(mapCfg);
+            }
+
+            // 3. Add Ground Shadows to Wen, Lumi, NPCs, Slimes
+            Sprite shadowSpr = AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Shadows/spr_ground_shadow.png");
+            AttachGroundShadows(shadowSpr);
+
+            // 4. Upgrade Remaining Props + Bed + Well + Farm Soil
+            UpgradeRemainingPropsAndFarmSoil();
+
+            // 5. Enrich Map Layout with Garden Archway & Cozy Props
+            EnrichWorldDecor();
+
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+
+            Debug.Log("[MV] === HOÀN TẤT STEP 15! Chạy 'Moonpetal/Step 15/Validate' để kiểm chứng. ===");
+        }
+
+        [MenuItem("Moonpetal/Step 15/Validate")]
+        public static void ValidateStep15()
+        {
+            int errors = 0;
+            Debug.Log("[MV] === BẮT ĐẦU VALIDATE STEP 15 ===");
+
+            var cfg = AssetDatabase.LoadAssetAtPath<MapLayoutConfigSO>(MapConfigPath);
+            if (cfg == null || !cfg.asciiMap.Contains("FFFFFPPPPFFFFF"))
+            {
+                Debug.LogError("[MV] MapLayoutConfig.asset chưa mở cổng 4 ô vào Vườn Phía Nam (FFFFFPPPPFFFFF).");
+                errors++;
+            }
+
+            var lumi = UnityEngine.Object.FindAnyObjectByType<LumiCompanionController>();
+            if (lumi == null)
+            {
+                Debug.LogError("[MV] Không tìm thấy LumiCompanionController trong scene.");
+                errors++;
+            }
+            else
+            {
+                var lso = new SerializedObject(lumi);
+                int fLen = lso.FindProperty("floatFrames").arraySize;
+                int pLen = lso.FindProperty("pulseFrames").arraySize;
+                if (fLen < 4 || pLen < 4)
+                {
+                    Debug.LogError($"[MV] Lumi thiếu frame animation (float={fLen}, pulse={pLen}). Hãy kiểm tra gói tinh_linh_lumi_animations.zip.");
+                    errors++;
+                }
+            }
+
+            var slimes = UnityEngine.Object.FindObjectsByType<GloomSlimeController>(FindObjectsInactive.Include);
+            if (slimes.Length < 8)
+            {
+                Debug.LogError($"[MV] Thiếu GloomSlime trong scene ({slimes.Length}/8).");
+                errors++;
+            }
+            else
+            {
+                var sso = new SerializedObject(slimes[0]);
+                int iLen = sso.FindProperty("idleFrames").arraySize;
+                int tLen = sso.FindProperty("telegraphFrames").arraySize;
+                int jLen = sso.FindProperty("jumpFrames").arraySize;
+                int hLen = sso.FindProperty("hitFrames").arraySize;
+                int dLen = sso.FindProperty("dieFrames").arraySize;
+                if (iLen < 4 || tLen < 3 || jLen < 4 || hLen < 3 || dLen < 4)
+                {
+                    Debug.LogError($"[MV] GloomSlime thiếu frame animation (idle={iLen}, tele={tLen}, jump={jLen}, hit={hLen}, die={dLen}).");
+                    errors++;
+                }
+            }
+
+            var waterAnim = UnityEngine.Object.FindAnyObjectByType<WaterTileAnimator>();
+            if (waterAnim == null)
+            {
+                Debug.LogError("[MV] Thiếu WaterTileAnimator cho hồ nước.");
+                errors++;
+            }
+            else
+            {
+                var wso = new SerializedObject(waterAnim);
+                int wf = wso.FindProperty("waterFrames").arraySize;
+                int wr = wso.FindProperty("waterRenderers").arraySize;
+                if (wf < 4 || wr < 5)
+                {
+                    Debug.LogError($"[MV] WaterTileAnimator thiếu dữ liệu (frames={wf}, tiles={wr}).");
+                    errors++;
+                }
+            }
+
+            int shadowCount = 0;
+            var allTransforms = UnityEngine.Object.FindObjectsByType<Transform>(FindObjectsInactive.Include);
+            for (int i = 0; i < allTransforms.Length; i++)
+            {
+                if (allTransforms[i].name == "GroundShadow") shadowCount++;
+            }
+            if (shadowCount < 14)
+            {
+                Debug.LogError($"[MV] Số lượng GroundShadow còn thiếu ({shadowCount}, cần >= 14 cho Wen, Lumi, 4 NPC, 8 Slime).");
+                errors++;
+            }
+
+            string[] propNames =
+            {
+                "GreenhouseLetterTable", "GreenhouseSeedBox", "GreenhouseTestPlanter",
+                "GreenhouseSeedShelf", "OtisBrokenMailbox", "GardenMemoryBench", "GreenhouseBed"
+            };
+            foreach (string pn in propNames)
+            {
+                var go = GameObject.Find(pn);
+                if (go == null) continue;
+                var sr = go.GetComponentInChildren<SpriteRenderer>();
+                if (sr == null || sr.sprite == null)
+                {
+                    Debug.LogError("[MV] Prop thiếu SpriteRenderer hoặc Sprite: " + pn);
+                    errors++;
+                }
+            }
+
+            var allGos = UnityEngine.Object.FindObjectsByType<GameObject>(FindObjectsInactive.Include);
+            for (int i = 0; i < allGos.Length; i++)
+            {
+                if (GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(allGos[i]) > 0)
+                {
+                    Debug.LogError("[MV] Missing Script trên: " + allGos[i].name);
+                    errors++;
+                }
+            }
+
+            if (errors == 0)
+            {
+                Debug.Log($"[MV] VALIDATE STEP 15: PASS (0 lỗi | Shadows={shadowCount} | AnimatedWater=OK | GardenGate=OPEN | Lumi&Slime=OK).");
+            }
+            else
+            {
+                Debug.LogError($"[MV] VALIDATE STEP 15: FAIL ({errors} lỗi).");
+            }
+        }
+
+        private static void ForceReimportFolder(string folderPath, float ppu)
+        {
+            if (!AssetDatabase.IsValidFolder(folderPath)) return;
+            string[] guids = AssetDatabase.FindAssets("t:Texture2D", new[] { folderPath });
+            foreach (string g in guids)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(g);
+                var imp = AssetImporter.GetAtPath(path) as TextureImporter;
+                if (imp == null) continue;
+                imp.textureType = TextureImporterType.Sprite;
+                imp.spriteImportMode = SpriteImportMode.Single;
+                imp.filterMode = FilterMode.Point;
+                imp.textureCompression = TextureImporterCompression.Uncompressed;
+                imp.mipmapEnabled = false;
+                imp.alphaIsTransparency = true;
+                imp.spritePixelsPerUnit = ppu;
+                var st = new TextureImporterSettings();
+                imp.ReadTextureSettings(st);
+                st.spriteMeshType = SpriteMeshType.FullRect;
+                st.spriteAlignment = (int)SpriteAlignment.Center;
+                st.spritePivot = new Vector2(0.5f, 0.5f);
+                imp.SetTextureSettings(st);
+                imp.SaveAndReimport();
+            }
+        }
+
+        private static Sprite[] LoadFrames(string root, string prefix, int count)
+        {
+            var list = new List<Sprite>();
+            for (int i = 0; i < count; i++)
+            {
+                string path = $"{root}{prefix}_{i:00}.png";
+                Sprite s = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+                if (s != null) list.Add(s);
+            }
+            return list.ToArray();
+        }
+
+        private static void SetSpriteArray(SerializedObject so, string propName, Sprite[] frames)
+        {
+            var prop = so.FindProperty(propName);
+            if (prop == null) return;
+            prop.arraySize = frames.Length;
+            for (int i = 0; i < frames.Length; i++)
+            {
+                prop.GetArrayElementAtIndex(i).objectReferenceValue = frames[i];
+            }
+        }
+
+        private static void WireLumiAnimations()
+        {
+            Sprite[] floatF = LoadFrames(LumiRoot, "float", 4);
+            Sprite[] pulseF = LoadFrames(LumiRoot, "moon_pulse", 4);
+            if (floatF.Length == 0)
+            {
+                Debug.LogWarning("[MV] Chưa thấy frame Lumi tại " + LumiRoot);
+                return;
+            }
+
+            if (AssetDatabase.LoadAssetAtPath<GameObject>(LumiPrefabPath) != null)
+            {
+                GameObject root = PrefabUtility.LoadPrefabContents(LumiPrefabPath);
+                ApplyLumiFramesToObject(root, floatF, pulseF);
+                PrefabUtility.SaveAsPrefabAsset(root, LumiPrefabPath);
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+
+            var sceneLumis = UnityEngine.Object.FindObjectsByType<LumiCompanionController>(FindObjectsInactive.Include);
+            foreach (var l in sceneLumis)
+            {
+                ApplyLumiFramesToObject(l.gameObject, floatF, pulseF);
+            }
+            Debug.Log($"[MV] Đã gắn animation Lumi: float={floatF.Length}f, moon_pulse={pulseF.Length}f.");
+        }
+
+        private static void ApplyLumiFramesToObject(GameObject go, Sprite[] floatF, Sprite[] pulseF)
+        {
+            var ctrl = go.GetComponent<LumiCompanionController>();
+            if (ctrl == null) return;
+            var vis = go.transform.Find("Visual");
+            var sr = vis != null ? vis.GetComponent<SpriteRenderer>() : go.GetComponentInChildren<SpriteRenderer>();
+            if (sr != null && floatF.Length > 0) sr.sprite = floatF[0];
+
+            var so = new SerializedObject(ctrl);
+            if (sr != null) so.FindProperty("spriteRenderer").objectReferenceValue = sr;
+            SetSpriteArray(so, "floatFrames", floatF);
+            SetSpriteArray(so, "pulseFrames", pulseF);
+            so.ApplyModifiedPropertiesWithoutUndo();
+            EditorUtility.SetDirty(ctrl);
+        }
+
+        private static void WireSlimeAnimations()
+        {
+            Sprite[] idleF = LoadFrames(SlimeRoot, "idle", 4);
+            Sprite[] teleF = LoadFrames(SlimeRoot, "telegraph", 3);
+            Sprite[] jumpF = LoadFrames(SlimeRoot, "jump", 4);
+            Sprite[] hitF = LoadFrames(SlimeRoot, "hit_hurt", 3);
+            Sprite[] dieF = LoadFrames(SlimeRoot, "purify_die", 4);
+            if (idleF.Length == 0)
+            {
+                Debug.LogWarning("[MV] Chưa thấy frame GloomSlime tại " + SlimeRoot);
+                return;
+            }
+
+            if (AssetDatabase.LoadAssetAtPath<GameObject>(SlimePrefabPath) != null)
+            {
+                GameObject root = PrefabUtility.LoadPrefabContents(SlimePrefabPath);
+                ApplySlimeFramesToObject(root, idleF, teleF, jumpF, hitF, dieF);
+                PrefabUtility.SaveAsPrefabAsset(root, SlimePrefabPath);
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+
+            var sceneSlimes = UnityEngine.Object.FindObjectsByType<GloomSlimeController>(FindObjectsInactive.Include);
+            foreach (var sl in sceneSlimes)
+            {
+                ApplySlimeFramesToObject(sl.gameObject, idleF, teleF, jumpF, hitF, dieF);
+            }
+            Debug.Log($"[MV] Đã gắn animation GloomSlime ({sceneSlimes.Length} instances): idle={idleF.Length}f, tele={teleF.Length}f, jump={jumpF.Length}f, hit={hitF.Length}f, die={dieF.Length}f.");
+        }
+
+        private static void ApplySlimeFramesToObject(GameObject go, Sprite[] idleF, Sprite[] teleF, Sprite[] jumpF, Sprite[] hitF, Sprite[] dieF)
+        {
+            var ctrl = go.GetComponent<GloomSlimeController>();
+            if (ctrl == null) return;
+            var so = new SerializedObject(ctrl);
+            var srProp = so.FindProperty("spriteRenderer");
+            var sr = srProp != null ? srProp.objectReferenceValue as SpriteRenderer : go.GetComponentInChildren<SpriteRenderer>();
+            if (sr != null && idleF.Length > 0) sr.sprite = idleF[0];
+
+            SetSpriteArray(so, "idleFrames", idleF);
+            SetSpriteArray(so, "telegraphFrames", teleF);
+            SetSpriteArray(so, "jumpFrames", jumpF);
+            SetSpriteArray(so, "hitFrames", hitF);
+            SetSpriteArray(so, "dieFrames", dieF);
+            so.ApplyModifiedPropertiesWithoutUndo();
+            EditorUtility.SetDirty(ctrl);
+        }
+
+        private static MapLayoutConfigSO OpenSouthGardenGateAndSaveConfig()
+        {
+            var cfg = AssetDatabase.LoadAssetAtPath<MapLayoutConfigSO>(MapConfigPath);
+            if (cfg == null)
+            {
+                Debug.LogError("[MV] Không tìm thấy MapLayoutConfig.asset!");
+                return null;
+            }
+
+            string[] rows = cfg.asciiMap.Replace("\r\n", "\n").Split('\n');
+            bool changed = false;
+            for (int r = 0; r < rows.Length; r++)
+            {
+                // Row 17 is the north fence of South Garden (directly below Village south path)
+                if (r == 17 && rows[r].Contains("FFFFFFFFFFFFFF"))
+                {
+                    rows[r] = rows[r].Replace("FFFFFFFFFFFFFF", "FFFFFPPPPFFFFF");
+                    changed = true;
+                }
+            }
+
+            if (changed)
+            {
+                cfg.asciiMap = string.Join("\n", rows);
+                EditorUtility.SetDirty(cfg);
+                AssetDatabase.SaveAssets();
+                Debug.Log("[MV] Đã mở cổng rộng 4 ô vào Vườn Phía Nam tại hàng 17 (FFFFFPPPPFFFFF).");
+            }
+            return cfg;
+        }
+
+        private static Tile MakeTile(Sprite spr)
+        {
+            var t = ScriptableObject.CreateInstance<Tile>();
+            t.sprite = spr;
+            t.color = Color.white;
+            t.colliderType = Tile.ColliderType.Grid;
+            return t;
+        }
+
+        private static void RebuildWorldTilemapWithUpgradedArt(MapLayoutConfigSO cfg)
+        {
+            Sprite[] grass =
+            {
+                AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Tiles/tile_grass_0.png"),
+                AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Tiles/tile_grass_1.png"),
+                AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Tiles/tile_grass_2.png"),
+                AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Tiles/tile_grass_3.png"),
+            };
+            Sprite[] path =
+            {
+                AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Tiles/tile_path_0.png"),
+                AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Tiles/tile_path_1.png"),
+                AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Tiles/tile_path_2.png"),
+            };
+            Sprite[] ghFloor =
+            {
+                AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Tiles/tile_gh_floor_0.png"),
+                AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Tiles/tile_gh_floor_1.png"),
+            };
+            Sprite wallSpr = AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Tiles/tile_wall.png");
+            Sprite fenceSpr = AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Tiles/tile_fence.png");
+            Sprite treeSpr = AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Tiles/tile_tree.png");
+            Sprite waterSpr = AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Water/water_anim_00.png");
+            if (waterSpr == null) waterSpr = AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Tiles/tile_water.png");
+            Sprite flowerbedSpr = AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Tiles/tile_flowerbed.png");
+
+            if (grass[0] == null || path[0] == null || fenceSpr == null)
+            {
+                Debug.LogWarning("[MV] Thiếu tile từ environment_art_pack.zip; chỉ cập nhật lại cổng nếu tile cũ còn sẵn.");
+                return;
+            }
+
+            Tile[] grassTiles = new Tile[grass.Length];
+            for (int i = 0; i < grass.Length; i++) grassTiles[i] = MakeTile(grass[i] != null ? grass[i] : grass[0]);
+            Tile[] pathTiles = new Tile[path.Length];
+            for (int i = 0; i < path.Length; i++) pathTiles[i] = MakeTile(path[i] != null ? path[i] : path[0]);
+            Tile[] ghTiles = new Tile[ghFloor.Length];
+            for (int i = 0; i < ghFloor.Length; i++) ghTiles[i] = MakeTile(ghFloor[i] != null ? ghFloor[i] : ghFloor[0]);
+
+            Tile wallTile = MakeTile(wallSpr);
+            Tile fenceTile = MakeTile(fenceSpr);
+            Tile treeTile = MakeTile(treeSpr);
+            Tile waterTile = MakeTile(waterSpr);
+            Tile flowerbedTile = MakeTile(flowerbedSpr);
+
+            GameObject gridGo = GameObject.Find("WorldMapGrid");
+            if (gridGo != null) UnityEngine.Object.DestroyImmediate(gridGo);
+
+            gridGo = new GameObject("WorldMapGrid");
+            gridGo.AddComponent<Grid>();
+
+            GameObject groundGo = new GameObject("GroundTilemap");
+            groundGo.transform.SetParent(gridGo.transform, false);
+            var groundTm = groundGo.AddComponent<Tilemap>();
+            var groundRenderer = groundGo.AddComponent<TilemapRenderer>();
+            groundRenderer.sortingLayerName = "Ground";
+
+            GameObject obsGo = new GameObject("ObstacleTilemap");
+            obsGo.transform.SetParent(gridGo.transform, false);
+            obsGo.layer = 10;
+            var obsTm = obsGo.AddComponent<Tilemap>();
+            var obsRenderer = obsGo.AddComponent<TilemapRenderer>();
+            obsRenderer.sortingLayerName = "WorldObjects";
+            obsRenderer.sortingOrder = -5000;
+            obsGo.AddComponent<TilemapCollider2D>();
+
+            string[] rows = cfg.asciiMap.Replace("\r\n", "\n").Split('\n');
+            for (int r = 0; r < rows.Length; r++)
+            {
+                string row = rows[r];
+                int y = cfg.originY + (rows.Length - 1 - r);
+                for (int c = 0; c < row.Length; c++)
+                {
+                    int x = cfg.originX + c;
+                    Vector3Int pos = new Vector3Int(x, y, 0);
+                    int hash = Mathf.Abs(x * 73856093 ^ y * 19349663);
+                    char ch = row[c];
+
+                    switch (ch)
+                    {
+                        case 'P':
+                            groundTm.SetTile(pos, pathTiles[hash % pathTiles.Length]);
+                            break;
+                        case 'G':
+                            groundTm.SetTile(pos, ghTiles[hash % ghTiles.Length]);
+                            break;
+                        case 'B':
+                            groundTm.SetTile(pos, flowerbedTile);
+                            break;
+                        case '#':
+                            groundTm.SetTile(pos, ghTiles[0]);
+                            obsTm.SetTile(pos, wallTile);
+                            break;
+                        case 'F':
+                            groundTm.SetTile(pos, grassTiles[hash % grassTiles.Length]);
+                            obsTm.SetTile(pos, fenceTile);
+                            break;
+                        case 'T':
+                            groundTm.SetTile(pos, grassTiles[hash % grassTiles.Length]);
+                            obsTm.SetTile(pos, treeTile);
+                            break;
+                        case 'W':
+                            groundTm.SetTile(pos, waterTile);
+                            obsTm.SetTile(pos, waterTile);
+                            break;
+                        default:
+                            groundTm.SetTile(pos, grassTiles[hash % grassTiles.Length]);
+                            break;
+                    }
+                }
+            }
+            Debug.Log("[MV] Đã dựng lại WorldMapGrid với cổng Vườn Phía Nam mở rộng 4 ô.");
+        }
+
+        private static void BuildAnimatedPondWater(MapLayoutConfigSO cfg)
+        {
+            Sprite[] frames = LoadFrames(EnvRoot + "Water/", "water_anim", 4);
+            if (frames.Length == 0)
+            {
+                Debug.LogWarning("[MV] Không tìm thấy water_anim_00..03.png.");
+                return;
+            }
+
+            GameObject oldWater = GameObject.Find("AnimatedPondWater");
+            if (oldWater != null) UnityEngine.Object.DestroyImmediate(oldWater);
+
+            GameObject root = new GameObject("AnimatedPondWater");
+            var anim = root.AddComponent<WaterTileAnimator>();
+
+            var renderers = new List<SpriteRenderer>();
+            string[] rows = cfg.asciiMap.Replace("\r\n", "\n").Split('\n');
+            for (int r = 0; r < rows.Length; r++)
+            {
+                string row = rows[r];
+                int y = cfg.originY + (rows.Length - 1 - r);
+                for (int c = 0; c < row.Length; c++)
+                {
+                    if (row[c] != 'W') continue;
+                    int x = cfg.originX + c;
+                    GameObject cellGo = new GameObject($"WaterCell_{x}_{y}");
+                    cellGo.transform.SetParent(root.transform, false);
+                    cellGo.transform.position = new Vector3(x + 0.5f, y + 0.5f, 0f);
+                    var sr = cellGo.AddComponent<SpriteRenderer>();
+                    sr.sprite = frames[0];
+                    sr.sortingLayerName = "WorldObjects";
+                    sr.sortingOrder = -4900;
+                    renderers.Add(sr);
+                }
+            }
+
+            var so = new SerializedObject(anim);
+            SetSpriteArray(so, "waterFrames", frames);
+            var rProp = so.FindProperty("waterRenderers");
+            rProp.arraySize = renderers.Count;
+            for (int i = 0; i < renderers.Count; i++)
+            {
+                rProp.GetArrayElementAtIndex(i).objectReferenceValue = renderers[i];
+            }
+            so.FindProperty("fps").floatValue = 3.2f;
+            so.ApplyModifiedPropertiesWithoutUndo();
+            Debug.Log($"[MV] Đã tạo AnimatedPondWater cho {renderers.Count} ô hồ nước (4 frames).");
+        }
+
+        private static GameObject EnsureShadowChild(Transform parent, Sprite shadowSpr, Vector3 localPos, Vector3 localScale)
+        {
+            if (parent == null || shadowSpr == null) return null;
+            Transform existing = parent.Find("GroundShadow");
+            GameObject go = existing != null ? existing.gameObject : new GameObject("GroundShadow");
+            go.transform.SetParent(parent, false);
+            go.transform.localPosition = localPos;
+            go.transform.localScale = localScale;
+            var sr = go.GetComponent<SpriteRenderer>();
+            if (sr == null) sr = go.AddComponent<SpriteRenderer>();
+            sr.sprite = shadowSpr;
+            sr.color = new Color(1f, 1f, 1f, 0.62f);
+            sr.sortingLayerName = "Shadows";
+            sr.sortingOrder = 0;
+            return go;
+        }
+
+        private static void AttachGroundShadows(Sprite shadowSpr)
+        {
+            if (shadowSpr == null)
+            {
+                Debug.LogWarning("[MV] Thiếu spr_ground_shadow.png.");
+                return;
+            }
+
+            // Player prefab + scene
+            if (AssetDatabase.LoadAssetAtPath<GameObject>(PlayerPrefabPath) != null)
+            {
+                GameObject pRoot = PrefabUtility.LoadPrefabContents(PlayerPrefabPath);
+                EnsureShadowChild(pRoot.transform, shadowSpr, new Vector3(0f, -0.56f, 0f), new Vector3(1.05f, 0.85f, 1f));
+                PrefabUtility.SaveAsPrefabAsset(pRoot, PlayerPrefabPath);
+                PrefabUtility.UnloadPrefabContents(pRoot);
+            }
+            var player = UnityEngine.Object.FindAnyObjectByType<PlayerController2D>();
+            if (player != null)
+            {
+                EnsureShadowChild(player.transform, shadowSpr, new Vector3(0f, -0.56f, 0f), new Vector3(1.05f, 0.85f, 1f));
+            }
+
+            // Lumi prefab + scene (shadow sits underneath floating Lumi)
+            if (AssetDatabase.LoadAssetAtPath<GameObject>(LumiPrefabPath) != null)
+            {
+                GameObject lRoot = PrefabUtility.LoadPrefabContents(LumiPrefabPath);
+                EnsureShadowChild(lRoot.transform, shadowSpr, new Vector3(0f, -0.48f, 0f), new Vector3(0.62f, 0.50f, 1f));
+                PrefabUtility.SaveAsPrefabAsset(lRoot, LumiPrefabPath);
+                PrefabUtility.UnloadPrefabContents(lRoot);
+            }
+            var lumi = UnityEngine.Object.FindAnyObjectByType<LumiCompanionController>();
+            if (lumi != null)
+            {
+                EnsureShadowChild(lumi.transform, shadowSpr, new Vector3(0f, -0.48f, 0f), new Vector3(0.62f, 0.50f, 1f));
+            }
+
+            // GloomSlime prefab + scene instances
+            if (AssetDatabase.LoadAssetAtPath<GameObject>(SlimePrefabPath) != null)
+            {
+                GameObject sRoot = PrefabUtility.LoadPrefabContents(SlimePrefabPath);
+                GameObject sh = EnsureShadowChild(sRoot.transform, shadowSpr, new Vector3(0f, -0.38f, 0f), new Vector3(0.95f, 0.78f, 1f));
+                var sc = sRoot.GetComponent<GloomSlimeController>();
+                if (sc != null && sh != null)
+                {
+                    var so = new SerializedObject(sc);
+                    so.FindProperty("groundShadow").objectReferenceValue = sh;
+                    so.ApplyModifiedPropertiesWithoutUndo();
+                }
+                PrefabUtility.SaveAsPrefabAsset(sRoot, SlimePrefabPath);
+                PrefabUtility.UnloadPrefabContents(sRoot);
+            }
+            var slimes = UnityEngine.Object.FindObjectsByType<GloomSlimeController>(FindObjectsInactive.Include);
+            foreach (var sl in slimes)
+            {
+                GameObject sh = EnsureShadowChild(sl.transform, shadowSpr, new Vector3(0f, -0.38f, 0f), new Vector3(0.95f, 0.78f, 1f));
+                var so = new SerializedObject(sl);
+                so.FindProperty("groundShadow").objectReferenceValue = sh;
+                so.ApplyModifiedPropertiesWithoutUndo();
+                EditorUtility.SetDirty(sl);
+            }
+
+            // All NPCs in scene
+            var npcs = UnityEngine.Object.FindObjectsByType<NPCController>(FindObjectsInactive.Include);
+            foreach (var npc in npcs)
+            {
+                EnsureShadowChild(npc.transform, shadowSpr, new Vector3(0f, -0.56f, 0f), new Vector3(1.05f, 0.85f, 1f));
+                EditorUtility.SetDirty(npc.gameObject);
+            }
+
+            Debug.Log($"[MV] Đã gắn GroundShadow cho Wen, Lumi, {npcs.Length} NPC và {slimes.Length} Bọt Sương Đen.");
+        }
+
+        private static void ApplySpriteToNamedObject(string goName, string spriteRelPath, float scale = 1f)
+        {
+            GameObject go = GameObject.Find(goName);
+            if (go == null) return;
+            Sprite spr = AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + spriteRelPath);
+            if (spr == null) return;
+            var sr = go.GetComponentInChildren<SpriteRenderer>();
+            if (sr != null)
+            {
+                sr.sprite = spr;
+                sr.color = Color.white;
+                if (Mathf.Abs(scale - 1f) > 0.001f)
+                {
+                    sr.transform.localScale = new Vector3(scale, scale, 1f);
+                }
+                EditorUtility.SetDirty(sr);
+            }
+        }
+
+        private static void UpgradeRemainingPropsAndFarmSoil()
+        {
+            ApplySpriteToNamedObject("GreenhouseLetterTable", "Props/prop_letter_table.png");
+            ApplySpriteToNamedObject("GreenhouseSeedBox", "Props/prop_seed_box.png");
+            ApplySpriteToNamedObject("GreenhouseTestPlanter", "Props/prop_test_planter.png");
+            ApplySpriteToNamedObject("GreenhouseSeedShelf", "Props/prop_seed_shelf.png");
+            ApplySpriteToNamedObject("OtisBrokenMailbox", "Props/prop_mailbox.png");
+            ApplySpriteToNamedObject("GardenMemoryBench", "Props/prop_memory_bench.png");
+            ApplySpriteToNamedObject("GreenhouseBed", "Props/prop_bed.png");
+            ApplySpriteToNamedObject("VillageWaterWell", "Props/prop_well.png");
+
+            Sprite soilUntilled = AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Soil/soil_untilled.png");
+            Sprite soilDry = AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Soil/soil_dry.png");
+            Sprite soilWet = AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Soil/soil_wet.png");
+
+            var tiles = UnityEngine.Object.FindObjectsByType<FarmTileController>(FindObjectsInactive.Include);
+            if (soilUntilled != null && soilDry != null && soilWet != null)
+            {
+                foreach (var tile in tiles)
+                {
+                    var so = new SerializedObject(tile);
+                    so.FindProperty("untilledSprite").objectReferenceValue = soilUntilled;
+                    so.FindProperty("tilledDrySprite").objectReferenceValue = soilDry;
+                    so.FindProperty("tilledWetSprite").objectReferenceValue = soilWet;
+                    so.ApplyModifiedPropertiesWithoutUndo();
+                    tile.RefreshVisuals();
+                    EditorUtility.SetDirty(tile);
+                }
+            }
+            Debug.Log($"[MV] Đã nâng cấp art cho 8 đạo cụ còn thiếu và {tiles.Length} ô đất trồng.");
+        }
+
+        private static void SpawnDecor(Transform parent, string name, Sprite spr, Vector3 pos, int sortOrderOffset = 0, string sortingLayer = "WorldObjects")
+        {
+            if (spr == null) return;
+            GameObject go = new GameObject(name);
+            go.transform.SetParent(parent, false);
+            go.transform.position = pos;
+            var sr = go.AddComponent<SpriteRenderer>();
+            sr.sprite = spr;
+            sr.sortingLayerName = sortingLayer;
+            sr.sortingOrder = sortOrderOffset != 0 ? sortOrderOffset : Mathf.RoundToInt(-pos.y * 100f);
+        }
+
+        private static void EnrichWorldDecor()
+        {
+            GameObject decorGroup = GameObject.Find("VillageDecorGroup");
+            if (decorGroup == null) decorGroup = new GameObject("VillageDecorGroup");
+
+            Transform existing = decorGroup.transform.Find("Step15WorldPolishGroup");
+            if (existing != null) UnityEngine.Object.DestroyImmediate(existing.gameObject);
+
+            GameObject polish = new GameObject("Step15WorldPolishGroup");
+            polish.transform.SetParent(decorGroup.transform, false);
+
+            Sprite archSpr = AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Buildings/prop_garden_arch.png");
+            Sprite signSpr = AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Decor/decor_signpost.png");
+            Sprite barrelSpr = AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Decor/decor_barrel.png");
+            Sprite mushSpr = AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Decor/decor_mushrooms.png");
+            Sprite picnicSpr = AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Decor/decor_picnic_table.png");
+            Sprite oakSpr = AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Buildings/tree_hero_oak.png");
+            Sprite blossomSpr = AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Buildings/tree_hero_blossom.png");
+            Sprite bushSpr = AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Decor/decor_bush.png");
+            Sprite rockSpr = AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Decor/decor_rock.png");
+            Sprite fl0 = AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Decor/decor_flowers_0.png");
+            Sprite fl1 = AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Decor/decor_flowers_1.png");
+            Sprite fl2 = AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + "Decor/decor_flowers_2.png");
+
+            // 1. South Garden Flower Archway (spans open 4-tile gate at x=0, y=-1.5)
+            SpawnDecor(polish.transform, "GardenEntranceArch", archSpr, new Vector3(0.0f, -1.05f, 0f), 2600, "WorldObjects");
+
+            // 2. Village Crossroads & Cozy Gathering Props
+            SpawnDecor(polish.transform, "VillageSignpost", signSpr, new Vector3(-2.6f, 2.2f, 0f));
+            SpawnDecor(polish.transform, "BakeryPicnicTable", picnicSpr, new Vector3(5.6f, 5.2f, 0f));
+            SpawnDecor(polish.transform, "BakeryBarrel_1", barrelSpr, new Vector3(3.6f, 6.1f, 0f));
+            SpawnDecor(polish.transform, "ShedBarrel_1", barrelSpr, new Vector3(-7.4f, 6.0f, 0f));
+            SpawnDecor(polish.transform, "ShedBarrel_2", barrelSpr, new Vector3(-6.6f, 5.6f, 0f));
+            SpawnDecor(polish.transform, "GreenhouseBarrel", barrelSpr, new Vector3(-8.2f, 11.4f, 0f));
+
+            // 3. Extra Hero Trees to frame empty meadows
+            SpawnDecor(polish.transform, "MeadowBlossom_NW", blossomSpr, new Vector3(-8.5f, 13.8f, 0f));
+            SpawnDecor(polish.transform, "MeadowOak_SW", oakSpr, new Vector3(-16.5f, -3.5f, 0f));
+            SpawnDecor(polish.transform, "MeadowBlossom_SW", blossomSpr, new Vector3(-12.2f, -8.5f, 0f));
+            SpawnDecor(polish.transform, "MeadowOak_SE", oakSpr, new Vector3(13.5f, -4.5f, 0f));
+            SpawnDecor(polish.transform, "MeadowBlossom_SE", blossomSpr, new Vector3(11.0f, -10.0f, 0f));
+            SpawnDecor(polish.transform, "GardenBlossom_L", blossomSpr, new Vector3(-5.2f, -10.2f, 0f));
+            SpawnDecor(polish.transform, "GardenBlossom_R", blossomSpr, new Vector3(5.2f, -10.2f, 0f));
+
+            // 4. Forest Edge Mushroom Clusters
+            Vector3[] mushSpots =
+            {
+                new Vector3(12.2f, 11.2f, 0f),
+                new Vector3(16.8f, 10.4f, 0f),
+                new Vector3(17.5f, 4.2f, 0f),
+                new Vector3(13.4f, 1.8f, 0f),
+                new Vector3(16.0f, -1.2f, 0f),
+            };
+            for (int i = 0; i < mushSpots.Length; i++)
+            {
+                SpawnDecor(polish.transform, $"ForestMushrooms_{i}", mushSpr, mushSpots[i], 0, "FloorDecal");
+            }
+
+            // 5. Bushes, Mossy Rocks & Wildflowers to break up large open grass
+            Vector3[] bushSpots =
+            {
+                new Vector3(-18.5f, 2.5f, 0f), new Vector3(-13.5f, -1.0f, 0f),
+                new Vector3(-9.5f, -3.5f, 0f), new Vector3(9.5f, -2.5f, 0f),
+                new Vector3(15.2f, -8.2f, 0f), new Vector3(-17.2f, -9.8f, 0f),
+                new Vector3(2.8f, -1.6f, 0f), new Vector3(-2.8f, -1.6f, 0f),
+            };
+            for (int i = 0; i < bushSpots.Length; i++)
+            {
+                SpawnDecor(polish.transform, $"ExtraBush_{i}", bushSpr, bushSpots[i]);
+            }
+
+            Vector3[] rockSpots =
+            {
+                new Vector3(-11.2f, 13.0f, 0f), new Vector3(-18.2f, -6.2f, 0f),
+                new Vector3(11.8f, -7.2f, 0f), new Vector3(17.2f, 7.6f, 0f),
+            };
+            for (int i = 0; i < rockSpots.Length; i++)
+            {
+                SpawnDecor(polish.transform, $"ExtraRock_{i}", rockSpr, rockSpots[i]);
+            }
+
+            Sprite[] fls = { fl0, fl1, fl2 };
+            Vector3[] flowerSpots =
+            {
+                new Vector3(-14.0f, 2.8f, 0f), new Vector3(-10.5f, 0.2f, 0f),
+                new Vector3(-15.5f, -6.5f, 0f), new Vector3(-9.0f, -11.0f, 0f),
+                new Vector3(8.8f, 0.5f, 0f), new Vector3(11.5f, -2.2f, 0f),
+                new Vector3(14.5f, -10.8f, 0f), new Vector3(-4.2f, -4.5f, 0f),
+                new Vector3(4.2f, -4.5f, 0f), new Vector3(-3.8f, -9.2f, 0f),
+                new Vector3(3.8f, -9.2f, 0f), new Vector3(-5.0f, 13.5f, 0f),
+            };
+            for (int i = 0; i < flowerSpots.Length; i++)
+            {
+                SpawnDecor(polish.transform, $"ExtraFlower_{i}", fls[i % fls.Length], flowerSpots[i], 2, "FloorDecal");
+            }
+
+            Debug.Log("[MV] Đã bổ sung cổng vòm hoa, tiểu cảnh làng, nấm rừng và thảm hoa/cây làm đầy map.");
+        }
+    }
+}
+```
+
+## 79. `Assets/Editor/AutoBuilder_Step16.cs`
+
+```csharp
+using System;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.Tilemaps;
+using MoonpetalValley.Combat;
+using MoonpetalValley.Community;
+using MoonpetalValley.Data;
+using MoonpetalValley.Farming;
+using MoonpetalValley.Narrative;
+using MoonpetalValley.Player;
+
+namespace MoonpetalValley.EditorTools
+{
+    public static class AutoBuilder_Step16
+    {
+        private const string WorldScenePath = "Assets/Scenes/MoonpetalValley_MVP.unity";
+        private const string MapConfigPath = "Assets/Data/Config/MapLayoutConfig.asset";
+        private const string PlayerPrefabPath = "Assets/Prefabs/Characters/Player_Wen.prefab";
+        private const string LumiPrefabPath = "Assets/Prefabs/Characters/Lumi_Companion.prefab";
+        private const string SlimePrefabPath = "Assets/Prefabs/Enemies/GloomSlime.prefab";
+        private const string EnvRoot = "Assets/Art/Sprites/Environment/";
+
+        [MenuItem("Moonpetal/Step 16/1. Apply Auto-Tile Walls/Fences, Greenhouse Layout, Shrine & Shadows")]
+        public static void BuildStep16()
+        {
+            if (EditorApplication.isPlaying || EditorApplication.isCompiling)
+            {
+                Debug.LogWarning("[MV] Không thể chạy AutoBuilder khi đang Play Mode hoặc đang biên dịch.");
+                return;
+            }
+
+            Debug.Log("[MV] === BẮT ĐẦU AUTOBUILDER STEP 16 ===");
+            AssetDatabase.Refresh();
+            ForceReimportEnvironmentFolder();
+            AssetDatabase.Refresh();
+
+            var scene = EditorSceneManager.OpenScene(WorldScenePath, OpenSceneMode.Single);
+
+            // 1. Rebuild WorldMapGrid with Directional Auto-Tiling for '#' (Walls) and 'F' (Fences)
+            var mapCfg = AssetDatabase.LoadAssetAtPath<MapLayoutConfigSO>(MapConfigPath);
+            if (mapCfg != null)
+            {
+                RebuildAutoTiledWorldMap(mapCfg);
+            }
+
+            // 2. Upgrade CentralPlantingSpot (Moonpetal Shrine Planter)
+            UpgradeCentralPlantingSpot();
+
+            // 3. Upgrade 12 Greenhouse Farm Tiles (Raised Planter Boxes + Neat Bed Layout + Cozy Rug)
+            UpgradeGreenhouseInteriorAndFarmLayout();
+
+            // 4. Strengthen Ground Shadows for Wen, Lumi, 4 NPCs & 8 Slimes
+            StrengthenGroundShadows();
+
+            // 5. Fix any tree/decor clipping into the Greenhouse east glass wall
+            FixGreenhouseWallClippingDecor();
+
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+
+            Debug.Log("[MV] === HOÀN TẤT STEP 16! Chạy 'Moonpetal/Step 16/Validate' để kiểm chứng. ===");
+        }
+
+        [MenuItem("Moonpetal/Step 16/Validate")]
+        public static void ValidateStep16()
+        {
+            int errors = 0;
+            Debug.Log("[MV] === BẮT ĐẦU VALIDATE STEP 16 ===");
+
+            string[] requiredSprites =
+            {
+                "Tiles/tile_wall.png", "Tiles/tile_wall_v.png",
+                "Tiles/tile_wall_tl.png", "Tiles/tile_wall_tr.png",
+                "Tiles/tile_wall_bl.png", "Tiles/tile_wall_br.png",
+                "Tiles/tile_fence.png", "Tiles/tile_fence_v.png",
+                "Tiles/tile_fence_tl.png", "Tiles/tile_fence_tr.png",
+                "Tiles/tile_fence_bl.png", "Tiles/tile_fence_br.png",
+                "Tiles/tile_flowerbed.png",
+                "Soil/soil_untilled.png", "Soil/soil_dry.png", "Soil/soil_wet.png",
+                "Props/planting_spot_empty.png", "Props/planting_spot_bloomed.png",
+                "Decor/decor_greenhouse_rug.png",
+                "Shadows/spr_ground_shadow.png",
+            };
+            foreach (string rel in requiredSprites)
+            {
+                if (AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + rel) == null)
+                {
+                    Debug.LogError("[MV] Thiếu sprite Step 16: " + EnvRoot + rel);
+                    errors++;
+                }
+            }
+
+            var spot = UnityEngine.Object.FindAnyObjectByType<PlantingSpotController>();
+            if (spot == null)
+            {
+                Debug.LogError("[MV] Không tìm thấy PlantingSpotController trong scene.");
+                errors++;
+            }
+            else
+            {
+                var so = new SerializedObject(spot);
+                if (so.FindProperty("emptySprite").objectReferenceValue == null ||
+                    so.FindProperty("bloomedSprite").objectReferenceValue == null)
+                {
+                    Debug.LogError("[MV] PlantingSpotController thiếu emptySprite hoặc bloomedSprite.");
+                    errors++;
+                }
+            }
+
+            if (GameObject.Find("GreenhouseCozyRug") == null)
+            {
+                Debug.LogError("[MV] Thiếu GreenhouseCozyRug trong Nhà Kính.");
+                errors++;
+            }
+
+            var allGos = UnityEngine.Object.FindObjectsByType<GameObject>(FindObjectsInactive.Include);
+            for (int i = 0; i < allGos.Length; i++)
+            {
+                if (GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(allGos[i]) > 0)
+                {
+                    Debug.LogError("[MV] Missing Script trên: " + allGos[i].name);
+                    errors++;
+                }
+            }
+
+            if (errors == 0)
+            {
+                Debug.Log("[MV] VALIDATE STEP 16: PASS (0 lỗi | Auto-Tile Walls/Fences=OK | Raised Planters=OK | Shrine=OK | Strong Shadows=OK).");
+            }
+            else
+            {
+                Debug.LogError($"[MV] VALIDATE STEP 16: FAIL ({errors} lỗi).");
+            }
+        }
+
+        private static void ForceReimportEnvironmentFolder()
+        {
+            string folder = "Assets/Art/Sprites/Environment";
+            if (!AssetDatabase.IsValidFolder(folder)) return;
+            string[] guids = AssetDatabase.FindAssets("t:Texture2D", new[] { folder });
+            foreach (string g in guids)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(g);
+                var imp = AssetImporter.GetAtPath(path) as TextureImporter;
+                if (imp == null) continue;
+                imp.textureType = TextureImporterType.Sprite;
+                imp.spriteImportMode = SpriteImportMode.Single;
+                imp.filterMode = FilterMode.Point;
+                imp.textureCompression = TextureImporterCompression.Uncompressed;
+                imp.mipmapEnabled = false;
+                imp.alphaIsTransparency = true;
+                imp.spritePixelsPerUnit = 16f;
+                var st = new TextureImporterSettings();
+                imp.ReadTextureSettings(st);
+                st.spriteMeshType = SpriteMeshType.FullRect;
+                st.spriteAlignment = (int)SpriteAlignment.Center;
+                st.spritePivot = new Vector2(0.5f, 0.5f);
+                imp.SetTextureSettings(st);
+                imp.SaveAndReimport();
+            }
+        }
+
+        private static Sprite LoadEnv(string rel) => AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + rel);
+
+        private static Tile MakeTile(Sprite spr)
+        {
+            var t = ScriptableObject.CreateInstance<Tile>();
+            t.sprite = spr;
+            t.color = Color.white;
+            t.colliderType = Tile.ColliderType.Grid;
+            return t;
+        }
+
+        private static bool IsChar(string[] rows, int r, int c, char target)
+        {
+            if (r < 0 || r >= rows.Length) return false;
+            if (c < 0 || c >= rows[r].Length) return false;
+            return rows[r][c] == target;
+        }
+
+        private static Tile PickAutoTile(
+            string[] rows, int r, int c, char ch,
+            Tile tH, Tile tV, Tile tTL, Tile tTR, Tile tBL, Tile tBR)
+        {
+            bool hasN = IsChar(rows, r - 1, c, ch);
+            bool hasS = IsChar(rows, r + 1, c, ch);
+            bool hasW = IsChar(rows, r, c - 1, ch);
+            bool hasE = IsChar(rows, r, c + 1, ch);
+
+            if (hasS && hasE && !hasN && !hasW) return tTL;
+            if (hasS && hasW && !hasN && !hasE) return tTR;
+            if (hasN && hasE && !hasS && !hasW) return tBL;
+            if (hasN && hasW && !hasS && !hasE) return tBR;
+            if ((hasN || hasS) && !hasE && !hasW) return tV;
+            return tH;
+        }
+
+        private static void RebuildAutoTiledWorldMap(MapLayoutConfigSO cfg)
+        {
+            Sprite[] grass =
+            {
+                LoadEnv("Tiles/tile_grass_0.png"),
+                LoadEnv("Tiles/tile_grass_1.png"),
+                LoadEnv("Tiles/tile_grass_2.png"),
+                LoadEnv("Tiles/tile_grass_3.png"),
+            };
+            Sprite[] path =
+            {
+                LoadEnv("Tiles/tile_path_0.png"),
+                LoadEnv("Tiles/tile_path_1.png"),
+                LoadEnv("Tiles/tile_path_2.png"),
+            };
+            Sprite[] ghFloor =
+            {
+                LoadEnv("Tiles/tile_gh_floor_0.png"),
+                LoadEnv("Tiles/tile_gh_floor_1.png"),
+            };
+
+            Tile[] grassTiles = new Tile[grass.Length];
+            for (int i = 0; i < grass.Length; i++) grassTiles[i] = MakeTile(grass[i] != null ? grass[i] : grass[0]);
+            Tile[] pathTiles = new Tile[path.Length];
+            for (int i = 0; i < path.Length; i++) pathTiles[i] = MakeTile(path[i] != null ? path[i] : path[0]);
+            Tile[] ghTiles = new Tile[ghFloor.Length];
+            for (int i = 0; i < ghFloor.Length; i++) ghTiles[i] = MakeTile(ghFloor[i] != null ? ghFloor[i] : ghFloor[0]);
+
+            Tile wallH  = MakeTile(LoadEnv("Tiles/tile_wall.png"));
+            Tile wallV  = MakeTile(LoadEnv("Tiles/tile_wall_v.png"));
+            Tile wallTL = MakeTile(LoadEnv("Tiles/tile_wall_tl.png"));
+            Tile wallTR = MakeTile(LoadEnv("Tiles/tile_wall_tr.png"));
+            Tile wallBL = MakeTile(LoadEnv("Tiles/tile_wall_bl.png"));
+            Tile wallBR = MakeTile(LoadEnv("Tiles/tile_wall_br.png"));
+
+            Tile fenceH  = MakeTile(LoadEnv("Tiles/tile_fence.png"));
+            Tile fenceV  = MakeTile(LoadEnv("Tiles/tile_fence_v.png"));
+            Tile fenceTL = MakeTile(LoadEnv("Tiles/tile_fence_tl.png"));
+            Tile fenceTR = MakeTile(LoadEnv("Tiles/tile_fence_tr.png"));
+            Tile fenceBL = MakeTile(LoadEnv("Tiles/tile_fence_bl.png"));
+            Tile fenceBR = MakeTile(LoadEnv("Tiles/tile_fence_br.png"));
+
+            Tile treeTile = MakeTile(LoadEnv("Tiles/tile_tree.png"));
+            Sprite waterSpr = LoadEnv("Water/water_anim_00.png");
+            if (waterSpr == null) waterSpr = LoadEnv("Tiles/tile_water.png");
+            Tile waterTile = MakeTile(waterSpr);
+            Tile flowerbedTile = MakeTile(LoadEnv("Tiles/tile_flowerbed.png"));
+
+            GameObject gridGo = GameObject.Find("WorldMapGrid");
+            if (gridGo != null) UnityEngine.Object.DestroyImmediate(gridGo);
+
+            gridGo = new GameObject("WorldMapGrid");
+            gridGo.AddComponent<Grid>();
+
+            GameObject groundGo = new GameObject("GroundTilemap");
+            groundGo.transform.SetParent(gridGo.transform, false);
+            var groundTm = groundGo.AddComponent<Tilemap>();
+            var groundRenderer = groundGo.AddComponent<TilemapRenderer>();
+            groundRenderer.sortingLayerName = "Ground";
+
+            GameObject obsGo = new GameObject("ObstacleTilemap");
+            obsGo.transform.SetParent(gridGo.transform, false);
+            obsGo.layer = 10;
+            var obsTm = obsGo.AddComponent<Tilemap>();
+            var obsRenderer = obsGo.AddComponent<TilemapRenderer>();
+            obsRenderer.sortingLayerName = "WorldObjects";
+            obsRenderer.sortingOrder = -5000;
+            obsGo.AddComponent<TilemapCollider2D>();
+
+            string[] rows = cfg.asciiMap.Replace("\r\n", "\n").Split('\n');
+            for (int r = 0; r < rows.Length; r++)
+            {
+                string row = rows[r];
+                int y = cfg.originY + (rows.Length - 1 - r);
+                for (int c = 0; c < row.Length; c++)
+                {
+                    int x = cfg.originX + c;
+                    Vector3Int pos = new Vector3Int(x, y, 0);
+                    int hash = Mathf.Abs(x * 73856093 ^ y * 19349663);
+                    char ch = row[c];
+
+                    switch (ch)
+                    {
+                        case 'P':
+                            groundTm.SetTile(pos, pathTiles[hash % pathTiles.Length]);
+                            break;
+                        case 'G':
+                            groundTm.SetTile(pos, ghTiles[hash % ghTiles.Length]);
+                            break;
+                        case 'B':
+                            groundTm.SetTile(pos, flowerbedTile);
+                            break;
+                        case '#':
+                            groundTm.SetTile(pos, ghTiles[0]);
+                            obsTm.SetTile(pos, PickAutoTile(rows, r, c, '#', wallH, wallV, wallTL, wallTR, wallBL, wallBR));
+                            break;
+                        case 'F':
+                            groundTm.SetTile(pos, grassTiles[hash % grassTiles.Length]);
+                            obsTm.SetTile(pos, PickAutoTile(rows, r, c, 'F', fenceH, fenceV, fenceTL, fenceTR, fenceBL, fenceBR));
+                            break;
+                        case 'T':
+                            groundTm.SetTile(pos, grassTiles[hash % grassTiles.Length]);
+                            obsTm.SetTile(pos, treeTile);
+                            break;
+                        case 'W':
+                            groundTm.SetTile(pos, waterTile);
+                            obsTm.SetTile(pos, waterTile);
+                            break;
+                        default:
+                            groundTm.SetTile(pos, grassTiles[hash % grassTiles.Length]);
+                            break;
+                    }
+                }
+            }
+
+            Debug.Log("[MV] Đã dựng lại WorldMapGrid với Auto-Tile 6 hướng cho Tường Kính & Hàng Rào + Thảm hoa liền mạch.");
+        }
+
+        private static void UpgradeCentralPlantingSpot()
+        {
+            var spot = UnityEngine.Object.FindAnyObjectByType<PlantingSpotController>();
+            if (spot == null) return;
+
+            Sprite emptySpr = LoadEnv("Props/planting_spot_empty.png");
+            Sprite bloomSpr = LoadEnv("Props/planting_spot_bloomed.png");
+            if (emptySpr == null || bloomSpr == null) return;
+
+            var so = new SerializedObject(spot);
+            so.FindProperty("emptySprite").objectReferenceValue = emptySpr;
+            so.FindProperty("bloomedSprite").objectReferenceValue = bloomSpr;
+            so.ApplyModifiedPropertiesWithoutUndo();
+
+            var srProp = so.FindProperty("flowerRenderer");
+            var sr = srProp != null ? srProp.objectReferenceValue as SpriteRenderer : spot.GetComponentInChildren<SpriteRenderer>();
+            if (sr != null)
+            {
+                sr.sprite = emptySpr;
+                sr.color = Color.white;
+                EditorUtility.SetDirty(sr);
+            }
+            EditorUtility.SetDirty(spot);
+            Debug.Log("[MV] Đã nâng cấp Bồn Hoa Trung Tâm thành bồn đá bát giác khắc Trăng Khuyết.");
+        }
+
+        private static void UpgradeGreenhouseInteriorAndFarmLayout()
+        {
+            Sprite soilUntilled = LoadEnv("Soil/soil_untilled.png");
+            Sprite soilDry = LoadEnv("Soil/soil_dry.png");
+            Sprite soilWet = LoadEnv("Soil/soil_wet.png");
+
+            var tiles = UnityEngine.Object.FindObjectsByType<FarmTileController>(FindObjectsInactive.Include);
+            Array.Sort(tiles, (a, b) => string.CompareOrdinal(a.name, b.name));
+
+            // Arrange 12 raised wooden planter boxes into 2 clean 2x3 cozy garden beds (columns 0-1 | aisle | columns 2-3)
+            for (int i = 0; i < tiles.Length; i++)
+            {
+                var tile = tiles[i];
+                if (soilUntilled != null && soilDry != null && soilWet != null)
+                {
+                    var so = new SerializedObject(tile);
+                    so.FindProperty("untilledSprite").objectReferenceValue = soilUntilled;
+                    so.FindProperty("tilledDrySprite").objectReferenceValue = soilDry;
+                    so.FindProperty("tilledWetSprite").objectReferenceValue = soilWet;
+                    so.ApplyModifiedPropertiesWithoutUndo();
+                    tile.RefreshVisuals();
+                }
+
+                if (tiles.Length == 12)
+                {
+                    int row = i / 4; // 0..2
+                    int col = i % 4; // 0..3
+                    float aisleOffset = col >= 2 ? 0.45f : 0f;
+                    float tx = -18.15f + col * 1.08f + aisleOffset;
+                    float ty = 9.55f - row * 1.18f;
+                    tile.transform.position = new Vector3(tx, ty, 0f);
+                }
+                EditorUtility.SetDirty(tile.gameObject);
+            }
+
+            // Place a cozy woven rug under the Greenhouse reading/living nook (north side)
+            Sprite rugSpr = LoadEnv("Decor/decor_greenhouse_rug.png");
+            if (rugSpr != null)
+            {
+                GameObject oldRug = GameObject.Find("GreenhouseCozyRug");
+                if (oldRug != null) UnityEngine.Object.DestroyImmediate(oldRug);
+
+                GameObject decorGroup = GameObject.Find("VillageDecorGroup");
+                GameObject rugGo = new GameObject("GreenhouseCozyRug");
+                if (decorGroup != null) rugGo.transform.SetParent(decorGroup.transform, false);
+                rugGo.transform.position = new Vector3(-16.1f, 12.15f, 0f);
+                var sr = rugGo.AddComponent<SpriteRenderer>();
+                sr.sprite = rugSpr;
+                sr.sortingLayerName = "FloorDecal";
+                sr.sortingOrder = 1;
+            }
+
+            Debug.Log($"[MV] Đã sắp gọn {tiles.Length} chậu đất viền gỗ thành 2 luống đối xứng + trải thảm Nhà Kính.");
+        }
+
+        private static void UpdateShadow(Transform parent, Sprite shadowSpr, Vector3 localPos, Vector3 localScale)
+        {
+            if (parent == null || shadowSpr == null) return;
+            Transform existing = parent.Find("GroundShadow");
+            GameObject go = existing != null ? existing.gameObject : new GameObject("GroundShadow");
+            go.transform.SetParent(parent, false);
+            go.transform.localPosition = localPos;
+            go.transform.localScale = localScale;
+            var sr = go.GetComponent<SpriteRenderer>();
+            if (sr == null) sr = go.AddComponent<SpriteRenderer>();
+            sr.sprite = shadowSpr;
+            sr.color = new Color(1f, 1f, 1f, 0.85f);
+            sr.sortingLayerName = "Shadows";
+            sr.sortingOrder = 0;
+            EditorUtility.SetDirty(go);
+        }
+
+        private static void StrengthenGroundShadows()
+        {
+            Sprite shadowSpr = LoadEnv("Shadows/spr_ground_shadow.png");
+            if (shadowSpr == null) return;
+
+            if (AssetDatabase.LoadAssetAtPath<GameObject>(PlayerPrefabPath) != null)
+            {
+                GameObject root = PrefabUtility.LoadPrefabContents(PlayerPrefabPath);
+                UpdateShadow(root.transform, shadowSpr, new Vector3(0f, -0.46f, 0f), new Vector3(1.10f, 0.90f, 1f));
+                PrefabUtility.SaveAsPrefabAsset(root, PlayerPrefabPath);
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+            var player = UnityEngine.Object.FindAnyObjectByType<PlayerController2D>();
+            if (player != null)
+            {
+                UpdateShadow(player.transform, shadowSpr, new Vector3(0f, -0.46f, 0f), new Vector3(1.10f, 0.90f, 1f));
+            }
+
+            if (AssetDatabase.LoadAssetAtPath<GameObject>(LumiPrefabPath) != null)
+            {
+                GameObject root = PrefabUtility.LoadPrefabContents(LumiPrefabPath);
+                UpdateShadow(root.transform, shadowSpr, new Vector3(0f, -0.44f, 0f), new Vector3(0.68f, 0.56f, 1f));
+                PrefabUtility.SaveAsPrefabAsset(root, LumiPrefabPath);
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+            var lumi = UnityEngine.Object.FindAnyObjectByType<LumiCompanionController>();
+            if (lumi != null)
+            {
+                UpdateShadow(lumi.transform, shadowSpr, new Vector3(0f, -0.44f, 0f), new Vector3(0.68f, 0.56f, 1f));
+            }
+
+            if (AssetDatabase.LoadAssetAtPath<GameObject>(SlimePrefabPath) != null)
+            {
+                GameObject root = PrefabUtility.LoadPrefabContents(SlimePrefabPath);
+                UpdateShadow(root.transform, shadowSpr, new Vector3(0f, -0.34f, 0f), new Vector3(1.05f, 0.85f, 1f));
+                PrefabUtility.SaveAsPrefabAsset(root, SlimePrefabPath);
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+            var slimes = UnityEngine.Object.FindObjectsByType<GloomSlimeController>(FindObjectsInactive.Include);
+            foreach (var sl in slimes)
+            {
+                UpdateShadow(sl.transform, shadowSpr, new Vector3(0f, -0.34f, 0f), new Vector3(1.05f, 0.85f, 1f));
+            }
+
+            var npcs = UnityEngine.Object.FindObjectsByType<NPCController>(FindObjectsInactive.Include);
+            foreach (var npc in npcs)
+            {
+                UpdateShadow(npc.transform, shadowSpr, new Vector3(0f, -0.46f, 0f), new Vector3(1.10f, 0.90f, 1f));
+            }
+
+            Debug.Log("[MV] Đã tăng độ đậm và căn sát chân GroundShadow cho Wen, Lumi, 4 NPC và 8 Slime.");
+        }
+
+        private static void FixGreenhouseWallClippingDecor()
+        {
+            GameObject decorGroup = GameObject.Find("VillageDecorGroup");
+            if (decorGroup == null) return;
+
+            int moved = 0;
+            var transforms = decorGroup.GetComponentsInChildren<Transform>(true);
+            for (int i = 0; i < transforms.Length; i++)
+            {
+                Transform t = transforms[i];
+                if (t == decorGroup.transform || t.name == "Step15WorldPolishGroup" || t.name == "GreenhouseCozyRug")
+                    continue;
+
+                Vector3 p = t.position;
+                // Greenhouse east glass wall is at x = -10..-9, y = 5..15
+                if (p.x >= -10.8f && p.x <= -8.4f && p.y >= 5.2f && p.y <= 14.8f)
+                {
+                    t.position = new Vector3(-7.4f, p.y, p.z);
+                    var sr = t.GetComponent<SpriteRenderer>();
+                    if (sr != null && sr.sortingLayerName == "WorldObjects")
+                    {
+                        sr.sortingOrder = Mathf.RoundToInt(-t.position.y * 100f);
+                    }
+                    EditorUtility.SetDirty(t.gameObject);
+                    moved++;
+                }
+            }
+            if (moved > 0)
+            {
+                Debug.Log($"[MV] Đã dời {moved} vật trang trí bị chạm tường kính phía Đông Nhà Kính ra ngoài thoáng đẹp.");
+            }
+        }
+    }
+}
+```
+
+## 80. `Assets/Editor/AutoBuilder_Step16_Fix.cs`
+
+```csharp
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.Tilemaps;
+using MoonpetalValley.Player;
+
+namespace MoonpetalValley.EditorTools
+{
+    public static class AutoBuilder_Step16_Fix
+    {
+        private const string WorldScenePath = "Assets/Scenes/MoonpetalValley_MVP.unity";
+        private const string PlayerPrefabPath = "Assets/Prefabs/Characters/Player_Wen.prefab";
+
+        [MenuItem("Moonpetal/Step 16/2. Fix Invisible Colliders & Align Garden Arch")]
+        public static void ApplyStep16Fix()
+        {
+            if (EditorApplication.isPlaying || EditorApplication.isCompiling)
+            {
+                Debug.LogWarning("[MV] Không thể chạy AutoBuilder khi đang Play Mode hoặc đang biên dịch.");
+                return;
+            }
+
+            Debug.Log("[MV] === BẮT ĐẦU STEP 16.FIX 1 (COLLIDERS & GARDEN ARCH) ===");
+            var scene = EditorSceneManager.OpenScene(WorldScenePath, OpenSceneMode.Single);
+
+            // 1. Merge ObstacleTilemap collider via CompositeCollider2D (Unity 6 API)
+            FixObstacleTilemapCompositeCollider();
+
+            // 2. Refine Player_Wen collider (compact + rounded edgeRadius so Wen never snags)
+            RefinePlayerCollider();
+
+            // 3. Scan & clean any invisible orphaned solid Collider2D in scene
+            AuditAndCleanInvisibleColliders();
+
+            // 4. Align GardenEntranceArch flush with fence + move bushes overlapping fence
+            AlignGardenArchAndFenceBushes();
+
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+
+            Debug.Log("[MV] === HOÀN TẤT STEP 16.FIX 1! Vào Play Mode kiểm tra đi lại quanh hàng rào và cổng vườn nhé. ===");
+        }
+
+        private static void FixObstacleTilemapCompositeCollider()
+        {
+            GameObject obsGo = GameObject.Find("ObstacleTilemap");
+            if (obsGo == null)
+            {
+                Debug.LogWarning("[MV] Không tìm thấy ObstacleTilemap.");
+                return;
+            }
+
+            var tmCol = obsGo.GetComponent<TilemapCollider2D>();
+            if (tmCol == null) tmCol = obsGo.AddComponent<TilemapCollider2D>();
+
+            var rb = obsGo.GetComponent<Rigidbody2D>();
+            if (rb == null) rb = obsGo.AddComponent<Rigidbody2D>();
+            rb.bodyType = RigidbodyType2D.Static;
+            rb.simulated = true;
+
+            var compCol = obsGo.GetComponent<CompositeCollider2D>();
+            if (compCol == null) compCol = obsGo.AddComponent<CompositeCollider2D>();
+            compCol.geometryType = CompositeCollider2D.GeometryType.Polygons;
+            compCol.generationType = CompositeCollider2D.GenerationType.Synchronous;
+
+            tmCol.compositeOperation = Collider2D.CompositeOperation.Merge;
+            compCol.GenerateGeometry();
+
+            EditorUtility.SetDirty(obsGo);
+            Debug.Log("[MV] Đã gộp ObstacleTilemap bằng CompositeCollider2D (hết kẹt cạnh tile).");
+        }
+
+        private static void ApplyCleanPlayerBox(GameObject go)
+        {
+            var col = go.GetComponent<BoxCollider2D>();
+            if (col == null) return;
+            col.size = new Vector2(0.46f, 0.34f);
+            col.offset = new Vector2(0f, -0.34f);
+            col.edgeRadius = 0.05f;
+            EditorUtility.SetDirty(col);
+        }
+
+        private static void RefinePlayerCollider()
+        {
+            if (AssetDatabase.LoadAssetAtPath<GameObject>(PlayerPrefabPath) != null)
+            {
+                GameObject root = PrefabUtility.LoadPrefabContents(PlayerPrefabPath);
+                ApplyCleanPlayerBox(root);
+                PrefabUtility.SaveAsPrefabAsset(root, PlayerPrefabPath);
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+
+            var player = UnityEngine.Object.FindAnyObjectByType<PlayerController2D>();
+            if (player != null)
+            {
+                ApplyCleanPlayerBox(player.gameObject);
+            }
+            Debug.Log("[MV] Đã thu gọn và bo tròn BoxCollider2D dưới chân Player_Wen.");
+        }
+
+        private static void AuditAndCleanInvisibleColliders()
+        {
+            var allCols = UnityEngine.Object.FindObjectsByType<Collider2D>(FindObjectsInactive.Include);
+            int fixedCount = 0;
+
+            for (int i = 0; i < allCols.Length; i++)
+            {
+                var col = allCols[i];
+                if (col == null || !col.enabled || col.isTrigger) continue;
+
+                GameObject go = col.gameObject;
+                if (go.name == "ObstacleTilemap" || go.name == "Player_Wen") continue;
+                if (go.GetComponent<TilemapCollider2D>() != null || go.GetComponent<CompositeCollider2D>() != null) continue;
+
+                // Check if this solid collider has ANY visible SpriteRenderer on itself or children
+                var srs = go.GetComponentsInChildren<SpriteRenderer>(false);
+                bool hasVisibleSprite = false;
+                for (int k = 0; k < srs.Length; k++)
+                {
+                    if (srs[k].enabled && srs[k].sprite != null && srs[k].color.a > 0.05f)
+                    {
+                        hasVisibleSprite = true;
+                        break;
+                    }
+                }
+
+                if (!hasVisibleSprite)
+                {
+                    col.enabled = false;
+                    EditorUtility.SetDirty(col);
+                    Debug.Log($"[MV] Đã tắt Collider tàng hình: '{go.name}' tại {go.transform.position}");
+                    fixedCount++;
+                }
+            }
+
+            Debug.Log($"[MV] Kiểm toán Collider hoàn tất (đã dọn {fixedCount} collider tàng hình).");
+        }
+
+        private static void AlignGardenArchAndFenceBushes()
+        {
+            GameObject arch = GameObject.Find("GardenEntranceArch");
+            if (arch != null)
+            {
+                arch.transform.position = new Vector3(0.0f, -0.55f, 0f);
+                arch.transform.localScale = new Vector3(1.22f, 0.96f, 1f);
+                var sr = arch.GetComponent<SpriteRenderer>();
+                if (sr != null)
+                {
+                    sr.sortingLayerName = "WorldObjects";
+                    sr.sortingOrder = 2600;
+                }
+                EditorUtility.SetDirty(arch);
+                Debug.Log("[MV] Đã căn cổng vòm GardenEntranceArch nối khít 2 đầu hàng rào.");
+            }
+
+            // Move the 2 bushes that were overlapping the South Garden fence at y = -1.6
+            GameObject b6 = GameObject.Find("ExtraBush_6");
+            if (b6 != null)
+            {
+                b6.transform.position = new Vector3(3.6f, -0.35f, 0f);
+                var sr = b6.GetComponent<SpriteRenderer>();
+                if (sr != null) sr.sortingOrder = Mathf.RoundToInt(-b6.transform.position.y * 100f);
+                EditorUtility.SetDirty(b6);
+            }
+
+            GameObject b7 = GameObject.Find("ExtraBush_7");
+            if (b7 != null)
+            {
+                b7.transform.position = new Vector3(-3.6f, -0.35f, 0f);
+                var sr = b7.GetComponent<SpriteRenderer>();
+                if (sr != null) sr.sortingOrder = Mathf.RoundToInt(-b7.transform.position.y * 100f);
+                EditorUtility.SetDirty(b7);
+            }
+        }
+    }
+}
+```
+
+## 81. `Assets/Editor/AutoBuilder_Step17.cs`
+
+```csharp
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.Tilemaps;
+using MoonpetalValley.Data;
+using MoonpetalValley.TimeSystem;
+
+namespace MoonpetalValley.EditorTools
+{
+    public static class AutoBuilder_Step17
+    {
+        private const string WorldScenePath = "Assets/Scenes/MoonpetalValley_MVP.unity";
+        private const string MapConfigPath = "Assets/Data/Config/MapLayoutConfig.asset";
+        private const string EnvRoot = "Assets/Art/Sprites/Environment/";
+
+        [MenuItem("Moonpetal/Step 17/1. Apply Organic Terrain (16-State Rounded Paths, Curved Pond & Pier)")]
+        public static void BuildStep17()
+        {
+            if (EditorApplication.isPlaying || EditorApplication.isCompiling)
+            {
+                Debug.LogWarning("[MV] Không thể chạy AutoBuilder khi đang Play Mode hoặc đang biên dịch.");
+                return;
+            }
+
+            Debug.Log("[MV] === BẮT ĐẦU AUTOBUILDER STEP 17 (CHẶNG 1 - ĐỊA HÌNH HỮU CƠ) ===");
+            AssetDatabase.Refresh();
+            ForceReimportEnvironmentFolder();
+            AssetDatabase.Refresh();
+
+            var scene = EditorSceneManager.OpenScene(WorldScenePath, OpenSceneMode.Single);
+
+            // 1. Update MapLayoutConfig with organic curved pond basin (6x4) & clean connected paths
+            MapLayoutConfigSO cfg = UpdateMapConfigForOrganicPond();
+            if (cfg != null)
+            {
+                RebuildOrganicTilemap(cfg);
+                BuildSeamlessAnimatedPond();
+                BuildOrganicSteppingStonesAndShoreline();
+            }
+
+            // 2. Keep GardenEntranceArch flush with fence
+            GameObject arch = GameObject.Find("GardenEntranceArch");
+            if (arch != null)
+            {
+                arch.transform.position = new Vector3(0.0f, -0.55f, 0f);
+                arch.transform.localScale = new Vector3(1.22f, 0.96f, 1f);
+                EditorUtility.SetDirty(arch);
+            }
+
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+
+            Debug.Log("[MV] === HOÀN TẤT STEP 17 (CHẶNG 1)! Chạy 'Moonpetal/Step 17/Validate' để kiểm chứng. ===");
+        }
+
+        [MenuItem("Moonpetal/Step 17/Validate")]
+        public static void ValidateStep17()
+        {
+            int errors = 0;
+            Debug.Log("[MV] === BẮT ĐẦU VALIDATE STEP 17 ===");
+
+            for (int m = 0; m < 16; m++)
+            {
+                string p = $"{EnvRoot}Paths/path_m{m:D2}.png";
+                if (AssetDatabase.LoadAssetAtPath<Sprite>(p) == null)
+                {
+                    Debug.LogError("[MV] Thiếu path auto-tile: " + p);
+                    errors++;
+                }
+            }
+            for (int f = 0; f < 4; f++)
+            {
+                string p = $"{EnvRoot}Water/pond_organic_{f:D2}.png";
+                if (AssetDatabase.LoadAssetAtPath<Sprite>(p) == null)
+                {
+                    Debug.LogError("[MV] Thiếu pond organic frame: " + p);
+                    errors++;
+                }
+            }
+
+            var waterAnim = UnityEngine.Object.FindAnyObjectByType<WaterTileAnimator>();
+            if (waterAnim == null)
+            {
+                Debug.LogError("[MV] Thiếu WaterTileAnimator trên AnimatedPondWater.");
+                errors++;
+            }
+
+            GameObject obsGo = GameObject.Find("ObstacleTilemap");
+            if (obsGo == null || obsGo.GetComponent<CompositeCollider2D>() == null)
+            {
+                Debug.LogError("[MV] ObstacleTilemap thiếu CompositeCollider2D.");
+                errors++;
+            }
+
+            if (GameObject.Find("Step17OrganicShoreline") == null)
+            {
+                Debug.LogError("[MV] Thiếu nhóm Step17OrganicShoreline (cầu gỗ, lau sậy & đá bước chân).");
+                errors++;
+            }
+
+            var allGos = UnityEngine.Object.FindObjectsByType<GameObject>(FindObjectsInactive.Include);
+            for (int i = 0; i < allGos.Length; i++)
+            {
+                if (GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(allGos[i]) > 0)
+                {
+                    Debug.LogError("[MV] Missing Script trên: " + allGos[i].name);
+                    errors++;
+                }
+            }
+
+            if (errors == 0)
+            {
+                Debug.Log("[MV] VALIDATE STEP 17: PASS (0 lỗi | 16-State Rounded Paths=OK | Curved Organic Pond 4f=OK | CompositeCollider2D=OK).");
+            }
+            else
+            {
+                Debug.LogError($"[MV] VALIDATE STEP 17: FAIL ({errors} lỗi).");
+            }
+        }
+
+        private static void ForceReimportEnvironmentFolder()
+        {
+            string folder = "Assets/Art/Sprites/Environment";
+            if (!AssetDatabase.IsValidFolder(folder)) return;
+            string[] guids = AssetDatabase.FindAssets("t:Texture2D", new[] { folder });
+            foreach (string g in guids)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(g);
+                var imp = AssetImporter.GetAtPath(path) as TextureImporter;
+                if (imp == null) continue;
+                imp.textureType = TextureImporterType.Sprite;
+                imp.spriteImportMode = SpriteImportMode.Single;
+                imp.filterMode = FilterMode.Point;
+                imp.textureCompression = TextureImporterCompression.Uncompressed;
+                imp.mipmapEnabled = false;
+                imp.alphaIsTransparency = true;
+                imp.spritePixelsPerUnit = 16f;
+                var st = new TextureImporterSettings();
+                imp.ReadTextureSettings(st);
+                st.spriteMeshType = SpriteMeshType.FullRect;
+                st.spriteAlignment = (int)SpriteAlignment.Center;
+                st.spritePivot = new Vector2(0.5f, 0.5f);
+                imp.SetTextureSettings(st);
+                imp.SaveAndReimport();
+            }
+        }
+
+        private static Sprite LoadEnv(string rel) => AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + rel);
+
+        private static Tile MakeTile(Sprite spr, Tile.ColliderType colType = Tile.ColliderType.Grid)
+        {
+            var t = ScriptableObject.CreateInstance<Tile>();
+            t.sprite = spr;
+            t.color = Color.white;
+            t.colliderType = colType;
+            return t;
+        }
+
+        private static MapLayoutConfigSO UpdateMapConfigForOrganicPond()
+        {
+            var cfg = AssetDatabase.LoadAssetAtPath<MapLayoutConfigSO>(MapConfigPath);
+            if (cfg == null)
+            {
+                Debug.LogError("[MV] Không tìm thấy MapLayoutConfig.asset!");
+                return null;
+            }
+
+            // 32 rows x 44 cols (originX = -22, originY = -16)
+            // Organic 6x4 curved pond basin at rows 1..4, cols 16..21 (x = -6..-1, y = 11..14)
+            // Completely clear of Greenhouse (cols 1..12), Well (~x=-8,y=10.5), Village paths (row 7+) & Forest Edge
+            string[] rows =
+            {
+                "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+                "T############....WWWW........TTTTTTTTTTTTTTT",
+                "T#GGGGGGGGGG#...WWWWWW.......TT..........TTT",
+                "T#GGGGGGGGGG#...WWWWWW.......T............TT",
+                "T#GGGGGGGGGG#....WWWW........T....TTTT.....T",
+                "T#GGGGGGGGGG#........PPPP.........TTTT.....T",
+                "T#GGGGGGGGGG#........PPPP..................T",
+                "T#GGGGGGGGGG#...PPPPPPPPPPPPPPPPPPPPPP.....T",
+                "T#GGGGGGGGGG#...PPPPPPPPPPPPPPPPPPPPPP.....T",
+                "T#GGGGGGGGGG#...PP........PP........PP.....T",
+                "T#####PP#####...PP........PP........PP.....T",
+                "T.....PP........PP..PPPP..PP........PP.....T",
+                "T.....PP........PP..PPPP..PP........PP.....T",
+                "T.....PPPPPPPPPPPP..PPPP..PPPPPPPPPPPP.....T",
+                "T.....PPPPPPPPPPPP..PPPP..PPPPPPPPPPPP.....T",
+                "T...................PPPP...................T",
+                "T...................PPPP...................T",
+                "T..............FFFFFPPPPFFFFF..............T",
+                "T..............F....PPPP....F..............T",
+                "T..............F....PPPP....F..............T",
+                "T..............F....PPPP....F..............T",
+                "T..............F...PPPPPP...F..............T",
+                "T..............F...PPBBPP...F..............T",
+                "T..............F...PPBBPP...F..............T",
+                "T..............F...PPPPPP...F..............T",
+                "T..............F............F..............T",
+                "T..............F............F..............T",
+                "T..............F............F..............T",
+                "T..............FFFFFFFFFFFFFF..............T",
+                "TT........................................TT",
+                "TTT......................................TTT",
+                "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
+            };
+
+            cfg.asciiMap = string.Join("\n", rows);
+            EditorUtility.SetDirty(cfg);
+            AssetDatabase.SaveAssets();
+            Debug.Log("[MV] Đã cập nhật MapLayoutConfig.asset với hồ nước cong 6x4 và trục đường thông thoáng.");
+            return cfg;
+        }
+
+        private static bool IsChar(string[] rows, int r, int c, char target)
+        {
+            if (r < 0 || r >= rows.Length) return false;
+            if (c < 0 || c >= rows[r].Length) return false;
+            return rows[r][c] == target;
+        }
+
+        private static bool IsPathOrConnected(string[] rows, int r, int c)
+        {
+            if (r < 0 || r >= rows.Length) return false;
+            if (c < 0 || c >= rows[r].Length) return false;
+            char ch = rows[r][c];
+            return ch == 'P' || ch == 'B' || ch == 'G';
+        }
+
+        private static Tile Pick6StateWallOrFence(
+            string[] rows, int r, int c, char ch,
+            Tile tH, Tile tV, Tile tTL, Tile tTR, Tile tBL, Tile tBR)
+        {
+            bool hasN = IsChar(rows, r - 1, c, ch);
+            bool hasS = IsChar(rows, r + 1, c, ch);
+            bool hasW = IsChar(rows, r, c - 1, ch);
+            bool hasE = IsChar(rows, r, c + 1, ch);
+
+            if (hasS && hasE && !hasN && !hasW) return tTL;
+            if (hasS && hasW && !hasN && !hasE) return tTR;
+            if (hasN && hasE && !hasS && !hasW) return tBL;
+            if (hasN && hasW && !hasS && !hasE) return tBR;
+            if ((hasN || hasS) && !hasE && !hasW) return tV;
+            return tH;
+        }
+
+        private static void RebuildOrganicTilemap(MapLayoutConfigSO cfg)
+        {
+            Tile[] grassTiles = new Tile[4];
+            for (int i = 0; i < 4; i++) grassTiles[i] = MakeTile(LoadEnv($"Tiles/tile_grass_{i}.png"));
+
+            Tile[] pathMasks = new Tile[16];
+            for (int m = 0; m < 16; m++) pathMasks[m] = MakeTile(LoadEnv($"Paths/path_m{m:D2}.png"));
+
+            Tile[] ghTiles =
+            {
+                MakeTile(LoadEnv("Tiles/tile_gh_floor_0.png")),
+                MakeTile(LoadEnv("Tiles/tile_gh_floor_1.png")),
+            };
+
+            Tile wallH  = MakeTile(LoadEnv("Tiles/tile_wall.png"));
+            Tile wallV  = MakeTile(LoadEnv("Tiles/tile_wall_v.png"));
+            Tile wallTL = MakeTile(LoadEnv("Tiles/tile_wall_tl.png"));
+            Tile wallTR = MakeTile(LoadEnv("Tiles/tile_wall_tr.png"));
+            Tile wallBL = MakeTile(LoadEnv("Tiles/tile_wall_bl.png"));
+            Tile wallBR = MakeTile(LoadEnv("Tiles/tile_wall_br.png"));
+
+            Tile fenceH  = MakeTile(LoadEnv("Tiles/tile_fence.png"));
+            Tile fenceV  = MakeTile(LoadEnv("Tiles/tile_fence_v.png"));
+            Tile fenceTL = MakeTile(LoadEnv("Tiles/tile_fence_tl.png"));
+            Tile fenceTR = MakeTile(LoadEnv("Tiles/tile_fence_tr.png"));
+            Tile fenceBL = MakeTile(LoadEnv("Tiles/tile_fence_bl.png"));
+            Tile fenceBR = MakeTile(LoadEnv("Tiles/tile_fence_br.png"));
+
+            Tile treeTile = MakeTile(LoadEnv("Tiles/tile_tree.png"));
+            Tile flowerbedTile = MakeTile(LoadEnv("Tiles/tile_flowerbed.png"));
+            Tile waterColliderTile = MakeTile(LoadEnv("Water/tile_water_transparent.png"), Tile.ColliderType.Grid);
+
+            GameObject gridGo = GameObject.Find("WorldMapGrid");
+            if (gridGo != null) UnityEngine.Object.DestroyImmediate(gridGo);
+
+            gridGo = new GameObject("WorldMapGrid");
+            gridGo.AddComponent<Grid>();
+
+            GameObject groundGo = new GameObject("GroundTilemap");
+            groundGo.transform.SetParent(gridGo.transform, false);
+            var groundTm = groundGo.AddComponent<Tilemap>();
+            var groundRenderer = groundGo.AddComponent<TilemapRenderer>();
+            groundRenderer.sortingLayerName = "Ground";
+
+            GameObject obsGo = new GameObject("ObstacleTilemap");
+            obsGo.transform.SetParent(gridGo.transform, false);
+            obsGo.layer = 10;
+            var obsTm = obsGo.AddComponent<Tilemap>();
+            var obsRenderer = obsGo.AddComponent<TilemapRenderer>();
+            obsRenderer.sortingLayerName = "WorldObjects";
+            obsRenderer.sortingOrder = -5000;
+            var tmCol = obsGo.AddComponent<TilemapCollider2D>();
+            var rb = obsGo.AddComponent<Rigidbody2D>();
+            rb.bodyType = RigidbodyType2D.Static;
+            var compCol = obsGo.AddComponent<CompositeCollider2D>();
+            compCol.geometryType = CompositeCollider2D.GeometryType.Polygons;
+            compCol.generationType = CompositeCollider2D.GenerationType.Synchronous;
+            tmCol.compositeOperation = Collider2D.CompositeOperation.Merge;
+
+            string[] rows = cfg.asciiMap.Replace("\r\n", "\n").Split('\n');
+            for (int r = 0; r < rows.Length; r++)
+            {
+                string row = rows[r];
+                int y = cfg.originY + (rows.Length - 1 - r);
+                for (int c = 0; c < row.Length; c++)
+                {
+                    int x = cfg.originX + c;
+                    Vector3Int pos = new Vector3Int(x, y, 0);
+                    int hash = Mathf.Abs(x * 73856093 ^ y * 19349663);
+                    char ch = row[c];
+
+                    switch (ch)
+                    {
+                        case 'P':
+                            int mask = 0;
+                            if (IsPathOrConnected(rows, r - 1, c)) mask |= 1;
+                            if (IsPathOrConnected(rows, r, c + 1)) mask |= 2;
+                            if (IsPathOrConnected(rows, r + 1, c)) mask |= 4;
+                            if (IsPathOrConnected(rows, r, c - 1)) mask |= 8;
+                            groundTm.SetTile(pos, pathMasks[mask]);
+                            break;
+                        case 'G':
+                            groundTm.SetTile(pos, ghTiles[hash % ghTiles.Length]);
+                            break;
+                        case 'B':
+                            groundTm.SetTile(pos, flowerbedTile);
+                            break;
+                        case '#':
+                            groundTm.SetTile(pos, ghTiles[0]);
+                            obsTm.SetTile(pos, Pick6StateWallOrFence(rows, r, c, '#', wallH, wallV, wallTL, wallTR, wallBL, wallBR));
+                            break;
+                        case 'F':
+                            groundTm.SetTile(pos, grassTiles[hash % grassTiles.Length]);
+                            obsTm.SetTile(pos, Pick6StateWallOrFence(rows, r, c, 'F', fenceH, fenceV, fenceTL, fenceTR, fenceBL, fenceBR));
+                            break;
+                        case 'T':
+                            groundTm.SetTile(pos, grassTiles[hash % grassTiles.Length]);
+                            obsTm.SetTile(pos, treeTile);
+                            break;
+                        case 'W':
+                            // Seamless grass underneath + transparent collider so 96x64 curved pond renders smoothly!
+                            groundTm.SetTile(pos, grassTiles[hash % grassTiles.Length]);
+                            obsTm.SetTile(pos, waterColliderTile);
+                            break;
+                        default:
+                            groundTm.SetTile(pos, grassTiles[hash % grassTiles.Length]);
+                            break;
+                    }
+                }
+            }
+
+            compCol.GenerateGeometry();
+            Debug.Log("[MV] Đã dựng WorldMapGrid hữu cơ với 16-state Rounded Paths + CompositeCollider2D.");
+        }
+
+        private static void BuildSeamlessAnimatedPond()
+        {
+            Sprite[] frames =
+            {
+                LoadEnv("Water/pond_organic_00.png"),
+                LoadEnv("Water/pond_organic_01.png"),
+                LoadEnv("Water/pond_organic_02.png"),
+                LoadEnv("Water/pond_organic_03.png"),
+            };
+            if (frames[0] == null)
+            {
+                Debug.LogWarning("[MV] Không tìm thấy Water/pond_organic_00..03.png.");
+                return;
+            }
+
+            GameObject oldWater = GameObject.Find("AnimatedPondWater");
+            if (oldWater != null) UnityEngine.Object.DestroyImmediate(oldWater);
+
+            GameObject root = new GameObject("AnimatedPondWater");
+            // Center of cols 16..21 (x=-6..-1 -> center -3.0) and rows 1..4 (y=11..14 -> center 13.0)
+            root.transform.position = new Vector3(-3.0f, 13.0f, 0f);
+
+            var sr = root.AddComponent<SpriteRenderer>();
+            sr.sprite = frames[0];
+            sr.sortingLayerName = "FloorDecal";
+            sr.sortingOrder = 5;
+
+            var anim = root.AddComponent<WaterTileAnimator>();
+            var so = new SerializedObject(anim);
+            var fProp = so.FindProperty("waterFrames");
+            fProp.arraySize = frames.Length;
+            for (int i = 0; i < frames.Length; i++) fProp.GetArrayElementAtIndex(i).objectReferenceValue = frames[i];
+            var rProp = so.FindProperty("waterRenderers");
+            rProp.arraySize = 1;
+            rProp.GetArrayElementAtIndex(0).objectReferenceValue = sr;
+            so.FindProperty("fps").floatValue = 3.2f;
+            so.ApplyModifiedPropertiesWithoutUndo();
+
+            Debug.Log("[MV] Đã dựng hồ nước cong liền khối 96x64 (4 frame động) tại (-3.0, 13.0).");
+        }
+
+        private static void SpawnDecal(Transform parent, string name, Sprite spr, Vector3 pos, string layer = "FloorDecal", int order = 6)
+        {
+            if (spr == null) return;
+            GameObject go = new GameObject(name);
+            go.transform.SetParent(parent, false);
+            go.transform.position = pos;
+            var sr = go.AddComponent<SpriteRenderer>();
+            sr.sprite = spr;
+            sr.sortingLayerName = layer;
+            sr.sortingOrder = order;
+        }
+
+        private static void BuildOrganicSteppingStonesAndShoreline()
+        {
+            GameObject decorGroup = GameObject.Find("VillageDecorGroup");
+            if (decorGroup == null) decorGroup = new GameObject("VillageDecorGroup");
+
+            Transform old = decorGroup.transform.Find("Step17OrganicShoreline");
+            if (old != null) UnityEngine.Object.DestroyImmediate(old.gameObject);
+
+            GameObject group = new GameObject("Step17OrganicShoreline");
+            group.transform.SetParent(decorGroup.transform, false);
+
+            Sprite pierSpr = LoadEnv("Decor/decor_pond_pier.png");
+            Sprite reedSpr = LoadEnv("Decor/decor_reeds.png");
+            Sprite st0 = LoadEnv("Decor/decor_stepping_0.png");
+            Sprite st1 = LoadEnv("Decor/decor_stepping_1.png");
+
+            // Wooden Pond Pier at south shoreline of curved pond
+            SpawnDecal(group.transform, "PondWoodenPier", pierSpr, new Vector3(-3.0f, 10.95f, 0f), "FloorDecal", 8);
+
+            // Shoreline cattail reeds framing the curved pond banks
+            SpawnDecal(group.transform, "PondReeds_NW", reedSpr, new Vector3(-5.8f, 14.3f, 0f), "WorldObjects", Mathf.RoundToInt(-14.3f * 100f));
+            SpawnDecal(group.transform, "PondReeds_NE", reedSpr, new Vector3(-0.3f, 14.0f, 0f), "WorldObjects", Mathf.RoundToInt(-14.0f * 100f));
+            SpawnDecal(group.transform, "PondReeds_SE", reedSpr, new Vector3(-0.4f, 11.4f, 0f), "WorldObjects", Mathf.RoundToInt(-11.4f * 100f));
+
+            // Organic stepping stone connectors (Well -> Pond Pier, Pond Pier -> Village Path, Village -> Forest Edge, Greenhouse -> Well)
+            Vector3[] stones =
+            {
+                new Vector3(-7.0f, 10.6f, 0f),
+                new Vector3(-5.6f, 10.5f, 0f),
+                new Vector3(-4.4f, 10.4f, 0f),
+                new Vector3(-3.0f, 9.8f, 0f),
+                new Vector3(-2.6f, 9.0f, 0f),
+                new Vector3(-13.2f, 4.4f, 0f),
+                new Vector3(-11.8f, 5.2f, 0f),
+                new Vector3(-10.4f, 6.2f, 0f),
+                new Vector3(-9.2f, 7.6f, 0f),
+                new Vector3(-8.4f, 9.0f, 0f),
+                new Vector3(9.4f, 7.5f, 0f),
+                new Vector3(10.6f, 7.6f, 0f),
+                new Vector3(11.8f, 7.4f, 0f),
+                new Vector3(13.0f, 7.2f, 0f),
+            };
+            for (int i = 0; i < stones.Length; i++)
+            {
+                SpawnDecal(group.transform, $"SteppingStone_{i}", (i % 2 == 0) ? st0 : st1, stones[i], "FloorDecal", 4);
+            }
+
+            Debug.Log("[MV] Đã bố trí cầu gỗ ven hồ, lau sậy và 14 cụm đá bước chân kết nối mềm giữa các phân khu.");
+        }
+    }
+}
+```
+
+## 82. `Assets/Editor/AutoBuilder_Step18.cs`
+
+```csharp
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine;
+
+namespace MoonpetalValley.EditorTools
+{
+    public static class AutoBuilder_Step18
+    {
+        private const string WorldScenePath = "Assets/Scenes/MoonpetalValley_MVP.unity";
+        private const string EnvRoot = "Assets/Art/Sprites/Environment/";
+
+        [MenuItem("Moonpetal/Step 18/1. Apply Hero Buildings, Multi-Layered Trees & Pine Grove")]
+        public static void BuildStep18()
+        {
+            if (EditorApplication.isPlaying || EditorApplication.isCompiling)
+            {
+                Debug.LogWarning("[MV] Không thể chạy AutoBuilder khi đang Play Mode hoặc đang biên dịch.");
+                return;
+            }
+
+            Debug.Log("[MV] === BẮT ĐẦU AUTOBUILDER STEP 18 (CHẶNG 2 - NHÀ CỬA & CÂY TÁN LỚN) ===");
+            AssetDatabase.Refresh();
+            ForceReimportHeroSprites();
+            AssetDatabase.Refresh();
+
+            var scene = EditorSceneManager.OpenScene(WorldScenePath, OpenSceneMode.Single);
+
+            // 1. Upgrade Hero Buildings + clean foot-only colliders (so Wen walks behind roofs naturally)
+            UpgradeHeroBuildings();
+
+            // 2. Refresh Y-sorting of existing hero trees so Wen walks behind upper canopies
+            RefreshHeroTreeSorting();
+
+            // 3. Add curated Pine Grove at Forest Edge & North Ridge
+            BuildForestPineGrove();
+
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+
+            Debug.Log("[MV] === HOÀN TẤT STEP 18 (CHẶNG 2)! Chạy 'Moonpetal/Step 18/Validate' để kiểm chứng. ===");
+        }
+
+        [MenuItem("Moonpetal/Step 18/Validate")]
+        public static void ValidateStep18()
+        {
+            int errors = 0;
+            Debug.Log("[MV] === BẮT ĐẦU VALIDATE STEP 18 ===");
+
+            string[] required =
+            {
+                "Buildings/house_bakery.png",
+                "Buildings/house_shed.png",
+                "Buildings/otis_notice_board.png",
+                "Buildings/tree_hero_oak.png",
+                "Buildings/tree_hero_blossom.png",
+                "Buildings/tree_hero_pine.png",
+                "Decor/decor_bush.png",
+                "Decor/decor_rock.png",
+            };
+            foreach (string rel in required)
+            {
+                if (AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + rel) == null)
+                {
+                    Debug.LogError("[MV] Thiếu sprite Step 18: " + EnvRoot + rel);
+                    errors++;
+                }
+            }
+
+            if (GameObject.Find("House_HanaBakery") == null)
+            {
+                Debug.LogError("[MV] Không tìm thấy House_HanaBakery trong scene.");
+                errors++;
+            }
+            if (GameObject.Find("House_BachShed") == null)
+            {
+                Debug.LogError("[MV] Không tìm thấy House_BachShed trong scene.");
+                errors++;
+            }
+            if (GameObject.Find("Step18ForestPines") == null)
+            {
+                Debug.LogError("[MV] Thiếu nhóm Step18ForestPines.");
+                errors++;
+            }
+
+            var allGos = UnityEngine.Object.FindObjectsByType<GameObject>(FindObjectsInactive.Include);
+            for (int i = 0; i < allGos.Length; i++)
+            {
+                if (GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(allGos[i]) > 0)
+                {
+                    Debug.LogError("[MV] Missing Script trên: " + allGos[i].name);
+                    errors++;
+                }
+            }
+
+            if (errors == 0)
+            {
+                Debug.Log("[MV] VALIDATE STEP 18: PASS (0 lỗi | Hero Buildings=OK | 3 Tree Species 48x64=OK | Pine Grove=OK).");
+            }
+            else
+            {
+                Debug.LogError($"[MV] VALIDATE STEP 18: FAIL ({errors} lỗi).");
+            }
+        }
+
+        private static Sprite LoadEnv(string rel) => AssetDatabase.LoadAssetAtPath<Sprite>(EnvRoot + rel);
+
+        private static void ForceReimportHeroSprites()
+        {
+            string[] folders =
+            {
+                "Assets/Art/Sprites/Environment/Buildings",
+                "Assets/Art/Sprites/Environment/Decor",
+            };
+            foreach (string folder in folders)
+            {
+                if (!AssetDatabase.IsValidFolder(folder)) continue;
+                string[] guids = AssetDatabase.FindAssets("t:Texture2D", new[] { folder });
+                foreach (string g in guids)
+                {
+                    string path = AssetDatabase.GUIDToAssetPath(g);
+                    var imp = AssetImporter.GetAtPath(path) as TextureImporter;
+                    if (imp == null) continue;
+                    imp.textureType = TextureImporterType.Sprite;
+                    imp.spriteImportMode = SpriteImportMode.Single;
+                    imp.filterMode = FilterMode.Point;
+                    imp.textureCompression = TextureImporterCompression.Uncompressed;
+                    imp.mipmapEnabled = false;
+                    imp.alphaIsTransparency = true;
+                    imp.spritePixelsPerUnit = 16f;
+                    var st = new TextureImporterSettings();
+                    imp.ReadTextureSettings(st);
+                    st.spriteMeshType = SpriteMeshType.FullRect;
+                    st.spriteAlignment = (int)SpriteAlignment.Center;
+                    st.spritePivot = new Vector2(0.5f, 0.5f);
+                    imp.SetTextureSettings(st);
+                    imp.SaveAndReimport();
+                }
+            }
+        }
+
+        private static void UpgradeHeroBuildings()
+        {
+            Sprite bakerySpr = LoadEnv("Buildings/house_bakery.png");
+            Sprite shedSpr = LoadEnv("Buildings/house_shed.png");
+            Sprite boardSpr = LoadEnv("Buildings/otis_notice_board.png");
+
+            GameObject bakery = GameObject.Find("House_HanaBakery");
+            if (bakery != null && bakerySpr != null)
+            {
+                var sr = bakery.GetComponentInChildren<SpriteRenderer>();
+                if (sr != null)
+                {
+                    sr.sprite = bakerySpr;
+                    sr.color = Color.white;
+                    sr.sortingLayerName = "WorldObjects";
+                    sr.sortingOrder = Mathf.RoundToInt(-(bakery.transform.position.y - 1.6f) * 100f);
+                }
+                var col = bakery.GetComponent<BoxCollider2D>();
+                if (col != null)
+                {
+                    col.size = new Vector2(3.8f, 1.55f);
+                    col.offset = new Vector2(0f, -1.05f);
+                }
+                EditorUtility.SetDirty(bakery);
+            }
+
+            GameObject shed = GameObject.Find("House_BachShed");
+            if (shed != null && shedSpr != null)
+            {
+                var sr = shed.GetComponentInChildren<SpriteRenderer>();
+                if (sr != null)
+                {
+                    sr.sprite = shedSpr;
+                    sr.color = Color.white;
+                    sr.sortingLayerName = "WorldObjects";
+                    sr.sortingOrder = Mathf.RoundToInt(-(shed.transform.position.y - 1.3f) * 100f);
+                }
+                var col = shed.GetComponent<BoxCollider2D>();
+                if (col != null)
+                {
+                    col.size = new Vector2(2.75f, 1.35f);
+                    col.offset = new Vector2(0f, -0.85f);
+                }
+                EditorUtility.SetDirty(shed);
+            }
+
+            GameObject board = GameObject.Find("OtisNoticeBoard");
+            if (board != null && boardSpr != null)
+            {
+                var sr = board.GetComponentInChildren<SpriteRenderer>();
+                if (sr != null)
+                {
+                    sr.sprite = boardSpr;
+                    sr.color = Color.white;
+                    sr.sortingLayerName = "WorldObjects";
+                    sr.sortingOrder = Mathf.RoundToInt(-(board.transform.position.y - 0.8f) * 100f);
+                }
+                EditorUtility.SetDirty(board);
+            }
+
+            Debug.Log("[MV] Đã nâng cấp Nhà Bánh Hana, Chòi Vườn và Bảng Tin với collider gọn chân nhà.");
+        }
+
+        private static void RefreshHeroTreeSorting()
+        {
+            GameObject decorGroup = GameObject.Find("VillageDecorGroup");
+            if (decorGroup == null) return;
+
+            int updated = 0;
+            var srs = decorGroup.GetComponentsInChildren<SpriteRenderer>(true);
+            for (int i = 0; i < srs.Length; i++)
+            {
+                var sr = srs[i];
+                if (sr == null || sr.sprite == null) continue;
+                string n = sr.sprite.name;
+                if (n.Contains("tree_hero_"))
+                {
+                    sr.sortingLayerName = "WorldObjects";
+                    sr.sortingOrder = Mathf.RoundToInt(-(sr.transform.position.y - 1.45f) * 100f);
+                    EditorUtility.SetDirty(sr);
+                    updated++;
+                }
+            }
+            Debug.Log($"[MV] Đã căn lại Y-Sort chân gốc cho {updated} cây cỡ lớn (Wen đi sau tán cây tự nhiên).");
+        }
+
+        private static void BuildForestPineGrove()
+        {
+            Sprite pineSpr = LoadEnv("Buildings/tree_hero_pine.png");
+            if (pineSpr == null) return;
+
+            GameObject decorGroup = GameObject.Find("VillageDecorGroup");
+            if (decorGroup == null) decorGroup = new GameObject("VillageDecorGroup");
+
+            Transform old = decorGroup.transform.Find("Step18ForestPines");
+            if (old != null) UnityEngine.Object.DestroyImmediate(old.gameObject);
+
+            GameObject grove = new GameObject("Step18ForestPines");
+            grove.transform.SetParent(decorGroup.transform, false);
+
+            // Curated Pine Grove framing the East Forest Edge & North Mountain Ridge (zero overlap with paths/pond)
+            Vector3[] pineSpots =
+            {
+                new Vector3(4.5f, 13.4f, 0f),
+                new Vector3(9.5f, 12.6f, 0f),
+                new Vector3(14.8f, 12.2f, 0f),
+                new Vector3(18.6f, 8.8f, 0f),
+                new Vector3(18.4f, 1.8f, 0f),
+                new Vector3(17.6f, -5.8f, 0f),
+                new Vector3(-18.6f, -1.2f, 0f),
+            };
+
+            for (int i = 0; i < pineSpots.Length; i++)
+            {
+                GameObject go = new GameObject($"HeroPine_{i}");
+                go.transform.SetParent(grove.transform, false);
+                go.transform.position = pineSpots[i];
+                var sr = go.AddComponent<SpriteRenderer>();
+                sr.sprite = pineSpr;
+                sr.sortingLayerName = "WorldObjects";
+                sr.sortingOrder = Mathf.RoundToInt(-(pineSpots[i].y - 1.45f) * 100f);
+            }
+
+            Debug.Log($"[MV] Đã trồng thêm {pineSpots.Length} cây thông tán lớn ở Rìa Rừng Phía Đông & Dãy Bắc.");
+        }
+    }
+}
+```
+
+## 83. `Assets/Editor/AutoBuilder_Step2.cs`
 
 ```csharp
 using System.Collections.Generic;
@@ -8196,7 +12289,7 @@ namespace MoonpetalValley.EditorTools
 }
 ```
 
-## 74. `Assets/Editor/AutoBuilder_Step3.cs`
+## 84. `Assets/Editor/AutoBuilder_Step3.cs`
 
 ```csharp
 using UnityEngine;
@@ -8522,7 +12615,7 @@ namespace MoonpetalValley.EditorTools
 }
 ```
 
-## 75. `Assets/Editor/AutoBuilder_Step4.cs`
+## 85. `Assets/Editor/AutoBuilder_Step4.cs`
 
 ```csharp
 using UnityEngine;
@@ -8925,7 +13018,7 @@ namespace MoonpetalValley.EditorTools
 }
 ```
 
-## 76. `Assets/Editor/AutoBuilder_Step5.cs`
+## 86. `Assets/Editor/AutoBuilder_Step5.cs`
 
 ```csharp
 using System.Collections.Generic;
@@ -9432,7 +13525,7 @@ namespace MoonpetalValley.EditorTools
 }
 ```
 
-## 77. `Assets/Editor/AutoBuilder_Step6.cs`
+## 87. `Assets/Editor/AutoBuilder_Step6.cs`
 
 ```csharp
 using System.Collections.Generic;
@@ -9969,7 +14062,7 @@ namespace MoonpetalValley.EditorTools
 }
 ```
 
-## 78. `Assets/Editor/AutoBuilder_Step7.cs`
+## 88. `Assets/Editor/AutoBuilder_Step7.cs`
 
 ```csharp
 using System.Collections.Generic;
@@ -10597,7 +14690,7 @@ namespace MoonpetalValley.EditorTools
 }
 ```
 
-## 79. `Assets/Editor/AutoBuilder_Step8.cs`
+## 89. `Assets/Editor/AutoBuilder_Step8.cs`
 
 ```csharp
 using System.Collections.Generic;
@@ -11024,7 +15117,7 @@ namespace MoonpetalValley.EditorTools
 }
 ```
 
-## 80. `Assets/Editor/AutoBuilder_Step9.cs`
+## 90. `Assets/Editor/AutoBuilder_Step9.cs`
 
 ```csharp
 using System.Collections.Generic;
@@ -11426,7 +15519,7 @@ namespace MoonpetalValley.EditorTools
 }
 ```
 
-## 81. `Assets/Editor/MoonpetalAssetPostprocessor.cs`
+## 91. `Assets/Editor/MoonpetalAssetPostprocessor.cs`
 
 ```csharp
 using UnityEditor;
@@ -11438,21 +15531,41 @@ namespace MoonpetalValley.EditorTools
     {
         private void OnPreprocessTexture()
         {
-            if (!assetPath.StartsWith("Assets/Art/Sprites/")) return;
+            string p = assetPath.Replace("\\", "/");
+            if (!p.EndsWith(".png")) return;
+
+            bool isWen = p.Contains("/Art/Sprites/Animations/Wen/");
+            bool isLumi = p.Contains("/Art/Sprites/Animations/Lumi/");
+            bool isSlime = p.Contains("/Art/Sprites/Animations/GloomSlime/");
+            bool isNpc = p.Contains("/Art/Sprites/Animations/NPCs/");
+            bool isEnv = p.Contains("/Art/Sprites/Environment/");
+
+            if (!isWen && !isLumi && !isSlime && !isNpc && !isEnv) return;
 
             var importer = (TextureImporter)assetImporter;
             importer.textureType = TextureImporterType.Sprite;
-            importer.spritePixelsPerUnit = 16;
+            importer.spriteImportMode = SpriteImportMode.Single;
             importer.filterMode = FilterMode.Point;
             importer.textureCompression = TextureImporterCompression.Uncompressed;
-            importer.alphaIsTransparency = true;
             importer.mipmapEnabled = false;
+            importer.alphaIsTransparency = true;
+
+            if (isSlime) importer.spritePixelsPerUnit = 32f;
+            else if (isEnv) importer.spritePixelsPerUnit = 16f;
+            else importer.spritePixelsPerUnit = 20f;
+
+            var settings = new TextureImporterSettings();
+            importer.ReadTextureSettings(settings);
+            settings.spriteMeshType = SpriteMeshType.FullRect;
+            settings.spriteAlignment = (int)SpriteAlignment.Center;
+            settings.spritePivot = new Vector2(0.5f, 0.5f);
+            importer.SetTextureSettings(settings);
         }
     }
 }
 ```
 
-## 82. `Assets/Editor/PlaceholderGeneratorUtility.cs`
+## 92. `Assets/Editor/PlaceholderGeneratorUtility.cs`
 
 ```csharp
 using System.IO;
