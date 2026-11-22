@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb6a910c6ba79424d9f2a2ab4e41adb7, type: 3}
+  m_Name: VNStringTable
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.StringTableSO
+  entries:
+  - key: ui_game_title
+    vietnameseText: "Thung L\u0169ng Hoa \xC1nh Tr\u0103ng"
+  - key: ui_step1_banner
+    vietnameseText: "Thung L\u0169ng Hoa \xC1nh Tr\u0103ng \u2014 N\u1EC1n t\u1EA3ng Step 1 s\u1EB5n s\xE0ng!\nB\u1EA5m ph\xEDm F1 \u0111\u1EC3 m\u1EDF b\u1EA3ng Debug ki\u1EC3m th\u1EED ti\u1EBFng Vi\u1EC7t & StoryFlag."
+  - key: toast_step1_test
+    vietnameseText: "Ch\xE0o m\u1EEBng Wen \u0111\u1EBFn v\u1EDBi Thung L\u0169ng Hoa \xC1nh Tr\u0103ng! (Ti\u1EBFng Vi\u1EC7t c\xF3 d\u1EA5u OK)"
+  - key: ui_stamina_label
+    vietnameseText: "Th\u1EC3 l\u1EF1c"
+  - key: ui_lighthp_label
+    vietnameseText: "M\xE1u \xC1nh S\xE1ng"
+  - key: ui_day_format
+    vietnameseText: "Ng\xE0y {0} \u2014 {1:00}:{2:00}"

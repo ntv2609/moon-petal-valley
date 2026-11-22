@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 764d0225ac85d3540a494106918d93ff, type: 3}
+  m_Name: PlayerStatsConfig
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.PlayerStatsSO
+  maxStamina: 100
+  maxLightHP: 100
+  exhaustedStaminaMultiplier: 0.5
+  rawMaterialDropPercentOnPassOut: 0.1
+  moveSpeed: 4.5
+  slowedSpeedMultiplier: 0.55
+  slowDuration: 2
+  attackDamage: 15
+  attackArcDegrees: 120
+  attackRadius: 1.35
+  attackCooldown: 0.4
+  attackKnockbackForce: 6
+  dashSpeed: 11.5
+  dashDuration: 0.18
+  dashCooldown: 0.8
+  dashInvulnerabilityDuration: 0.2
+  hitInvulnerabilityDuration: 0.75
+  hoeStaminaCost: 4
+  waterStaminaCost: 2
+  chopStaminaCost: 4
+  swingStaminaCost: 2
+  dashStaminaCost: 5
+  lumiPulseStaminaCost: 10
+  lumiBaseLightRadius: 2.5
+  lumiUpgradedLightRadius: 5.5
+  lumiPulseRadius: 3.5
+  lumiPulseCooldown: 8

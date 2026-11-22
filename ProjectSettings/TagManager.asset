@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - NPC
+  - Enemy
+  - Interactable
+  - FarmTile
+  - ResourceNode
+  - BlightFog
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Player
+  - Enemy
+  - Obstacle
+  - Interactable
+  - PlayerHitbox
+  - EnemyHitbox
+  - TriggerZone
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 2024494762
+    locked: 0
+  - name: FloorDecal
+    uniqueID: 1572413679
+    locked: 0
+  - name: FarmTile
+    uniqueID: 630579693
+    locked: 0
+  - name: Shadows
+    uniqueID: 1205849517
+    locked: 0
+  - name: WorldObjects
+    uniqueID: 751938039
+    locked: 0
+  - name: FogOverlay
+    uniqueID: 1458399544
+    locked: 0
+  - name: WeatherVFX
+    uniqueID: 2000537413
+    locked: 0
+  - name: UI
+    uniqueID: 1090806756
+    locked: 0
+  m_RenderingLayers:
+  - Default
+  m_MigratedRenderPipelines: []
