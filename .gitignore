@@ -19,3 +19,4 @@ _deploy_backup/
 deploy.py
 gom_code.py
 tat_ca_code_moonpetal*
+*.slnx
