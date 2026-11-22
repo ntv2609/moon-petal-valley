@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2684ab40cc266f746b8e9c76426ecc77, type: 3}
+  m_Name: Item_item_seed_bag_1
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.ItemData
+  itemID: item_seed_bag_1
+  displayNameKey: name_item_seed_bag_1
+  descriptionKey: desc_item_seed_bag_1
+  icon: {fileID: -3034734273503573469, guid: cc827388c4067c14799f9b5fb8820332, type: 3}
+  category: 5
+  maxStack: 1
+  staminaRestore: 0
+  lightHPRestore: 0
+  clearsExhaustionPenalty: 0
+  growDays: 0
+  linkedCropData: {fileID: 0}
+  isQuestProtected: 1

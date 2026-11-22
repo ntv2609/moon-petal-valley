@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf43e3aa333f08d449f99148686090f3, type: 3}
+  m_Name: ItemDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.ItemDatabaseSO
+  allItems:
+  - {fileID: 11400000, guid: bca7f3c03351ee24b8f26d8ef1001cbc, type: 2}
+  - {fileID: 11400000, guid: fc615c8936483d644b0c8f3c16f6807c, type: 2}
+  - {fileID: 11400000, guid: 13451e5687b94e2478ec6cd140208098, type: 2}
+  - {fileID: 11400000, guid: df34129b6b498bc41840014ecafd636e, type: 2}
+  - {fileID: 11400000, guid: 7032f6393ab5ab14bb5e4590c5d4c2d9, type: 2}
+  - {fileID: 11400000, guid: 461e4e5992c791d4b8aae3934d785ce8, type: 2}
+  - {fileID: 11400000, guid: 1fa070aed7dc8d3448df54e5ff2eb08b, type: 2}
+  - {fileID: 11400000, guid: 13234e74a9c634d4d8822af4ae81a536, type: 2}
+  - {fileID: 11400000, guid: 8fbba760ec9e7fb4b8ffd056dd09a3ef, type: 2}
+  - {fileID: 11400000, guid: c7bdf508112dd4c43b7dfb1df239ba4b, type: 2}
+  - {fileID: 11400000, guid: 525f7774220434d4190b83a34044348e, type: 2}
+  - {fileID: 11400000, guid: 7b29f0021ee2f6944a6777661389af33, type: 2}
+  - {fileID: 11400000, guid: d9e2d4efdd7a75c45b7bcce8080abefc, type: 2}
+  - {fileID: 11400000, guid: d3a4830b8ad09c04c9bf452576fd940e, type: 2}
+  - {fileID: 11400000, guid: 39691360330b4d349903e93e8494f7b4, type: 2}

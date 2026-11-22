@@ -108,6 +108,13 @@ namespace MoonpetalValley.Player
 
         private void StartDash(Vector2 direction)
         {
+            int dashCost = statsConfig != null ? statsConfig.dashStaminaCost : 5;
+            if (GameRoot.Instance != null && GameRoot.Instance.Stats != null)
+            {
+                bool stillAwake = GameRoot.Instance.Stats.ConsumeStamina(dashCost);
+                if (!stillAwake) return;
+            }
+
             _dashDirection = direction.normalized;
             _dashTimer = statsConfig != null ? statsConfig.dashDuration : 0.18f;
             _dashCooldownTimer = statsConfig != null ? statsConfig.dashCooldown : 0.8f;

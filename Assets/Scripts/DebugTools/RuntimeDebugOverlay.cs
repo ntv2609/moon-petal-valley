@@ -22,6 +22,10 @@ namespace MoonpetalValley.DebugTools
         [SerializeField] private Button btnTimePlus2H;
         [SerializeField] private Button btnTimeSetDusk;
         [SerializeField] private Button btnTimeNextDay;
+        [SerializeField] private Button btnRestoreStats;
+        [SerializeField] private Button btnForceExhaust;
+        [SerializeField] private Button btnDamageLightHP;
+        [SerializeField] private Button btnGiveTestKit;
 
         private bool _isOpen;
         private float _refreshTimer;
@@ -46,6 +50,11 @@ namespace MoonpetalValley.DebugTools
             if (btnTimePlus2H != null) btnTimePlus2H.onClick.AddListener(OnClickTimePlus2H);
             if (btnTimeSetDusk != null) btnTimeSetDusk.onClick.AddListener(OnClickTimeSetDusk);
             if (btnTimeNextDay != null) btnTimeNextDay.onClick.AddListener(OnClickTimeNextDay);
+
+            if (btnRestoreStats != null) btnRestoreStats.onClick.AddListener(OnClickRestoreStats);
+            if (btnForceExhaust != null) btnForceExhaust.onClick.AddListener(OnClickForceExhaust);
+            if (btnDamageLightHP != null) btnDamageLightHP.onClick.AddListener(OnClickDamageLightHP);
+            if (btnGiveTestKit != null) btnGiveTestKit.onClick.AddListener(OnClickGiveTestKit);
         }
 
         private void OnEnable()
@@ -118,17 +127,12 @@ namespace MoonpetalValley.DebugTools
                 WorldSpawnRegistry.Instance.TeleportPlayerTo(spawnId);
                 RefreshStatusText();
             }
-            else
-            {
-                GameEventBus.RaiseToastRequested("Chưa có WorldSpawnRegistry trong scene.");
-            }
         }
 
         private void OnClickTimePlus2H()
         {
             if (GameRoot.Instance == null || GameRoot.Instance.Time == null) return;
             GameRoot.Instance.Time.AddHours(2f);
-            GameEventBus.RaiseToastRequested("Tua thời gian +2 giờ: " + GameRoot.Instance.Time.GetFormattedClockString());
             RefreshStatusText();
         }
 
@@ -136,7 +140,6 @@ namespace MoonpetalValley.DebugTools
         {
             if (GameRoot.Instance == null || GameRoot.Instance.Time == null) return;
             GameRoot.Instance.Time.SetHour(19.83f);
-            GameEventBus.RaiseToastRequested("Đã đặt giờ Chạng vạng (19:50) chuẩn bị sang Đêm!");
             RefreshStatusText();
         }
 
@@ -144,7 +147,40 @@ namespace MoonpetalValley.DebugTools
         {
             if (GameRoot.Instance == null || GameRoot.Instance.Time == null) return;
             GameRoot.Instance.Time.AdvanceToNextDay();
-            GameEventBus.RaiseToastRequested("Bắt đầu " + GameRoot.Instance.Time.GetFormattedClockString());
+            RefreshStatusText();
+        }
+
+        private void OnClickRestoreStats()
+        {
+            if (GameRoot.Instance == null || GameRoot.Instance.Stats == null) return;
+            GameRoot.Instance.Stats.RestoreStats(100, 100, true);
+            GameEventBus.RaiseToastRequested("Đã hồi đầy Thể lực & Máu Ánh Sáng.");
+            RefreshStatusText();
+        }
+
+        private void OnClickForceExhaust()
+        {
+            if (GameRoot.Instance == null || GameRoot.Instance.Stats == null) return;
+            GameRoot.Instance.Stats.ConsumeStamina(999, true);
+            RefreshStatusText();
+        }
+
+        private void OnClickDamageLightHP()
+        {
+            if (GameRoot.Instance == null || GameRoot.Instance.Stats == null) return;
+            GameRoot.Instance.Stats.TakeLightDamage(25, true);
+            RefreshStatusText();
+        }
+
+        private void OnClickGiveTestKit()
+        {
+            if (GameRoot.Instance == null || GameRoot.Instance.Inventory == null) return;
+            var inv = GameRoot.Instance.Inventory;
+            inv.AddItemById("item_sunshine_bread", 2, false);
+            inv.AddItemById("item_branch_wood", 10, false);
+            inv.AddItemById("item_seed_bag_1", 1, false);
+            inv.AddItemById("item_dew_barley_seed", 6, false);
+            GameEventBus.RaiseToastRequested("Đã thêm: 2 Bánh Mì Nắng Ấm, 10 Gỗ, 1 Túi Hạt 1, 6 Hạt Lúa Mạch!");
             RefreshStatusText();
         }
 
@@ -161,7 +197,6 @@ namespace MoonpetalValley.DebugTools
             if (GameRoot.Instance == null || GameRoot.Instance.Flags == null) return;
             bool next = !GameRoot.Instance.Flags.HasFlag(TestFlagId);
             GameRoot.Instance.Flags.SetFlag(TestFlagId, next);
-            GameEventBus.RaiseToastRequested("Flag thử nghiệm: " + (next ? "BẬT" : "TẮT"));
             RefreshStatusText();
         }
 
@@ -169,7 +204,6 @@ namespace MoonpetalValley.DebugTools
         {
             if (GameRoot.Instance == null || GameRoot.Instance.Flags == null) return;
             GameRoot.Instance.Flags.ClearAllFlags();
-            GameEventBus.RaiseToastRequested("Đã xóa toàn bộ StoryFlag.");
             RefreshStatusText();
         }
 
@@ -190,34 +224,21 @@ namespace MoonpetalValley.DebugTools
 
             var sb = new StringBuilder();
             sb.AppendLine("<b>BẢNG DEBUG MOONPETAL (F1)</b>");
-            sb.AppendLine("Trạng thái: " + GameRoot.Instance.State.CurrentState);
+            sb.AppendLine("State: " + GameRoot.Instance.State.CurrentState);
             if (GameRoot.Instance.Time != null)
             {
-                sb.AppendLine("Đồng hồ: " + GameRoot.Instance.Time.GetFormattedClockString());
+                sb.AppendLine(GameRoot.Instance.Time.GetFormattedClockString());
             }
-
-            var player = UnityEngine.Object.FindAnyObjectByType<PlayerController2D>();
-            if (player != null)
+            if (GameRoot.Instance.Stats != null)
             {
-                Vector3 p = player.transform.position;
-                sb.AppendLine(string.Format("Vị trí Wen: ({0:0.0}, {1:0.0})", p.x, p.y));
+                var st = GameRoot.Instance.Stats;
+                sb.AppendLine(string.Format("HP: {0}/{1} | Stamina: {2}/{3}",
+                    st.CurrentLightHP, st.MaxLightHP, st.CurrentStamina, st.EffectiveMaxStamina));
             }
-
-            sb.Append("Flags: ");
-            var flags = GameRoot.Instance.Flags.GetAllActiveFlags();
-            if (flags.Count == 0)
+            if (GameRoot.Instance.Inventory != null)
             {
-                sb.Append("(chưa có)");
-            }
-            else
-            {
-                bool first = true;
-                foreach (var f in flags)
-                {
-                    if (!first) sb.Append(", ");
-                    sb.Append(f);
-                    first = false;
-                }
+                sb.AppendLine("Gỗ: " + GameRoot.Instance.Inventory.GetItemCount("item_branch_wood") +
+                              " | Bánh mì: " + GameRoot.Instance.Inventory.GetItemCount("item_sunshine_bread"));
             }
             statusText.text = sb.ToString();
         }

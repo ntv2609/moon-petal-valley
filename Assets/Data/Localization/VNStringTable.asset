@@ -25,3 +25,63 @@ MonoBehaviour:
     vietnameseText: "M\xE1u \xC1nh S\xE1ng"
   - key: ui_day_format
     vietnameseText: "Ng\xE0y {0} \u2014 {1:00}:{2:00}"
+  - key: name_item_hoe
+    vietnameseText: "Cu\u1ED1c \u0110\u1EA5t"
+  - key: desc_item_hoe
+    vietnameseText: "D\xF9ng x\u1EDBi \u0111\u1EA5t tr\u1ED3ng c\xE2y trong Nh\xE0 K\xEDnh v\xE0 \u0111\u1EADp \u0111\xE1 v\u1EE5n nh\u1ECF (4 Th\u1EC3 l\u1EF1c)."
+  - key: name_item_watering_can
+    vietnameseText: "B\xECnh T\u01B0\u1EDBi"
+  - key: desc_item_watering_can
+    vietnameseText: "T\u01B0\u1EDBi n\u01B0\u1EDBc cho \u0111\u1EA5t tr\u1ED3ng (2 Th\u1EC3 l\u1EF1c, ch\u1EE9a 20 l\u1EA7n). M\xFAc \u0111\u1EA7y l\u1EA1i t\u1EA1i Gi\u1EBFng N\u01B0\u1EDBc."
+  - key: name_item_hatchet
+    vietnameseText: "R\xECu Nh\u1ECF"
+  - key: desc_item_hatchet
+    vietnameseText: "Ch\u1EB7t nh\xE1nh c\xE2y kh\xF4 l\u1EA5y G\u1ED7 Nh\xE1nh C\xE2y v\xE0 d\u1ECDn b\u1EE5i gai (4 Th\u1EC3 l\u1EF1c)."
+  - key: name_item_moon_sickle
+    vietnameseText: "Li\u1EC1m \xC1nh Tr\u0103ng"
+  - key: desc_item_moon_sickle
+    vietnameseText: "V\u0169 kh\xED thanh t\u1EA9y c\u1EE7a \xD4ng B\xE1ch: ch\xE9m qu\xE9t 120\xB0 g\xE2y 15 s\xE1t th\u01B0\u01A1ng (2 Th\u1EC3 l\u1EF1c)."
+  - key: name_item_dew_barley_seed
+    vietnameseText: "H\u1EA1t L\xFAa M\u1EA1ch S\u01B0\u01A1ng Mai"
+  - key: desc_item_dew_barley_seed
+    vietnameseText: "Gieo xu\u1ED1ng \xF4 \u0111\u1EA5t \u0111\xE3 cu\u1ED1c v\xE0 t\u01B0\u1EDBi n\u01B0\u1EDBc 2 ng\xE0y \u0111\u1EC3 thu ho\u1EA1ch."
+  - key: name_item_dew_barley
+    vietnameseText: "L\xFAa M\u1EA1ch S\u01B0\u01A1ng Mai"
+  - key: desc_item_dew_barley
+    vietnameseText: "N\xF4ng s\u1EA3n th\u01A1m d\u1ECBu \u0111\u1ECDng s\u01B0\u01A1ng s\u1EDBm, nguy\xEAn li\u1EC7u l\xE0m b\xE1nh c\u1EE7a B\xE0 Hana."
+  - key: name_item_sunshine_bread
+    vietnameseText: "B\xE1nh M\xEC N\u1EAFng \u1EA4m"
+  - key: desc_item_sunshine_bread
+    vietnameseText: "H\u1ED3i 50 Th\u1EC3 l\u1EF1c, 50 M\xE1u \xC1nh S\xE1ng v\xE0 X\xD3A NGAY ph\u1EA1t ki\u1EC7t s\u1EE9c 50%."
+  - key: name_item_branch_wood
+    vietnameseText: "G\u1ED7 Nh\xE1nh C\xE2y"
+  - key: desc_item_branch_wood
+    vietnameseText: "G\u1ED7 kh\xF4 nh\u1EB7t quanh l\xE0ng, d\xF9ng s\u1EEDa h\xF2m th\u01B0 cho B\xE1c Otis."
+  - key: name_item_dew_sap
+    vietnameseText: "Nh\u1EF1a S\u01B0\u01A1ng"
+  - key: desc_item_dew_sap
+    vietnameseText: "Gi\u1ECDt nh\u1EF1a \xE1nh s\xE1ng r\u01A1i ra khi thanh t\u1EA9y B\u1ECDt S\u01B0\u01A1ng \u0110en."
+  - key: name_item_starlight_dust
+    vietnameseText: "B\u1EE5i Tinh Quang"
+  - key: desc_item_starlight_dust
+    vietnameseText: "B\u1EE5i l\u1EA5p l\xE1nh gi\xFAp h\u1ED3i sinh B\u1ED3n Hoa C\u1ED9ng \u0110\u1ED3ng."
+  - key: name_item_moonpetal_seed_core
+    vietnameseText: "Vi\xEAn Pha L\xEA H\u1EA1t Gi\u1ED1ng"
+  - key: desc_item_moonpetal_seed_core
+    vietnameseText: "H\u1EA1t gi\u1ED1ng di s\u1EA3n c\u1EE7a b\xE0, c\u1ED9ng h\u01B0\u1EDFng c\xF9ng d\xE2n l\xE0ng \u0111\u1EC3 hoa Moonpetal n\u1EDF."
+  - key: name_item_seed_bag_1
+    vietnameseText: "T\xFAi H\u1EA1t Di S\u1EA3n 1 (Hana)"
+  - key: desc_item_seed_bag_1
+    vietnameseText: "T\xFAi h\u1EA1t gi\u1ED1ng k\u1EF7 ni\u1EC7m c\u1EE7a B\xE0 Hana \u0111\u1EC3 \u0111\xF3ng g\xF3p v\xE0o B\u1ED3n Hoa V\u01B0\u1EDDn X\u01B0a."
+  - key: name_item_seed_bag_2
+    vietnameseText: "T\xFAi H\u1EA1t Di S\u1EA3n 2 (Toby)"
+  - key: desc_item_seed_bag_2
+    vietnameseText: "T\xFAi h\u1EA1t gi\u1ED1ng Toby g\xECn gi\u1EEF sau khi ch\xFA m\xE8o Miu \u0111\u01B0\u1EE3c gi\u1EA3i c\u1EE9u."
+  - key: name_item_seed_bag_3
+    vietnameseText: "T\xFAi H\u1EA1t Di S\u1EA3n 3 (Otis)"
+  - key: desc_item_seed_bag_3
+    vietnameseText: "T\xFAi h\u1EA1t gi\u1ED1ng n\u1EB1m trong h\xF2m th\u01B0 c\u0169 \u0111\u01B0\u1EE3c B\xE1c Otis trao l\u1EA1i."
+  - key: name_item_petal_of_hope
+    vietnameseText: "C\xE1nh Hoa Hy V\u1ECDng"
+  - key: desc_item_petal_of_hope
+    vietnameseText: "C\xE1nh hoa Moonpetal \u0111\u1EA7u ti\xEAn xua tan S\u01B0\u01A1ng H\xE9o \xDAa kh\u1ECFi L\xE0ng Ch\xEDnh."

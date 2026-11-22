@@ -144,6 +144,19 @@ namespace MoonpetalValley.EditorTools
             FillRect(tex, 9, 10, 6, 1, iron);
         }
 
+        public static void DrawBedSprite(Texture2D tex)
+        {
+            Color wood = new Color(0.45f, 0.28f, 0.16f);
+            Color pillow = new Color(0.96f, 0.94f, 0.86f);
+            Color blanket = new Color(0.26f, 0.54f, 0.62f);
+            Color trim = new Color(0.92f, 0.78f, 0.36f);
+
+            FillRect(tex, 1, 1, 14, 22, wood);
+            FillRect(tex, 2, 16, 12, 5, pillow);
+            FillRect(tex, 2, 3, 12, 13, blanket);
+            FillRect(tex, 2, 14, 12, 2, trim);
+        }
+
         public static void DrawGrassTile(Texture2D tex)
         {
             FillRect(tex, 0, 0, 16, 16, new Color(0.32f, 0.58f, 0.31f));
