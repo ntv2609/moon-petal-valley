@@ -15,15 +15,26 @@ namespace MoonpetalValley.Chapter2
         private readonly HashSet<GameObject> _defeated = new HashSet<GameObject>();
         private bool _zoneCleared;
 
+        private void OnEnable()
+        {
+            GameEventBus.OnSaveLoaded += SyncFromStoryFlags;
+            GameEventBus.OnStoryFlagChanged += HandleStoryFlagChanged;
+        }
+
+        private void OnDisable()
+        {
+            GameEventBus.OnSaveLoaded -= SyncFromStoryFlags;
+            GameEventBus.OnStoryFlagChanged -= HandleStoryFlagChanged;
+        }
+
         private void Start()
         {
-            if (GameRoot.Instance != null && GameRoot.Instance.Flags != null && GameRoot.Instance.Flags.HasFlag(zoneClearedFlag))
-            {
-                _zoneCleared = true;
-                for (int i = 0; i < trackedEnemies.Count; i++)
-                    if (trackedEnemies[i] != null) trackedEnemies[i].SetActive(false);
-                return;
-            }
+            BindTrackedEnemies();
+            SyncFromStoryFlags();
+        }
+
+        private void BindTrackedEnemies()
+        {
             for (int i = 0; i < trackedEnemies.Count; i++)
             {
                 GameObject go = trackedEnemies[i];
@@ -35,6 +46,36 @@ namespace MoonpetalValley.Chapter2
             }
         }
 
+        private void HandleStoryFlagChanged(string flagId, bool value)
+        {
+            if (flagId == zoneClearedFlag) SyncFromStoryFlags();
+        }
+
+        public void SyncFromStoryFlags()
+        {
+            bool cleared = GameRoot.Instance != null && GameRoot.Instance.Flags != null &&
+                           GameRoot.Instance.Flags.HasFlag(zoneClearedFlag);
+            _zoneCleared = cleared;
+
+            if (cleared)
+            {
+                for (int i = 0; i < trackedEnemies.Count; i++)
+                {
+                    if (trackedEnemies[i] != null) trackedEnemies[i].SetActive(false);
+                }
+            }
+            else
+            {
+                _defeated.Clear();
+                for (int i = 0; i < trackedEnemies.Count; i++)
+                {
+                    GameObject go = trackedEnemies[i];
+                    if (go != null && !go.activeSelf) go.SetActive(true);
+                }
+                BindTrackedEnemies();
+            }
+        }
+
         public void NotifyEnemyDefeated(GameObject enemyGo)
         {
             if (_zoneCleared || enemyGo == null) return;
@@ -43,7 +84,7 @@ namespace MoonpetalValley.Chapter2
             for (int i = 0; i < trackedEnemies.Count; i++)
             {
                 GameObject go = trackedEnemies[i];
-                if (go != null && !_defeated.Contains(go))
+                if (go != null && go.activeInHierarchy && !_defeated.Contains(go))
                 {
                     var dmg = go.GetComponent<IDamageable>();
                     if (dmg == null || !dmg.IsDefeated) alive++;
@@ -62,7 +103,7 @@ namespace MoonpetalValley.Chapter2
                 if (!GameRoot.Instance.Inventory.HasItem(westLanternRewardItem.itemID, 1))
                     GameRoot.Instance.Inventory.AddItem(westLanternRewardItem, 1, true);
             }
-            GameEventBus.RaiseToastRequested("Đầm lầy Bờ Tây đã thanh tẩy! Bạn nhận được Nửa Đèn Bão Cổ (Tây) — hãy soi Dư Âm gần đó.");
+            GameEventBus.RaiseToastRequested("Đầm lầy Bờ Tây đã thanh tẩy! Bạn nhận được Nửa Đèn Bão Cổ (Tây) - hãy soi Dư Âm gần đó.");
         }
     }
 }

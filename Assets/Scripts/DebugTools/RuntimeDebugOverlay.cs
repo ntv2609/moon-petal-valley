@@ -193,12 +193,13 @@ namespace MoonpetalValley.DebugTools
 
             AddCh2Button(colGo.transform, font, "Vào Bờ Sông (Riverbank_Chapter2)", cBlue, OnClickEnterRiverbank);
             AddCh2Button(colGo.transform, font, "Về Làng Chính (Không Intro)", cBlue, OnClickReturnToVillage);
-            AddCh2Button(colGo.transform, font, "TP: Bờ Đông (Lều Nghỉ Tạm)", cTeal, () => TeleportOrFallback("Spawn_EastCamp", new Vector2(15.2f, -3.6f)));
-            AddCh2Button(colGo.transform, font, "TP: Bờ Tây (Bến Bà Mara)", cTeal, () => TeleportOrFallback("Spawn_WestDock", new Vector2(-12.5f, -2.5f)));
-            AddCh2Button(colGo.transform, font, "Đặt 18:30 Đêm (Điều Tra Ch2)", cAmber, OnClickSetCh2Night);
-            AddCh2Button(colGo.transform, font, "Mở Khóa Đò Bờ Tây (Đã Nói Kael)", cAmber, OnClickUnlockFerry);
-            AddCh2Button(colGo.transform, font, "Hoàn Thành 3 Đêm Điều Tra", cPurple, OnClickComplete3Nights);
-            AddCh2Button(colGo.transform, font, "Cấp Bộ Đồ Ch2 (Đèn Bão + Ván)", cPurple, OnClickGiveCh2Kit);
+            AddCh2Button(colGo.transform, font, "Mốc 0: Reset Ch2 (Trước Intro Cầu)", cTeal, () => SyncCh2Milestone(0));
+            AddCh2Button(colGo.transform, font, "Mốc 1: Đêm 1 Điều Tra (18:30 + Đò)", cAmber, () => SyncCh2Milestone(1));
+            AddCh2Button(colGo.transform, font, "Mốc 2: Xong 3 Đêm -> Đầm Lầy Bờ Tây", cAmber, () => SyncCh2Milestone(2));
+            AddCh2Button(colGo.transform, font, "Mốc 3: Xong Đầm Lầy -> Soi 2 Dư Âm", cPurple, () => SyncCh2Milestone(3));
+            AddCh2Button(colGo.transform, font, "Mốc 4: Chạy Ngay Đêm Chuyền Đèn", cAmber, () => SyncCh2Milestone(4));
+            AddCh2Button(colGo.transform, font, "Mốc 5: Kích Hoạt Kết Thúc Chương 2", cPurple, () => SyncCh2Milestone(5));
+            AddCh2Button(colGo.transform, font, "Cấp Đủ Đồ Ch2 (2 Nửa Đèn + Bánh Mì)", cTeal, OnClickGiveCh2Kit);
         }
 
         private static void AddCh2Button(Transform parent, TMP_FontAsset font, string label, Color bgColor, UnityEngine.Events.UnityAction onClick)
@@ -289,40 +290,114 @@ namespace MoonpetalValley.DebugTools
             RefreshStatusText();
         }
 
-        private void OnClickSetCh2Night()
+        private void SyncCh2Milestone(int milestone)
         {
-            if (GameRoot.Instance != null && GameRoot.Instance.Flags != null)
-                GameRoot.Instance.Flags.SetFlag("flag_ch2_intro_done", true);
-            if (GameRoot.Instance != null && GameRoot.Instance.Time != null)
-                GameRoot.Instance.Time.SetHour(18.5f);
-            GameEventBus.RaiseToastRequested("Đã chuyển sang 18:30 (Đêm Điều Tra Chương 2)!");
-            RefreshStatusText();
-        }
+            if (GameRoot.Instance == null || GameRoot.Instance.Flags == null) return;
+            var f = GameRoot.Instance.Flags;
+            var inv = GameRoot.Instance.Inventory;
 
-        private void OnClickUnlockFerry()
-        {
-            if (GameRoot.Instance != null && GameRoot.Instance.Flags != null)
-            {
-                GameRoot.Instance.Flags.SetFlag("flag_ch2_intro_done", true);
-                GameRoot.Instance.Flags.SetFlag("flag_ch2_talked_kael_day1", true);
-                GameRoot.Instance.Flags.SetFlag("flag_ch2_ferry_unlocked", true);
-            }
-            GameEventBus.RaiseToastRequested("Đã mở khóa Đò sang Bờ Tây!");
-            RefreshStatusText();
-        }
+            // Luon dong bo nen Chuong 1 + vu khi de khong mau thuan logic
+            f.SetFlag("flag_intro_cutscene_done", true);
+            f.SetFlag("flag_tutorial_done", true);
+            f.SetFlag("flag_lumi_awakened", true);
+            f.SetFlag("flag_nv1_completed", true);
+            f.SetFlag("flag_ch2_entered_riverbank", true);
+            if (inv != null && !inv.HasItem("item_moon_sickle", 1))
+                inv.AddItemById("item_moon_sickle", 1, false);
 
-        private void OnClickComplete3Nights()
-        {
-            if (GameRoot.Instance != null && GameRoot.Instance.Flags != null)
+            // Reset toan bo flag tien trinh Ch2 theo moc muc tieu
+            f.SetFlag("flag_ch2_solo_bridge_failed", milestone >= 1);
+            f.SetFlag("flag_ch2_met_kael", milestone >= 1);
+            f.SetFlag("flag_ch2_met_mara", milestone >= 1);
+            f.SetFlag("flag_ch2_inv_night1_done", milestone >= 2);
+            f.SetFlag("flag_ch2_inv_night2_done", milestone >= 2);
+            f.SetFlag("flag_ch2_inv_night3_done", milestone >= 2);
+            f.SetFlag("flag_ch2_otis_arrived", milestone >= 2);
+            f.SetFlag("flag_ch2_choice_tell_truth", milestone >= 2);
+            f.SetFlag("flag_ch2_choice_keep_secret", false);
+            f.SetFlag("flag_ch2_swamp_cleared", milestone >= 3);
+            f.SetFlag("flag_ch2_echo1_lantern_done", milestone >= 4);
+            f.SetFlag("flag_ch2_echo2_pier_done", milestone >= 4);
+            f.SetFlag("flag_ch2_relay_done", false);
+            f.SetFlag("flag_ch2_completed", false);
+
+            // Dong bo vat pham cot truyen tuong ung tung moc
+            if (inv != null)
             {
-                GameRoot.Instance.Flags.SetFlag("flag_ch2_intro_done", true);
-                GameRoot.Instance.Flags.SetFlag("flag_ch2_talked_kael_day1", true);
-                GameRoot.Instance.Flags.SetFlag("flag_ch2_ferry_unlocked", true);
-                GameRoot.Instance.Flags.SetFlag("flag_ch2_inv_night1_done", true);
-                GameRoot.Instance.Flags.SetFlag("flag_ch2_inv_night2_done", true);
-                GameRoot.Instance.Flags.SetFlag("flag_ch2_inv_night3_done", true);
+                if (milestone >= 2 && !inv.HasItem("item_storm_lantern_east", 1))
+                    inv.AddItemById("item_storm_lantern_east", 1, false);
+                if (milestone >= 3 && !inv.HasItem("item_storm_lantern_west", 1))
+                    inv.AddItemById("item_storm_lantern_west", 1, false);
             }
-            GameEventBus.RaiseToastRequested("Đã hoàn thành 3 Đêm Điều Tra Chương 2!");
+
+            // Dong bo trang thai cau & gio giac
+            if (Chapter2StateManager.Instance != null)
+            {
+                Chapter2StateManager.Instance.SetRelayEventActive(false);
+                Chapter2StateManager.Instance.SetInvestigationStage(milestone >= 2 ? 3 : 0);
+                if (milestone >= 5) Chapter2StateManager.Instance.SetBridgeState(RiverBridgeState.Repaired);
+                else if (milestone == 4) Chapter2StateManager.Instance.SetBridgeState(RiverBridgeState.RelayInProgress);
+                else Chapter2StateManager.Instance.SetBridgeState(RiverBridgeState.Broken);
+            }
+
+            if (GameRoot.Instance.Time != null)
+            {
+                if (milestone == 0) GameRoot.Instance.Time.SetHour(10.0f);
+                else if (milestone == 1 || milestone == 4) GameRoot.Instance.Time.SetHour(18.5f);
+                else if (milestone == 2) GameRoot.Instance.Time.SetHour(14.0f);
+                else if (milestone == 3) GameRoot.Instance.Time.SetHour(16.0f);
+                else GameRoot.Instance.Time.SetHour(7.5f);
+            }
+
+            // Ep dong bo lich NPC + Dam Lay ngay lap tuc
+            var schedules = UnityEngine.Object.FindObjectsByType<Chapter2NPCSchedule>(FindObjectsInactive.Include);
+            for (int i = 0; i < schedules.Length; i++) schedules[i].ForceRefreshSchedule();
+            var swamp = UnityEngine.Object.FindAnyObjectByType<SwampCombatZoneController>();
+            if (swamp != null) swamp.SyncFromStoryFlags();
+
+            bool inCh2Scene = SceneManager.GetActiveScene().name == "Riverbank_Chapter2";
+            if (!inCh2Scene)
+            {
+                if (Chapter2StateManager.Instance != null)
+                    Chapter2StateManager.Instance.PendingSceneSpawnId = milestone >= 2 && milestone <= 3 ? "Spawn_WestDock" : "Spawn_EastEntrance";
+                SceneManager.LoadScene("Riverbank_Chapter2");
+                GameEventBus.RaiseToastRequested($"Đã đồng bộ Mốc {milestone} và đang chuyển sang Bờ Sông!");
+                return;
+            }
+
+            if (milestone == 0)
+            {
+                TeleportOrFallback("Spawn_EastEntrance", new Vector2(18.0f, 0.5f));
+                GameEventBus.RaiseToastRequested("Mốc 0: Đã đặt lại đầu Chương 2 (10:00, chưa kéo ván cầu).");
+            }
+            else if (milestone == 1)
+            {
+                TeleportOrFallback("Spawn_EastCamp", new Vector2(12.2f, 2.0f));
+                GameEventBus.RaiseToastRequested("Mốc 1: Đã mở Đò + gặp Kael/Mara + 18:30 (sẵn sàng soi Phoi Bào Gỗ).");
+            }
+            else if (milestone == 2)
+            {
+                TeleportOrFallback("Spawn_WestDock", new Vector2(-12.5f, -2.5f));
+                GameEventBus.RaiseToastRequested("Mốc 2: Xong 3 Đêm + có Nửa Đèn Đông -> tiến lên Đầm Lầy Bờ Tây!");
+            }
+            else if (milestone == 3)
+            {
+                TeleportOrFallback("Spawn_SwampEcho", new Vector2(-16.0f, 7.6f));
+                GameEventBus.RaiseToastRequested("Mốc 3: Đã thanh tẩy Đầm Lầy + đủ 2 Nửa Đèn -> bấm [E] soi Dư Âm!");
+            }
+            else if (milestone == 4)
+            {
+                TeleportOrFallback("Spawn_BridgeEast", new Vector2(9.2f, 0.5f));
+                if (LanternRelayManager.Instance != null) LanternRelayManager.Instance.StartRelayEvent();
+                GameEventBus.RaiseToastRequested("Mốc 4: Đã xong 2 Dư Âm -> Bắt đầu Đêm Chuyền Đèn!");
+            }
+            else if (milestone >= 5)
+            {
+                TeleportOrFallback("Spawn_BridgeEast", new Vector2(4.0f, 0.5f));
+                f.SetFlag("flag_ch2_relay_done", true);
+                GameEventBus.RaiseToastRequested("Mốc 5: Đã xong Đêm Chuyền Đèn -> Kích hoạt Kết Thúc Chương 2!");
+            }
+
             RefreshStatusText();
         }
 
@@ -330,13 +405,12 @@ namespace MoonpetalValley.DebugTools
         {
             if (GameRoot.Instance == null || GameRoot.Instance.Inventory == null) return;
             var inv = GameRoot.Instance.Inventory;
-            inv.AddItemById("item_storm_lantern_west", 1, false);
-            inv.AddItemById("item_river_timber", 3, false);
-            inv.AddItemById("item_waterproof_resin", 2, false);
-            GameEventBus.RaiseToastRequested("Đã cấp Đèn Bão Bờ Tây + 3 Gỗ Bờ Sông + 2 Nhựa Chống Nước!");
+            if (!inv.HasItem("item_storm_lantern_east", 1)) inv.AddItemById("item_storm_lantern_east", 1, false);
+            if (!inv.HasItem("item_storm_lantern_west", 1)) inv.AddItemById("item_storm_lantern_west", 1, false);
+            inv.AddItemById("item_sunshine_bread", 2, false);
+            GameEventBus.RaiseToastRequested("Đã cấp đủ 2 Nửa Đèn Bão Cổ (Đông + Tây) và 2 Bánh Mì Nắng Ấm!");
             RefreshStatusText();
         }
-
         private void TeleportTo(string spawnId)
         {
             if (WorldSpawnRegistry.Instance != null)

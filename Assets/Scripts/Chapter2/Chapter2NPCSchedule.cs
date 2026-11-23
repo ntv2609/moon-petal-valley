@@ -24,9 +24,32 @@ namespace MoonpetalValley.Chapter2
             ApplyPosition(false);
         }
 
+        public void ForceRefreshSchedule()
+        {
+            ApplyPosition(true);
+        }
+
+        private bool IsLockedByEvent()
+        {
+            if (Chapter2StateManager.Instance != null && Chapter2StateManager.Instance.IsRelayEventActive)
+                return true;
+            if (LanternRelayManager.Instance != null && LanternRelayManager.Instance.IsRelayActive)
+                return true;
+            if (Chapter2EndingController.Instance != null && Chapter2EndingController.Instance.IsPlaying)
+                return true;
+            return false;
+        }
+
         private void ApplyPosition(bool force)
         {
-            TimeOfDayManager tm = GameRoot.Instance != null ? GameRoot.Instance.Time : UnityEngine.Object.FindAnyObjectByType<TimeOfDayManager>();
+            if (IsLockedByEvent()) return;
+            if (!force && GameRoot.Instance != null && GameRoot.Instance.State != null &&
+                GameRoot.Instance.State.CurrentState != GameState.Gameplay)
+                return;
+
+            TimeOfDayManager tm = GameRoot.Instance != null
+                ? GameRoot.Instance.Time
+                : UnityEngine.Object.FindAnyObjectByType<TimeOfDayManager>();
             float hour = tm != null ? tm.CurrentHourFloat : 10f;
             bool shouldBeNight = hour >= duskStartHour || hour < dawnEndHour;
             if (!force && shouldBeNight == _isNightSpot) return;

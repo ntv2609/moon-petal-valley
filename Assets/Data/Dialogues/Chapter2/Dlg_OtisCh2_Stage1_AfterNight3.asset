@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c597d33f149cdf04299a1085b446df21, type: 3}
+  m_Name: Dlg_OtisCh2_Stage1_AfterNight3
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.DialogueData
+  dialogueID: dlg_otis_ch2_s1_after_night3
+  lines:
+  - speakerNameKey: "B\xE1c Otis"
+    textKey: "Ch\xE1u \u0111\xE3 \u0111\u1ECDc cu\u1ED1n s\u1ED5 c\u0169 c\u1EE7a b\xE1c r\u1ED3i \u0111\u1EA5y. Gi\u1EDD ch\xE1u h\xE3y qua n\xF3i chuy\u1EC7n v\u1EDBi \xF4ng Kael \u0111\u1EC3 nh\u1EADn N\u1EEDa \u0110\xE8n B\xE3o C\u1ED5 b\xEAn B\u1EDD \u0110\xF4ng."
+    portraitOverride: {fileID: 0}
+    speakerId: otis
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: "B\xE1c Otis"
+    textKey: "Sau \u0111\xF3 sang \u0110\u1EA7m L\u1EA7y B\u1EDD T\xE2y thanh t\u1EA9y l\u0169 qu\xE1i s\u01B0\u01A1ng m\xF9 \u0111\u1EC3 t\xECm n\u1ED1t n\u1EEDa \u0111\xE8n c\xF2n l\u1EA1i nh\xE9."
+    portraitOverride: {fileID: 0}
+    speakerId: otis
+    requiredFlag: 
+    blockedFlag: 
+  choices: []
+  setsStoryFlagOnFinish: 
+  givesItemOnFinish: {fileID: 0}
+  givesItemAmount: 0
+  extraRewards: []
+  consumesRequiredItem: {fileID: 0}
+  consumesAmount: 0
+  unlocksDiaryPage: {fileID: 0}
+  affinityNpcId: 
+  affinityBonusOnFinish: 0

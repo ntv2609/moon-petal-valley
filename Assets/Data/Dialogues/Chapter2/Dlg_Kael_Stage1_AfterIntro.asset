@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c597d33f149cdf04299a1085b446df21, type: 3}
+  m_Name: Dlg_Kael_Stage1_AfterIntro
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.DialogueData
+  dialogueID: dlg_kael_s1_after_intro
+  lines:
+  - speakerNameKey: "\xD4ng Kael"
+    textKey: "T\xF4i \u0111\xE3 b\u1EA3o m\xE0, m\u1ED9t m\xECnh ch\xE1u kh\xF4ng gh\xE9p n\u1ED5i nh\u1ECBp c\u1EA7u qua d\xF2ng n\u01B0\u1EDBc xi\u1EBFt n\xE0y \u0111\xE2u."
+    portraitOverride: {fileID: 0}
+    speakerId: kael
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: "\xD4ng Kael"
+    textKey: "Mu\u1ED1n sang B\u1EDD T\xE2y th\xEC \u0111i chi\u1EBFc \u0111\xF2 neo d\u01B0\u1EDBi b\u1EBFn kia. C\xF2n n\u1EBFu t\xF2 m\xF2 chuy\u1EC7n kh\xFAc s\xF4ng n\xE0y, c\u1EE9 ng\u1ED3i \u1EDF Gh\u1EBF \u0110\xE1 ch\u1EDD \u0111\u1EBFn 18:30 t\u1ED1i r\u1ED3i kh\u1EAFc th\u1EA5y."
+    portraitOverride: {fileID: 0}
+    speakerId: kael
+    requiredFlag: 
+    blockedFlag: 
+  choices: []
+  setsStoryFlagOnFinish: 
+  givesItemOnFinish: {fileID: 0}
+  givesItemAmount: 0
+  extraRewards: []
+  consumesRequiredItem: {fileID: 0}
+  consumesAmount: 0
+  unlocksDiaryPage: {fileID: 0}
+  affinityNpcId: 
+  affinityBonusOnFinish: 0

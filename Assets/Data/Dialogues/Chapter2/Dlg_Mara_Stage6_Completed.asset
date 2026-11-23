@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c597d33f149cdf04299a1085b446df21, type: 3}
+  m_Name: Dlg_Mara_Stage6_Completed
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.DialogueData
+  dialogueID: dlg_mara_s6_completed
+  lines:
+  - speakerNameKey: "B\xE0 Mara"
+    textKey: "Ba m\u01B0\u01A1i n\u0103m mang c\u1EE5c \u0111\xE1 n\u1EB7ng trong l\xF2ng, cu\u1ED1i c\xF9ng \u0111\xEAm qua c\u0169ng b\u1ECF xu\u1ED1ng \u0111\u01B0\u1EE3c r\u1ED3i."
+    portraitOverride: {fileID: 0}
+    speakerId: mara
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: "B\xE0 Mara"
+    textKey: "C\u1EA3m \u01A1n ch\xE1u v\xE0 b\xE9 Lumi. Khi n\xE0o m\u1EC7t m\u1ECFi, c\u1EE9 ch\u1EA1y qua c\u1EA7u gh\xE9 B\u1EDD T\xE2y u\u1ED1ng ch\xE9n tr\xE0 sen n\xF3ng v\u1EDBi t\xF4i nh\xE9."
+    portraitOverride: {fileID: 0}
+    speakerId: mara
+    requiredFlag: 
+    blockedFlag: 
+  choices: []
+  setsStoryFlagOnFinish: 
+  givesItemOnFinish: {fileID: 0}
+  givesItemAmount: 0
+  extraRewards: []
+  consumesRequiredItem: {fileID: 0}
+  consumesAmount: 0
+  unlocksDiaryPage: {fileID: 0}
+  affinityNpcId: 
+  affinityBonusOnFinish: 0

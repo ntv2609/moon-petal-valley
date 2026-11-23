@@ -33,6 +33,7 @@ namespace MoonpetalValley.Player
         private float _slashVisualDuration = 0.16f;
         private float _pulseCooldownTimer;
         private float _pulseVisualTimer;
+        private float _pulseMaxVisualScale = 3.6f;
 
         private int _comboStep;
         private float _comboWindowTimer;
@@ -363,9 +364,15 @@ namespace MoonpetalValley.Player
                 return;
             }
 
-            float radius = statsConfig != null ? statsConfig.lumiPulseRadius : 3.5f;
+            // [CR-CH2-PULSE2] Xung Anh Trang Cap 2 (Cong Huong) sau khi hoan thanh Chuong 2
+            bool isLv2 = GameRoot.Instance.Flags != null && GameRoot.Instance.Flags.HasFlag("flag_ch2_completed");
+            float radius = isLv2
+                ? (statsConfig != null ? statsConfig.lumiPulseLv2Radius : 4.5f)
+                : (statsConfig != null ? statsConfig.lumiPulseRadius : 3.5f);
+            float stunDuration = statsConfig != null ? statsConfig.lumiPulseLv2StunDuration : 2.0f;
             int cost = statsConfig != null ? statsConfig.lumiPulseStaminaCost : 10;
             _pulseCooldownTimer = statsConfig != null ? statsConfig.lumiPulseCooldown : 8f;
+            _pulseMaxVisualScale = isLv2 ? 4.8f : 3.6f;
 
             if (GameRoot.Instance != null && GameRoot.Instance.Stats != null)
             {
@@ -374,30 +381,52 @@ namespace MoonpetalValley.Player
             playerController.ClearSlow();
 
             var lumi = UnityEngine.Object.FindAnyObjectByType<LumiCompanionController>();
-            if (lumi != null) lumi.PlayMoonPulseAnimation();
+            if (lumi != null) lumi.PlayMoonPulseAnimation(isLv2 ? 0.95f : 0.7f);
 
             if (pulseRingTransform != null && pulseRingRenderer != null)
             {
                 pulseRingRenderer.enabled = true;
                 pulseRingTransform.localScale = new Vector3(0.5f, 0.5f, 1f);
-                pulseRingRenderer.color = new Color(0.60f, 0.98f, 0.95f, 0.9f);
+                pulseRingRenderer.color = isLv2
+                    ? new Color(0.84f, 0.96f, 1.0f, 0.96f)
+                    : new Color(0.60f, 0.98f, 0.95f, 0.9f);
                 _pulseVisualTimer = 0.35f;
             }
 
+            _hitBuffer.Clear();
             Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius);
             int pushed = 0;
+            int stunned = 0;
             for (int i = 0; i < hits.Length; i++)
             {
-                var target = hits[i].GetComponent<IDamageable>();
-                if (target != null && !target.IsDefeated)
+                var target = hits[i].GetComponentInParent<IDamageable>();
+                if (target != null && !target.IsDefeated && _hitBuffer.Add(target))
                 {
                     Vector2 dir = ((Vector2)hits[i].transform.position - (Vector2)transform.position).normalized;
-                    target.TakePurifyDamage(10, dir, 9.5f);
+                    if (dir.sqrMagnitude < 0.001f) dir = Vector2.up;
+                    target.TakePurifyDamage(isLv2 ? 14 : 10, dir, isLv2 ? 10.5f : 9.5f);
                     pushed++;
+
+                    if (isLv2)
+                    {
+                        var stunnable = hits[i].GetComponentInParent<IStunnable>();
+                        if (stunnable != null)
+                        {
+                            stunnable.ApplyStun(stunDuration);
+                            stunned++;
+                        }
+                    }
                 }
             }
 
-            GameEventBus.RaiseToastRequested("Lumi phóng Xung Ánh Trăng! (Giải làm chậm & đẩy lùi " + pushed + " quái)");
+            if (isLv2)
+            {
+                GameEventBus.RaiseToastRequested("Lumi phóng Xung Ánh Trăng Cấp 2! (Giải làm chậm, đẩy lùi " + pushed + " & choáng " + stunned + " quái 2s)");
+            }
+            else
+            {
+                GameEventBus.RaiseToastRequested("Lumi phóng Xung Ánh Trăng! (Giải làm chậm & đẩy lùi " + pushed + " quái)");
+            }
         }
 
         private void UpdateVisualEffects()
@@ -420,7 +449,7 @@ namespace MoonpetalValley.Player
                 float t = 1f - Mathf.Clamp01(_pulseVisualTimer / 0.35f);
                 if (pulseRingTransform != null)
                 {
-                    float s = Mathf.Lerp(0.6f, 3.6f, t);
+                    float s = Mathf.Lerp(0.6f, _pulseMaxVisualScale, t);
                     pulseRingTransform.localScale = new Vector3(s, s, 1f);
                 }
                 if (pulseRingRenderer != null)

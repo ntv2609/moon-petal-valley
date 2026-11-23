@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c597d33f149cdf04299a1085b446df21, type: 3}
+  m_Name: Dlg_Kael_Stage4_ReadyRelay
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.DialogueData
+  dialogueID: dlg_kael_s4_ready_relay
+  lines:
+  - speakerNameKey: "\xD4ng Kael"
+    textKey: "H\xF3a ra \u0111\xEAm b\xE3o n\u0103m \u0111\xF3... t\xF4i v\xE0 b\xE0 \u1EA5y \u0111\u1EC1u s\u1EE3 \u0111\u1ED1i ph\u01B0\u01A1ng g\xE1nh t\u1ED9i n\xEAn m\u1EDBi im l\u1EB7ng su\u1ED1t ba m\u01B0\u01A1i n\u0103m."
+    portraitOverride: {fileID: 0}
+    speakerId: kael
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: "\xD4ng Kael"
+    textKey: "\u0110\u1EE7 r\u1ED3i. T\u1ED1i nay l\xFAc 18:30, ch\xE1u ra \u0111\u1EA7u c\u1EA7u B\u1EDD \u0110\xF4ng nh\xE9 Wen. T\xF4i \u0111\xE3 chu\u1EA9n b\u1ECB b\xFAa v\xE0 v\xE1n lim, ta c\xF9ng b\xE0 Mara \u0111\xF3ng l\u1EA1i c\xE2y c\u1EA7u n\xE0y trong m\u1ED9t \u0111\xEAm!"
+    portraitOverride: {fileID: 0}
+    speakerId: kael
+    requiredFlag: 
+    blockedFlag: 
+  choices: []
+  setsStoryFlagOnFinish: 
+  givesItemOnFinish: {fileID: 0}
+  givesItemAmount: 0
+  extraRewards: []
+  consumesRequiredItem: {fileID: 0}
+  consumesAmount: 0
+  unlocksDiaryPage: {fileID: 0}
+  affinityNpcId: 
+  affinityBonusOnFinish: 0

@@ -135,6 +135,8 @@ namespace MoonpetalValley.Player
         private void StartDash(Vector2 direction)
         {
             int dashCost = statsConfig != null ? statsConfig.dashStaminaCost : 5;
+            // [CR-CH2-DASH] Mien phi Stamina khi Dash trong Dem Chuyen Den (Chuong 2)
+            if (MoonpetalValley.Chapter2.Chapter2StateManager.Instance != null && MoonpetalValley.Chapter2.Chapter2StateManager.Instance.IsRelayEventActive) dashCost = 0;
             if (GameRoot.Instance != null && GameRoot.Instance.Stats != null)
             {
                 bool stillAwake = GameRoot.Instance.Stats.ConsumeStamina(dashCost);

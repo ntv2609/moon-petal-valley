@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using MoonpetalValley.Combat;
 using MoonpetalValley.Core;
+using MoonpetalValley.Chapter2;
 using MoonpetalValley.Narrative;
 using MoonpetalValley.Player;
 using MoonpetalValley.TimeSystem;
@@ -15,6 +16,7 @@ namespace MoonpetalValley.Audio
         private const string OWNER_BASE = "probe_base";
         private const string OWNER_MIST = "probe_mist";
         private const string OWNER_COMBAT = "probe_combat";
+        private const string OWNER_RELAY = "probe_relay";
         private const string OWNER_CUTSCENE = "probe_cutscene";
 
         private MusicManager _manager;
@@ -103,7 +105,7 @@ namespace MoonpetalValley.Audio
             if (ContainsIgnoreCase(rules.titleSceneNames, CurrentSceneName))
             {
                 IsInMist = false; IsInCombat = false; IsCutsceneActive = false;
-                _manager.PopContext(OWNER_MIST); _manager.PopContext(OWNER_COMBAT); _manager.PopContext(OWNER_CUTSCENE);
+                _manager.PopContext(OWNER_MIST); _manager.PopContext(OWNER_COMBAT); _manager.PopContext(OWNER_RELAY); _manager.PopContext(OWNER_CUTSCENE);
                 _manager.ClearDucking("dialogue");
                 _manager.PushContext(OWNER_BASE, MusicContext.Title);
                 return;
@@ -122,7 +124,17 @@ namespace MoonpetalValley.Audio
             {
                 isNight = rules.useDuskAsNight ? GameRoot.Instance.Time.IsDuskOrNight : GameRoot.Instance.Time.IsNight;
             }
-            _manager.PushContext(OWNER_BASE, isNight ? MusicContext.Safe_Night : MusicContext.Safe_Day);
+            bool isRiver = ContainsIgnoreCase(rules.riverSceneNames, CurrentSceneName);
+            MusicContext baseCtx = isNight ? MusicContext.Safe_Night : MusicContext.Safe_Day;
+            if (isRiver && !isNight && _manager.Library != null && _manager.Library.GetTrackForContext(MusicContext.Zone_River_Day)?.clip != null)
+                baseCtx = MusicContext.Zone_River_Day;
+            _manager.PushContext(OWNER_BASE, baseCtx);
+
+            bool relayOn = Chapter2StateManager.Instance != null && Chapter2StateManager.Instance.IsRelayEventActive;
+            if (relayOn && _manager.Library != null && _manager.Library.GetTrackForContext(MusicContext.Set_LanternRelay)?.clip != null)
+                _manager.PushContext(OWNER_RELAY, MusicContext.Set_LanternRelay);
+            else
+                _manager.PopContext(OWNER_RELAY);
 
             if (_player == null) _player = FindAnyObjectByType<PlayerController2D>();
             if (_player == null)
@@ -176,6 +188,9 @@ namespace MoonpetalValley.Audio
                 if (col == null) continue;
                 GloomSlimeController slime = col.GetComponentInParent<GloomSlimeController>();
                 if (slime != null && slime.IsDefeated) continue;
+                ThornCrawlerController tc = col.GetComponentInParent<ThornCrawlerController>(); if (tc != null && tc.IsDefeated) continue;
+                BigGloomSlimeController bs = col.GetComponentInParent<BigGloomSlimeController>(); if (bs != null && bs.IsDefeated) continue;
+                LanternMothController lm = col.GetComponentInParent<LanternMothController>(); if (lm != null && lm.IsDefeated) continue;
                 return true;
             }
             return false;

@@ -16,7 +16,7 @@ MonoBehaviour:
   isStinger: 0
   context: 8
   stingerType: 0
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 34b87307a46a5184b8b99d8cc24a4f14, type: 3}
   priority: 20
   playMode: 2
   baseVolume: 0.85
@@ -26,5 +26,5 @@ MonoBehaviour:
   ambientRestMinSeconds: 8
   ambientRestMaxSeconds: 16
   maxPlaySeconds: 0
-  isDormant: 1
+  isDormant: 0
   notes: Ch2 Riverbank day

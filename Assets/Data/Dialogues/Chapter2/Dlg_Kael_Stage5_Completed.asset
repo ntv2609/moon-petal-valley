@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c597d33f149cdf04299a1085b446df21, type: 3}
+  m_Name: Dlg_Kael_Stage5_Completed
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.DialogueData
+  dialogueID: dlg_kael_s5_completed
+  lines:
+  - speakerNameKey: "\xD4ng Kael"
+    textKey: "C\xE2y c\u1EA7u g\u1ED7 lim n\xE0y gi\u1EDD \u0111i qua \xEAm ru r\u1ED3i \u0111\xF3 Wen. S\xE1ng nay b\xE0 Mara c\xF2n mang \u1EA5m tr\xE0 sang t\u1EADn x\u01B0\u1EDFng m\u1ED9c."
+    portraitOverride: {fileID: 0}
+    speakerId: kael
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: Wen
+    textKey: "Nh\xECn hai b\xE1c l\u1EA1i n\xF3i chuy\u1EC7n vui v\u1EBB v\u1EDBi nhau, ch\xE1u m\u1EEBng l\u1EAFm \u1EA1."
+    portraitOverride: {fileID: 0}
+    speakerId: wen
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: "\xD4ng Kael"
+    textKey: "C\u1EA3m \u01A1n ch\xE1u nhi\u1EC1u l\u1EAFm. Nghe b\xE1c Otis b\u1EA3o m\xE2y tr\xEAn c\xE1nh \u0111\u1ED3ng gi\xF3 ph\xEDa B\u1EAFc \u0111ang tan d\u1EA7n r\u1ED3i \u0111\u1EA5y, khi n\xE0o s\u1EB5n s\xE0ng th\xEC ch\xE1u c\u1EE9 \u0111i ti\u1EBFp h\xE0nh tr\xECnh nh\xE9."
+    portraitOverride: {fileID: 0}
+    speakerId: kael
+    requiredFlag: 
+    blockedFlag: 
+  choices: []
+  setsStoryFlagOnFinish: 
+  givesItemOnFinish: {fileID: 0}
+  givesItemAmount: 0
+  extraRewards: []
+  consumesRequiredItem: {fileID: 0}
+  consumesAmount: 0
+  unlocksDiaryPage: {fileID: 0}
+  affinityNpcId: 
+  affinityBonusOnFinish: 0

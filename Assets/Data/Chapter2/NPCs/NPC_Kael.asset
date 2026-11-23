@@ -18,6 +18,21 @@ MonoBehaviour:
   portraitSprite: {fileID: 21300000, guid: 6f38822ddc0255c498e1a37b9ecb492b, type: 3}
   worldSprite: {fileID: 21300000, guid: 97f09168c4b91764987dcb35c456f7c8, type: 3}
   defaultDialogue: {fileID: 11400000, guid: f8dc54f3d76e0eb42a30fdec2743d16f, type: 2}
-  conditionalDialogues: []
+  conditionalDialogues:
+  - requiredStoryFlag: flag_ch2_completed
+    blockedByStoryFlag: 
+    dialogue: {fileID: 11400000, guid: aa14702cb4d23e741b18796449c0cb27, type: 2}
+  - requiredStoryFlag: flag_ch2_echo2_pier_done
+    blockedByStoryFlag: flag_ch2_relay_done
+    dialogue: {fileID: 11400000, guid: 3e517b304ecbcb1419983d514654eeba, type: 2}
+  - requiredStoryFlag: flag_ch2_inv_night3_done
+    blockedByStoryFlag: flag_ch2_echo2_pier_done
+    dialogue: {fileID: 11400000, guid: 6032232367175e74e9ddb594550f8db6, type: 2}
+  - requiredStoryFlag: flag_ch2_inv_night1_done
+    blockedByStoryFlag: flag_ch2_inv_night3_done
+    dialogue: {fileID: 11400000, guid: a6f1de9b95fb4d44e96d5afa366a35b3, type: 2}
+  - requiredStoryFlag: flag_ch2_met_kael
+    blockedByStoryFlag: flag_ch2_inv_night1_done
+    dialogue: {fileID: 11400000, guid: fc5bb422bff964e4db1304c5f34a557d, type: 2}
   isHelperForBundleID: 
   helperReadyStoryFlag: 

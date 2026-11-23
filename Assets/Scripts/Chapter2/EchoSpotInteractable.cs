@@ -13,6 +13,13 @@ namespace MoonpetalValley.Chapter2
         [SerializeField] private DialogueData postEchoDialogue;
         [SerializeField] private SpriteRenderer shimmerRenderer;
 
+        private bool IsAlreadyCompleted()
+        {
+            if (echoData == null || string.IsNullOrEmpty(echoData.completedFlag)) return false;
+            var flags = GameRoot.Instance != null ? GameRoot.Instance.Flags : null;
+            return flags != null && flags.HasFlag(echoData.completedFlag);
+        }
+
         public bool CanInteract
         {
             get
@@ -29,7 +36,16 @@ namespace MoonpetalValley.Chapter2
         public float InteractRadius => interactRadius;
         public Vector2 InteractionWorldPosition => transform.position;
         public Vector3 PointerAnchorPosition => transform.position + new Vector3(0f, 1.0f, 0f);
-        public string InteractionPromptLabel => promptLabel;
+
+        public string InteractionPromptLabel
+        {
+            get
+            {
+                if (IsAlreadyCompleted() && echoData != null)
+                    return "Xem lại Dư Âm: " + echoData.echoTitle;
+                return promptLabel;
+            }
+        }
 
         private void OnEnable() => InteractionManager.Register(this);
         private void OnDisable() => InteractionManager.Unregister(this);
@@ -44,7 +60,9 @@ namespace MoonpetalValley.Chapter2
                 if (active)
                 {
                     Color c = shimmerRenderer.color;
-                    c.a = 0.35f + 0.25f * Mathf.Sin(Time.time * 3.5f);
+                    float baseAlpha = IsAlreadyCompleted() ? 0.18f : 0.35f;
+                    float amp = IsAlreadyCompleted() ? 0.12f : 0.25f;
+                    c.a = baseAlpha + amp * Mathf.Sin(Time.time * 3.5f);
                     shimmerRenderer.color = c;
                 }
             }
@@ -54,7 +72,9 @@ namespace MoonpetalValley.Chapter2
         {
             if (echoData == null || EchoManager.Instance == null) return;
 
-            if (!string.IsNullOrEmpty(echoData.requiredItemId))
+            bool wasAlreadyCompleted = IsAlreadyCompleted();
+
+            if (!wasAlreadyCompleted && !string.IsNullOrEmpty(echoData.requiredItemId))
             {
                 var inv = GameRoot.Instance != null ? GameRoot.Instance.Inventory : null;
                 if (inv == null || !inv.HasItem(echoData.requiredItemId, 1))
@@ -66,7 +86,7 @@ namespace MoonpetalValley.Chapter2
 
             EchoManager.Instance.PlayEcho(echoData, transform.position, () =>
             {
-                if (postEchoDialogue != null && GameRoot.Instance?.Dialogue != null)
+                if (!wasAlreadyCompleted && postEchoDialogue != null && GameRoot.Instance?.Dialogue != null)
                 {
                     GameRoot.Instance.Dialogue.StartDialogue(postEchoDialogue);
                 }

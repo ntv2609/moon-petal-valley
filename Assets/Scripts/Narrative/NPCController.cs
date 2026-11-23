@@ -5,6 +5,7 @@ using MoonpetalValley.Core;
 using MoonpetalValley.Data;
 using MoonpetalValley.Player;
 using MoonpetalValley.TimeSystem;
+using MoonpetalValley.Chapter2;
 
 namespace MoonpetalValley.Narrative
 {
@@ -35,7 +36,17 @@ namespace MoonpetalValley.Narrative
         private PlayerController2D _player;
 
         public NPCData Data => npcData;
-        public bool CanInteract => gameObject.activeInHierarchy && npcData != null;
+        public bool CanInteract
+        {
+            get
+            {
+                if (!gameObject.activeInHierarchy || npcData == null) return false;
+                if (LanternRelayManager.Instance != null && LanternRelayManager.Instance.IsRelayActive &&
+                    (npcData.npcID == "npc_kael" || npcData.npcID == "npc_mara"))
+                    return false;
+                return true;
+            }
+        }
         public float InteractRadius => interactRadius;
         public Vector2 InteractionWorldPosition => transform.position;
         public Vector3 PointerAnchorPosition
@@ -204,6 +215,24 @@ namespace MoonpetalValley.Narrative
             string id = npcData.npcID ?? "";
             bool isNight = GameRoot.Instance?.Time != null && GameRoot.Instance.Time.IsNight;
             bool bloomed = GameRoot.Instance?.Flags != null && GameRoot.Instance.Flags.HasFlag("flag_nv1_completed");
+            bool ch2Done = GameRoot.Instance?.Flags != null && GameRoot.Instance.Flags.HasFlag("flag_ch2_completed");
+            bool echo2Done = GameRoot.Instance?.Flags != null && GameRoot.Instance.Flags.HasFlag("flag_ch2_echo2_pier_done");
+
+            if (ch2Done)
+            {
+                if (id == "npc_kael") return "Nhịp cầu lim này đứng vững thêm trăm năm nữa!";
+                if (id == "npc_mara") return "Đèn bên cầu sáng ấm cả một khúc sông...";
+                if (id == "npc_otis_ch2") return "Hai bờ sông lại thông thương rồi, mừng quá!";
+                if (id == "npc_bach") return "Nghe tin cây cầu bờ sông nối lại rồi à? Khá lắm!";
+                if (id == "npc_hana") return "Chiều nay cô sẽ mang bánh sang mừng ông Kael và bà Mara!";
+                if (id == "npc_toby") return "Anh Wen ơi, mai cho em chạy qua cầu bờ sông xem nhé!";
+            }
+            if (id == "npc_kael")
+                return echo2Done ? "Tối nay 18:30 ta cùng bà Mara đóng lại cây cầu!" : (isNight ? "Chậc... thanh dầm này vẫn hơi mục..." : "Đứng xa mố cầu ra, gỗ mục rồi.");
+            if (id == "npc_mara")
+                return echo2Done ? "Tối nay 18:30 tôi sẽ mang đinh ra bờ Tây." : (isNight ? "Gió sông lạnh quá... lại nhớ đêm bão năm ấy." : "Người bên kia sông gửi cháu sang à?");
+            if (id == "npc_otis_ch2")
+                return echo2Done ? "Sự thật sáng tỏ rồi, chuẩn bị cho Đêm Chuyền Đèn nhé!" : "Cuốn sổ cũ này ghi đủ chuyện đêm bão năm xưa đấy.";
 
             if (bloomed)
             {
@@ -336,6 +365,41 @@ namespace MoonpetalValley.Narrative
             bool exhausted = GameRoot.Instance.Stats != null && GameRoot.Instance.Stats.IsExhaustedPenalty;
             bool isNight = GameRoot.Instance.Time != null && GameRoot.Instance.Time.IsNight;
             bool isDusk = GameRoot.Instance.Time != null && GameRoot.Instance.Time.CurrentPhase == DayPhase.Dusk;
+            var flags = GameRoot.Instance.Flags;
+            if (flags != null && flags.HasFlag("flag_ch2_completed"))
+            {
+                if (id == "npc_bach" && !flags.HasFlag("flag_ch2_congrats_bach"))
+                {
+                    flags.SetFlag("flag_ch2_congrats_bach", true);
+                    GameRoot.Instance.Dialogue.StartQuickLines(new[]
+                    {
+                        ("Ông Bach", "Ta nghe bác Otis kể rồi. Cháu nối lại được cả cây cầu bờ sông lẫn tình nghĩa của hai lão già cứng đầu đó à?"),
+                        ("Wen", "Hai bác ấy tự tay đóng tấm ván cuối cùng đó ạ, cháu chỉ giữ đèn sáng thôi."), 
+                        ("Ông Bach", "Hừm... giống hệt bà cháu hồi xưa. Nghỉ ngơi đi rồi hẵng tính chuyện lên phía Bắc.")
+                    });
+                    return true;
+                }
+                if (id == "npc_hana" && !flags.HasFlag("flag_ch2_congrats_hana"))
+                {
+                    flags.SetFlag("flag_ch2_congrats_hana", true);
+                    GameRoot.Instance.Dialogue.StartQuickLines(new[]
+                    {
+                        ("Bà Hana", "Wen ơi! Cả làng nghe tin cầu bờ sông sáng đèn lại rồi ai cũng mừng rơn!"),
+                        ("Bà Hana", "Hôm qua bà Mara còn gửi người sang hỏi công thức bánh nướng nữa đấy. Cảm ơn cháu nhiều lắm!")
+                    });
+                    return true;
+                }
+                if (id == "npc_toby" && !flags.HasFlag("flag_ch2_congrats_toby"))
+                {
+                    flags.SetFlag("flag_ch2_congrats_toby", true);
+                    GameRoot.Instance.Dialogue.StartQuickLines(new[]
+                    {
+                        ("Toby", "Anh Wen siêu quá! Em nghe bảo anh vừa đánh bướm đêm vừa giữ sáng cả sáu cột đèn trên sông luôn!"),
+                        ("Tinh Linh Lumi", "Hì hì, có cả công Ánh Soi cấp hai của Lumi nữa đấy Toby!")
+                    });
+                    return true;
+                }
+            }
 
             if (exhausted)
             {

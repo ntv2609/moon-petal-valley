@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c597d33f149cdf04299a1085b446df21, type: 3}
+  m_Name: Dlg_Mara_Stage3_ToldTruth
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.DialogueData
+  dialogueID: dlg_mara_s3_told_truth
+  lines:
+  - speakerNameKey: "B\xE0 Mara"
+    textKey: "Ch\xE1u n\xF3i th\u1EADt sao... \u0111\xEAm n\xE0o Kael c\u0169ng l\xE9n b\xE0o g\u1ED7 lim \u0111\u1EC3 gia c\u1ED1 l\u1EA1i ch\xE2n c\u1EA7u g\xE3y \xE0?"
+    portraitOverride: {fileID: 0}
+    speakerId: mara
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: "B\xE0 Mara"
+    textKey: "H\u1EEBm, n\xF3i mi\u1EC7ng kh\xF4ng \u0111\u1EE7 \u0111\xE2u. N\u1EEDa chi\u1EBFc \u0111\xE8n b\xE3o c\u0169 b\u1ECB cu\u1ED1n v\xE0o \u0110\u1EA7m L\u1EA7y ph\xEDa B\u1EAFc B\u1EDD T\xE2y kia k\xECa. N\u1EBFu ch\xE1u l\u1EA5y \u0111\u01B0\u1EE3c n\xF3 v\u1EC1 soi l\u1EA1i chuy\u1EC7n c\u0169, t\xF4i s\u1EBD tin."
+    portraitOverride: {fileID: 0}
+    speakerId: mara
+    requiredFlag: 
+    blockedFlag: 
+  choices: []
+  setsStoryFlagOnFinish: 
+  givesItemOnFinish: {fileID: 0}
+  givesItemAmount: 0
+  extraRewards: []
+  consumesRequiredItem: {fileID: 0}
+  consumesAmount: 0
+  unlocksDiaryPage: {fileID: 0}
+  affinityNpcId: 
+  affinityBonusOnFinish: 0

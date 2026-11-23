@@ -18,6 +18,24 @@ MonoBehaviour:
   portraitSprite: {fileID: 21300000, guid: 2f6b2040503bc244f87aa9763d2c1123, type: 3}
   worldSprite: {fileID: 21300000, guid: b7bd3f03ae22c2e45a66ddf6fd926a5f, type: 3}
   defaultDialogue: {fileID: 11400000, guid: fa2654637f26b32409a029759a9f0328, type: 2}
-  conditionalDialogues: []
+  conditionalDialogues:
+  - requiredStoryFlag: flag_ch2_completed
+    blockedByStoryFlag: 
+    dialogue: {fileID: 11400000, guid: bcf0ecb2a88296c489bada4f139e5aef, type: 2}
+  - requiredStoryFlag: flag_ch2_echo2_pier_done
+    blockedByStoryFlag: flag_ch2_relay_done
+    dialogue: {fileID: 11400000, guid: eb6fba86f13e28044bd3db176f7d1210, type: 2}
+  - requiredStoryFlag: flag_ch2_swamp_cleared
+    blockedByStoryFlag: flag_ch2_echo2_pier_done
+    dialogue: {fileID: 11400000, guid: efb3b2a9609b00a4db24cec91e089f5f, type: 2}
+  - requiredStoryFlag: flag_ch2_choice_tell_truth
+    blockedByStoryFlag: flag_ch2_swamp_cleared
+    dialogue: {fileID: 11400000, guid: 2894c1cdf789995488dd99a04cc81a4d, type: 2}
+  - requiredStoryFlag: flag_ch2_choice_keep_secret
+    blockedByStoryFlag: flag_ch2_swamp_cleared
+    dialogue: {fileID: 11400000, guid: 1d085fc77a33eb747ba7f29eb9accca2, type: 2}
+  - requiredStoryFlag: flag_ch2_met_mara
+    blockedByStoryFlag: flag_ch2_inv_night3_done
+    dialogue: {fileID: 11400000, guid: 55b44c360a8cb2747951f4b5a7c803b6, type: 2}
   isHelperForBundleID: 
   helperReadyStoryFlag: 
