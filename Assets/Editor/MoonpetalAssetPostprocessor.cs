@@ -15,20 +15,45 @@ namespace MoonpetalValley.EditorTools
             bool isSlime = p.Contains("/Art/Sprites/Animations/GloomSlime/");
             bool isNpc = p.Contains("/Art/Sprites/Animations/NPCs/");
             bool isEnv = p.Contains("/Art/Sprites/Environment/");
+            bool isCh2World = p.Contains("/Art/Sprites/Chapter2/");
+            bool isCh2Mist = p.EndsWith("ch2_river_mist_strip.png");
+            bool isPortrait = p.Contains("/Art/Sprites/Portraits/");
+            bool isCh2Char = p.Contains("/Art/Characters/");
 
-            if (!isWen && !isLumi && !isSlime && !isNpc && !isEnv) return;
+            if (!isWen && !isLumi && !isSlime && !isNpc && !isEnv && !isCh2World && !isPortrait && !isCh2Char)
+                return;
 
             var importer = (TextureImporter)assetImporter;
             importer.textureType = TextureImporterType.Sprite;
             importer.spriteImportMode = SpriteImportMode.Single;
-            importer.filterMode = FilterMode.Point;
             importer.textureCompression = TextureImporterCompression.Uncompressed;
             importer.mipmapEnabled = false;
             importer.alphaIsTransparency = true;
 
-            if (isSlime) importer.spritePixelsPerUnit = 32f;
-            else if (isEnv) importer.spritePixelsPerUnit = 16f;
-            else importer.spritePixelsPerUnit = 20f;
+            if (isPortrait)
+            {
+                importer.filterMode = FilterMode.Bilinear;
+                importer.spritePixelsPerUnit = 100f;
+            }
+            else if (isCh2Mist)
+            {
+                importer.filterMode = FilterMode.Bilinear;
+                importer.spritePixelsPerUnit = 16f;
+            }
+            else if (isCh2Char)
+            {
+                importer.filterMode = FilterMode.Point;
+                if (p.Contains("/enemy_")) importer.spritePixelsPerUnit = 32f;
+                else if (p.Contains("/actor_")) importer.spritePixelsPerUnit = 24f;
+                else importer.spritePixelsPerUnit = 20f;
+            }
+            else
+            {
+                importer.filterMode = FilterMode.Point;
+                if (isSlime) importer.spritePixelsPerUnit = 32f;
+                else if (isEnv || isCh2World) importer.spritePixelsPerUnit = 16f;
+                else importer.spritePixelsPerUnit = 20f;
+            }
 
             var settings = new TextureImporterSettings();
             importer.ReadTextureSettings(settings);

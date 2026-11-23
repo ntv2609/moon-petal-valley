@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c597d33f149cdf04299a1085b446df21, type: 3}
+  m_Name: Dlg_Ch2_Kael_Intro
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.DialogueData
+  dialogueID: dlg_ch2_kael_intro
+  lines:
+  - speakerNameKey: "\xD4ng Kael"
+    textKey: "N\xE0y c\xF4 b\xE9 \u1EDF v\u01B0\u1EDDn \u01B0\u01A1m! \u0110\u1EE9ng xa m\xE9p c\u1EA7u ra, v\xE1n m\u1EE5c h\u1EBFt r\u1ED3i."
+    portraitOverride: {fileID: 0}
+    speakerId: kael
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: Wen
+    textKey: "Ch\xE1u l\xE0 Wen. Ch\xE1u th\u1EA5y c\xE2y c\u1EA7u sang b\u1EDD T\xE2y b\u1ECB g\xE3y, ch\xFA c\xF3 bi\u1EBFt chuy\u1EC7n g\xEC x\u1EA3y ra kh\xF4ng \u1EA1?"
+    portraitOverride: {fileID: 0}
+    speakerId: wen
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: "\xD4ng Kael"
+    textKey: "Ba n\u0103m tr\u01B0\u1EDBc b\xE3o l\u1EDBn cu\u1ED1n ph\u0103ng nh\u1ECBp gi\u1EEFa. C\xF3 ng\u01B0\u1EDDi b\xEAn kia s\xF4ng c\u1EE9 \u0111\xF2i v\xE1 t\u1EA1m, t\xF4i c\u1EA3n kh\xF4ng n\u1ED5i n\xEAn... b\u1ECF lu\xF4n."
+    portraitOverride: {fileID: 0}
+    speakerId: kael
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: "\xD4ng Kael"
+    textKey: "N\u1EBFu ch\xE1u t\xF2 m\xF2 th\xEC \u0111\u1EE3i ch\u1EADp t\u1ED1i h\xE3y \u0111i quanh b\u1EDD \u0110\xF4ng m\xE0 xem. Ban ng\xE0y s\u01B0\u01A1ng che h\u1EBFt d\u1EA5u v\u1EBFt r\u1ED3i."
+    portraitOverride: {fileID: 0}
+    speakerId: kael
+    requiredFlag: 
+    blockedFlag: 
+  choices: []
+  setsStoryFlagOnFinish: flag_ch2_met_kael
+  givesItemOnFinish: {fileID: 0}
+  givesItemAmount: 1
+  extraRewards: []
+  consumesRequiredItem: {fileID: 0}
+  consumesAmount: 0
+  unlocksDiaryPage: {fileID: 0}
+  affinityNpcId: 
+  affinityBonusOnFinish: 0

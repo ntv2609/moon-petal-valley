@@ -52,7 +52,7 @@ namespace MoonpetalValley.Player
         [SerializeField] private Sprite[] dashEast;
         [SerializeField] private Sprite[] dashWest;
 
-        [Header("Tool Use - Gieo hạt / Thu hoạch (4 hướng)")]
+        [Header("Tool Use - Gieo hạt / Thu hoạch / Tạp vụ (4 hướng)")]
         [SerializeField] private Sprite[] toolSouth;
         [SerializeField] private Sprite[] toolNorth;
         [SerializeField] private Sprite[] toolEast;
@@ -95,14 +95,67 @@ namespace MoonpetalValley.Player
         private Facing4 _facing = Facing4.South;
         private AnimAction _currentAction = AnimAction.Idle;
         private bool _isOneShotLocked;
+        private bool _cutsceneOverride;
         private int _frameIndex;
         private float _frameTimer;
 
         public bool HasValidSprites => idleSouth != null && idleSouth.Length > 0 && idleSouth[0] != null;
+        public bool IsCutsceneOverride => _cutsceneOverride;
+
+        private void Update()
+        {
+            if (_cutsceneOverride && HasValidSprites && spriteRenderer != null)
+            {
+                TickAnimation(Time.unscaledDeltaTime);
+            }
+        }
+
+        public void BeginCutsceneWalk(Vector2 facingDir)
+        {
+            if (!HasValidSprites || spriteRenderer == null) return;
+            _cutsceneOverride = true;
+            _isOneShotLocked = false;
+            UpdateFacingFromVector(facingDir);
+            SwitchActionIfNeeded(AnimAction.Walk);
+        }
+
+        /// <summary>
+        /// Diễn hoạt tạp vụ dùng chung (kéo ván, thu hoạch, nhặt, sửa chữa, chèo đò...) lặp mượt trong cutscene.
+        /// </summary>
+        public void BeginCutsceneChore(Vector2 facingDir)
+        {
+            if (!HasValidSprites || spriteRenderer == null) return;
+            _cutsceneOverride = true;
+            _isOneShotLocked = false;
+            UpdateFacingFromVector(facingDir);
+            SwitchActionIfNeeded(AnimAction.ToolUse);
+        }
+
+        public void BeginCutsceneIdle(Vector2 facingDir)
+        {
+            if (!HasValidSprites || spriteRenderer == null) return;
+            _cutsceneOverride = true;
+            _isOneShotLocked = false;
+            UpdateFacingFromVector(facingDir);
+            SwitchActionIfNeeded(AnimAction.Idle);
+        }
+
+        public void EndCutsceneOverride()
+        {
+            _cutsceneOverride = false;
+            _isOneShotLocked = false;
+            SwitchActionIfNeeded(AnimAction.Idle);
+        }
+
+        public void PlayGenericChore(Vector2 facingDir)
+        {
+            PlayToolAction(WenToolAnimType.GenericSeedHarvest, facingDir);
+        }
 
         public void UpdateLocomotion(Vector2 moveInput, Vector2 facingDir, bool isDashing)
         {
             if (!HasValidSprites || spriteRenderer == null) return;
+            if (_cutsceneOverride) return;
 
             spriteRenderer.flipX = false;
 
@@ -254,7 +307,7 @@ namespace MoonpetalValley.Player
             {
                 AnimAction.Walk => walkFps,
                 AnimAction.Dash => dashFps,
-                AnimAction.ToolUse => toolFps,
+                AnimAction.ToolUse => _cutsceneOverride ? 7.5f : toolFps,
                 AnimAction.Hoe => hoeFps,
                 AnimAction.WateringCan => waterFps,
                 AnimAction.Hatchet => hatchetFps,
@@ -274,7 +327,6 @@ namespace MoonpetalValley.Player
             };
             if (chosen != null && chosen.Length > 0 && chosen[0] != null) return chosen;
 
-            Debug.LogWarning("[MV] WenSpriteAnimator thiếu frame cho " + _currentAction + " (" + dir + "), fallback sang Idle.");
             return dir switch
             {
                 Facing4.North => idleNorth,

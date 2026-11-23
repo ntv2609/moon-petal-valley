@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MoonpetalValley_MVP.unity
     guid: 7a58498a06d132a45826a785704fdc9f
+  - enabled: 1
+    path: Assets/Scenes/Riverbank_Chapter2.unity
+    guid: e35157ae26a5f844fa34b12ea579b7d3
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

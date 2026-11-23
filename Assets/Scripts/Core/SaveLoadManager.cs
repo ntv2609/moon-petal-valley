@@ -11,6 +11,7 @@ namespace MoonpetalValley.Core
     public class SaveLoadManager : MonoBehaviour
     {
         private const string SaveFileName = "moonpetal_save_v1.json";
+        private const string DefaultWorldScene = "MoonpetalValley_MVP";
 
         [Serializable]
         private struct SaveEntry
@@ -24,6 +25,7 @@ namespace MoonpetalValley.Core
         {
             public int saveVersion = 1;
             public string savedTimestamp;
+            public string savedSceneName = DefaultWorldScene;
             public List<SaveEntry> entries = new List<SaveEntry>();
         }
 
@@ -52,9 +54,27 @@ namespace MoonpetalValley.Core
             ReadSavedTimestampPreview();
         }
 
+        private static bool IsPlayableWorldScene(string sceneName)
+        {
+            return sceneName == "MoonpetalValley_MVP" || sceneName == "Riverbank_Chapter2";
+        }
+
+        public string GetSavedSceneName()
+        {
+            if (!HasSaveFile()) return DefaultWorldScene;
+            try
+            {
+                var payload = JsonUtility.FromJson<SaveFilePayload>(File.ReadAllText(SaveFilePath));
+                if (payload != null && IsPlayableWorldScene(payload.savedSceneName))
+                    return payload.savedSceneName;
+            }
+            catch { }
+            return DefaultWorldScene;
+        }
+
         private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            if (scene.name == "MoonpetalValley_MVP" && MainMenuController.PendingLoadSaveOnWorldStart)
+            if (IsPlayableWorldScene(scene.name) && MainMenuController.PendingLoadSaveOnWorldStart)
             {
                 _isLoadingSave = true;
                 MainMenuController.PendingLoadSaveOnWorldStart = false;
@@ -67,7 +87,7 @@ namespace MoonpetalValley.Core
             yield return null;
             try
             {
-                LoadGame();
+                LoadGameInternal(allowSceneRedirect: false);
             }
             finally
             {
@@ -89,10 +109,14 @@ namespace MoonpetalValley.Core
         {
             if (GameRoot.Instance == null) return;
 
+            string activeScene = SceneManager.GetActiveScene().name;
+            string sceneToSave = IsPlayableWorldScene(activeScene) ? activeScene : DefaultWorldScene;
+
             var payload = new SaveFilePayload
             {
                 saveVersion = 1,
-                savedTimestamp = DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy")
+                savedTimestamp = DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy"),
+                savedSceneName = sceneToSave
             };
 
             var saveables = GameRoot.Instance.GetSaveables();
@@ -123,6 +147,11 @@ namespace MoonpetalValley.Core
 
         public bool LoadGame()
         {
+            return LoadGameInternal(allowSceneRedirect: true);
+        }
+
+        private bool LoadGameInternal(bool allowSceneRedirect)
+        {
             if (!HasSaveFile() || GameRoot.Instance == null)
             {
                 GameEventBus.RaiseToastRequested("Chưa có file lưu game nào!");
@@ -133,6 +162,18 @@ namespace MoonpetalValley.Core
             {
                 var payload = JsonUtility.FromJson<SaveFilePayload>(File.ReadAllText(SaveFilePath));
                 if (payload == null || payload.entries == null) return false;
+
+                string targetScene = IsPlayableWorldScene(payload.savedSceneName)
+                    ? payload.savedSceneName
+                    : DefaultWorldScene;
+
+                if (allowSceneRedirect && SceneManager.GetActiveScene().name != targetScene)
+                {
+                    MainMenuController.PendingLoadSaveOnWorldStart = true;
+                    GameRoot.Instance.State?.ReturnToGameplay();
+                    SceneManager.LoadScene(targetScene);
+                    return true;
+                }
 
                 var map = new Dictionary<string, string>();
                 for (int i = 0; i < payload.entries.Count; i++)

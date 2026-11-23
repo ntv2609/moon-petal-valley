@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b2d9ee8e1b2e24581e2534b0da8e8f, type: 3}
+  m_Name: MusicRules
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Audio.MusicRulesSO
+  pollIntervalSeconds: 0.25
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  combatDetectRadius: 6.5
+  combatHoldSeconds: 6
+  mistDetectPadding: 0.5
+  mistFallbackRadius: 4.5
+  useDuskAsNight: 1
+  defaultCrossfadeSeconds: 1.6
+  dialogueDuckFactor: 0.45
+  stingerDuckFactor: 0.3
+  duckTransitionSeconds: 0.35
+  saveLoadSuppressSeconds: 2.5
+  stingerCooldownSeconds: 1.5
+  titleSceneNames:
+  - MainMenu
+  - Bootstrap
+  villageSceneNames:
+  - MoonpetalValley_MVP
+  riverSceneNames:
+  - Riverbank_Chapter2
+  petalFlagIds:
+  - flag_nv1_completed
+  - flag_ch2_completed
+  petalItemKeywords:
+  - petal
+  questCompleteFlagIds:
+  - flag_greenhouse_cleared
+  - flag_tutorial_done
+  - flag_garden_slimes_cleared
+  - flag_hana_bread_done
+  - flag_toby_cat_saved
+  - flag_otis_mailbox_fixed
+  - flag_bach_letters_read
+  - flag_ch2_inv_night1_done
+  - flag_ch2_inv_night2_done
+  - flag_ch2_inv_night3_done
+  - flag_ch2_echo1_lantern_done
+  - flag_ch2_echo2_pier_done

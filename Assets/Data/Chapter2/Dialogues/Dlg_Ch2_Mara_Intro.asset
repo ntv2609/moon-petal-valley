@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c597d33f149cdf04299a1085b446df21, type: 3}
+  m_Name: Dlg_Ch2_Mara_Intro
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.DialogueData
+  dialogueID: dlg_ch2_mara_intro
+  lines:
+  - speakerNameKey: "B\xE0 Mara"
+    textKey: "Ch\xE1u sang \u0111\u01B0\u1EE3c b\u1EDD T\xE2y b\u1EB1ng ph\xE0 g\u1ED7 \xE0? Gi\u1ECFi \u0111\u1EA5y, d\xF2ng n\u01B0\u1EDBc h\xF4m nay ch\u1EA3y xi\u1EBFt l\u1EAFm."
+    portraitOverride: {fileID: 0}
+    speakerId: mara
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: Wen
+    textKey: "Ch\xE1u l\xE0 Wen. B\xE0 Mara, nghe n\xF3i c\xE2y c\u1EA7u t\u1EEBng n\u1ED1i hai b\u1EDD t\u1EEB l\xE2u l\u1EAFm r\u1ED3i?"
+    portraitOverride: {fileID: 0}
+    speakerId: wen
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: "B\xE0 Mara"
+    textKey: "H\u1ED3i tr\u1EBB t\xF4i v\u1EDBi \xF4ng Kael \u0111\xF3ng n\xF3 b\u1EB1ng g\u1ED7 lim. \u0110\xEAm b\xE3o n\u0103m \u1EA5y \u0111\xE8n b\xE3o t\u1EAFt ng\xFAm, \xF4ng \u1EA5y quay l\u01B0ng b\u1ECF m\u1EB7c b\u1EBFn thuy\u1EC1n c\u1EE7a t\xF4i..."
+    portraitOverride: {fileID: 0}
+    speakerId: mara
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: "B\xE0 Mara"
+    textKey: "Th\xF4i, chuy\u1EC7n c\u0169 r\u1ED3i. Ch\xE1u \u0111\u1EEBng \u0111i s\xE2u v\xE0o \u0111\u1EA7m l\u1EA7y ph\xEDa T\xE2y B\u1EAFc, B\xF2 Gai \u1EDF \u0111\xF3 hung d\u1EEF l\u1EAFm."
+    portraitOverride: {fileID: 0}
+    speakerId: mara
+    requiredFlag: 
+    blockedFlag: 
+  choices: []
+  setsStoryFlagOnFinish: flag_ch2_met_mara
+  givesItemOnFinish: {fileID: 0}
+  givesItemAmount: 1
+  extraRewards: []
+  consumesRequiredItem: {fileID: 0}
+  consumesAmount: 0
+  unlocksDiaryPage: {fileID: 0}
+  affinityNpcId: 
+  affinityBonusOnFinish: 0

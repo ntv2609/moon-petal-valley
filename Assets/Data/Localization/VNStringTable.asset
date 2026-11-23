@@ -301,3 +301,151 @@ MonoBehaviour:
     vietnameseText: "C\xE1nh Hoa G\u1EAFn K\u1EBFt"
   - key: desc_item_petal_of_bond
     vietnameseText: "C\xE1nh hoa Moonpetal th\u1EE9 hai n\u1EDF khi c\xE2y c\u1EA7u hai b\u1EDD s\xE1ng \u0111\xE8n tr\u1EDF l\u1EA1i."
+  - key: dlg_ch2_kael_intro_sp_0
+    vietnameseText: Wen
+  - key: dlg_ch2_kael_intro_tx_0
+    vietnameseText: "Ch\xE1u ch\xE0o b\xE1c. Ch\xE1u l\xE0 Wen, ch\xE1u g\xE1i b\xE0 c\u1EE5 Nh\xE0 K\xEDnh. Ch\xE1u mu\u1ED1n s\u1EEDa l\u1EA1i c\xE2y c\u1EA7u..."
+  - key: dlg_ch2_kael_intro_sp_1
+    vietnameseText: "\xD4ng Kael"
+  - key: dlg_ch2_kael_intro_tx_1
+    vietnameseText: "...T\u1EA5m v\xE1n v\u1EEBa r\u1ED3i l\xE0 g\u1ED7 m\u1EE5c. \u0110\xF3ng m\u1ED9t m\xECnh tr\xEAn d\xF2ng n\u01B0\u1EDBc n\xE0y ch\u1EC9 t\u1ED5 m\u1EA5t m\u1EA1ng."
+  - key: dlg_ch2_kael_intro_sp_2
+    vietnameseText: Tinh Linh Lumi
+  - key: dlg_ch2_kael_intro_tx_2
+    vietnameseText: "\u01A0, th\u1EBF sao l\xFAc n\xE3y b\xE1c kh\xF4ng ra ng\u0103n Wen?"
+  - key: dlg_ch2_kael_intro_sp_3
+    vietnameseText: "\xD4ng Kael"
+  - key: dlg_ch2_kael_intro_tx_3
+    vietnameseText: "Ng\u0103n m\u1ED9t ng\u01B0\u1EDDi th\xEDch t\u1EF1 l\xE0m h\u1EBFt m\u1ECDi th\u1EE9? V\xF4 \xEDch th\xF4i. H\u1ED3i x\u01B0a t\xF4i c\u0169ng t\u1EEBng ngh\u0129 m\xECnh lo xu\u1EC3."
+  - key: dlg_ch2_kael_intro_sp_4
+    vietnameseText: Wen
+  - key: dlg_ch2_kael_intro_tx_4
+    vietnameseText: "B\xE1c l\xE0 th\u1EE3 \u0111\xF3ng c\u1EA7u ph\u1EA3i kh\xF4ng \u1EA1? N\u1EBFu ch\xE1u gom \u0111\u1EE7 g\u1ED7, b\xE1c gi\xFAp ch\xE1u m\u1ED9t tay \u0111\u01B0\u1EE3c kh\xF4ng?"
+  - key: dlg_ch2_kael_intro_sp_5
+    vietnameseText: "\xD4ng Kael"
+  - key: dlg_ch2_kael_intro_tx_5
+    vietnameseText: "C\u1EA7u kh\xF4ng n\u1ED1i n\u1EEFa. B\u1EDD n\xE0o s\u1ED1ng y\xEAn b\u1EDD n\u1EA5y. Ch\xE1u v\u1EC1 \u0111i."
+  - key: dlg_ch2_kael_night1_sp_0
+    vietnameseText: Wen
+  - key: dlg_ch2_kael_night1_tx_0
+    vietnameseText: "B\xE1c Kael \u01A1i, s\xE1ng nay tr\u01B0\u1EDBc b\u1EBFn B\xE0 Mara c\xF3 l\u01B0\u1EDBi v\xE1 s\u1EB5n, m\xE0 l\u1EA1i th\u01A1m m\xF9i d\u1EA7u th\xF4ng x\u01B0\u1EDFng b\xE1c."
+  - key: dlg_ch2_kael_night1_sp_1
+    vietnameseText: "\xD4ng Kael"
+  - key: dlg_ch2_kael_night1_tx_1
+    vietnameseText: "...T\xF4i \u0111\xF3ng t\u1EE7 cho nh\xE0 tr\u1EBB, d\xEDnh d\u1EA7u th\xF4ng l\xE0 chuy\u1EC7n th\u01B0\u1EDDng. Ch\xE1u \u0111\u1EEBng h\u1ECFi chuy\u1EC7n b\u1EDD T\xE2y n\u1EEFa."
+  - key: dlg_ch2_kael_night1_sp_2
+    vietnameseText: Tinh Linh Lumi
+  - key: dlg_ch2_kael_night1_tx_2
+    vietnameseText: "Th\u1EA5y ch\u01B0a Wen! M\u1EAFt b\xE1c \u1EA5y \u0111\u1EA3o sang ch\u1ED7 kh\xE1c ngay l\xFAc m\xECnh nh\u1EAFc t\xEAn B\xE0 Mara!"
+  - key: dlg_ch2_kael_default_sp_0
+    vietnameseText: "\xD4ng Kael"
+  - key: dlg_ch2_kael_default_tx_0
+    vietnameseText: "M\u1EB7t s\xF4ng t\u1ED1i nay gi\xF3 l\u1EDBn l\u1EAFm. Ch\xE1u \u0111\u1EEBng \u0111\u1EE9ng s\xE1t m\u1ED1 c\u1EA7u g\xE3y."
+  - key: name_npc_kael
+    vietnameseText: "\xD4ng Kael"
+  - key: role_npc_kael
+    vietnameseText: "Th\u1EE3 M\u1ED9c B\u1EDD \u0110\xF4ng"
+  - key: dlg_ch2_mara_intro_sp_0
+    vietnameseText: "B\xE0 Mara"
+  - key: dlg_ch2_mara_intro_tx_0
+    vietnameseText: "H\u1EEB, c\xF4 b\xE9 n\xE0o m\xE0 d\xE1m ch\xE8o c\xE1i \u0111\xF2 m\u1EE5c \u1EA5y sang t\u1EADn b\u1EDD T\xE2y th\u1EBF n\xE0y?"
+  - key: dlg_ch2_mara_intro_sp_1
+    vietnameseText: Wen
+  - key: dlg_ch2_mara_intro_tx_1
+    vietnameseText: "Ch\xE1u l\xE0 Wen. B\xEAn kia s\xF4ng b\xE1c th\u1EE3 m\u1ED9c b\u1EA3o kh\xF4ng s\u1EEDa c\u1EA7u n\u1EEFa, n\xEAn ch\xE1u sang h\u1ECFi chuy\u1EC7n b\u1EDD b\xEAn n\xE0y."
+  - key: dlg_ch2_mara_intro_sp_2
+    vietnameseText: "B\xE0 Mara"
+  - key: dlg_ch2_mara_intro_tx_2
+    vietnameseText: "Kael \xE0? Kh\u1ECFi nh\u1EAFc. Ba n\u0103m tr\u01B0\u1EDBc b\xE3o l\u1EDBn, \xF4ng ta c\u1EA7m r\xECu ch\u1EB7t \u0111\u1EE9t c\xE1p c\u1EA7u, cu\u1ED1n ph\u0103ng c\u1EA3 b\u1EBFn thuy\u1EC1n c\u1EE7a t\xF4i."
+  - key: dlg_ch2_mara_intro_sp_3
+    vietnameseText: Tinh Linh Lumi
+  - key: dlg_ch2_mara_intro_tx_3
+    vietnameseText: "Kh\u1ECBt kh\u1ECBt... Nh\u01B0ng tr\u01B0\u1EDBc c\u1EEDa nh\xE0 c\xF4 c\xF3 cu\u1ED9n l\u01B0\u1EDBi m\u1EDBi v\xE1 th\u01A1m m\xF9i d\u1EA7u th\xF4ng b\xEAn x\u01B0\u1EDFng m\u1ED9c k\xECa!"
+  - key: dlg_ch2_mara_intro_sp_4
+    vietnameseText: "B\xE0 Mara"
+  - key: dlg_ch2_mara_intro_tx_4
+    vietnameseText: "C\xE1i g\xEC? Gi\xF3 th\u1ED5i m\xF9i g\u1ED7 sang th\xF4i! S\xE1ng n\xE0o ch\u1EB3ng c\xF3... ch\u1EAFc l\xE0 s\xF3ng \u0111\xE1nh d\u1EA1t, li\xEAn quan g\xEC t\u1EDBi \xF4ng ta!"
+  - key: dlg_ch2_mara_intro_sp_5
+    vietnameseText: Wen
+  - key: dlg_ch2_mara_intro_tx_5
+    vietnameseText: "L\u01B0\u1EDBi v\xE1 g\u1ECDn th\u1EBF kia m\xE0 b\u1EA3o s\xF3ng \u0111\xE1nh d\u1EA1t sao..."
+  - key: dlg_ch2_mara_night2_sp_0
+    vietnameseText: Wen
+  - key: dlg_ch2_mara_night2_tx_0
+    vietnameseText: "C\xF4 Mara \u01A1i, nh\xE0 tr\u1EBB b\u1EDD \u0110\xF4ng s\xE1ng n\xE0o c\u0169ng c\xF3 gi\u1ECF c\xE1 t\u01B0\u01A1i bu\u1ED9c n\xFAt d\xE2y ch\xE0i c\u1EE7a c\xF4..."
+  - key: dlg_ch2_mara_night2_sp_1
+    vietnameseText: "B\xE0 Mara"
+  - key: dlg_ch2_mara_night2_tx_1
+    vietnameseText: "Tr\u1EBB con b\u1EDD n\xE0o ch\u1EB3ng ph\u1EA3i \u0103n! T\xF4i d\u01B0 c\xE1 th\xEC... nh\u1EDD gi\xF3 g\u1EEDi sang, c\u1EA5m \u0111\u01B0\u1EE3c n\xF3i t\xEAn t\xF4i v\u1EDBi l\xE3o Kael nghe ch\u01B0a!"
+  - key: dlg_ch2_mara_night2_sp_2
+    vietnameseText: Wen
+  - key: dlg_ch2_mara_night2_tx_2
+    vietnameseText: "Ch\xE1u hi\u1EC3u r\u1ED3i. Nh\u01B0ng ai l\xE0 ng\u01B0\u1EDDi ch\u1ECBu kh\xF3 ch\xE8o \u0111\xF2 qua l\u1EA1i gi\u1EEFa \u0111\xEAm s\u01B0\u01A1ng th\u1EBF n\xE0y?"
+  - key: dlg_ch2_mara_night2_sp_3
+    vietnameseText: Tinh Linh Lumi
+  - key: dlg_ch2_mara_night2_tx_3
+    vietnameseText: "T\u1ED1i mai m\xECnh n\u1EA5p g\u1EA7n b\u1EBFn \u0111\xF2 b\u1EDD \u0110\xF4ng l\xFAc tr\u1EDDi s\u1EADp t\u1ED1i xem sao, Wen!"
+  - key: dlg_ch2_mara_default_sp_0
+    vietnameseText: "B\xE0 Mara"
+  - key: dlg_ch2_mara_default_tx_0
+    vietnameseText: "N\u01B0\u1EDBc s\xF4ng d\u1EA1o n\xE0y l\u1EA1nh bu\u1ED1t. V\xE0o \u0110\u1EA7m L\u1EA7y B\u1EDD T\xE2y nh\u1EDB c\u1EA7m ch\u1EAFc Li\u1EC1m \u0111\u1EA5y c\xF4 b\xE9."
+  - key: name_npc_mara
+    vietnameseText: "B\xE0 Mara"
+  - key: role_npc_mara
+    vietnameseText: "Ng\u01B0 D\xE2n B\u1EDD T\xE2y"
+  - key: dlg_ch2_clue_net_sp_0
+    vietnameseText: Wen
+  - key: dlg_ch2_clue_net_tx_0
+    vietnameseText: "M\u1ED1i g\xFAt n\xE0y th\u1EAFt ki\u1EC3u d\xE2y th\u1EE3 m\u1ED9c, s\u1EE3i c\u01B0\u1EDBc c\xF2n m\u1EDBi tinh. C\xF3 d\u1EA5u gi\xE0y d\xEDnh m\xF9n c\u01B0a \u0111i v\u1EC1 ph\xEDa b\u1EBFn \u0111\xF2."
+  - key: dlg_ch2_clue_net_sp_1
+    vietnameseText: Tinh Linh Lumi
+  - key: dlg_ch2_clue_net_tx_1
+    vietnameseText: "Kh\u1ECBt kh\u1ECBt! M\xF9i m\xF9n c\u01B0a gi\u1ED1ng h\u1EC7t x\u01B0\u1EDFng \xD4ng Kael! Quay l\u1EA1i h\u1ECFi b\xE1c Kael th\u1EED xem, r\u1ED3i ki\u1EC3m tra Nh\xE0 Tr\u1EBB B\u1EDD \u0110\xF4ng nh\xE9!"
+  - key: dlg_ch2_clue_fish_sp_0
+    vietnameseText: Wen
+  - key: dlg_ch2_clue_fish_tx_0
+    vietnameseText: "M\u1ED9t gi\u1ECF c\xE1 s\xF4ng t\u01B0\u01A1i nguy\xEAn \u0111\u1EB7t ngay b\u1EADc th\u1EC1m nh\xE0 tr\u1EBB, bu\u1ED9c b\u1EB1ng n\xFAt d\xE2y ch\xE0i \u0111\u1EB7c tr\u01B0ng c\u1EE7a b\u1EDD T\xE2y."
+  - key: dlg_ch2_clue_fish_sp_1
+    vietnameseText: Tinh Linh Lumi
+  - key: dlg_ch2_clue_fish_tx_1
+    vietnameseText: "Kh\u1ECBt kh\u1ECBt! M\xF9i rong s\xF4ng y h\u1EC7t b\u1EBFn B\xE0 Mara! Sang h\u1ECFi c\xF4 \u1EA5y ho\u1EB7c canh \u0111\xEAm \u1EDF B\u1EBFn \u0110\xF2 B\u1EDD \u0110\xF4ng l\xFAc t\u1ED1i \u0111i Wen!"
+  - key: dlg_ch2_otis_truth_sp_0
+    vietnameseText: "B\xE1c Otis"
+  - key: dlg_ch2_otis_truth_tx_0
+    vietnameseText: "E h\xE8m... B\xE1c kh\xF4ng ph\xE1 l\u1EDDi h\u1EE9a \u0111\xE2u, nh\u01B0ng n\u1EBFu ch\xE1u t\xECm l\u1EA1i chi\u1EBFc \u0110\xE8n B\xE3o C\u1ED5 c\u1EE7a h\u1ECD th\xEC chuy\u1EC7n l\u1EA1i kh\xE1c."
+  - key: dlg_ch2_otis_truth_sp_1
+    vietnameseText: "B\xE1c Otis"
+  - key: dlg_ch2_otis_truth_tx_1
+    vietnameseText: "N\u1EEDa khung \u0111\u1ED3ng Kael v\u1EABn c\u1EA5t c\u1EA1nh x\u01B0\u1EDFng. N\u1EEDa k\xEDnh ch\u1EAFn gi\xF3 tr\xF4i v\xE0o \u0110\u1EA7m L\u1EA7y B\u1EDD T\xE2y, b\u1ECB B\u1ECDt S\u01B0\u01A1ng Kh\u1ED5ng L\u1ED3 gi\u1EEF m\u1EA5t r\u1ED3i."
+  - key: dlg_ch2_otis_secret_sp_0
+    vietnameseText: "B\xE1c Otis"
+  - key: dlg_ch2_otis_secret_tx_0
+    vietnameseText: "Ch\xE1u tinh t\u1EBF gi\u1ED1ng h\u1EC7t b\xE0 ngo\u1EA1i ch\xE1u. Th\u1EE9 duy nh\u1EA5t g\u1EAFn hai ng\u01B0\u1EDDi \u0111\xF3 l\xE0 chi\u1EBFc \u0110\xE8n B\xE3o C\u1ED5 b\u1ECB g\xE3y l\xE0m \u0111\xF4i \u0111\xEAm b\xE3o \u1EA5y."
+  - key: dlg_ch2_otis_secret_sp_1
+    vietnameseText: "B\xE1c Otis"
+  - key: dlg_ch2_otis_secret_tx_1
+    vietnameseText: "N\u1EEDa khung \u0111\u1ED3ng Kael v\u1EABn c\u1EA5t c\u1EA1nh x\u01B0\u1EDFng. N\u1EEDa k\xEDnh ch\u1EAFn gi\xF3 \u1EDF \u0110\u1EA7m L\u1EA7y B\u1EDD T\xE2y, b\u1ECB m\u1ED9t con B\u1ECDt S\u01B0\u01A1ng Kh\u1ED5ng L\u1ED3 canh gi\u1EEF."
+  - key: dlg_ch2_clue_watch_sp_0
+    vietnameseText: "B\xE1c Otis"
+  - key: dlg_ch2_clue_watch_tx_0
+    vietnameseText: "E h\xE8m... \xD4i tr\u1EDDi, Wen! L\xE0m b\xE1c gi\u1EADt h\u1EBFt c\u1EA3 m\xECnh, su\xFDt r\u01A1i gi\u1ECF c\xE1 xu\u1ED1ng s\xF4ng!"
+  - key: dlg_ch2_clue_watch_sp_1
+    vietnameseText: Wen
+  - key: dlg_ch2_clue_watch_tx_1
+    vietnameseText: "B\xE1c Otis? H\xF3a ra su\u1ED1t ba n\u0103m nay b\xE1c l\xE0 ng\u01B0\u1EDDi \u0111\u01B0a l\u01B0\u1EDBi v\u1EDBi c\xE1 qua l\u1EA1i gi\u1EEFa hai b\u1EDD sao?"
+  - key: dlg_ch2_clue_watch_sp_2
+    vietnameseText: "B\xE1c Otis"
+  - key: dlg_ch2_clue_watch_tx_2
+    vietnameseText: "Kh\u1EBD th\xF4i ch\xE1u! L\xE3o Kael \u0111\u01B0a l\u01B0\u1EDBi, b\u1EA3o b\xE1c \u0111\u1EEBng n\xF3i t\xEAn. B\xE0 Mara \u0111\u01B0a c\xE1, c\u0169ng d\u1EB7n y h\u1EC7t. B\xE1c ph\u1EA3i gi\u1EEF b\xED m\u1EADt..."
+  - key: dlg_ch2_clue_watch_sp_3
+    vietnameseText: Tinh Linh Lumi
+  - key: dlg_ch2_clue_watch_tx_3
+    vietnameseText: "Kh\u1ECBt kh\u1ECBt... L\u1EA1 th\u1EADt. C\u1EA3 hai ng\u01B0\u1EDDi \u0111\u1EC1u gi\u1EADn nhau m\xE0 s\xE1ng n\xE0o c\u0169ng lo cho nhau!"
+  - key: dlg_ch2_clue_watch_sp_4
+    vietnameseText: "B\xE1c Otis"
+  - key: dlg_ch2_clue_watch_tx_4
+    vietnameseText: "S\u01B0\u01A1ng l\xE0m ng\u01B0\u1EDDi ta qu\xEAn m\u1EA5t h\u1ED3i x\u01B0a th\xE2n nhau th\u1EBF n\xE0o, nh\u01B0ng ch\u1EB3ng x\xF3a n\u1ED5i th\xF3i quen c\u1EE7a tr\xE1i tim \u0111\xE2u ch\xE1u \u1EA1."
+  - key: choice_ch2_truth
+    vietnameseText: "B\xE1c \u0111\u1EC3 ch\xE1u t\xECm c\xE1ch cho hai ng\u01B0\u1EDDi t\u1EF1 nh\xECn th\u1EA5y s\u1EF1 th\u1EADt nh\xE9?"
+  - key: choice_ch2_secret
+    vietnameseText: "Ch\xE1u s\u1EBD gi\u1EEF b\xED m\u1EADt gi\xFAp b\xE1c. M\xECnh ch\u1EC9 c\u1EA7n m\u1ED9t l\xFD do \u0111\u1EC3 h\u1ECD \u0111\u1EE9ng chung m\u1ED9t ch\u1ED7."

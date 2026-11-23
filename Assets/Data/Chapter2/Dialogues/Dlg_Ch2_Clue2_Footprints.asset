@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c597d33f149cdf04299a1085b446df21, type: 3}
+  m_Name: Dlg_Ch2_Clue2_Footprints
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.DialogueData
+  dialogueID: dlg_ch2_clue2
+  lines:
+  - speakerNameKey: Wen
+    textKey: "D\u1EA5u \u1EE7ng d\xEDnh b\xF9n \u0111i t\u1EEB b\u1EBFn ph\xE0 th\u1EB3ng ra t\u1EADn m\u1ED1 c\u1EA7u g\xE3y... c\u1EA3 hai ng\u01B0\u1EDDi \u0111\u1EC1u \xE2m th\u1EA7m ra \u0111\xE2y xem c\u1EA7u m\u1ED7i \u0111\xEAm."
+    portraitOverride: {fileID: 0}
+    speakerId: wen
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: Lumi
+    textKey: "\xC1nh \u0111\xE8n nh\u1ECF tr\xEAn b\u1EBFn b\xE0 Mara c\u1EE9 ch\u1EDBp t\u1EAFt nh\u01B0 \u0111ang ch\u1EDD ai \u0111\xF3 tr\u1EA3 l\u1EDDi."
+    portraitOverride: {fileID: 0}
+    speakerId: lumi
+    requiredFlag: 
+    blockedFlag: 
+  choices: []
+  setsStoryFlagOnFinish: flag_ch2_inv_night2_done
+  givesItemOnFinish: {fileID: 0}
+  givesItemAmount: 1
+  extraRewards: []
+  consumesRequiredItem: {fileID: 0}
+  consumesAmount: 0
+  unlocksDiaryPage: {fileID: 0}
+  affinityNpcId: 
+  affinityBonusOnFinish: 0

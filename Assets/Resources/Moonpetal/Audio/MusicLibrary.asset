@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca5a704aa031e040ac5e77dcc8a2180, type: 3}
+  m_Name: MusicLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Audio.MusicLibrarySO
+  tracks:
+  - {fileID: 11400000, guid: bf7820a276ab244409fc506af7dde15c, type: 2}
+  - {fileID: 11400000, guid: f55ee00e92e5b424b884feeedde905f4, type: 2}
+  - {fileID: 11400000, guid: 28d16b51232a8034f87a112d588fe856, type: 2}
+  - {fileID: 11400000, guid: 1b81ec8cba6bdb94f8a065153d45e07a, type: 2}
+  - {fileID: 11400000, guid: 5f8a07d82c1c0f543915d3a5725d8b07, type: 2}
+  - {fileID: 11400000, guid: c09f1c744693a96489360e76aebbae2f, type: 2}
+  - {fileID: 11400000, guid: d03501bf8e5a3ea43adfc7eb25412115, type: 2}
+  - {fileID: 11400000, guid: 5331a15e8a07ea04eb0f4318cc466eb5, type: 2}
+  - {fileID: 11400000, guid: bbc0b2e882efdab43a1379499553c0f7, type: 2}
+  - {fileID: 11400000, guid: 709d92433c2fc674582adadcbe1c7c5b, type: 2}
+  - {fileID: 11400000, guid: d30d51d8d284f724abbe73f80a03a4ab, type: 2}
+  - {fileID: 11400000, guid: 82aab17ced28dad4f856025b95d82944, type: 2}
+  - {fileID: 11400000, guid: a77155061d1a16446b3dfadd1e871dcb, type: 2}
+  - {fileID: 11400000, guid: fa56c430db5259f4a8f28e773d1a6092, type: 2}
+  - {fileID: 11400000, guid: de836bf393e4c6a4794b7e9a80bd3724, type: 2}
+  - {fileID: 11400000, guid: e173fd9ceaf622e4295de2e45249cf0a, type: 2}
+  - {fileID: 11400000, guid: 6c32f4a08bb258640b47c5793338160b, type: 2}
+  - {fileID: 11400000, guid: 4d0cc06006c1c66419853b5cd098d6d3, type: 2}

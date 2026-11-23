@@ -59,10 +59,14 @@ namespace MoonpetalValley.UI
 
         private void OnClickContinue()
         {
+            string targetScene = GameRoot.Instance != null && GameRoot.Instance.SaveLoad != null
+                ? GameRoot.Instance.SaveLoad.GetSavedSceneName()
+                : "MoonpetalValley_MVP";
+
             PendingLoadSaveOnWorldStart = true;
             GameRoot.Instance?.Audio?.PlayUIClick();
             GameRoot.Instance?.State?.ReturnToGameplay();
-            GameRoot.Instance?.Scenes?.LoadScene("MoonpetalValley_MVP");
+            GameRoot.Instance?.Scenes?.LoadScene(targetScene);
         }
 
         private void OnClickSettings()

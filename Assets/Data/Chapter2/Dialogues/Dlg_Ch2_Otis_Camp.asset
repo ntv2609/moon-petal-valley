@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c597d33f149cdf04299a1085b446df21, type: 3}
+  m_Name: Dlg_Ch2_Otis_Camp
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.DialogueData
+  dialogueID: dlg_ch2_otis_camp
+  lines:
+  - speakerNameKey: "B\xE1c Otis"
+    textKey: "Ch\xE0o Wen! B\xE1c sang ph\u1EE5 d\u1EF1ng c\xE1i L\u1EC1u Ngh\u1EC9 T\u1EA1m c\u1EA1nh V\u01B0\u1EDDn \u01AF\u01A1m B\u1EDD \u0110\xF4ng cho ch\xE1u ti\u1EC7n \u0111i l\u1EA1i."
+    portraitOverride: {fileID: 0}
+    speakerId: otis
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: Wen
+    textKey: "C\u1EA3m \u01A1n b\xE1c Otis! V\u1EADy t\u1ED1i mu\u1ED9n ch\xE1u ngh\u1EC9 ngay \u1EDF l\u1EC1u n\xE0y \u0111\u01B0\u1EE3c \u0111\xFAng kh\xF4ng \u1EA1?"
+    portraitOverride: {fileID: 0}
+    speakerId: wen
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: "B\xE1c Otis"
+    textKey: "\u0110\xFAng r\u1ED3i, c\u1EE9 b\u1EA5m [E] v\xE0o l\u1EC1u tr\u01B0\u1EDBc 02:00 \u0111\xEAm l\xE0 h\u1ED3i \u0111\u1EA7y 100% Th\u1EC3 l\u1EF1c, kh\u1ECFi ch\u1EA1y ng\u01B0\u1EE3c v\u1EC1 l\xE0ng."
+    portraitOverride: {fileID: 0}
+    speakerId: otis
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: "B\xE1c Otis"
+    textKey: "\xC0, chuy\u1EC7n \xF4ng Kael v\u1EDBi b\xE0 Mara h\u1ED3i \u0111\xEAm b\xE3o 3 n\u0103m tr\u01B0\u1EDBc ph\u1EE9c t\u1EA1p l\u1EAFm... Ch\xE1u ch\u1ECBu kh\xF3 ng\u1ED3i gh\u1EBF \u0111\u1EE3i ch\u1EADp t\u1ED1i r\u1ED3i t\xECm hi\u1EC3u k\u1EF9 nh\xE9."
+    portraitOverride: {fileID: 0}
+    speakerId: otis
+    requiredFlag: 
+    blockedFlag: 
+  choices: []
+  setsStoryFlagOnFinish: flag_ch2_met_otis
+  givesItemOnFinish: {fileID: 0}
+  givesItemAmount: 1
+  extraRewards: []
+  consumesRequiredItem: {fileID: 0}
+  consumesAmount: 0
+  unlocksDiaryPage: {fileID: 0}
+  affinityNpcId: 
+  affinityBonusOnFinish: 0

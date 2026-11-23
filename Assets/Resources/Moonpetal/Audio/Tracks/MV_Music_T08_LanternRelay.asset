@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19dd7534e16b09c41a025f1853869ad0, type: 3}
+  m_Name: MV_Music_T08_LanternRelay
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Audio.MusicTrackSO
+  trackId: T08
+  isStinger: 0
+  context: 9
+  stingerType: 0
+  clip: {fileID: 0}
+  priority: 100
+  playMode: 2
+  baseVolume: 0.85
+  fadeInSeconds: 1.5
+  fadeOutSeconds: 1.5
+  selfCrossfadeSeconds: 3
+  ambientRestMinSeconds: 0
+  ambientRestMaxSeconds: 0
+  maxPlaySeconds: 0
+  isDormant: 1
+  notes: Ch2 Lantern Relay

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b6de5f2ff841c44865dba62b4ee420, type: 3}
+  m_Name: NPC_npc_kael
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.NPCData
+  npcID: npc_kael
+  displayNameKey: name_npc_kael
+  roleTitleKey: role_npc_kael
+  portraitSprite: {fileID: 21300000, guid: 6f38822ddc0255c498e1a37b9ecb492b, type: 3}
+  worldSprite: {fileID: 21300000, guid: 97f09168c4b91764987dcb35c456f7c8, type: 3}
+  defaultDialogue: {fileID: 11400000, guid: 0788cb147e45624499f3b27e0b0deb9c, type: 2}
+  conditionalDialogues:
+  - requiredStoryFlag: flag_ch2_solo_bridge_failed
+    blockedByStoryFlag: flag_ch2_met_kael
+    dialogue: {fileID: 11400000, guid: b300ec0accd1b7e4ebadd49d009f53c7, type: 2}
+  - requiredStoryFlag: flag_ch2_inv_night1_done
+    blockedByStoryFlag: flag_ch2_inv_night2_done
+    dialogue: {fileID: 11400000, guid: 2e5176040be1d4b429d317928002929d, type: 2}
+  isHelperForBundleID: 
+  helperReadyStoryFlag: 

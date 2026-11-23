@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b6de5f2ff841c44865dba62b4ee420, type: 3}
+  m_Name: NPC_npc_mara
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.NPCData
+  npcID: npc_mara
+  displayNameKey: name_npc_mara
+  roleTitleKey: role_npc_mara
+  portraitSprite: {fileID: 21300000, guid: 2f6b2040503bc244f87aa9763d2c1123, type: 3}
+  worldSprite: {fileID: 21300000, guid: b7bd3f03ae22c2e45a66ddf6fd926a5f, type: 3}
+  defaultDialogue: {fileID: 11400000, guid: ba61a8555dc893d489269418b3f3b45e, type: 2}
+  conditionalDialogues:
+  - requiredStoryFlag: flag_ch2_solo_bridge_failed
+    blockedByStoryFlag: flag_ch2_met_mara
+    dialogue: {fileID: 11400000, guid: 5e6550568d49d7244a0f2cf8d78e2b7c, type: 2}
+  - requiredStoryFlag: flag_ch2_inv_night2_done
+    blockedByStoryFlag: flag_ch2_inv_night3_done
+    dialogue: {fileID: 11400000, guid: 5896fe8782d8cbc458527a52f1d15b80, type: 2}
+  isHelperForBundleID: 
+  helperReadyStoryFlag: 

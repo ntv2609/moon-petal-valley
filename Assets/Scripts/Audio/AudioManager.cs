@@ -47,6 +47,9 @@ namespace MoonpetalValley.Audio
 
         private void Start()
         {
+            // [MV-AUDIO-BEGIN]
+            if (MusicManager.IsSystemEnabled()) { GameSettingsManager.ApplyAudioAndFlags(); return; }
+            // [MV-AUDIO-END]
             if (bgmSource != null && bgmCozyClip != null)
             {
                 bgmSource.clip = bgmCozyClip;

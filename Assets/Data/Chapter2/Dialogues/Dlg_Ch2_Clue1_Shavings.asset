@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c597d33f149cdf04299a1085b446df21, type: 3}
+  m_Name: Dlg_Ch2_Clue1_Shavings
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.DialogueData
+  dialogueID: dlg_ch2_clue1
+  lines:
+  - speakerNameKey: Wen
+    textKey: "M\u1EA5y phoi b\xE0o g\u1ED7 lim n\xE0y c\xF2n r\u1EA5t m\u1EDBi... c\xF3 ai \u0111\xF3 v\u1EABn l\xE9n \u0111\u1EBDo v\xE1n c\u1EA7u v\xE0o ban \u0111\xEAm."
+    portraitOverride: {fileID: 0}
+    speakerId: wen
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: Lumi
+    textKey: "Gi\xF3 s\xF4ng mang m\xF9i nh\u1EF1a th\xF4ng t\u01B0\u01A1i t\u1EEB ph\xEDa x\u01B0\u1EDFng \xF4ng Kael!"
+    portraitOverride: {fileID: 0}
+    speakerId: lumi
+    requiredFlag: 
+    blockedFlag: 
+  choices: []
+  setsStoryFlagOnFinish: flag_ch2_inv_night1_done
+  givesItemOnFinish: {fileID: 0}
+  givesItemAmount: 1
+  extraRewards: []
+  consumesRequiredItem: {fileID: 0}
+  consumesAmount: 0
+  unlocksDiaryPage: {fileID: 0}
+  affinityNpcId: 
+  affinityBonusOnFinish: 0

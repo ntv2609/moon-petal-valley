@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 using MoonpetalValley.Core;
 using MoonpetalValley.Player;
+using MoonpetalValley.Chapter2;
 
 namespace MoonpetalValley.TimeSystem
 {
@@ -51,23 +53,41 @@ namespace MoonpetalValley.TimeSystem
         public void TriggerNormalSleep()
         {
             if (_isTransitioning) return;
-            StartCoroutine(DayTransitionRoutine(false, "NGHỈ NGƠI TRONG NHÀ KÍNH", "Bạn nghỉ ngơi yên bình dưới ánh trăng...\nĐang đón ánh bình minh ngày mới."));
+            bool inCh2 = SceneManager.GetActiveScene().name == "Riverbank_Chapter2";
+            string title = inCh2 ? "NGHỈ NGƠI TẠI LỀU TẠM BỜ ĐÔNG" : "NGHỈ NGƠI TRONG NHÀ KÍNH";
+            string msg = inCh2
+                ? "Bạn nghỉ ngơi yên bình bên tiếng sông rì rào...\nThể lực hồi đầy 100%, đang đón ánh bình minh ngày mới."
+                : "Bạn nghỉ ngơi yên bình dưới ánh trăng...\nĐang đón ánh bình minh ngày mới.";
+            StartCoroutine(DayTransitionRoutine(false, title, msg, false));
+        }
+
+        public void TriggerRelaySoftFail()
+        {
+            if (_isTransitioning) return;
+            StartCoroutine(DayTransitionRoutine(false, "ĐÊM CHUYỀN ĐÈN TẠM DỪNG", "Sương sông quá dày, Ông Kael và Bà Mara dìu bạn vào lều nghỉ ngơi.\nKhông mất vật phẩm — tối mai có thể thử lại ngay!", true));
         }
 
         public void TriggerKnockout(string message)
         {
             if (_isTransitioning) return;
-            StartCoroutine(DayTransitionRoutine(true, "BẠN ĐÃ KIỆT SỨC...", message));
+            if (Chapter2StateManager.Instance != null && Chapter2StateManager.Instance.IsRelayEventActive)
+            {
+                TriggerRelaySoftFail();
+                return;
+            }
+            string activeScene = SceneManager.GetActiveScene().name;
+            string finalMsg = activeScene == "Riverbank_Chapter2"
+                ? "Ông Kael và Bác Otis tìm thấy bạn ngoài Bờ Sông và đưa về Lều Tạm Bờ Đông nghỉ ngơi...\nSáng hôm sau trần Thể lực giảm còn 50% (vật phẩm nhiệm vụ an toàn 100%)."
+                : message;
+            StartCoroutine(DayTransitionRoutine(true, "BẠN ĐÃ KIỆT SỨC...", finalMsg, false));
         }
 
-        private IEnumerator DayTransitionRoutine(bool passedOut, string title, string message)
+        private IEnumerator DayTransitionRoutine(bool passedOut, string title, string message, bool isRelaySoftFail)
         {
             _isTransitioning = true;
 
             if (GameRoot.Instance != null && GameRoot.Instance.State != null)
-            {
                 GameRoot.Instance.State.SetState(GameState.DayTransition);
-            }
 
             if (transitionTitleText != null)
             {
@@ -87,23 +107,30 @@ namespace MoonpetalValley.TimeSystem
                 yield return null;
             }
 
-            if (passedOut)
-            {
+            if (passedOut && !isRelaySoftFail)
                 OnPassOutMaterialPenalty?.Invoke();
-            }
+
+            if (isRelaySoftFail && Chapter2StateManager.Instance != null)
+                Chapter2StateManager.Instance.SetRelayEventActive(false);
 
             if (GameRoot.Instance != null)
             {
                 if (GameRoot.Instance.Time != null) GameRoot.Instance.Time.AdvanceToNextDay();
-                if (GameRoot.Instance.Stats != null) GameRoot.Instance.Stats.ResetForNewDay(passedOut);
+                if (GameRoot.Instance.Stats != null) GameRoot.Instance.Stats.ResetForNewDay(passedOut && !isRelaySoftFail);
             }
 
-            if (WorldSpawnRegistry.Instance != null)
+            string currentScene = SceneManager.GetActiveScene().name;
+            if (currentScene == "Riverbank_Chapter2")
+            {
+                if (WorldSpawnRegistry.Instance != null)
+                    WorldSpawnRegistry.Instance.TeleportPlayerTo("Spawn_EastCamp");
+            }
+            else if (WorldSpawnRegistry.Instance != null)
             {
                 WorldSpawnRegistry.Instance.TeleportPlayerTo("Spawn_Greenhouse");
             }
 
-            yield return new WaitForSecondsRealtime(1.35f);
+            yield return new WaitForSecondsRealtime(1.1f);
 
             t = 0f;
             while (t < 0.45f)
@@ -120,13 +147,13 @@ namespace MoonpetalValley.TimeSystem
             }
 
             if (GameRoot.Instance != null && GameRoot.Instance.State != null)
-            {
                 GameRoot.Instance.State.ReturnToGameplay();
-            }
 
-            string toast = passedOut
-                ? "Tỉnh dậy sau khi kiệt sức! Trần Thể lực hôm nay còn 50%."
-                : "Chào buổi sáng! Thể lực và Máu Ánh Sáng đã hồi đầy.";
+            string toast = isRelaySoftFail
+                ? "Sáng hôm sau tại Lều Tạm Bờ Đông. Tối nay bạn có thể bắt đầu lại Đêm Chuyền Đèn!"
+                : (passedOut
+                    ? "Tỉnh dậy sau khi kiệt sức! Trần Thể lực hôm nay còn 50%."
+                    : "Chào buổi sáng! Thể lực và Máu Ánh Sáng đã hồi đầy 100%.");
             GameEventBus.RaiseToastRequested(toast);
 
             _isTransitioning = false;

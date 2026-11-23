@@ -65,7 +65,11 @@ namespace MoonpetalValley.Core
             DontDestroyOnLoad(gameObject);
 
             if (localization != null) localization.Initialize();
-            if (relationshipManager == null) relationshipManager = GetComponent<RelationshipManager>() ?? gameObject.AddComponent<RelationshipManager>();
+            if (relationshipManager == null)
+            {
+                relationshipManager = GetComponent<RelationshipManager>();
+                if (relationshipManager == null) relationshipManager = gameObject.AddComponent<RelationshipManager>();
+            }
 
             if (storyFlagManager != null) RegisterSaveable(storyFlagManager);
             if (timeManager != null) RegisterSaveable(timeManager);

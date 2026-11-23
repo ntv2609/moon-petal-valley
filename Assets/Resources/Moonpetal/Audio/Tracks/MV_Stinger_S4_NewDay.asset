@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19dd7534e16b09c41a025f1853869ad0, type: 3}
+  m_Name: MV_Stinger_S4_NewDay
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Audio.MusicTrackSO
+  trackId: S4
+  isStinger: 1
+  context: 0
+  stingerType: 4
+  clip: {fileID: 8300000, guid: 2816c2a6d61fb91499574fdb2c86e6a8, type: 3}
+  priority: 0
+  playMode: 0
+  baseVolume: 0.85
+  fadeInSeconds: 1.5
+  fadeOutSeconds: 1.2
+  selfCrossfadeSeconds: 3
+  ambientRestMinSeconds: 0
+  ambientRestMaxSeconds: 0
+  maxPlaySeconds: 6
+  isDormant: 0
+  notes: Day increment outside save-load
