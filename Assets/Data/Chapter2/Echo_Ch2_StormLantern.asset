@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aea49fb6d1c7c7c4192c56cb802f2505, type: 3}
+  m_Name: Echo_Ch2_StormLantern
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.EchoData
+  echoID: echo_ch2_storm_lantern
+  echoTitle: "Chi\u1EBFc \u0110\xE8n B\xE3o L\u1EC5 Trao H\u1EA1t \u0110\u1EA7u Ti\xEAn"
+  requiredFlag: flag_ch2_inv_night3_done
+  requiredItemId: item_storm_lantern_west
+  completedFlag: flag_ch2_echo1_lantern_done
+  showKaelGhost: 1
+  showMaraGhost: 1
+  beats:
+  - speakerName: "D\u01B0 \xC2m Kael (tr\u1EBB)"
+    speakerId: kael
+    bodyText: "N\xE0y, gi\u1EEF ch\u1EB7t khung \u0111\u1ED3ng \u0111i, c\xF4 v\u1EBD h\xECnh tr\u0103ng m\xE9o x\u1EC7ch r\u1ED3i k\xECa."
+    durationSeconds: 4.2
+    kaelPlaysAction: 0
+    maraPlaysAction: 1
+    overlayTint: {r: 0.32, g: 0.24, b: 0.12, a: 0.34}
+  - speakerName: "D\u01B0 \xC2m Mara (tr\u1EBB)"
+    speakerId: mara
+    bodyText: "M\xE9o th\xEC sao? Gi\xF3 b\xE3o th\u1ED5i m\u1EA1nh t\u1EDBi \u0111\xE2u c\u0169ng ch\u1EC9 c\u1EA7n \u0111\xE8n kh\xF4ng t\u1EAFt l\xE0 \u0111\u01B0\u1EE3c!"
+    durationSeconds: 4.4
+    kaelPlaysAction: 0
+    maraPlaysAction: 1
+    overlayTint: {r: 0.38, g: 0.28, b: 0.14, a: 0.36}
+  - speakerName: "D\u01B0 \xC2m Kael (tr\u1EBB)"
+    speakerId: kael
+    bodyText: "V\u1EADy giao k\xE8o nh\xE9: t\xF4i gi\u1EEF \u0111\xE8n b\u1EDD \u0110\xF4ng, c\xF4 gi\u1EEF \u0111\xE8n b\u1EDD T\xE2y. Kh\xF4ng bao gi\u1EDD \u0111\u1EC3 s\xF4ng t\u1ED1i."
+    durationSeconds: 4.6
+    kaelPlaysAction: 0
+    maraPlaysAction: 1
+    overlayTint: {r: 0.42, g: 0.32, b: 0.15, a: 0.38}

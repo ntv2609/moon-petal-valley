@@ -65,6 +65,8 @@ namespace MoonpetalValley.Audio
             _voiceBlips["hana"] = CreateSoftBlipClip("blip_hana", 440f, 0.048f);
             _voiceBlips["toby"] = CreateSoftBlipClip("blip_toby", 630f, 0.040f);
             _voiceBlips["otis"] = CreateSoftBlipClip("blip_otis", 295f, 0.050f);
+            _voiceBlips["kael"] = CreateSoftBlipClip("blip_kael", 190f, 0.058f);
+            _voiceBlips["mara"] = CreateSoftBlipClip("blip_mara", 365f, 0.046f);
         }
 
         private static AudioClip CreateSoftBlipClip(string clipName, float freqHz, float durationSec)
@@ -141,7 +143,7 @@ namespace MoonpetalValley.Audio
         private void HandleStoryFlagChanged(string flagId, bool value)
         {
             if (!value) return;
-            if (flagId == "flag_nv1_completed") PlaySFX(sfxBloom, 0.80f);
+            if (flagId == "flag_nv1_completed" || flagId == "flag_ch2_completed") PlaySFX(sfxBloom, 0.80f);
             else PlaySFX(sfxUiClick, 0.40f);
         }
 

@@ -8,7 +8,9 @@ namespace MoonpetalValley.Data
     {
         Jump,
         Burrow,
-        BossBeam
+        BossBeam,
+        LanternDrain,
+        BigSlimeWave
     }
 
     [Serializable]
@@ -33,5 +35,12 @@ namespace MoonpetalValley.Data
         public float attackInterval = 1.1f;
         public bool appliesSlowOnHit = true;
         public List<LootDropEntry> dropTable = new List<LootDropEntry>();
+
+        [Header("Chương 2+ Tham số mở rộng (mặc định an toàn)")]
+        public float burrowDuration = 1.2f;
+        public float telegraphDuration = 0.6f;
+        [Range(0.1f, 0.9f)] public float splitHpRatio = 0.5f;
+        public float mudWaveRadius = 2.2f;
+        public float drainLightPerSec = 12f;
     }
 }

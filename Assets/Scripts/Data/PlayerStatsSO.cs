@@ -43,5 +43,9 @@ namespace MoonpetalValley.Data
         public float lumiUpgradedLightRadius = 5.5f;
         public float lumiPulseRadius = 3.5f;
         public float lumiPulseCooldown = 8.0f;
+
+        [Header("Chương 2: Xung Ánh Trăng Cấp 2 (Cộng Hưởng)")]
+        public float lumiPulseLv2Radius = 4.5f;
+        public float lumiPulseLv2StunDuration = 2.0f;
     }
 }

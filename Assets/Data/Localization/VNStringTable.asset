@@ -281,3 +281,23 @@ MonoBehaviour:
     vietnameseText: "B\xE1c Otis"
   - key: dlg_otis_default_tx_3
     vietnameseText: "N\u1EBFu c\xF4 ki\u1EBFm gi\xFAp 10 G\u1ED7 Nh\xE1nh C\xE2y quanh l\xE0ng, t\xF4i v\xE0 c\xF4 gia c\u1ED1 l\u1EA1i b\u1EA3n l\u1EC1 r\u1ED3i l\u1EA5y th\u01B0 ra t\u1EED t\u1EBF."
+  - key: name_item_storm_lantern_east
+    vietnameseText: "N\u1EEDa \u0110\xE8n B\xE3o (Khung \u0110\u1ED3ng)"
+  - key: desc_item_storm_lantern_east
+    vietnameseText: "Khung \u0111\u1ED3ng c\u1ED5 \xD4ng Kael v\u1EABn gi\u1EEF trong x\u01B0\u1EDFng m\u1ED9c t\u1EEB L\u1EC5 Trao H\u1EA1t \u0111\u1EA7u ti\xEAn."
+  - key: name_item_storm_lantern_west
+    vietnameseText: "N\u1EEDa \u0110\xE8n B\xE3o (K\xEDnh Ch\u1EAFn Gi\xF3)"
+  - key: desc_item_storm_lantern_west
+    vietnameseText: "Ph\u1EA7n k\xEDnh ch\u1EAFn gi\xF3 v\u1EDBt \u0111\u01B0\u1EE3c \u1EDF \u0110\u1EA7m L\u1EA7y B\u1EDD T\xE2y sau khi d\u1ECDn B\u1ECDt S\u01B0\u01A1ng Kh\u1ED5ng L\u1ED3."
+  - key: name_item_carpenter_hammer
+    vietnameseText: "B\xFAa Th\u1EE3 M\u1ED9c C\u1EE7a Kael"
+  - key: desc_item_carpenter_hammer
+    vietnameseText: "Chi\u1EBFc b\xFAa \u0111\u1EB1m tay \xD4ng Kael nh\u1EDD chuy\u1EC1n sang cho B\xE0 Mara gi\u1EEFa \u0110\xEAm Chuy\u1EC1n \u0110\xE8n."
+  - key: name_item_iron_nails_box
+    vietnameseText: "H\u1ED9p \u0110inh \u0110\u1ED3ng"
+  - key: desc_item_iron_nails_box
+    vietnameseText: "H\u1ED9p \u0111inh ch\u1ED1ng n\u01B0\u1EDBc m\u1EB7n B\xE0 Mara g\u1EEDi sang cho \xD4ng Kael c\u1ED1 \u0111\u1ECBnh k\xE8o c\u1EA7u."
+  - key: name_item_petal_of_bond
+    vietnameseText: "C\xE1nh Hoa G\u1EAFn K\u1EBFt"
+  - key: desc_item_petal_of_bond
+    vietnameseText: "C\xE1nh hoa Moonpetal th\u1EE9 hai n\u1EDF khi c\xE2y c\u1EA7u hai b\u1EDD s\xE1ng \u0111\xE8n tr\u1EDF l\u1EA1i."

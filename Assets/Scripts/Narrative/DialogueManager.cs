@@ -8,17 +8,29 @@ using MoonpetalValley.UI;
 
 namespace MoonpetalValley.Narrative
 {
+    [Serializable]
+    public struct CharacterPortraitEntry
+    {
+        public string speakerKey;
+        public Sprite portrait;
+        public bool alignLeft;
+        public bool isFloating;
+    }
+
     public class DialogueManager : MonoBehaviour
     {
         [SerializeField] private DialogueUIView dialogueUI;
 
-        [Header("Character Standing Portraits")]
+        [Header("Character Standing Portraits (Chapter 1 Locked)")]
         [SerializeField] private Sprite portraitWen;
         [SerializeField] private Sprite portraitLumi;
         [SerializeField] private Sprite portraitBach;
         [SerializeField] private Sprite portraitHana;
         [SerializeField] private Sprite portraitToby;
         [SerializeField] private Sprite portraitOtis;
+
+        [Header("Chapter 2+ Dynamic Portraits")]
+        [SerializeField] private List<CharacterPortraitEntry> extraPortraits = new List<CharacterPortraitEntry>();
 
         private struct RuntimeLine
         {
@@ -41,6 +53,33 @@ namespace MoonpetalValley.Narrative
 
         public bool IsDialogueActive => _isPlaying;
         public IReadOnlyList<string> RecentLog => _recentLog;
+
+        public void RegisterPortrait(string speakerKey, Sprite portrait, bool alignLeft = false, bool isFloating = false)
+        {
+            if (string.IsNullOrEmpty(speakerKey) || portrait == null) return;
+            string norm = speakerKey.Trim().ToLowerInvariant();
+            for (int i = 0; i < extraPortraits.Count; i++)
+            {
+                if (extraPortraits[i].speakerKey != null && extraPortraits[i].speakerKey.ToLowerInvariant() == norm)
+                {
+                    extraPortraits[i] = new CharacterPortraitEntry
+                    {
+                        speakerKey = norm,
+                        portrait = portrait,
+                        alignLeft = alignLeft,
+                        isFloating = isFloating
+                    };
+                    return;
+                }
+            }
+            extraPortraits.Add(new CharacterPortraitEntry
+            {
+                speakerKey = norm,
+                portrait = portrait,
+                alignLeft = alignLeft,
+                isFloating = isFloating
+            });
+        }
 
         public void StartDialogue(DialogueData data, Action onFinish = null)
         {
@@ -122,7 +161,6 @@ namespace MoonpetalValley.Narrative
                 return;
             }
 
-            // Phim L mo/dong Nhat ky 10 cau hoi thoai gan nhat
             if (WasLogKeyPressed())
             {
                 dialogueUI?.ToggleLog(_recentLog);
@@ -295,6 +333,25 @@ namespace MoonpetalValley.Narrative
                 if (portrait == null) portrait = portraitOtis;
                 return;
             }
+
+            if (extraPortraits != null)
+            {
+                for (int i = 0; i < extraPortraits.Count; i++)
+                {
+                    var ep = extraPortraits[i];
+                    if (!string.IsNullOrEmpty(ep.speakerKey) && key.Contains(ep.speakerKey.ToLowerInvariant()))
+                    {
+                        alignLeft = ep.alignLeft;
+                        isFloating = ep.isFloating;
+                        voiceId = ep.speakerKey.ToLowerInvariant();
+                        if (portrait == null) portrait = ep.portrait;
+                        return;
+                    }
+                }
+            }
+
+            if (key.Contains("kael")) voiceId = "kael";
+            else if (key.Contains("mara")) voiceId = "mara";
         }
 
         private void ApplyAssetRewards(DialogueData asset)

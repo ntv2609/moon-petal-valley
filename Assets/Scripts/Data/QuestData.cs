@@ -14,7 +14,12 @@ namespace MoonpetalValley.Data
         RepairObject,
         ReadDiaryPages,
         CompleteBundle,
-        BloomPlantingSpot
+        BloomPlantingSpot,
+        RestoreEcho,
+        RelayLanterns,
+        ServeFestival,
+        CollectKeepsake,
+        SitAtChair
     }
 
     [Serializable]
