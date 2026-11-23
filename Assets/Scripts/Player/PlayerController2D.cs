@@ -18,14 +18,28 @@ namespace MoonpetalValley.Player
         private Vector2 _dashDirection;
         private float _dashTimer;
         private float _dashCooldownTimer;
+        private float _sinceDashEndedTimer = 99f;
+        private int _dashSequenceId;
         private float _invulnerableTimer;
         private float _slowTimer;
         private float _walkBobPhase;
 
+        private Vector2 _lungeDirection;
+        private float _lungeSpeed;
+        private float _lungeTimer;
+
         public Vector2 FacingDirection => _facingDirection;
+        public Vector2 DashDirection => _dashDirection.sqrMagnitude > 0.01f ? _dashDirection : _facingDirection;
         public bool IsDashing => _dashTimer > 0f;
+        public bool IsLunging => _lungeTimer > 0f;
         public bool IsInvulnerable => _invulnerableTimer > 0f;
+        public int DashSequenceId => _dashSequenceId;
         public string SaveKey => "player_position";
+
+        public bool IsInDashStrikeWindow(float graceWindow)
+        {
+            return _dashTimer > 0f || _sinceDashEndedTimer <= Mathf.Max(0f, graceWindow);
+        }
 
         [Serializable]
         private class PlayerPosSave
@@ -48,6 +62,7 @@ namespace MoonpetalValley.Player
             if (_dashCooldownTimer > 0f) _dashCooldownTimer -= Time.deltaTime;
             if (_invulnerableTimer > 0f) _invulnerableTimer -= Time.deltaTime;
             if (_slowTimer > 0f) _slowTimer -= Time.deltaTime;
+            if (_lungeTimer > 0f) _lungeTimer -= Time.deltaTime;
 
             bool gameplayActive = GameRoot.Instance == null || GameRoot.Instance.State == null || GameRoot.Instance.State.IsGameplayActive;
             if (!gameplayActive)
@@ -57,7 +72,7 @@ namespace MoonpetalValley.Player
             }
 
             Vector2 move = inputReader != null ? inputReader.MoveInput : Vector2.zero;
-            if (move.sqrMagnitude > 0.01f && !IsDashing)
+            if (move.sqrMagnitude > 0.01f && !IsDashing && !IsLunging)
             {
                 _facingDirection = move.normalized;
             }
@@ -70,6 +85,11 @@ namespace MoonpetalValley.Player
             if (_dashTimer > 0f)
             {
                 _dashTimer -= Time.deltaTime;
+                _sinceDashEndedTimer = 0f;
+            }
+            else if (_sinceDashEndedTimer < 99f)
+            {
+                _sinceDashEndedTimer += Time.deltaTime;
             }
 
             UpdateVisualFeedback(move);
@@ -95,6 +115,10 @@ namespace MoonpetalValley.Player
             {
                 rb.linearVelocity = _dashDirection * dashSpeed;
             }
+            else if (_lungeTimer > 0f)
+            {
+                rb.linearVelocity = _lungeDirection * _lungeSpeed;
+            }
             else
             {
                 Vector2 move = inputReader != null ? inputReader.MoveInput : Vector2.zero;
@@ -117,11 +141,37 @@ namespace MoonpetalValley.Player
                 if (!stillAwake) return;
             }
 
+            // Cho phép Dash hủy bước lướt đòn đánh (dodge-cancel mượt tay)
+            _lungeTimer = 0f;
             _dashDirection = direction.normalized;
+            _facingDirection = _dashDirection;
             _dashTimer = statsConfig != null ? statsConfig.dashDuration : 0.18f;
             _dashCooldownTimer = statsConfig != null ? statsConfig.dashCooldown : 0.8f;
+            _sinceDashEndedTimer = 0f;
+            _dashSequenceId++;
             float iFrame = statsConfig != null ? statsConfig.dashInvulnerabilityDuration : 0.2f;
             if (iFrame > _invulnerableTimer) _invulnerableTimer = iFrame;
+        }
+
+        public void SetFacingDirection(Vector2 direction)
+        {
+            if (direction.sqrMagnitude > 0.001f)
+            {
+                _facingDirection = direction.normalized;
+            }
+        }
+
+        public void TriggerCombatLunge(Vector2 direction, float speed, float duration, bool cancelActiveDash = false)
+        {
+            if (cancelActiveDash)
+            {
+                _dashTimer = 0f;
+            }
+            if (speed <= 0.01f || duration <= 0.001f) return;
+
+            _lungeDirection = direction.sqrMagnitude > 0.001f ? direction.normalized : _facingDirection;
+            _lungeSpeed = speed;
+            _lungeTimer = duration;
         }
 
         public void ApplySlow(float durationOverride = -1f)
@@ -143,6 +193,8 @@ namespace MoonpetalValley.Player
         public void TeleportTo(Vector2 worldPos)
         {
             _dashTimer = 0f;
+            _lungeTimer = 0f;
+            _sinceDashEndedTimer = 99f;
             if (rb != null)
             {
                 rb.linearVelocity = Vector2.zero;
@@ -227,10 +279,10 @@ namespace MoonpetalValley.Player
                 TeleportTo(new Vector2(data.x, data.y));
             }
         }
-    
+
         private void OnDestroy()
         {
             if (GameRoot.Instance != null) GameRoot.Instance.UnregisterSaveable(this);
         }
-}
+    }
 }

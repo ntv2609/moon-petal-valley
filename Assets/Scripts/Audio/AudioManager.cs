@@ -23,6 +23,7 @@ namespace MoonpetalValley.Audio
         private float _lastBlipTime;
         private float _bgmBaseVolume = 0.25f;
         private float _sfxVolumeScale = 1f;
+        private float _suppressStaminaSlashUntil;
 
         private void Awake()
         {
@@ -138,6 +139,46 @@ namespace MoonpetalValley.Audio
             sfxSource.PlayOneShot(clip, volume);
         }
 
+        public void PlayComboSlashSFX(int comboStep, bool isDashStrike)
+        {
+            // Chặn HandleStaminaChanged phát trùng hoặc phát nhầm tiếng cuốc đất (sfxTool) khi đòn 3 tốn 3 Stamina
+            _suppressStaminaSlashUntil = Time.unscaledTime + 0.09f;
+            if (IsMuted || sfxSource == null || sfxSlash == null) return;
+
+            float pitch;
+            float vol;
+            if (isDashStrike)
+            {
+                pitch = 1.22f;
+                vol = 0.50f;
+            }
+            else if (comboStep == 2)
+            {
+                pitch = 1.12f;
+                vol = 0.48f;
+            }
+            else if (comboStep == 3)
+            {
+                pitch = 1.30f;
+                vol = 0.62f;
+            }
+            else
+            {
+                pitch = 0.96f;
+                vol = 0.42f;
+            }
+
+            float prevPitch = sfxSource.pitch;
+            sfxSource.pitch = pitch;
+            sfxSource.PlayOneShot(sfxSlash, vol);
+            if (comboStep == 3 && sfxBloom != null)
+            {
+                sfxSource.pitch = 1.18f;
+                sfxSource.PlayOneShot(sfxBloom, 0.24f);
+            }
+            sfxSource.pitch = prevPitch;
+        }
+
         public void PlayUIClick() => PlaySFX(sfxUiClick, 0.45f);
 
         private void HandleItemChanged(string _, int __) => PlaySFX(sfxPickup, 0.45f);
@@ -154,8 +195,11 @@ namespace MoonpetalValley.Audio
         {
             if (current < _lastStamina)
             {
-                int diff = _lastStamina - current;
-                PlaySFX(diff == 2 ? sfxSlash : sfxTool, 0.40f);
+                if (Time.unscaledTime >= _suppressStaminaSlashUntil)
+                {
+                    int diff = _lastStamina - current;
+                    PlaySFX(diff == 2 ? sfxSlash : sfxTool, 0.40f);
+                }
             }
             _lastStamina = current;
         }

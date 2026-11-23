@@ -29,7 +29,10 @@ namespace MoonpetalValley.Player
             Hoe,
             WateringCan,
             Hatchet,
-            MoonSickleSlash
+            MoonSickleSlash,
+            Combo2Reverse,
+            Combo3Spin,
+            DashStrike
         }
 
         [SerializeField] private SpriteRenderer spriteRenderer;
@@ -76,11 +79,29 @@ namespace MoonpetalValley.Player
         [SerializeField] private Sprite[] hatchetEast;
         [SerializeField] private Sprite[] hatchetWest;
 
-        [Header("Moon Sickle Slash (4 hướng)")]
+        [Header("Moon Sickle Slash - Combo 1 (4 hướng)")]
         [SerializeField] private Sprite[] slashSouth;
         [SerializeField] private Sprite[] slashNorth;
         [SerializeField] private Sprite[] slashEast;
         [SerializeField] private Sprite[] slashWest;
+
+        [Header("Combo 2 - Nguyệt Ngược (4 hướng)")]
+        [SerializeField] private Sprite[] combo2South;
+        [SerializeField] private Sprite[] combo2North;
+        [SerializeField] private Sprite[] combo2East;
+        [SerializeField] private Sprite[] combo2West;
+
+        [Header("Combo 3 - Hoa Trăng Xoay 360 (4 hướng)")]
+        [SerializeField] private Sprite[] combo3South;
+        [SerializeField] private Sprite[] combo3North;
+        [SerializeField] private Sprite[] combo3East;
+        [SerializeField] private Sprite[] combo3West;
+
+        [Header("Dash-Strike - Lướt Chém (4 hướng)")]
+        [SerializeField] private Sprite[] dashStrikeSouth;
+        [SerializeField] private Sprite[] dashStrikeNorth;
+        [SerializeField] private Sprite[] dashStrikeEast;
+        [SerializeField] private Sprite[] dashStrikeWest;
 
         [Header("Tốc độ khung hình (FPS)")]
         [SerializeField] private float idleFps = 5f;
@@ -91,6 +112,9 @@ namespace MoonpetalValley.Player
         [SerializeField] private float waterFps = 10f;
         [SerializeField] private float hatchetFps = 12f;
         [SerializeField] private float slashFps = 14f;
+        [SerializeField] private float combo2Fps = 16f;
+        [SerializeField] private float combo3Fps = 16f;
+        [SerializeField] private float dashStrikeFps = 18f;
 
         private Facing4 _facing = Facing4.South;
         private AnimAction _currentAction = AnimAction.Idle;
@@ -101,6 +125,12 @@ namespace MoonpetalValley.Player
 
         public bool HasValidSprites => idleSouth != null && idleSouth.Length > 0 && idleSouth[0] != null;
         public bool IsCutsceneOverride => _cutsceneOverride;
+        public SpriteRenderer SpriteRendererRef => spriteRenderer;
+
+        public Sprite GetCurrentSprite()
+        {
+            return spriteRenderer != null ? spriteRenderer.sprite : null;
+        }
 
         private void Update()
         {
@@ -159,7 +189,7 @@ namespace MoonpetalValley.Player
 
             spriteRenderer.flipX = false;
 
-            if (isDashing)
+            if (isDashing && !(_isOneShotLocked && _currentAction == AnimAction.DashStrike))
             {
                 _isOneShotLocked = false;
                 UpdateFacingFromVector(facingDir);
@@ -200,6 +230,27 @@ namespace MoonpetalValley.Player
             if (!HasValidSprites || spriteRenderer == null) return;
             UpdateFacingFromVector(facingDir);
             StartOneShot(AnimAction.MoonSickleSlash);
+        }
+
+        public void PlayComboSlash(int comboStep, Vector2 facingDir)
+        {
+            if (!HasValidSprites || spriteRenderer == null) return;
+            UpdateFacingFromVector(facingDir);
+
+            AnimAction act = comboStep switch
+            {
+                2 => AnimAction.Combo2Reverse,
+                3 => AnimAction.Combo3Spin,
+                _ => AnimAction.MoonSickleSlash
+            };
+            StartOneShot(act);
+        }
+
+        public void PlayDashStrike(Vector2 facingDir)
+        {
+            if (!HasValidSprites || spriteRenderer == null) return;
+            UpdateFacingFromVector(facingDir);
+            StartOneShot(AnimAction.DashStrike);
         }
 
         private void StartOneShot(AnimAction action)
@@ -312,11 +363,14 @@ namespace MoonpetalValley.Player
                 AnimAction.WateringCan => waterFps,
                 AnimAction.Hatchet => hatchetFps,
                 AnimAction.MoonSickleSlash => slashFps,
+                AnimAction.Combo2Reverse => combo2Fps,
+                AnimAction.Combo3Spin => combo3Fps,
+                AnimAction.DashStrike => dashStrikeFps,
                 _ => idleFps
             };
         }
 
-        private Sprite[] PickDir(Facing4 dir, Sprite[] s, Sprite[] n, Sprite[] e, Sprite[] w)
+        private Sprite[] PickDir(Facing4 dir, Sprite[] s, Sprite[] n, Sprite[] e, Sprite[] w, bool fallbackToSlash = false)
         {
             Sprite[] chosen = dir switch
             {
@@ -326,6 +380,18 @@ namespace MoonpetalValley.Player
                 _ => s
             };
             if (chosen != null && chosen.Length > 0 && chosen[0] != null) return chosen;
+
+            if (fallbackToSlash)
+            {
+                Sprite[] slashFallback = dir switch
+                {
+                    Facing4.North => slashNorth,
+                    Facing4.East => slashEast,
+                    Facing4.West => slashWest,
+                    _ => slashSouth
+                };
+                if (slashFallback != null && slashFallback.Length > 0 && slashFallback[0] != null) return slashFallback;
+            }
 
             return dir switch
             {
@@ -347,6 +413,9 @@ namespace MoonpetalValley.Player
                 AnimAction.WateringCan => PickDir(dir, waterSouth, waterNorth, waterEast, waterWest),
                 AnimAction.Hatchet => PickDir(dir, hatchetSouth, hatchetNorth, hatchetEast, hatchetWest),
                 AnimAction.MoonSickleSlash => PickDir(dir, slashSouth, slashNorth, slashEast, slashWest),
+                AnimAction.Combo2Reverse => PickDir(dir, combo2South, combo2North, combo2East, combo2West, true),
+                AnimAction.Combo3Spin => PickDir(dir, combo3South, combo3North, combo3East, combo3West, true),
+                AnimAction.DashStrike => PickDir(dir, dashStrikeSouth, dashStrikeNorth, dashStrikeEast, dashStrikeWest, true),
                 _ => PickDir(dir, idleSouth, idleNorth, idleEast, idleWest)
             };
         }

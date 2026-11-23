@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 2000537413
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 30
   m_MaskInteraction: 0
   m_Sprite: {fileID: -3901044294654827578, guid: c2f85df2abef3a542a7e6648b3f7298b, type: 3}
@@ -170,7 +170,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 2000537413
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 28
   m_MaskInteraction: 0
   m_Sprite: {fileID: 5378778903491248155, guid: b5ea524aa9520b148b1579f80255fa00, type: 3}
@@ -262,7 +262,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 751938039
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 4c03320d8353dcb40aa5313fca60bcbd, type: 3}
@@ -354,7 +354,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1205849517
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: ad8b2bf824bdc2e4095f795ab49585ca, type: 3}
@@ -384,6 +384,8 @@ GameObject:
   - component: {fileID: 8859827294120967651}
   - component: {fileID: 7711949815647847982}
   - component: {fileID: 443984461651568377}
+  - component: {fileID: 4137527052791256829}
+  - component: {fileID: 7562804845222992354}
   m_Layer: 8
   m_Name: Player_Wen
   m_TagString: Player
@@ -723,6 +725,66 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0ee1d8494c1d5574ea51d00b304aac8e, type: 3}
   - {fileID: 21300000, guid: b4226f165462fc549bc2cf8f25c1c084, type: 3}
   - {fileID: 21300000, guid: 0a84bc8cbf3eb054aa4a47ea8f1dea3d, type: 3}
+  combo2South:
+  - {fileID: 21300000, guid: ca601e368b48a194399881c46469003f, type: 3}
+  - {fileID: 21300000, guid: 4b526bd969854834ca247bd204c2a992, type: 3}
+  - {fileID: 21300000, guid: 58d87e1d11ec2b14288ed0dbbe01638d, type: 3}
+  - {fileID: 21300000, guid: d1d03747074198f479b1c9d8253d6d93, type: 3}
+  combo2North:
+  - {fileID: 21300000, guid: aaf3e61a40657d946b23181193b59613, type: 3}
+  - {fileID: 21300000, guid: e8da61d161d903441b673d74b168cf58, type: 3}
+  - {fileID: 21300000, guid: a04de8eeb9fa58d4d83f248d8af26ff7, type: 3}
+  - {fileID: 21300000, guid: 07700c6c6b7d45f4fa524038aae4c59d, type: 3}
+  combo2East:
+  - {fileID: 21300000, guid: 5f44e108385ed9d4f8609b51c0cbd73a, type: 3}
+  - {fileID: 21300000, guid: 7b4175a745368a34782e39fd86d9558b, type: 3}
+  - {fileID: 21300000, guid: a0eb2e1518089704f9f990cbfa21990e, type: 3}
+  - {fileID: 21300000, guid: 5aab424a2c5431e4ebc92d6bac4354c7, type: 3}
+  combo2West:
+  - {fileID: 21300000, guid: fc463d800475e4d4b867141448727a47, type: 3}
+  - {fileID: 21300000, guid: 24c5e074d60f44b49b5e6ddee06e443e, type: 3}
+  - {fileID: 21300000, guid: a7b862f3343123b4c96cf45ea98e7515, type: 3}
+  - {fileID: 21300000, guid: 521f4fceec6b8d1429d513b785cba743, type: 3}
+  combo3South:
+  - {fileID: 21300000, guid: 7effbcdf60dc15d4f81be7fa1dfb50fc, type: 3}
+  - {fileID: 21300000, guid: 3c2a148814a41ca47a9447abc40eccdf, type: 3}
+  - {fileID: 21300000, guid: a508088bba6c0364a8577d0ee4504854, type: 3}
+  - {fileID: 21300000, guid: ec406b8c69c43934590529b100f29044, type: 3}
+  combo3North:
+  - {fileID: 21300000, guid: 981709c47c638af4a96997ca16d8791e, type: 3}
+  - {fileID: 21300000, guid: 4b06237182e3b4c429e283decf5e46a1, type: 3}
+  - {fileID: 21300000, guid: d093405c4aa79124c834aeff16e3d51f, type: 3}
+  - {fileID: 21300000, guid: 330184f0785d7824495fdec690533530, type: 3}
+  combo3East:
+  - {fileID: 21300000, guid: 7330d6a1209efc948b6718289a218c3e, type: 3}
+  - {fileID: 21300000, guid: dd0ca08c365d6ec48bcb64b1b0855eef, type: 3}
+  - {fileID: 21300000, guid: 43a41fc329e30894582cc346afe7eb11, type: 3}
+  - {fileID: 21300000, guid: c2c312f3a739b8843b64b9e990633cb4, type: 3}
+  combo3West:
+  - {fileID: 21300000, guid: f661c085322c4e647a595fa3a91cd079, type: 3}
+  - {fileID: 21300000, guid: 8272b70dd061f9d4fb323919ac38e586, type: 3}
+  - {fileID: 21300000, guid: a98397f33d1cfea4097d32b64e76ded4, type: 3}
+  - {fileID: 21300000, guid: 7995619e7a66dd44dbaffaa05c6b1b2d, type: 3}
+  dashStrikeSouth:
+  - {fileID: 21300000, guid: 6cfd3e986a990a6469a2e66b54dc629d, type: 3}
+  - {fileID: 21300000, guid: 5a52fd753a52f804893dcc540376efc2, type: 3}
+  - {fileID: 21300000, guid: 037dab49bb8fdf34d98289ba14c8846f, type: 3}
+  - {fileID: 21300000, guid: 1827a37de912e75479c1ef486e3a4844, type: 3}
+  dashStrikeNorth:
+  - {fileID: 21300000, guid: e710d827a4b256c47805e76c3ccb4fa5, type: 3}
+  - {fileID: 21300000, guid: c1912fcf563b23541b4cf59cf814e3f9, type: 3}
+  - {fileID: 21300000, guid: 8d8ebfc64980dec41b1fffabf805750a, type: 3}
+  - {fileID: 21300000, guid: 9cb5431fe649e04419ead885ebaceae1, type: 3}
+  dashStrikeEast:
+  - {fileID: 21300000, guid: c47551476c4dd014687858c3eac12bb9, type: 3}
+  - {fileID: 21300000, guid: 09312f8b8a6f032459d1c6b4c2cfbea7, type: 3}
+  - {fileID: 21300000, guid: f8352c1ebace3844fbbf499b8aa4c71c, type: 3}
+  - {fileID: 21300000, guid: f48471631f2fbf74b89b3afdaa3ec4ad, type: 3}
+  dashStrikeWest:
+  - {fileID: 21300000, guid: f6c7f7f1a842c8b4aa2e92efdfa96ba0, type: 3}
+  - {fileID: 21300000, guid: c95eecc2478093f4f815196e7dc38736, type: 3}
+  - {fileID: 21300000, guid: 5e81f02281b79224fb8d37d2afd63967, type: 3}
+  - {fileID: 21300000, guid: d2acd8c940b23fe45bc18d69fa76932c, type: 3}
   idleFps: 6
   walkFps: 10
   dashFps: 18
@@ -731,3 +793,62 @@ MonoBehaviour:
   waterFps: 10
   hatchetFps: 12
   slashFps: 14
+  combo2Fps: 16
+  combo3Fps: 16
+  dashStrikeFps: 18
+--- !u!114 &4137527052791256829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7376899334052373789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eef1734f91bd0f478ea4029a9147500, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Player.WenComboVfxController
+  spriteAnimator: {fileID: 443984461651568377}
+  legacySlashRenderer: {fileID: 6903997666684345767}
+  combo1Frames:
+  - {fileID: 21300000, guid: e80905c1ffd42f94c9f8b223a345a46f, type: 3}
+  - {fileID: 21300000, guid: c32c919bd8b087f43b57b871cf9a0548, type: 3}
+  - {fileID: 21300000, guid: 779b9c4e97ee00043ba4faba17e3adfa, type: 3}
+  - {fileID: 21300000, guid: ceba7dd12fd708e4eae6396799e854e8, type: 3}
+  combo2Frames:
+  - {fileID: 21300000, guid: a431ed1237d9e3d4b9e6568b5e65dd59, type: 3}
+  - {fileID: 21300000, guid: 877286b4b05f1a74796c3f778db03479, type: 3}
+  - {fileID: 21300000, guid: f04388cdfb3b8824292de46d43955263, type: 3}
+  - {fileID: 21300000, guid: 2756a65e3b978084e80c896fb49bd85e, type: 3}
+  combo3Frames:
+  - {fileID: 21300000, guid: 1b3e437c17df4314fbf076ae032b4fbf, type: 3}
+  - {fileID: 21300000, guid: 37cc11c2f0e01964c8a102795322eaaf, type: 3}
+  - {fileID: 21300000, guid: e2e5566017831634ca4d5270a7d1312d, type: 3}
+  - {fileID: 21300000, guid: e265238e62f0b074da7260c5fc585c99, type: 3}
+  dashStrikeFrames:
+  - {fileID: 21300000, guid: eff3e42fc67b81040b0961546bda7fb2, type: 3}
+  - {fileID: 21300000, guid: 04656b60852327141bdb5dddd9c308fe, type: 3}
+  - {fileID: 21300000, guid: af63b89b5cdc0df43b1d4815f4829c84, type: 3}
+  - {fileID: 21300000, guid: edf3a03448178a34c9253647a016ab2a, type: 3}
+  hitSparkFrames:
+  - {fileID: 21300000, guid: c4cb62cd6fa5a3140bef1043365eff6a, type: 3}
+  - {fileID: 21300000, guid: fe9284514068f9240a5a97ce93e7478b, type: 3}
+  - {fileID: 21300000, guid: 85cafa87723c9614d931a08501a09c94, type: 3}
+  - {fileID: 21300000, guid: e71faec62b22ce742bdf78d314b044c2, type: 3}
+  petalSprite: {fileID: 21300000, guid: 24975afe0d2966d4d9ca4c51b99b49fd, type: 3}
+  slashVfxFps: 20
+  finisherVfxFps: 16
+  hitSparkFps: 22
+--- !u!114 &7562804845222992354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7376899334052373789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be972d4b33ab0640bc2cb403d956a12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.UI.ComboHudView
+  displayDuration: 1.45
