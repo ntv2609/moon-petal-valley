@@ -449,3 +449,31 @@ MonoBehaviour:
     vietnameseText: "B\xE1c \u0111\u1EC3 ch\xE1u t\xECm c\xE1ch cho hai ng\u01B0\u1EDDi t\u1EF1 nh\xECn th\u1EA5y s\u1EF1 th\u1EADt nh\xE9?"
   - key: choice_ch2_secret
     vietnameseText: "Ch\xE1u s\u1EBD gi\u1EEF b\xED m\u1EADt gi\xFAp b\xE1c. M\xECnh ch\u1EC9 c\u1EA7n m\u1ED9t l\xFD do \u0111\u1EC3 h\u1ECD \u0111\u1EE9ng chung m\u1ED9t ch\u1ED7."
+  - key: ch2_pe1_1
+    vietnameseText: "H\u1ECD t\u1EEBng c\xF9ng nhau g\xF2 t\u1EEBng m\u1EA3nh \u0111\u1ED3ng cho chi\u1EBFc \u0111\xE8n b\xE3o n\xE0y..."
+  - key: ch2_pe1_2
+    vietnameseText: "C\u1EA3 hai \u0111\u1EC1u ngh\u0129 ng\u01B0\u1EDDi kia \u0111\xE3 qu\xEAn. Nh\u01B0ng v\u1EABn c\xF2n m\u1ED9t m\u1EA3nh k\xFD \u1EE9c \u1EDF m\u1ED1 c\u1EA7u g\xE3y."
+  - key: ch2_pe1_3
+    vietnameseText: "L\u1EA1i g\u1EA7n m\u1ED1 c\u1EA7u ph\xEDa T\xE2y \u0111i Wen, \xC1nh Soi v\u1EABn \u0111ang rung l\xEAn \u1EDF \u0111\xF3!"
+  - key: ch2_pe2_1
+    vietnameseText: "Ch\xFA Kael \u0111\xE3 lao xu\u1ED1ng b\u1EBFn \u0111\u1EC3 k\xE9o thuy\u1EC1n c\xF4 Mara... nh\u01B0ng kh\xF4ng k\u1ECBp."
+  - key: ch2_pe2_2
+    vietnameseText: "C\xF4 Mara ch\u01B0a t\u1EEBng th\u1EA5y kho\u1EA3nh kh\u1EAFc \u0111\xF3. \u0110\xE8n b\xE3o ch\u1EC9 s\xE1ng tr\u1ECDn khi hai b\u1EDD c\xF9ng gi\u1EEF l\u1EEDa."
+  - key: ch2_pe2_3
+    vietnameseText: "M\xECnh kh\xF4ng th\u1EC3 d\u1EF1ng c\u1EA7u m\u1ED9t m\xECnh. Ph\u1EA3i \u0111\u1EC3 ch\xFA Kael v\xE0 c\xF4 Mara c\xF9ng \u0111\xF3ng nh\u1ECBp c\u1EA7u m\u1EDBi!"
+  - key: dlg_ch2_post_echo1_spk_0
+    vietnameseText: Lumi
+  - key: dlg_ch2_post_echo1_txt_0
+    vietnameseText: "\xC1nh \u0111\xE8n trong k\xFD \u1EE9c \u1EA5m qu\xE1... \xD4ng Kael v\xE0 b\xE0 Mara t\u1EEBng t\u1EF1 tay l\xE0m chi\u1EBFc \u0111\xE8n n\xE0y cho L\u1EC5 Trao H\u1EA1t \u0111\u1EA7u ti\xEAn \u0111\u1EA5y!"
+  - key: dlg_ch2_post_echo1_spk_1
+    vietnameseText: Wen
+  - key: dlg_ch2_post_echo1_txt_1
+    vietnameseText: "C\xF2n m\u1ED9t D\u01B0 \xC2m n\u1EEFa \u1EDF m\u1ED1 c\u1EA7u b\u1EDD T\xE2y. M\xECnh ra \u0111\xF3 xem chuy\u1EC7n g\xEC \u0111\xE3 x\u1EA3y ra v\xE0o \u0111\xEAm b\xE3o n\u0103m \u1EA5y."
+  - key: dlg_ch2_post_echo2_spk_0
+    vietnameseText: Lumi
+  - key: dlg_ch2_post_echo2_txt_0
+    vietnameseText: "\xD4ng Kael kh\xF4ng h\u1EC1 b\u1ECF m\u1EB7c b\xE0 Mara... \xD4ng ch\u1EB7t c\xE1p \u0111\u1EC3 c\u1EE9u nh\xE0 tr\u1EBB b\u1EDD \u0110\xF4ng, r\u1ED3i l\u1EADp t\u1EE9c lao ra b\u1EBFn c\u1EE9u thuy\u1EC1n!"
+  - key: dlg_ch2_post_echo2_spk_1
+    vietnameseText: Wen
+  - key: dlg_ch2_post_echo2_txt_1
+    vietnameseText: "M\xECnh \u0111\xE3 hi\u1EC3u tr\u1ECDn v\u1EB9n s\u1EF1 th\u1EADt \u0111\xEAm b\xE3o r\u1ED3i. M\xECnh c\u1EA7n \u0111\u01B0a hai ng\u01B0\u1EDDi \u0111\u1ED1i m\u1EB7t \u0111\u1EC3 n\u1ED1i l\u1EA1i c\xE2y c\u1EA7u."
