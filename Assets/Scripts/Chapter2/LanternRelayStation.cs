@@ -33,6 +33,11 @@ namespace MoonpetalValley.Chapter2
             {
                 LanternRelayManager mgr = LanternRelayManager.Instance;
                 if (mgr == null) return false;
+                if (!mgr.IsRelayActive && side == BankSide.EastKael)
+                {
+                    if (Chapter2StateManager.Instance != null && !Chapter2StateManager.Instance.IsRelayStartUnlocked())
+                        return false;
+                }
                 return side == BankSide.EastKael ? mgr.CanInteractEastStation() : mgr.CanInteractWestStation();
             }
         }
@@ -46,7 +51,7 @@ namespace MoonpetalValley.Chapter2
 
         public void Interact()
         {
-            if (LanternRelayManager.Instance == null) return;
+            if (LanternRelayManager.Instance == null || !CanInteract) return;
             if (side == BankSide.EastKael) LanternRelayManager.Instance.HandleEastStationInteract();
             else LanternRelayManager.Instance.HandleWestStationInteract();
         }

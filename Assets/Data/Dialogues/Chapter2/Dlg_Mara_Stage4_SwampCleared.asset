@@ -15,13 +15,13 @@ MonoBehaviour:
   dialogueID: dlg_mara_s4_swamp_cleared
   lines:
   - speakerNameKey: "B\xE0 Mara"
-    textKey: "Ch\xE1u d\u1ECDn s\u1EA1ch \u0111\xE1m b\u1ECD gai trong \u0110\u1EA7m L\u1EA7y B\u1EDD T\xE2y r\u1ED3i sao? C\u1EA3 n\u1EEDa chi\u1EBFc \u0111\xE8n b\xE3o c\u0169 n\u1EEFa..."
+    textKey: "Ch\xE1u d\u1ECDn s\u1EA1ch \u0111\xE1m qu\xE1i trong \u0110\u1EA7m L\u1EA7y B\u1EDD T\xE2y v\xE0 t\xECm l\u1EA1i \u0111\u01B0\u1EE3c Chao K\xEDnh \u0110\xE8n B\xE3o r\u1ED3i sao?"
     portraitOverride: {fileID: 0}
     speakerId: mara
     requiredFlag: 
     blockedFlag: 
   - speakerNameKey: "B\xE0 Mara"
-    textKey: "Ng\u1ECDn \u0111\xE8n \u0111\xF3 v\u1EABn c\xF2n h\u01A1i \u1EA5m c\u1EE7a \u0111\xEAm b\xE3o n\u0103m \u1EA5y \u0111\u1EA5y. Ch\xE1u th\u1EED d\xF9ng \xE1nh s\xE1ng c\u1EE7a b\xE9 Lumi soi ngay \u1EDF \u0110\u1EA7m L\u1EA7y v\xE0 m\u1ED1 c\u1EA7u B\u1EDD T\xE2y xem sao."
+    textKey: "Ng\u1ECDn \u0111\xE8n gh\xE9p \u0111\u1EE7 hai n\u1EEDa r\u1ED3i \u0111\u1EA5y. Ch\xE1u d\xF9ng \xC1nh Soi c\u1EE7a b\xE9 Lumi soi D\u01B0 \xC2m \u0110\xE8n B\xE3o r\u1ED3i ra m\u1ED1 c\u1EA7u g\xE3y xem chuy\u1EC7n c\u0169 nh\xE9."
     portraitOverride: {fileID: 0}
     speakerId: mara
     requiredFlag: 

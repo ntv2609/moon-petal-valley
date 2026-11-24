@@ -71,6 +71,7 @@ namespace MoonpetalValley.Audio
             _voiceBlips["otis"] = CreateSoftBlipClip("blip_otis", 295f, 0.050f);
             _voiceBlips["kael"] = CreateSoftBlipClip("blip_kael", 190f, 0.058f);
             _voiceBlips["mara"] = CreateSoftBlipClip("blip_mara", 365f, 0.046f);
+            _voiceBlips["linh"] = CreateSoftBlipClip("blip_linh", 560f, 0.044f); // Step50
         }
 
         private static AudioClip CreateSoftBlipClip(string clipName, float freqHz, float durationSec)

@@ -15,13 +15,13 @@ MonoBehaviour:
   dialogueID: dlg_mara_s5_ready_relay
   lines:
   - speakerNameKey: "B\xE0 Mara"
-    textKey: "Ch\xE1u \u0111\xE3 cho t\xF4i th\u1EA5y l\u1EA1i \u0111\xEAm b\xE3o n\u0103m \u0111\xF3... Kael \u0111\xE3 ch\u1EA1y ra c\u1EAFt d\xE2y c\xE1p \u0111\u1EC3 chi\u1EBFc c\u1EA7u s\u1EADp kh\xF4ng k\xE9o s\u1EE5p m\xE1i nh\xE0 b\xEAn b\u1EDD t\xF4i."
+    textKey: "D\u01B0 \xC2m \u0111\xEAm b\xE3o 3 n\u0103m tr\u01B0\u1EDBc \u0111\xE3 cho t\xF4i th\u1EA5y r\xF5... Kael \u0111\xE3 c\u1EAFt d\xE2y c\xE1p \u0111\u1EC3 nh\u1ECBp c\u1EA7u g\xE3y kh\xF4ng k\xE9o s\u1EE5p b\u1EBFn nh\xE0 t\xF4i."
     portraitOverride: {fileID: 0}
     speakerId: mara
     requiredFlag: 
     blockedFlag: 
   - speakerNameKey: "B\xE0 Mara"
-    textKey: "T\xF4i \u0111\xE3 mang h\u1ED9p \u0111inh s\u1EAFt t\u1ED1t nh\u1EA5t ra b\u1EBFn r\u1ED3i. 18:30 t\u1ED1i nay, ch\xE1u ra \u0111\u1EA7u c\u1EA7u B\u1EDD \u0110\xF4ng g\u1ECDi \xF4ng \u1EA5y, hai ch\xFAng t\xF4i s\u1EBD n\u1ED1i l\u1EA1i c\xE2y c\u1EA7u ngay \u0111\xEAm nay!"
+    textKey: "T\xF4i \u0111\xE3 chu\u1EA9n b\u1ECB h\u1ED9p \u0111inh \u0111\u1ED3ng t\u1ED1t nh\u1EA5t r\u1ED3i. Ch\xE1u sang B\u1EDD \u0110\xF4ng b\xE1o \xF4ng Kael m\u1ED9t ti\u1EBFng, 18:30 t\u1ED1i nay hai ch\xFAng t\xF4i s\u1EBD n\u1ED1i l\u1EA1i c\u1EA7u!"
     portraitOverride: {fileID: 0}
     speakerId: mara
     requiredFlag: 

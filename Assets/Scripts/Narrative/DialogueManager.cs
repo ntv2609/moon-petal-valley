@@ -352,6 +352,7 @@ namespace MoonpetalValley.Narrative
 
             if (key.Contains("kael")) voiceId = "kael";
             else if (key.Contains("mara")) voiceId = "mara";
+            else if (key.Contains("linh")) voiceId = "linh"; // Step50
         }
 
         private void ApplyAssetRewards(DialogueData asset)

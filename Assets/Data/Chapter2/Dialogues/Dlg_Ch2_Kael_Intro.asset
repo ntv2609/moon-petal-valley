@@ -15,25 +15,25 @@ MonoBehaviour:
   dialogueID: dlg_ch2_kael_intro
   lines:
   - speakerNameKey: "\xD4ng Kael"
-    textKey: "N\xE0y c\xF4 b\xE9 \u1EDF v\u01B0\u1EDDn \u01B0\u01A1m! \u0110\u1EE9ng xa m\xE9p c\u1EA7u ra, v\xE1n m\u1EE5c h\u1EBFt r\u1ED3i."
+    textKey: "\u0110\u1EE9ng xa m\xE9p c\u1EA7u ra c\xF4 b\xE9! G\u1ED7 m\u1EE5c h\u1EBFt r\u1ED3i, m\u1ED9t m\xECnh ch\xE1u c\xF3 \u0111\xF3ng c\u1EA3 tu\u1EA7n c\u0169ng kh\xF4ng n\u1ED5i \u0111\xE2u."
     portraitOverride: {fileID: 0}
     speakerId: kael
     requiredFlag: 
     blockedFlag: 
   - speakerNameKey: Wen
-    textKey: "Ch\xE1u l\xE0 Wen. Ch\xE1u th\u1EA5y c\xE2y c\u1EA7u sang b\u1EDD T\xE2y b\u1ECB g\xE3y, ch\xFA c\xF3 bi\u1EBFt chuy\u1EC7n g\xEC x\u1EA3y ra kh\xF4ng \u1EA1?"
+    textKey: "Ch\xE1u l\xE0 Wen. C\xE2y c\u1EA7u n\xE0y b\u1ECB g\xE3y t\u1EEB bao gi\u1EDD th\u1EBF \u1EA1?"
     portraitOverride: {fileID: 0}
     speakerId: wen
     requiredFlag: 
     blockedFlag: 
   - speakerNameKey: "\xD4ng Kael"
-    textKey: "Ba n\u0103m tr\u01B0\u1EDBc b\xE3o l\u1EDBn cu\u1ED1n ph\u0103ng nh\u1ECBp gi\u1EEFa. C\xF3 ng\u01B0\u1EDDi b\xEAn kia s\xF4ng c\u1EE9 \u0111\xF2i v\xE1 t\u1EA1m, t\xF4i c\u1EA3n kh\xF4ng n\u1ED5i n\xEAn... b\u1ECF lu\xF4n."
+    textKey: "\u0110\xEAm b\xE3o 3 n\u0103m tr\u01B0\u1EDBc cu\u1ED1n ph\u0103ng nh\u1ECBp gi\u1EEFa. C\xF3 ng\u01B0\u1EDDi b\xEAn kia s\xF4ng c\u1EE9 \u0111\xF2i v\xE1 t\u1EA1m, t\xF4i c\u1EA3n kh\xF4ng n\u1ED5i n\xEAn... b\u1ECF lu\xF4n."
     portraitOverride: {fileID: 0}
     speakerId: kael
     requiredFlag: 
     blockedFlag: 
   - speakerNameKey: "\xD4ng Kael"
-    textKey: "N\u1EBFu ch\xE1u t\xF2 m\xF2 th\xEC \u0111\u1EE3i ch\u1EADp t\u1ED1i h\xE3y \u0111i quanh b\u1EDD \u0110\xF4ng m\xE0 xem. Ban ng\xE0y s\u01B0\u01A1ng che h\u1EBFt d\u1EA5u v\u1EBFt r\u1ED3i."
+    textKey: "\u0110\u1EEBng h\u1ECFi th\xEAm n\u1EEFa. N\u1EBFu ch\xE1u r\u1EA3nh th\xEC ng\u1ED3i \u1EDF Gh\u1EBF \u0110\xE1 B\u1EDD S\xF4ng ch\u1EDD \u0111\u1EBFn 18:30 t\u1ED1i, t\u1EF1 kh\u1EAFc s\u1EBD th\u1EA5y quanh b\u1EDD \u0110\xF4ng c\xF3 g\xEC l\u1EA1."
     portraitOverride: {fileID: 0}
     speakerId: kael
     requiredFlag: 
@@ -41,7 +41,7 @@ MonoBehaviour:
   choices: []
   setsStoryFlagOnFinish: flag_ch2_met_kael
   givesItemOnFinish: {fileID: 0}
-  givesItemAmount: 1
+  givesItemAmount: 0
   extraRewards: []
   consumesRequiredItem: {fileID: 0}
   consumesAmount: 0

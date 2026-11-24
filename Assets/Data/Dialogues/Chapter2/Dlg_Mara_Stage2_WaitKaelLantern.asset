@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c597d33f149cdf04299a1085b446df21, type: 3}
+  m_Name: Dlg_Mara_Stage2_WaitKaelLantern
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.DialogueData
+  dialogueID: dlg_mara_s2_wait_kael
+  lines:
+  - speakerNameKey: "B\xE0 Mara"
+    textKey: "Ch\xE1u mu\u1ED1n v\xE0o \u0110\u1EA7m L\u1EA7y ph\xEDa B\u1EAFc t\xECm Chao K\xEDnh \u0110\xE8n B\xE3o \xE0? S\u01B0\u01A1ng trong \u0111\xF3 d\xE0y l\u1EAFm, kh\xF4ng c\xF3 Khung \u0110\xE8n B\xE3o c\u1EE7a \xF4ng Kael th\xEC d\u1EA7u nh\xE0 t\xF4i c\u0169ng v\xF4 \xEDch."
+    portraitOverride: {fileID: 0}
+    speakerId: mara
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: "B\xE0 Mara"
+    textKey: "Ch\xE1u quay l\u1EA1i B\u1EDD \u0110\xF4ng ki\u1EC3m tra s\u1ED5 b\xE1c Otis r\u1ED3i xin \xF4ng Kael chi\u1EBFc Khung \u0110\u1ED3ng mang sang \u0111\xE2y t\xF4i ch\xE2m d\u1EA7u cho."
+    portraitOverride: {fileID: 0}
+    speakerId: mara
+    requiredFlag: 
+    blockedFlag: 
+  choices: []
+  setsStoryFlagOnFinish: 
+  givesItemOnFinish: {fileID: 0}
+  givesItemAmount: 0
+  extraRewards: []
+  consumesRequiredItem: {fileID: 0}
+  consumesAmount: 0
+  unlocksDiaryPage: {fileID: 0}
+  affinityNpcId: 
+  affinityBonusOnFinish: 0

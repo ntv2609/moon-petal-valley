@@ -54,9 +54,11 @@ namespace MoonpetalValley.Core
             ReadSavedTimestampPreview();
         }
 
-        private static bool IsPlayableWorldScene(string sceneName)
+        public static bool IsPlayableWorldScene(string sceneName)
         {
-            return sceneName == "MoonpetalValley_MVP" || sceneName == "Riverbank_Chapter2";
+            return sceneName == "MoonpetalValley_MVP" ||
+                   sceneName == "Riverbank_Chapter2" ||
+                   sceneName == "WestSwamp_Chapter2";
         }
 
         public string GetSavedSceneName()
@@ -170,7 +172,7 @@ namespace MoonpetalValley.Core
                 if (allowSceneRedirect && SceneManager.GetActiveScene().name != targetScene)
                 {
                     MainMenuController.PendingLoadSaveOnWorldStart = true;
-                    GameRoot.Instance.State?.ReturnToGameplay();
+                    if (GameRoot.Instance.State != null) GameRoot.Instance.State.ReturnToGameplay();
                     SceneManager.LoadScene(targetScene);
                     return true;
                 }
@@ -194,7 +196,7 @@ namespace MoonpetalValley.Core
                 LastSavedTimestamp = payload.savedTimestamp;
 
                 GameEventBus.RaiseSaveLoaded();
-                GameRoot.Instance.Quests?.RecomputeObjective();
+                if (GameRoot.Instance.Quests != null) GameRoot.Instance.Quests.RecomputeObjective();
 
                 GameEventBus.RaiseToastRequested("Đã tải game thành công (" + LastSavedTimestamp + ")!");
                 return true;

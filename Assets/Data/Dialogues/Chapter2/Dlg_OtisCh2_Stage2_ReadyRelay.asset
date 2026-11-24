@@ -15,13 +15,13 @@ MonoBehaviour:
   dialogueID: dlg_otis_ch2_s2_ready_relay
   lines:
   - speakerNameKey: "B\xE1c Otis"
-    textKey: "Hai D\u01B0 \xC2m \u0111\xE3 tr\u1EA3 l\u1EA1i s\u1EF1 th\u1EADt tr\u1ECDn v\u1EB9n cho c\u1EA3 Kael l\u1EABn Mara r\u1ED3i."
+    textKey: "Hai D\u01B0 \xC2m \u0111\xE3 tr\u1EA3 l\u1EA1i s\u1EF1 th\u1EADt tr\u1ECDn v\u1EB9n cho c\u1EA3 Kael l\u1EABn Mara sau 3 n\u0103m hi\u1EC3u l\u1EA7m r\u1ED3i."
     portraitOverride: {fileID: 0}
     speakerId: otis
     requiredFlag: 
     blockedFlag: 
   - speakerNameKey: "B\xE1c Otis"
-    textKey: "T\u1ED1i nay 18:30 s\u1EBD l\xE0 \u0110\xEAm Chuy\u1EC1n \u0110\xE8n. Ch\xE1u nh\u1EDB chu\u1EA9n b\u1ECB \u0111\u1EA7y Th\u1EC3 l\u1EF1c, d\xF9ng \xC1nh Soi c\u1EE7a Lumi xua l\u0169 B\u01B0\u1EDBm H\xFAt S\xE1ng v\xE0 gi\u1EEF s\xE1ng t\u1ED1i thi\u1EC3u 4 c\u1ED9t \u0111\xE8n c\u1EA7u nh\xE9!"
+    textKey: "Ch\xE1u sang g\u1EB7p \xF4ng Kael th\u1ED1ng nh\u1EA5t k\u1EBF ho\u1EA1ch, r\u1ED3i 18:30 t\u1ED1i nay ra \u0111\u1EA7u c\u1EA7u \u0110\xF4ng b\u1EAFt \u0111\u1EA7u \u0110\xEAm Chuy\u1EC1n \u0110\xE8n nh\xE9!"
     portraitOverride: {fileID: 0}
     speakerId: otis
     requiredFlag: 

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c597d33f149cdf04299a1085b446df21, type: 3}
+  m_Name: Dlg_Linh_Stage2_Prep
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.DialogueData
+  dialogueID: dlg_linh_stage2_prep
+  lines:
+  - speakerNameKey: Linh
+    textKey: "M\u1ECDi ng\u01B0\u1EDDi trong l\xE0ng ai c\u0169ng h\xE0o h\u1EE9ng chu\u1EA9n b\u1ECB cho Ch\u1EE3 \u0110\xEAm \u0111\u1EA7u ti\xEAn sau nhi\u1EC1u n\u0103m."
+    portraitOverride: {fileID: 0}
+    speakerId: linh
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: Linh
+    textKey: "Ch\u1ECB c\u1EE9 ch\u1EBF t\xE1c h\xE0ng \u1EDF b\xE0n g\u1ED7 nh\xE9, m\u1EC7t qu\xE1 th\xEC v\u1EC1 ng\u1EE7 s\u1EDBm k\u1EBBo ki\u1EC7t s\u1EE9c \u0111\xF3!"
+    portraitOverride: {fileID: 0}
+    speakerId: linh
+    requiredFlag: 
+    blockedFlag: 
+  choices: []
+  setsStoryFlagOnFinish: 
+  givesItemOnFinish: {fileID: 0}
+  givesItemAmount: 0
+  extraRewards: []
+  consumesRequiredItem: {fileID: 0}
+  consumesAmount: 0
+  unlocksDiaryPage: {fileID: 0}
+  affinityNpcId: 
+  affinityBonusOnFinish: 0

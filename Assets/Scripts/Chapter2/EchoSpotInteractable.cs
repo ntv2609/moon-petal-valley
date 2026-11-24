@@ -8,7 +8,7 @@ namespace MoonpetalValley.Chapter2
     {
         [SerializeField] private EchoData echoData;
         [SerializeField] private string promptLabel = "Dùng Ánh Soi (Xem Dư Âm)";
-        [SerializeField] private string blockedHint = "Chưa đủ điều kiện để soi Dư Âm này.";
+        [SerializeField] private string blockedHint = "Cần đủ Khung Đồng và Chao Kính Đèn Bão để soi Dư Âm này.";
         [SerializeField] private float interactRadius = 2.2f;
         [SerializeField] private DialogueData postEchoDialogue;
         [SerializeField] private SpriteRenderer shimmerRenderer;
@@ -26,6 +26,11 @@ namespace MoonpetalValley.Chapter2
             {
                 if (!gameObject.activeInHierarchy || echoData == null) return false;
                 if (EchoManager.Instance != null && EchoManager.Instance.IsPlaying) return false;
+                if (Chapter2StateManager.Instance != null)
+                {
+                    if (Chapter2StateManager.Instance.IsRelayEventActive) return false;
+                    if (!Chapter2StateManager.Instance.IsEchoUnlocked(echoData.echoID)) return false;
+                }
                 var flags = GameRoot.Instance != null ? GameRoot.Instance.Flags : null;
                 if (flags == null || !flags.HasFlag("flag_nv1_completed")) return false;
                 if (!string.IsNullOrEmpty(echoData.requiredFlag) && !flags.HasFlag(echoData.requiredFlag)) return false;
@@ -70,14 +75,21 @@ namespace MoonpetalValley.Chapter2
 
         public void Interact()
         {
-            if (echoData == null || EchoManager.Instance == null) return;
+            if (echoData == null || EchoManager.Instance == null || !CanInteract) return;
 
             bool wasAlreadyCompleted = IsAlreadyCompleted();
 
-            if (!wasAlreadyCompleted && !string.IsNullOrEmpty(echoData.requiredItemId))
+            if (!wasAlreadyCompleted)
             {
                 var inv = GameRoot.Instance != null ? GameRoot.Instance.Inventory : null;
-                if (inv == null || !inv.HasItem(echoData.requiredItemId, 1))
+                if (!string.IsNullOrEmpty(echoData.requiredItemId) &&
+                    (inv == null || !inv.HasItem(echoData.requiredItemId, 1)))
+                {
+                    GameEventBus.RaiseToastRequested(blockedHint);
+                    return;
+                }
+                if (!string.IsNullOrEmpty(echoData.requiredSecondaryItemId) &&
+                    (inv == null || !inv.HasItem(echoData.requiredSecondaryItemId, 1)))
                 {
                     GameEventBus.RaiseToastRequested(blockedHint);
                     return;
@@ -86,7 +98,8 @@ namespace MoonpetalValley.Chapter2
 
             EchoManager.Instance.PlayEcho(echoData, transform.position, () =>
             {
-                if (!wasAlreadyCompleted && postEchoDialogue != null && GameRoot.Instance?.Dialogue != null)
+                if (!wasAlreadyCompleted && postEchoDialogue != null &&
+                    GameRoot.Instance != null && GameRoot.Instance.Dialogue != null)
                 {
                     GameRoot.Instance.Dialogue.StartDialogue(postEchoDialogue);
                 }

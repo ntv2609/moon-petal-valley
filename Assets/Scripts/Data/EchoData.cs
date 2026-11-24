@@ -23,9 +23,13 @@ namespace MoonpetalValley.Data
         public string echoTitle;
         public string requiredFlag;
         public string requiredItemId;
+        public string requiredSecondaryItemId;
         public string completedFlag;
         public bool showKaelGhost = true;
         public bool showMaraGhost = true;
+        [Header("Step50: Custom Ghost Prefabs")]
+        public GameObject customGhostAPrefab;
+        public GameObject customGhostBPrefab;
         public List<EchoBeat> beats = new List<EchoBeat>();
     }
 }

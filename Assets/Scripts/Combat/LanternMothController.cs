@@ -23,6 +23,7 @@ namespace MoonpetalValley.Combat
 
         private MothState _state = MothState.Seeking;
         private int _currentHP;
+        private int _maxHP = 30;
         private float _stateTimer, _stateDuration = 0.01f, _flashTimer, _animTimer, _hoverPhase;
         private int _animFrame;
         private Vector2 _knockbackVelocity;
@@ -30,25 +31,67 @@ namespace MoonpetalValley.Combat
         private Vector3 _hpBarBaseScale = new Vector3(0.90f, 0.09f, 1f);
         private BridgeLanternPost _targetLantern;
         private LanternRelayManager _relayManager;
+        private LineRenderer _drainBeam;
         private bool _isDefeated;
+        private bool _isAlphaMoth;
 
         public bool IsDefeated => _isDefeated;
         public bool IsStunned => _state == MothState.Stunned;
+        public bool IsAlphaMoth => _isAlphaMoth;
+
         public void Initialize(LanternRelayManager manager) { _relayManager = manager; }
+
+        public void ConfigureAsAlphaMoth()
+        {
+            _isAlphaMoth = true;
+            _maxHP = 95;
+            _currentHP = _maxHP;
+            transform.localScale = Vector3.one * 1.55f;
+            if (hpBarRoot != null) hpBarRoot.SetActive(true);
+            if (_drainBeam != null)
+            {
+                _drainBeam.startColor = new Color(1.0f, 0.22f, 0.65f, 0.95f);
+                _drainBeam.endColor = new Color(1.0f, 0.80f, 0.25f, 0.90f);
+            }
+        }
 
         private void Start()
         {
-            _currentHP = enemyData != null ? enemyData.maxHP : 30;
+            if (!_isAlphaMoth)
+            {
+                _maxHP = enemyData != null ? enemyData.maxHP : 30;
+                _currentHP = _maxHP;
+            }
             _hoverPhase = Random.Range(0f, Mathf.PI * 2f);
             if (hpBarFill != null) _hpBarBaseScale = hpBarFill.localScale;
-            if (hpBarRoot != null) hpBarRoot.SetActive(false);
+            if (hpBarRoot != null) hpBarRoot.SetActive(_isAlphaMoth);
             if (spriteRenderer != null)
             {
                 _baseVisualScale = spriteRenderer.transform.localScale;
                 if (idleFrames != null && idleFrames.Length > 0 && idleFrames[0] != null)
                     spriteRenderer.sprite = idleFrames[0];
             }
+            EnsureDrainBeam();
             UpdateFootYSorting();
+        }
+
+        private void EnsureDrainBeam()
+        {
+            if (_drainBeam != null) return;
+            GameObject beamGo = new GameObject("DrainLightBeam");
+            beamGo.transform.SetParent(transform, false);
+            _drainBeam = beamGo.AddComponent<LineRenderer>();
+            _drainBeam.positionCount = 2;
+            _drainBeam.startWidth = _isAlphaMoth ? 0.16f : 0.08f;
+            _drainBeam.endWidth = _isAlphaMoth ? 0.26f : 0.15f;
+            _drainBeam.useWorldSpace = true;
+            _drainBeam.sortingLayerName = "WorldObjects";
+            _drainBeam.sortingOrder = 210;
+            Shader sh = Shader.Find("Sprites/Default");
+            if (sh != null) _drainBeam.material = new Material(sh);
+            _drainBeam.startColor = _isAlphaMoth ? new Color(1.0f, 0.22f, 0.65f, 0.95f) : new Color(0.75f, 0.35f, 1.0f, 0.92f);
+            _drainBeam.endColor = new Color(1.0f, 0.88f, 0.42f, 0.85f);
+            _drainBeam.enabled = false;
         }
 
         private void Update()
@@ -60,10 +103,9 @@ namespace MoonpetalValley.Combat
                 if (_stateTimer <= 0f) Destroy(gameObject);
                 return;
             }
-            if (_isDefeated) return;
 
             bool active = GameRoot.Instance == null || GameRoot.Instance.State == null || GameRoot.Instance.State.IsGameplayActive;
-            if (!active) { if (rb != null) rb.linearVelocity = Vector2.zero; return; }
+            if (!active) return;
 
             if (_flashTimer > 0f)
             {
@@ -83,11 +125,13 @@ namespace MoonpetalValley.Combat
 
                 if (_targetLantern != null)
                 {
-                    Vector2 targetPos = (Vector2)_targetLantern.transform.position + new Vector2(0f, 0.45f);
+                    // Bay đậu ngay phía trên mặt ván cầu (y - 0.45) để Wen đứng trên cầu chém trúng 100% không cần lao ra mặt nước!
+                    Vector2 targetPos = (Vector2)_targetLantern.transform.position + new Vector2(0f, -0.45f);
                     if (Vector2.Distance(transform.position, targetPos) <= 0.65f)
                     {
                         if (_state != MothState.Draining) EnterState(MothState.Draining, 0f);
-                        float drainRate = _relayManager != null ? _relayManager.MothDrainPerSec : 12.0f;
+                        float drainRate = _relayManager != null ? _relayManager.MothDrainPerSec : 13.0f;
+                        if (_isAlphaMoth) drainRate *= 2.0f;
                         _targetLantern.DrainByMoth(drainRate * Time.deltaTime);
                     }
                     else if (_state != MothState.Seeking) EnterState(MothState.Seeking, 0f);
@@ -95,9 +139,26 @@ namespace MoonpetalValley.Combat
                 else if (_state != MothState.Seeking) EnterState(MothState.Seeking, 0f);
             }
 
+            UpdateDrainBeam();
             UpdateVisualFeedback();
             UpdateAnimation();
             UpdateFootYSorting();
+        }
+
+        private void UpdateDrainBeam()
+        {
+            if (_drainBeam == null) return;
+            bool draining = _state == MothState.Draining && _targetLantern != null && _targetLantern.IsLit;
+            _drainBeam.enabled = draining;
+            if (draining)
+            {
+                float baseW = _isAlphaMoth ? 0.16f : 0.08f;
+                float w = baseW + 0.04f * Mathf.Sin(Time.time * 16f);
+                _drainBeam.startWidth = w;
+                _drainBeam.endWidth = w * 1.6f;
+                _drainBeam.SetPosition(0, transform.position + new Vector3(0f, 0.35f, 0f));
+                _drainBeam.SetPosition(1, _targetLantern.transform.position + new Vector3(0f, 0.55f, 0f));
+            }
         }
 
         private void FixedUpdate()
@@ -113,8 +174,9 @@ namespace MoonpetalValley.Combat
             }
             else if (_state == MothState.Seeking && _targetLantern != null)
             {
-                float speed = enemyData != null ? enemyData.moveSpeed : 2.65f;
-                Vector2 targetPos = (Vector2)_targetLantern.transform.position + new Vector2(0f, 0.45f);
+                float speed = enemyData != null ? enemyData.moveSpeed : 2.95f;
+                if (_isAlphaMoth) speed *= 0.88f;
+                Vector2 targetPos = (Vector2)_targetLantern.transform.position + new Vector2(0f, -0.45f);
                 Vector2 dir = (targetPos - (Vector2)transform.position).normalized;
                 rb.linearVelocity = dir * speed;
                 if (spriteRenderer != null && Mathf.Abs(dir.x) > 0.05f) spriteRenderer.flipX = dir.x < 0f;
@@ -133,7 +195,8 @@ namespace MoonpetalValley.Combat
         private void ApplyStateTint()
         {
             if (spriteRenderer == null) return;
-            if (_state == MothState.Draining) spriteRenderer.color = new Color(0.92f, 0.72f, 1.0f, 1f);
+            if (_isAlphaMoth) spriteRenderer.color = new Color(1.0f, 0.55f, 0.92f, 1f);
+            else if (_state == MothState.Draining) spriteRenderer.color = new Color(0.92f, 0.65f, 1.0f, 1f);
             else if (_state == MothState.Stunned) spriteRenderer.color = new Color(1.0f, 0.96f, 0.55f, 1f);
             else spriteRenderer.color = Color.white;
         }
@@ -142,10 +205,10 @@ namespace MoonpetalValley.Combat
         {
             if (spriteRenderer == null) return;
             _hoverPhase += Time.deltaTime * (_state == MothState.Draining ? 12f : 7f);
-            spriteRenderer.transform.localPosition = new Vector3(0f, 0.35f + Mathf.Sin(_hoverPhase) * 0.10f, 0f);
+            spriteRenderer.transform.localPosition = new Vector3(0f, 0.35f + Mathf.Sin(_hoverPhase) * 0.12f, 0f);
             if (_state == MothState.Draining)
             {
-                float pulse = 1f + 0.10f * Mathf.Sin(Time.time * 14f);
+                float pulse = 1f + 0.12f * Mathf.Sin(Time.time * 14f);
                 spriteRenderer.transform.localScale = new Vector3(_baseVisualScale.x * pulse, _baseVisualScale.y * pulse, 1f);
             }
             else if (_state == MothState.HitStun)
@@ -179,7 +242,8 @@ namespace MoonpetalValley.Combat
         {
             if (spriteRenderer == null) return;
             spriteRenderer.sortingLayerName = "WorldObjects";
-            spriteRenderer.sortingOrder = Mathf.RoundToInt(-(transform.position.y - 0.25f) * 100f) + 12;
+            int yOrder = Mathf.RoundToInt(-(transform.position.y - 0.25f) * 100f) + 20;
+            spriteRenderer.sortingOrder = Mathf.Max(195, yOrder);
         }
 
         public void ApplyStun(float duration)
@@ -193,10 +257,9 @@ namespace MoonpetalValley.Combat
         public void TakePurifyDamage(int amount, Vector2 knockbackDir, float knockbackForce)
         {
             if (_isDefeated || _state == MothState.Dying) return;
-            int maxHP = enemyData != null ? enemyData.maxHP : 30;
             _currentHP = Mathf.Max(0, _currentHP - amount);
-            EnterState(MothState.HitStun, 0.24f);
-            _knockbackVelocity = knockbackDir.normalized * knockbackForce * 1.15f;
+            EnterState(MothState.HitStun, _isAlphaMoth ? 0.15f : 0.24f);
+            _knockbackVelocity = knockbackDir.normalized * knockbackForce * (_isAlphaMoth ? 0.55f : 1.15f);
             _flashTimer = 0.14f;
             if (spriteRenderer != null) spriteRenderer.color = new Color(0.75f, 1f, 1f, 1f);
 
@@ -208,7 +271,7 @@ namespace MoonpetalValley.Combat
             if (hpBarRoot != null) hpBarRoot.SetActive(true);
             if (hpBarFill != null)
             {
-                float ratio = Mathf.Clamp01((float)_currentHP / Mathf.Max(1, maxHP));
+                float ratio = Mathf.Clamp01((float)_currentHP / Mathf.Max(1, _maxHP));
                 hpBarFill.localScale = new Vector3(_hpBarBaseScale.x * ratio, _hpBarBaseScale.y, 1f);
             }
             if (_currentHP <= 0) Die();
@@ -219,12 +282,14 @@ namespace MoonpetalValley.Combat
         private void Die()
         {
             _isDefeated = true;
+            if (_drainBeam != null) _drainBeam.enabled = false;
             EnterState(MothState.Dying, 0.35f);
             if (rb != null) rb.linearVelocity = Vector2.zero;
             if (hpBarRoot != null) hpBarRoot.SetActive(false);
             if (groundShadow != null) groundShadow.SetActive(false);
             var cols = GetComponentsInChildren<Collider2D>();
             for (int i = 0; i < cols.Length; i++) cols[i].enabled = false;
+            InstantRecoveryOrb.TrySpawnRandomDrop(transform.position, _isAlphaMoth ? 1.0f : 0.55f, _isAlphaMoth);
             GameEventBus.RaiseEnemyDefeated(enemyData != null ? enemyData.enemyID : "enemy_lantern_moth");
             if (_relayManager != null) _relayManager.NotifyMothDefeated(this);
         }

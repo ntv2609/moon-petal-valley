@@ -15,25 +15,25 @@ MonoBehaviour:
   dialogueID: dlg_ch2_mara_intro
   lines:
   - speakerNameKey: "B\xE0 Mara"
-    textKey: "Ch\xE1u sang \u0111\u01B0\u1EE3c b\u1EDD T\xE2y b\u1EB1ng ph\xE0 g\u1ED7 \xE0? Gi\u1ECFi \u0111\u1EA5y, d\xF2ng n\u01B0\u1EDBc h\xF4m nay ch\u1EA3y xi\u1EBFt l\u1EAFm."
+    textKey: "Ch\xE1u ch\xE8o \u0111\xF2 t\u1EEB B\u1EDD \u0110\xF4ng sang t\u1EADn \u0111\xE2y \xE0? L\u1EA1i nghe \xF4ng Kael k\u1EC3 x\u1EA5u t\xF4i g\xEC \u0111\xFAng kh\xF4ng?"
     portraitOverride: {fileID: 0}
     speakerId: mara
     requiredFlag: 
     blockedFlag: 
   - speakerNameKey: Wen
-    textKey: "Ch\xE1u l\xE0 Wen. B\xE0 Mara, nghe n\xF3i c\xE2y c\u1EA7u t\u1EEBng n\u1ED1i hai b\u1EDD t\u1EEB l\xE2u l\u1EAFm r\u1ED3i?"
+    textKey: "Kh\xF4ng \u0111\xE2u b\xE0 Mara, ch\xE1u ch\u1EC9 mu\u1ED1n hi\u1EC3u chuy\u1EC7n g\xEC \u0111\xE3 x\u1EA3y ra v\u1EDBi c\xE2y c\u1EA7u th\xF4i \u1EA1."
     portraitOverride: {fileID: 0}
     speakerId: wen
     requiredFlag: 
     blockedFlag: 
   - speakerNameKey: "B\xE0 Mara"
-    textKey: "H\u1ED3i tr\u1EBB t\xF4i v\u1EDBi \xF4ng Kael \u0111\xF3ng n\xF3 b\u1EB1ng g\u1ED7 lim. \u0110\xEAm b\xE3o n\u0103m \u1EA5y \u0111\xE8n b\xE3o t\u1EAFt ng\xFAm, \xF4ng \u1EA5y quay l\u01B0ng b\u1ECF m\u1EB7c b\u1EBFn thuy\u1EC1n c\u1EE7a t\xF4i..."
+    textKey: "\u0110\xEAm b\xE3o 3 n\u0103m tr\u01B0\u1EDBc, n\u01B0\u1EDBc d\xE2ng ngang b\u1EBFn. \u0110\xE8n b\xE3o t\u1EAFt ng\xFAm m\xE0 \xF4ng \u1EA5y quay l\u01B0ng c\u1EAFt d\xE2y c\u1EA7u, b\u1ECF m\u1EB7c b\u1EDD T\xE2y t\xF4i..."
     portraitOverride: {fileID: 0}
     speakerId: mara
     requiredFlag: 
     blockedFlag: 
   - speakerNameKey: "B\xE0 Mara"
-    textKey: "Th\xF4i, chuy\u1EC7n c\u0169 r\u1ED3i. Ch\xE1u \u0111\u1EEBng \u0111i s\xE2u v\xE0o \u0111\u1EA7m l\u1EA7y ph\xEDa T\xE2y B\u1EAFc, B\xF2 Gai \u1EDF \u0111\xF3 hung d\u1EEF l\u1EAFm."
+    textKey: "C\xF2n l\u1ED1i l\xEAn \u0110\u1EA7m L\u1EA7y ph\xEDa B\u1EAFc kia s\u01B0\u01A1ng m\xF9 d\xE0y \u0111\u1EB7c l\u1EAFm, ch\xE1u tuy\u1EC7t \u0111\u1ED1i \u0111\u1EEBng b\xE9n m\u1EA3ng v\xE0o. T\u1ED1i xu\u1ED1ng c\u1EE9 xem quanh m\u1ED1 c\u1EA7u T\xE2y r\u1ED3i t\u1EF1 hi\u1EC3u."
     portraitOverride: {fileID: 0}
     speakerId: mara
     requiredFlag: 
@@ -41,7 +41,7 @@ MonoBehaviour:
   choices: []
   setsStoryFlagOnFinish: flag_ch2_met_mara
   givesItemOnFinish: {fileID: 0}
-  givesItemAmount: 1
+  givesItemAmount: 0
   extraRewards: []
   consumesRequiredItem: {fileID: 0}
   consumesAmount: 0

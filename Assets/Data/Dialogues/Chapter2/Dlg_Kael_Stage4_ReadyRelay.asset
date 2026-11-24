@@ -15,19 +15,19 @@ MonoBehaviour:
   dialogueID: dlg_kael_s4_ready_relay
   lines:
   - speakerNameKey: "\xD4ng Kael"
-    textKey: "H\xF3a ra \u0111\xEAm b\xE3o n\u0103m \u0111\xF3... t\xF4i v\xE0 b\xE0 \u1EA5y \u0111\u1EC1u s\u1EE3 \u0111\u1ED1i ph\u01B0\u01A1ng g\xE1nh t\u1ED9i n\xEAn m\u1EDBi im l\u1EB7ng su\u1ED1t ba m\u01B0\u01A1i n\u0103m."
+    textKey: "H\xF3a ra \u0111\xEAm b\xE3o 3 n\u0103m tr\u01B0\u1EDBc... t\xF4i v\xE0 b\xE0 \u1EA5y \u0111\u1EC1u s\u1EE3 \u0111\u1ED1i ph\u01B0\u01A1ng g\xE1nh t\u1ED9i n\xEAn m\u1EDBi im l\u1EB7ng t\u1EDBi t\u1EADn h\xF4m nay."
     portraitOverride: {fileID: 0}
     speakerId: kael
     requiredFlag: 
     blockedFlag: 
   - speakerNameKey: "\xD4ng Kael"
-    textKey: "\u0110\u1EE7 r\u1ED3i. T\u1ED1i nay l\xFAc 18:30, ch\xE1u ra \u0111\u1EA7u c\u1EA7u B\u1EDD \u0110\xF4ng nh\xE9 Wen. T\xF4i \u0111\xE3 chu\u1EA9n b\u1ECB b\xFAa v\xE0 v\xE1n lim, ta c\xF9ng b\xE0 Mara \u0111\xF3ng l\u1EA1i c\xE2y c\u1EA7u n\xE0y trong m\u1ED9t \u0111\xEAm!"
+    textKey: "\u0110\u1EE7 r\u1ED3i! T\u1ED1i nay l\xFAc 18:30, ch\xE1u ra \u0111\u1EA7u c\u1EA7u B\u1EDD \u0110\xF4ng g\u1ECDi t\xF4i nh\xE9 Wen. T\xF4i mang b\xFAa v\xE0 v\xE1n lim, ta c\xF9ng b\xE0 Mara n\u1ED1i l\u1EA1i c\xE2y c\u1EA7u trong m\u1ED9t \u0111\xEAm!"
     portraitOverride: {fileID: 0}
     speakerId: kael
     requiredFlag: 
     blockedFlag: 
   choices: []
-  setsStoryFlagOnFinish: 
+  setsStoryFlagOnFinish: flag_ch2_relay_agreed
   givesItemOnFinish: {fileID: 0}
   givesItemAmount: 0
   extraRewards: []

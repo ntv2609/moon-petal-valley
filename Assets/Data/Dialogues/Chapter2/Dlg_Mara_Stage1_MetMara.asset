@@ -15,13 +15,7 @@ MonoBehaviour:
   dialogueID: dlg_mara_s1_met_mara
   lines:
   - speakerNameKey: "B\xE0 Mara"
-    textKey: "Ch\xE1u ch\xE8o \u0111\xF2 sang t\u1EADn \u0111\xE2y ch\u1EC9 \u0111\u1EC3 h\u1ECFi chuy\u1EC7n c\xE2y c\u1EA7u th\xF4i \xE0? \u0110\u1EEBng nghe l\u1EDDi m\u1ED9t ph\xEDa t\u1EEB \xF4ng Kael."
-    portraitOverride: {fileID: 0}
-    speakerId: mara
-    requiredFlag: 
-    blockedFlag: 
-  - speakerNameKey: "B\xE0 Mara"
-    textKey: "\u0110\u1EE3i \u0111\u1EBFn 18:30 t\u1ED1i s\u01B0\u01A1ng xu\u1ED1ng, ch\xE1u c\u1EE9 \u0111i d\u1ECDc hai b\u1EDD s\xF4ng quan s\xE1t d\u1EA5u v\u1EBFt r\u1ED3i t\u1EF1 r\xFAt ra c\xE2u tr\u1EA3 l\u1EDDi."
+    textKey: "Ch\xE1u \u0111\xE3 sang t\u1EDBi B\u1EDD T\xE2y th\xEC c\u1EE9 \u0111\u1EE3i \u0111\u1EBFn 18:30 t\u1ED1i, ra g\u1EA7n m\u1ED1 c\u1EA7u T\xE2y quan s\xE1t d\u1EA5u v\u1EBFt r\u1ED3i t\u1EF1 r\xFAt ra c\xE2u tr\u1EA3 l\u1EDDi."
     portraitOverride: {fileID: 0}
     speakerId: mara
     requiredFlag: 

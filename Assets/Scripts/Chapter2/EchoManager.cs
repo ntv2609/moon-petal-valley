@@ -99,13 +99,15 @@ namespace MoonpetalValley.Chapter2
         private void SpawnGhosts(EchoData data, Vector3 anchor)
         {
             ClearGhosts();
-            if (data.showKaelGhost && kaelGhostPrefab != null)
+            GameObject prefabA = data.customGhostAPrefab != null ? data.customGhostAPrefab : kaelGhostPrefab; // Step50
+            GameObject prefabB = data.customGhostBPrefab != null ? data.customGhostBPrefab : maraGhostPrefab;
+            if (data.showKaelGhost && prefabA != null)
             {
-                _spawnedKael = Instantiate(kaelGhostPrefab, anchor + new Vector3(-0.75f, 0.35f, 0f), Quaternion.identity);
+                _spawnedKael = Instantiate(prefabA, anchor + new Vector3(-0.75f, 0.35f, 0f), Quaternion.identity);
             }
-            if (data.showMaraGhost && maraGhostPrefab != null)
+            if (data.showMaraGhost && prefabB != null)
             {
-                _spawnedMara = Instantiate(maraGhostPrefab, anchor + new Vector3(0.75f, 0.35f, 0f), Quaternion.identity);
+                _spawnedMara = Instantiate(prefabB, anchor + new Vector3(0.75f, 0.35f, 0f), Quaternion.identity);
             }
         }
 

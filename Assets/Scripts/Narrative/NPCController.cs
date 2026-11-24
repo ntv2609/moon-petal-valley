@@ -213,10 +213,12 @@ namespace MoonpetalValley.Narrative
         private string PickAmbientWorldBark()
         {
             string id = npcData.npcID ?? "";
-            bool isNight = GameRoot.Instance?.Time != null && GameRoot.Instance.Time.IsNight;
-            bool bloomed = GameRoot.Instance?.Flags != null && GameRoot.Instance.Flags.HasFlag("flag_nv1_completed");
-            bool ch2Done = GameRoot.Instance?.Flags != null && GameRoot.Instance.Flags.HasFlag("flag_ch2_completed");
-            bool echo2Done = GameRoot.Instance?.Flags != null && GameRoot.Instance.Flags.HasFlag("flag_ch2_echo2_pier_done");
+            bool isNight = GameRoot.Instance != null && GameRoot.Instance.Time != null && GameRoot.Instance.Time.IsNight;
+            StoryFlagManager flags = GameRoot.Instance != null ? GameRoot.Instance.Flags : null;
+            bool bloomed = flags != null && flags.HasFlag("flag_nv1_completed");
+            bool ch2Done = flags != null && flags.HasFlag("flag_ch2_completed");
+            bool echo2Done = flags != null && flags.HasFlag("flag_ch2_echo2_pier_done");
+            bool swampUnlocked = flags != null && flags.HasFlag("flag_ch2_swamp_unlocked");
 
             if (ch2Done)
             {
@@ -228,11 +230,19 @@ namespace MoonpetalValley.Narrative
                 if (id == "npc_toby") return "Anh Wen ơi, mai cho em chạy qua cầu bờ sông xem nhé!";
             }
             if (id == "npc_kael")
-                return echo2Done ? "Tối nay 18:30 ta cùng bà Mara đóng lại cây cầu!" : (isNight ? "Chậc... thanh dầm này vẫn hơi mục..." : "Đứng xa mố cầu ra, gỗ mục rồi.");
+            {
+                if (echo2Done) return "Tối nay 18:30 ta cùng bà Mara đóng lại cây cầu!";
+                if (swampUnlocked) return "Ngọn đèn dầu đã sáng, cẩn thận đám quái đầm lầy nhé cháu.";
+                return isNight ? "Chậc... thanh dầm này vẫn hơi mục..." : "Đứng xa mố cầu ra, gỗ mục rồi.";
+            }
             if (id == "npc_mara")
-                return echo2Done ? "Tối nay 18:30 tôi sẽ mang đinh ra bờ Tây." : (isNight ? "Gió sông lạnh quá... lại nhớ đêm bão năm ấy." : "Người bên kia sông gửi cháu sang à?");
+            {
+                if (echo2Done) return "Tối nay 18:30 tôi sẽ mang đinh ra bờ Tây.";
+                if (swampUnlocked) return "Lối lên Đầm Lầy Bờ Tây đã tan sương rồi, cháu cẩn thận.";
+                return isNight ? "Gió sông lạnh quá... lại nhớ đêm bão 3 năm trước." : "Người bên kia sông gửi cháu sang à?";
+            }
             if (id == "npc_otis_ch2")
-                return echo2Done ? "Sự thật sáng tỏ rồi, chuẩn bị cho Đêm Chuyền Đèn nhé!" : "Cuốn sổ cũ này ghi đủ chuyện đêm bão năm xưa đấy.";
+                return echo2Done ? "Sự thật sáng tỏ rồi, chuẩn bị cho Đêm Chuyền Đèn nhé!" : "Cuốn sổ cũ này ghi đủ chuyện đêm bão 3 năm trước đấy.";
 
             if (bloomed)
             {
@@ -329,6 +339,19 @@ namespace MoonpetalValley.Narrative
             _frameIndex = 0;
             _animTimer = 0f;
 
+            var flags = GameRoot.Instance.Flags;
+
+            // [Step Ch2-R1] Ngăn nhảy cóc Stage 0 -> Stage 1 trước khi Wen ra kiểm tra cầu gãy
+            if (npcData.npcID == "npc_kael" && flags != null && !flags.HasFlag(Chapter2StateManager.FlagSoloBridgeFailed))
+            {
+                GameRoot.Instance.Dialogue.StartQuickLines(new[]
+                {
+                    ("Ông Kael", "Này cô bé mới tới! Ra phía Tây xem cây cầu gãy kia trước đi đã, rồi quay lại xưởng nói chuyện với tôi."),
+                    ("Tinh Linh Lumi", "Mình ra đầu cầu phía Tây kiểm tra thử xem cầu hư hại tới mức nào nhé Wen!")
+                });
+                return;
+            }
+
             DialogueData conditional = ResolveConditionalOnly();
             if (conditional != null)
             {
@@ -336,7 +359,6 @@ namespace MoonpetalValley.Narrative
                 return;
             }
 
-            var flags = GameRoot.Instance.Flags;
             if (npcData.npcID == "npc_bach" && flags != null &&
                 flags.HasFlag("flag_otis_mailbox_fixed") && !flags.HasFlag("flag_bach_letters_read") &&
                 (!flags.HasFlag("flag_hana_bread_done") || !flags.HasFlag("flag_toby_cat_saved")))
@@ -374,7 +396,7 @@ namespace MoonpetalValley.Narrative
                     GameRoot.Instance.Dialogue.StartQuickLines(new[]
                     {
                         ("Ông Bach", "Ta nghe bác Otis kể rồi. Cháu nối lại được cả cây cầu bờ sông lẫn tình nghĩa của hai lão già cứng đầu đó à?"),
-                        ("Wen", "Hai bác ấy tự tay đóng tấm ván cuối cùng đó ạ, cháu chỉ giữ đèn sáng thôi."), 
+                        ("Wen", "Hai bác ấy tự tay đóng tấm ván cuối cùng đó ạ, cháu chỉ giữ đèn sáng thôi."),
                         ("Ông Bach", "Hừm... giống hệt bà cháu hồi xưa. Nghỉ ngơi đi rồi hẵng tính chuyện lên phía Bắc.")
                     });
                     return true;
@@ -471,6 +493,12 @@ namespace MoonpetalValley.Narrative
                     if (entry.dialogue.dialogueID == "dlg_bach_read_letters")
                     {
                         if (!flags.HasFlag("flag_hana_bread_done") || !flags.HasFlag("flag_toby_cat_saved") || !flags.HasFlag("flag_otis_mailbox_fixed"))
+                            continue;
+                    }
+
+                    if (entry.dialogue.dialogueID == "dlg_mara_s3_told_truth")
+                    {
+                        if (!flags.HasFlag(Chapter2StateManager.FlagKaelGaveLantern) || !flags.HasFlag("flag_ch2_choice_tell_truth"))
                             continue;
                     }
 

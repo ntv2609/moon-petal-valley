@@ -16,7 +16,7 @@ MonoBehaviour:
   isStinger: 0
   context: 10
   stingerType: 0
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 3873fc163e730374681d32aa179070e8, type: 3}
   priority: 100
   playMode: 2
   baseVolume: 0.85
@@ -26,5 +26,5 @@ MonoBehaviour:
   ambientRestMinSeconds: 0
   ambientRestMaxSeconds: 0
   maxPlaySeconds: 0
-  isDormant: 1
+  isDormant: 0
   notes: Ch3 Night Market

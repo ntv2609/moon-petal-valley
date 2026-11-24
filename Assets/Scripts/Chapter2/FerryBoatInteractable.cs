@@ -8,7 +8,7 @@ namespace MoonpetalValley.Chapter2
 {
     public class FerryBoatInteractable : MonoBehaviour, IInteractable
     {
-        [SerializeField] private string requiredFlag = "flag_ch2_solo_bridge_failed";
+        [SerializeField] private string requiredFlag = "flag_ch2_inv_night1_done";
         [SerializeField] private Vector2 destinationPosition;
         [SerializeField] private string promptLabel = "Chèo Đò Sang Bờ Tây";
         [SerializeField] private string arrivalToast = "Bạn chèo chiếc đò gỗ sang bờ bên kia.";
@@ -23,9 +23,14 @@ namespace MoonpetalValley.Chapter2
             get
             {
                 if (_isCrossing || !gameObject.activeInHierarchy) return false;
-                if (Chapter2StateManager.Instance != null && Chapter2StateManager.Instance.IsRelayEventActive) return false;
+                if (Chapter2StateManager.Instance != null)
+                {
+                    if (Chapter2StateManager.Instance.IsRelayEventActive) return false;
+                    return Chapter2StateManager.Instance.IsFerryUnlocked();
+                }
                 if (string.IsNullOrEmpty(requiredFlag)) return true;
-                return GameRoot.Instance?.Flags != null && GameRoot.Instance.Flags.HasFlag(requiredFlag);
+                StoryFlagManager flags = GameRoot.Instance != null ? GameRoot.Instance.Flags : null;
+                return flags != null && flags.HasFlag(requiredFlag);
             }
         }
 
@@ -40,7 +45,7 @@ namespace MoonpetalValley.Chapter2
 
         public void Interact()
         {
-            if (_isCrossing) return;
+            if (_isCrossing || !CanInteract) return;
             var player = UnityEngine.Object.FindAnyObjectByType<PlayerController2D>();
             if (player == null) return;
             StartCoroutine(CrossRiverSequence(player));
@@ -49,8 +54,10 @@ namespace MoonpetalValley.Chapter2
         private IEnumerator CrossRiverSequence(PlayerController2D player)
         {
             _isCrossing = true;
-            GameRoot.Instance?.State?.SetState(GameState.Cutscene);
-            GameRoot.Instance?.Audio?.PlayUIClick();
+            if (GameRoot.Instance != null && GameRoot.Instance.State != null)
+                GameRoot.Instance.State.SetState(GameState.Cutscene);
+            if (GameRoot.Instance != null && GameRoot.Instance.Audio != null)
+                GameRoot.Instance.Audio.PlayUIClick();
 
             var cam = UnityEngine.Object.FindAnyObjectByType<CameraFollow2D>();
             var wenAnim = player.GetComponent<WenSpriteAnimator>();
@@ -61,7 +68,6 @@ namespace MoonpetalValley.Chapter2
             float dirX = destinationPosition.x < boatOrigin.x ? -1f : 1f;
             Vector2 sailDir = new Vector2(dirX, 0f);
 
-            // 1. Giữ camera cố định tại bờ xuất phát để thấy đò chở Wen trôi khuất màn hình
             Camera mainCam = cam != null ? cam.GetComponent<Camera>() : Camera.main;
             float halfViewWidth = 10.5f;
             if (mainCam != null && mainCam.orthographic)
@@ -72,7 +78,6 @@ namespace MoonpetalValley.Chapter2
             float camCenterX = mainCam != null ? mainCam.transform.position.x : boatOrigin.x;
             float offscreenTargetX = camCenterX + dirX * (halfViewWidth + 2.2f);
 
-            // 2. Wen ngồi lên đò & diễn hoạt chèo đò (Chore anim)
             if (wenAnim != null) wenAnim.BeginCutsceneChore(sailDir);
 
             float t = 0f;
@@ -90,10 +95,8 @@ namespace MoonpetalValley.Chapter2
                 yield return null;
             }
 
-            // 3. Mờ màn hình chuyển sang bờ bên kia
             yield return FadeScreen(0f, 1f, 0.32f);
 
-            // Đưa đò bờ xuất phát về lại vị trí neo cũ, chuyển Wen sang bờ đích
             transform.position = boatOrigin;
             if (wenAnim != null) wenAnim.EndCutsceneOverride();
             player.TeleportTo(destinationPosition);
@@ -103,7 +106,8 @@ namespace MoonpetalValley.Chapter2
             yield return new WaitForSecondsRealtime(0.15f);
             yield return FadeScreen(1f, 0f, 0.35f);
 
-            GameRoot.Instance?.State?.ReturnToGameplay();
+            if (GameRoot.Instance != null && GameRoot.Instance.State != null)
+                GameRoot.Instance.State.ReturnToGameplay();
             GameEventBus.RaiseToastRequested(arrivalToast);
             _isCrossing = false;
         }

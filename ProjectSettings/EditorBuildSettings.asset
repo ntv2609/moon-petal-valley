@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Riverbank_Chapter2.unity
     guid: e35157ae26a5f844fa34b12ea579b7d3
+  - enabled: 1
+    path: Assets/Scenes/WestSwamp_Chapter2.unity
+    guid: 00af68b4e9be64149a0e8c0b5629e49d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

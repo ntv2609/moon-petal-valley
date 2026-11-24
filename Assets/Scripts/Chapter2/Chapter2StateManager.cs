@@ -15,12 +15,43 @@ namespace MoonpetalValley.Chapter2
         Repaired = 2
     }
 
+    public enum Chapter2Stage
+    {
+        Arrival = 0,
+        MeetKael = 1,
+        EastClueNight = 2,
+        CrossToMaraAndWestClue = 3,
+        OtisAndStormLantern = 4,
+        WestSwampAndEcho1 = 5,
+        BrokenPierEcho2 = 6,
+        LanternRelayNight = 7,
+        Completed = 8
+    }
+
     public class Chapter2StateManager : MonoBehaviour, ISaveable, IResettable
     {
         public const string MainVillageSceneName = "MoonpetalValley_MVP";
         public const string Chapter2SceneName = "Riverbank_Chapter2";
+        public const string WestSwampSceneName = "WestSwamp_Chapter2";
+
+        public const string FlagSoloBridgeFailed = "flag_ch2_solo_bridge_failed";
+        public const string FlagMetKael = "flag_ch2_met_kael";
+        public const string FlagClue1Done = "flag_ch2_inv_night1_done";
+        public const string FlagMetMara = "flag_ch2_met_mara";
+        public const string FlagClue2Done = "flag_ch2_inv_night2_done";
         public const string FlagOtisMovedToCh2 = "flag_ch2_otis_arrived";
         public const string FlagClue3Done = "flag_ch2_inv_night3_done";
+        public const string FlagKaelGaveLantern = "flag_ch2_kael_gave_lantern";
+        public const string FlagSwampUnlocked = "flag_ch2_swamp_unlocked";
+        public const string FlagSwampCleared = "flag_ch2_swamp_cleared";
+        public const string FlagEcho1Done = "flag_ch2_echo1_lantern_done";
+        public const string FlagEcho2Done = "flag_ch2_echo2_pier_done";
+        public const string FlagRelayAgreed = "flag_ch2_relay_agreed";
+        public const string FlagRelayDone = "flag_ch2_relay_done";
+        public const string FlagCh2Completed = "flag_ch2_completed";
+
+        public const string Echo1Id = "echo_ch2_storm_lantern";
+        public const string Echo2Id = "echo_ch2_broken_pier";
 
         public static Chapter2StateManager Instance { get; private set; }
 
@@ -30,10 +61,14 @@ namespace MoonpetalValley.Chapter2
         public string PendingSceneSpawnId { get; set; } = "";
 
         private readonly HashSet<string> _completedEchoes = new HashSet<string>();
+        private Chapter2Stage _lastKnownStage = Chapter2Stage.Arrival;
 
         public event Action<RiverBridgeState> OnBridgeStateChanged;
+        public event Action<Chapter2Stage> OnStageChanged;
 
         public string SaveKey => "chapter2_state";
+
+        public Chapter2Stage CurrentStage => ComputeStageFromFlags();
 
         [Serializable]
         private class Chapter2SaveData
@@ -82,11 +117,71 @@ namespace MoonpetalValley.Chapter2
             if (Instance == this) Instance = null;
         }
 
-        public bool HasOtisMovedToChapter2()
+        private static bool HasFlag(string flagId)
         {
             StoryFlagManager flags = GameRoot.Instance != null ? GameRoot.Instance.Flags : null;
-            if (flags == null) return false;
-            return flags.HasFlag(FlagOtisMovedToCh2) || flags.HasFlag(FlagClue3Done);
+            return flags != null && flags.HasFlag(flagId);
+        }
+
+        public Chapter2Stage ComputeStageFromFlags()
+        {
+            if (HasFlag(FlagCh2Completed)) return Chapter2Stage.Completed;
+            if (HasFlag(FlagEcho2Done)) return Chapter2Stage.LanternRelayNight;
+            if (HasFlag(FlagEcho1Done)) return Chapter2Stage.BrokenPierEcho2;
+            if (HasFlag(FlagSwampUnlocked) || HasFlag(FlagSwampCleared)) return Chapter2Stage.WestSwampAndEcho1;
+            if (HasFlag(FlagClue2Done)) return Chapter2Stage.OtisAndStormLantern;
+            if (HasFlag(FlagClue1Done)) return Chapter2Stage.CrossToMaraAndWestClue;
+            if (HasFlag(FlagMetKael)) return Chapter2Stage.EastClueNight;
+            if (HasFlag(FlagSoloBridgeFailed)) return Chapter2Stage.MeetKael;
+            return Chapter2Stage.Arrival;
+        }
+
+        public bool IsFerryUnlocked()
+        {
+            return HasFlag(FlagClue1Done) || HasFlag(FlagCh2Completed);
+        }
+
+        public bool IsWaitBenchUnlocked()
+        {
+            return HasFlag(FlagMetKael) || HasFlag(FlagCh2Completed);
+        }
+
+        public bool IsClueUnlocked(int clueStage)
+        {
+            if (clueStage == 1)
+                return HasFlag(FlagMetKael) && !HasFlag(FlagClue1Done);
+            if (clueStage == 2)
+                return HasFlag(FlagClue1Done) && HasFlag(FlagMetMara) && !HasFlag(FlagClue2Done);
+            if (clueStage == 3)
+                return HasFlag(FlagClue2Done) && !HasFlag(FlagClue3Done);
+            return false;
+        }
+
+        public bool IsSwampUnlocked()
+        {
+            return HasFlag(FlagSwampUnlocked) || HasFlag(FlagSwampCleared) ||
+                   HasFlag(FlagEcho1Done) || HasFlag(FlagCh2Completed);
+        }
+
+        public bool IsEchoUnlocked(string echoId)
+        {
+            if (string.IsNullOrEmpty(echoId)) return true;
+            if (echoId == Echo1Id)
+                return HasFlag(FlagSwampCleared) || HasFlag(FlagEcho1Done) || HasFlag(FlagCh2Completed);
+            if (echoId == Echo2Id)
+                return HasFlag(FlagEcho1Done) || HasFlag(FlagEcho2Done) || HasFlag(FlagCh2Completed);
+            return true;
+        }
+
+        public bool IsRelayStartUnlocked()
+        {
+            if (HasFlag(FlagRelayDone) || HasFlag(FlagCh2Completed)) return false;
+            return HasFlag(FlagEcho2Done) && HasFlag(FlagRelayAgreed);
+        }
+
+        public bool HasOtisMovedToChapter2()
+        {
+            return HasFlag(FlagOtisMovedToCh2) || HasFlag(FlagClue3Done);
         }
 
         public void MarkOtisMovedToChapter2()
@@ -103,6 +198,7 @@ namespace MoonpetalValley.Chapter2
         {
             string activeScene = SceneManager.GetActiveScene().name;
             bool otisMoved = HasOtisMovedToChapter2();
+            bool ch2Done = HasFlag(FlagCh2Completed);
 
             if (activeScene != MainVillageSceneName && activeScene != Chapter2SceneName)
                 return;
@@ -120,7 +216,7 @@ namespace MoonpetalValley.Chapter2
                 {
                     if (objName == "NPC_Otis" || npcId == "npc_otis")
                     {
-                        bool shouldShow = !otisMoved;
+                        bool shouldShow = !otisMoved || ch2Done;
                         if (npc.gameObject.activeSelf != shouldShow)
                         {
                             npc.gameObject.SetActive(shouldShow);
@@ -131,7 +227,7 @@ namespace MoonpetalValley.Chapter2
                 {
                     if (objName == "NPC_Otis_Ch2" || npcId == "npc_otis_ch2")
                     {
-                        bool shouldShow = otisMoved;
+                        bool shouldShow = otisMoved && !ch2Done;
                         if (npc.gameObject.activeSelf != shouldShow)
                         {
                             npc.gameObject.SetActive(shouldShow);
@@ -171,25 +267,41 @@ namespace MoonpetalValley.Chapter2
 
         private void HandleFlagChanged(string flagId, bool value)
         {
-            if (flagId == FlagOtisMovedToCh2 || flagId == FlagClue3Done)
+            if (flagId == FlagOtisMovedToCh2 || flagId == FlagClue3Done || flagId == FlagCh2Completed)
             {
                 SyncOtisPresenceInActiveScene();
             }
 
+            if (!string.IsNullOrEmpty(flagId) && flagId.StartsWith("flag_ch2_"))
+            {
+                NotifyStageIfChanged();
+            }
+
             if (!value) return;
-            if (flagId == "flag_ch2_completed")
+            if (flagId == FlagCh2Completed)
             {
                 SetBridgeState(RiverBridgeState.Repaired);
             }
         }
 
+        private void NotifyStageIfChanged()
+        {
+            Chapter2Stage current = ComputeStageFromFlags();
+            if (current != _lastKnownStage)
+            {
+                _lastKnownStage = current;
+                OnStageChanged?.Invoke(current);
+            }
+        }
+
         private void SyncFromFlags()
         {
-            StoryFlagManager flags = GameRoot.Instance != null ? GameRoot.Instance.Flags : null;
-            if (flags != null && flags.HasFlag("flag_ch2_completed"))
+            if (HasFlag(FlagCh2Completed))
             {
                 SetBridgeState(RiverBridgeState.Repaired);
             }
+            _lastKnownStage = ComputeStageFromFlags();
+            OnStageChanged?.Invoke(_lastKnownStage);
             SyncOtisPresenceInActiveScene();
         }
 
@@ -214,8 +326,7 @@ namespace MoonpetalValley.Chapter2
             }
             else if (!active && BridgeState == RiverBridgeState.RelayInProgress)
             {
-                bool done = GameRoot.Instance != null && GameRoot.Instance.Flags != null &&
-                            GameRoot.Instance.Flags.HasFlag("flag_ch2_completed");
+                bool done = HasFlag(FlagCh2Completed);
                 SetBridgeState(done ? RiverBridgeState.Repaired : RiverBridgeState.Broken);
             }
         }
@@ -253,6 +364,7 @@ namespace MoonpetalValley.Chapter2
             {
                 BridgeState = RiverBridgeState.Broken;
                 InvestigationStage = 0;
+                _lastKnownStage = ComputeStageFromFlags();
                 SyncOtisPresenceInActiveScene();
                 return;
             }
@@ -270,7 +382,9 @@ namespace MoonpetalValley.Chapter2
                     }
                 }
             }
+            _lastKnownStage = ComputeStageFromFlags();
             OnBridgeStateChanged?.Invoke(BridgeState);
+            OnStageChanged?.Invoke(_lastKnownStage);
             SyncOtisPresenceInActiveScene();
         }
 
@@ -281,7 +395,9 @@ namespace MoonpetalValley.Chapter2
             InvestigationStage = 0;
             IsRelayEventActive = false;
             PendingSceneSpawnId = "";
+            _lastKnownStage = Chapter2Stage.Arrival;
             OnBridgeStateChanged?.Invoke(BridgeState);
+            OnStageChanged?.Invoke(_lastKnownStage);
             SyncOtisPresenceInActiveScene();
         }
     }

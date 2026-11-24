@@ -17,6 +17,7 @@ namespace MoonpetalValley.Audio
         private const string OWNER_MIST = "probe_mist";
         private const string OWNER_COMBAT = "probe_combat";
         private const string OWNER_RELAY = "probe_relay";
+        private const string OWNER_MARKET = "probe_market";
         private const string OWNER_CUTSCENE = "probe_cutscene";
 
         private MusicManager _manager;
@@ -105,7 +106,7 @@ namespace MoonpetalValley.Audio
             if (ContainsIgnoreCase(rules.titleSceneNames, CurrentSceneName))
             {
                 IsInMist = false; IsInCombat = false; IsCutsceneActive = false;
-                _manager.PopContext(OWNER_MIST); _manager.PopContext(OWNER_COMBAT); _manager.PopContext(OWNER_RELAY); _manager.PopContext(OWNER_CUTSCENE);
+                _manager.PopContext(OWNER_MIST); _manager.PopContext(OWNER_COMBAT); _manager.PopContext(OWNER_RELAY); _manager.PopContext(OWNER_MARKET); _manager.PopContext(OWNER_CUTSCENE);
                 _manager.ClearDucking("dialogue");
                 _manager.PushContext(OWNER_BASE, MusicContext.Title);
                 return;
@@ -135,6 +136,13 @@ namespace MoonpetalValley.Audio
                 _manager.PushContext(OWNER_RELAY, MusicContext.Set_LanternRelay);
             else
                 _manager.PopContext(OWNER_RELAY);
+
+            bool marketOn = MoonpetalValley.Chapter3.Chapter3StateManager.Instance != null &&
+                            MoonpetalValley.Chapter3.Chapter3StateManager.Instance.IsNightMarketMusicActive;
+            if (marketOn && _manager.Library != null && _manager.Library.GetTrackForContext(MusicContext.Set_NightMarket)?.clip != null)
+                _manager.PushContext(OWNER_MARKET, MusicContext.Set_NightMarket);
+            else
+                _manager.PopContext(OWNER_MARKET);
 
             if (_player == null) _player = FindAnyObjectByType<PlayerController2D>();
             if (_player == null)

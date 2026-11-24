@@ -14,11 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.EchoData
   echoID: echo_ch2_storm_lantern
   echoTitle: "Chi\u1EBFc \u0110\xE8n B\xE3o L\u1EC5 Trao H\u1EA1t \u0110\u1EA7u Ti\xEAn"
-  requiredFlag: flag_ch2_inv_night3_done
-  requiredItemId: item_storm_lantern_west
+  requiredFlag: flag_ch2_swamp_cleared
+  requiredItemId: item_storm_lantern_east
+  requiredSecondaryItemId: item_storm_lantern_west
   completedFlag: flag_ch2_echo1_lantern_done
   showKaelGhost: 1
   showMaraGhost: 1
+  customGhostAPrefab: {fileID: 0}
+  customGhostBPrefab: {fileID: 0}
   beats:
   - speakerName: "D\u01B0 \xC2m Kael (tr\u1EBB)"
     speakerId: kael

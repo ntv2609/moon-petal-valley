@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c597d33f149cdf04299a1085b446df21, type: 3}
+  m_Name: Dlg_Kael_Stage3B_WaitMaraOil
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.DialogueData
+  dialogueID: dlg_kael_s3b_wait_oil
+  lines:
+  - speakerNameKey: "\xD4ng Kael"
+    textKey: "Khung \u0110\u1ED3ng \u0110\xE8n B\xE3o trong tay ch\xE1u v\u1EABn ch\u01B0a c\xF3 d\u1EA7u \u0111\xE2u. Sang B\u1EDD T\xE2y nh\u1EDD b\xE0 Mara ch\xE2m ch\xFAt D\u1EA7u \u0110\xE8n B\xE3o r\u1ED3i m\u1EDBi v\xE0o \u0110\u1EA7m L\u1EA7y \u0111\u01B0\u1EE3c."
+    portraitOverride: {fileID: 0}
+    speakerId: kael
+    requiredFlag: 
+    blockedFlag: 
+  choices: []
+  setsStoryFlagOnFinish: 
+  givesItemOnFinish: {fileID: 0}
+  givesItemAmount: 0
+  extraRewards: []
+  consumesRequiredItem: {fileID: 0}
+  consumesAmount: 0
+  unlocksDiaryPage: {fileID: 0}
+  affinityNpcId: 
+  affinityBonusOnFinish: 0

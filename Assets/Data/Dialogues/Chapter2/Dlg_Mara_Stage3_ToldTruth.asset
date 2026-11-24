@@ -14,20 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.DialogueData
   dialogueID: dlg_mara_s3_told_truth
   lines:
+  - speakerNameKey: Wen
+    textKey: "B\xE0 Mara \u01A1i, \xF4ng Kael g\u1EEDi ch\xE1u Khung \u0110\u1ED3ng \u0110\xE8n B\xE3o. B\xE1c Otis k\u1EC3 \u0111\xEAm b\xE3o 3 n\u0103m tr\u01B0\u1EDBc \xF4ng \u1EA5y c\u1EAFt c\xE1p l\xE0 \u0111\u1EC3 c\u1EE9u b\u1EBFn nh\xE0 b\xE0!"
+    portraitOverride: {fileID: 0}
+    speakerId: wen
+    requiredFlag: 
+    blockedFlag: 
   - speakerNameKey: "B\xE0 Mara"
-    textKey: "Ch\xE1u n\xF3i th\u1EADt sao... \u0111\xEAm n\xE0o Kael c\u0169ng l\xE9n b\xE0o g\u1ED7 lim \u0111\u1EC3 gia c\u1ED1 l\u1EA1i ch\xE2n c\u1EA7u g\xE3y \xE0?"
+    textKey: "Khung \u0111\xE8n n\u0103m x\u01B0a... \xD4ng \u1EA5y v\u1EABn gi\u1EEF k\u1EF9 \u0111\u1EBFn v\u1EADy sao? \u0110\u1EC3 t\xF4i ch\xE2m ch\xFAt D\u1EA7u \u0110\xE8n B\xE3o v\xE0o cho ch\xE1u."
     portraitOverride: {fileID: 0}
     speakerId: mara
     requiredFlag: 
     blockedFlag: 
   - speakerNameKey: "B\xE0 Mara"
-    textKey: "H\u1EEBm, n\xF3i mi\u1EC7ng kh\xF4ng \u0111\u1EE7 \u0111\xE2u. N\u1EEDa chi\u1EBFc \u0111\xE8n b\xE3o c\u0169 b\u1ECB cu\u1ED1n v\xE0o \u0110\u1EA7m L\u1EA7y ph\xEDa B\u1EAFc B\u1EDD T\xE2y kia k\xECa. N\u1EBFu ch\xE1u l\u1EA5y \u0111\u01B0\u1EE3c n\xF3 v\u1EC1 soi l\u1EA1i chuy\u1EC7n c\u0169, t\xF4i s\u1EBD tin."
+    textKey: "\u0110\xE8n s\xE1ng r\u1ED3i \u0111\u1EA5y! Ng\u1ECDn l\u1EEDa n\xE0y \u0111\u1EE7 xua tan s\u01B0\u01A1ng m\xF9 ch\u1EB7n l\u1ED1i l\xEAn \u0110\u1EA7m L\u1EA7y ph\xEDa B\u1EAFc. Ch\xE1u v\xE0o \u0111\xF3 t\xECm Chao K\xEDnh v\u1EC1 soi l\u1EA1i chuy\u1EC7n c\u0169, t\xF4i s\u1EBD tin."
     portraitOverride: {fileID: 0}
     speakerId: mara
     requiredFlag: 
     blockedFlag: 
   choices: []
-  setsStoryFlagOnFinish: 
+  setsStoryFlagOnFinish: flag_ch2_swamp_unlocked
   givesItemOnFinish: {fileID: 0}
   givesItemAmount: 0
   extraRewards: []

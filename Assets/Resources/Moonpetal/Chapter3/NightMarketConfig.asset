@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f58d58244179743b0e42405ba7be8f, type: 3}
+  m_Name: NightMarketConfig
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Chapter3.NightMarketConfigSO
+  recipes:
+  - recipeId: rcp_seed_cake
+    outputItemId: item_ch3_seed_cake
+    displayName: "B\xE1nh H\u1EA1t M\u1EA7m B\xE0 Hana"
+    flavorText: "V\u1ECB b\xE1nh tu\u1ED5i th\u01A1 t\u1EEB l\xF2 g\u1EA1ch c\u0169."
+    staminaCost: 3
+    requiredStoryFlag: 
+    ingredients:
+    - itemId: item_dew_barley
+      displayName: "L\xFAa M\u1EA1ch S\u01B0\u01A1ng Mai"
+      amount: 2
+    - itemId: item_dew_sap
+      displayName: "Nh\u1EF1a S\u01B0\u01A1ng"
+      amount: 1
+  - recipeId: rcp_river_tea
+    outputItemId: item_ch3_river_tea
+    displayName: "Tr\xE0 C\xFAc S\xF4ng \u1EA4m"
+    flavorText: "H\u01B0\u01A1ng c\xFAc b\u1EDD s\xF4ng \u1EA5m l\xF2ng \u0111\xEAm ch\u1EE3."
+    staminaCost: 2
+    requiredStoryFlag: 
+    ingredients:
+    - itemId: item_river_daisy
+      displayName: "Hoa C\xFAc S\xF4ng"
+      amount: 2
+    - itemId: item_dew_sap
+      displayName: "Nh\u1EF1a S\u01B0\u01A1ng"
+      amount: 1
+  - recipeId: rcp_paper_fish
+    outputItemId: item_ch3_paper_fish
+    displayName: "C\xE1 Gi\u1EA5y Ph\xE1t S\xE1ng"
+    flavorText: "M\xF3n \u0111\u1ED3 ch\u01A1i ph\xE1t s\xE1ng Toby th\xEDch nh\u1EA5t."
+    staminaCost: 3
+    requiredStoryFlag: 
+    ingredients:
+    - itemId: item_branch_wood
+      displayName: "G\u1ED7 Nh\xE1nh"
+      amount: 2
+    - itemId: item_starlight_dust
+      displayName: "B\u1EE5i \xC1nh Sao"
+      amount: 1
+  - recipeId: rcp_wish_card
+    outputItemId: item_ch3_wish_card
+    displayName: "Thi\u1EC7p \u01AF\u1EDBc Nguy\u1EC7n"
+    flavorText: "G\u1EEDi \u0111i\u1EC1u \u01B0\u1EDBc l\xEAn d\xE2y \u0111\xE8n c\u1EA7u g\u1ED7."
+    staminaCost: 2
+    requiredStoryFlag: 
+    ingredients:
+    - itemId: item_branch_wood
+      displayName: "G\u1ED7 Nh\xE1nh"
+      amount: 1
+    - itemId: item_river_daisy
+      displayName: "Hoa C\xFAc S\xF4ng"
+      amount: 1
+  - recipeId: rcp_lantern_charm
+    outputItemId: item_ch3_lantern_charm
+    displayName: "B\xF9a \u0110\xE8n L\u1ED3ng Nh\u1ECF"
+    flavorText: "Ng\u1ECDn l\u1EEDa nh\u1ECF gi\u1EEF \u1EA5m b\xE0n tay m\xF9a s\u01B0\u01A1ng."
+    staminaCost: 4
+    requiredStoryFlag: 
+    ingredients:
+    - itemId: item_branch_wood
+      displayName: "G\u1ED7 Nh\xE1nh"
+      amount: 2
+    - itemId: item_dew_sap
+      displayName: "Nh\u1EF1a S\u01B0\u01A1ng"
+      amount: 1
+    - itemId: item_starlight_dust
+      displayName: "B\u1EE5i \xC1nh Sao"
+      amount: 1
+  keepsakes:
+  - keepsakeId: ks_mini_hoe
+    npcId: npc_bach
+    npcDisplayName: "\xD4ng Bach"
+    displayName: "M\xF3ng Cu\u1ED1c Nh\u1ECF"
+    storyNote: "K\u1EF7 v\u1EADt t\u1EEB khu v\u01B0\u1EDDn h\u1ED3i sinh."
+    icon: {fileID: 21300000, guid: 3816d4989af9c2542bca264ff68e6747, type: 3}
+  - keepsakeId: ks_wooden_spoon
+    npcId: npc_hana
+    npcDisplayName: "B\xE0 Hana"
+    displayName: "Chi\u1EBFc Th\xECa G\u1ED7"
+    storyNote: "Th\xECa khu\u1EA5y b\u1ED9t t\u1EEB th\u1EDDi B\xE0 Ngo\u1EA1i."
+    icon: {fileID: 21300000, guid: 138aca3dc9d290143abc99ac6df09f6e, type: 3}
+  - keepsakeId: ks_glow_paper_fish
+    npcId: npc_toby
+    npcDisplayName: "C\u1EADu B\xE9 Toby"
+    displayName: "Con C\xE1 Gi\u1EA5y Ph\xE1t S\xE1ng"
+    storyNote: "Toby t\u1EF1 tay g\u1EA5p t\u1EB7ng Wen."
+    icon: {fileID: 21300000, guid: d8ab8d3be69ef6943b0218019dc76bb6, type: 3}
+  - keepsakeId: ks_post_stamp
+    npcId: npc_otis
+    npcDisplayName: "B\xE1c Otis"
+    displayName: "Con D\u1EA5u B\u01B0u \u0110i\u1EC7n"
+    storyNote: "D\u1EA5u s\xE1p h\xECnh C\xE1nh Hoa \xC1nh Tr\u0103ng."
+    icon: {fileID: 21300000, guid: b05b4898e85663848a2afbbc798f19cf, type: 3}
+  - keepsakeId: ks_wood_spyglass
+    npcId: npc_linh
+    npcDisplayName: Linh
+    displayName: "\u1ED0ng Nh\xF2m G\u1ED7"
+    storyNote: "Chi\u1EBFc \u1ED1ng nh\xF2m theo Linh qua r\u1EEBng B\u1EAFc."
+    icon: {fileID: 21300000, guid: 20bd8102f77a8ff4497b7437c3578783, type: 3}
+  - keepsakeId: ks_carpenter_pencil
+    npcId: npc_kael
+    npcDisplayName: "\xD4ng Kael"
+    displayName: "C\xE2y B\xFAt Ch\xEC Th\u1EE3 M\u1ED9c"
+    storyNote: "B\xFAt ch\xEC \u0111\xE1nh d\u1EA5u t\u1EEBng nh\u1ECBp c\u1EA7u m\u1EDBi."
+    icon: {fileID: 21300000, guid: ead7be3540bb74949af42f2a8b2e8285, type: 3}
+  - keepsakeId: ks_net_needle
+    npcId: npc_mara
+    npcDisplayName: "B\xE0 Mara"
+    displayName: "Chi\u1EBFc Kim V\xE1 L\u01B0\u1EDBi"
+    storyNote: "Kim v\xE1 l\u01B0\u1EDBi g\u1EAFn b\xF3 n\u1EEDa \u0111\u1EDDi b\xEAn s\xF4ng."
+    icon: {fileID: 21300000, guid: 1e4a8e7261e07d842b6fd9a661a40cab, type: 3}
+  serviceDurationSeconds: 100
+  warmthBonusThreshold: 70
+  targetPrepItems: 5

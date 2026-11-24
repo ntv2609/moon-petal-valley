@@ -11,7 +11,20 @@ namespace MoonpetalValley.Chapter2
         [SerializeField] private string promptIdle = "Ngồi nghỉ chờ đến chập tối (18:30)";
         [SerializeField] private string promptAlreadyNight = "Trời đã vào tối rồi";
 
-        public bool CanInteract => true;
+        public bool CanInteract
+        {
+            get
+            {
+                if (!gameObject.activeInHierarchy) return false;
+                if (Chapter2StateManager.Instance != null)
+                {
+                    if (Chapter2StateManager.Instance.IsRelayEventActive) return false;
+                    return Chapter2StateManager.Instance.IsWaitBenchUnlocked();
+                }
+                return true;
+            }
+        }
+
         public float InteractRadius => interactRadius;
         public Vector2 InteractionWorldPosition => transform.position;
         public Vector3 PointerAnchorPosition => transform.position + new Vector3(0f, 0.9f, 0f);
@@ -41,12 +54,13 @@ namespace MoonpetalValley.Chapter2
 
         public void Interact()
         {
+            if (!CanInteract) return;
             TimeOfDayManager tm = GameRoot.Instance != null ? GameRoot.Instance.Time : UnityEngine.Object.FindAnyObjectByType<TimeOfDayManager>();
             if (tm == null) return;
 
             if (tm.CurrentHourFloat >= targetDuskHour)
             {
-                GameEventBus.RaiseToastRequested("Trời đã vào tối — bạn có thể đi điều tra quanh bờ sông.");
+                GameEventBus.RaiseToastRequested("Trời đã vào tối, bạn có thể đi điều tra hoặc bắt đầu sự kiện đêm nay.");
                 return;
             }
 

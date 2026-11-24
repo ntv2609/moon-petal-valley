@@ -26,7 +26,7 @@ namespace MoonpetalValley.Audio
         [Header("Scene Routing")]
         public List<string> titleSceneNames = new List<string> { "MainMenu", "Bootstrap" };
         public List<string> villageSceneNames = new List<string> { "MoonpetalValley_MVP" };
-        public List<string> riverSceneNames = new List<string> { "Riverbank_Chapter2" };
+        public List<string> riverSceneNames = new List<string> { "Riverbank_Chapter2", "WestSwamp_Chapter2" };
 
         [Header("Stinger Signal Rules")]
         public List<string> petalFlagIds = new List<string> { "flag_nv1_completed", "flag_ch2_completed" };
@@ -36,7 +36,8 @@ namespace MoonpetalValley.Audio
             "flag_greenhouse_cleared", "flag_tutorial_done", "flag_garden_slimes_cleared",
             "flag_hana_bread_done", "flag_toby_cat_saved", "flag_otis_mailbox_fixed",
             "flag_bach_letters_read", "flag_ch2_inv_night1_done", "flag_ch2_inv_night2_done",
-            "flag_ch2_inv_night3_done", "flag_ch2_echo1_lantern_done", "flag_ch2_echo2_pier_done"
+            "flag_ch2_inv_night3_done", "flag_ch2_swamp_unlocked", "flag_ch2_swamp_cleared",
+            "flag_ch2_echo1_lantern_done", "flag_ch2_echo2_pier_done"
         };
     }
 }

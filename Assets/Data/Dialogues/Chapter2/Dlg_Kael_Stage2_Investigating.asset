@@ -27,7 +27,7 @@ MonoBehaviour:
     requiredFlag: 
     blockedFlag: 
   - speakerNameKey: "\xD4ng Kael"
-    textKey: "\u0110\xEAm xu\u1ED1ng s\u01B0\u01A1ng ngo\xE0i s\xF4ng d\xE0y l\u1EAFm, ch\xE1u c\u1EE9 xem k\u1EF9 quanh b\u1EDD T\xE2y r\u1ED3i n\xF3i chuy\u1EC7n v\u1EDBi b\xE1c Otis xem sao."
+    textKey: "Ch\xE1u c\u1EE9 ch\xE8o \u0111\xF2 sang B\u1EDD T\xE2y g\u1EB7p b\xE0 Mara r\u1ED3i ki\u1EC3m tra n\u1ED1t quanh b\u1EDD s\xF4ng xem sao."
     portraitOverride: {fileID: 0}
     speakerId: kael
     requiredFlag: 

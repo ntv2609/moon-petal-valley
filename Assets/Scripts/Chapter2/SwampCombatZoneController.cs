@@ -48,20 +48,26 @@ namespace MoonpetalValley.Chapter2
 
         private void HandleStoryFlagChanged(string flagId, bool value)
         {
-            if (flagId == zoneClearedFlag) SyncFromStoryFlags();
+            if (flagId == zoneClearedFlag || flagId == Chapter2StateManager.FlagSwampUnlocked)
+                SyncFromStoryFlags();
         }
 
         public void SyncFromStoryFlags()
         {
-            bool cleared = GameRoot.Instance != null && GameRoot.Instance.Flags != null &&
-                           GameRoot.Instance.Flags.HasFlag(zoneClearedFlag);
+            StoryFlagManager flags = GameRoot.Instance != null ? GameRoot.Instance.Flags : null;
+            bool cleared = flags != null && flags.HasFlag(zoneClearedFlag);
+            bool unlocked = Chapter2StateManager.Instance != null
+                ? Chapter2StateManager.Instance.IsSwampUnlocked()
+                : (flags != null && flags.HasFlag(Chapter2StateManager.FlagSwampUnlocked));
+
             _zoneCleared = cleared;
 
-            if (cleared)
+            if (cleared || !unlocked)
             {
                 for (int i = 0; i < trackedEnemies.Count; i++)
                 {
-                    if (trackedEnemies[i] != null) trackedEnemies[i].SetActive(false);
+                    if (trackedEnemies[i] != null && trackedEnemies[i].activeSelf)
+                        trackedEnemies[i].SetActive(false);
                 }
             }
             else
@@ -103,7 +109,7 @@ namespace MoonpetalValley.Chapter2
                 if (!GameRoot.Instance.Inventory.HasItem(westLanternRewardItem.itemID, 1))
                     GameRoot.Instance.Inventory.AddItem(westLanternRewardItem, 1, true);
             }
-            GameEventBus.RaiseToastRequested("Đầm lầy Bờ Tây đã thanh tẩy! Bạn nhận được Nửa Đèn Bão Cổ (Tây) - hãy soi Dư Âm gần đó.");
+            GameEventBus.RaiseToastRequested("Đầm lầy Bờ Tây đã thanh tẩy! Bạn nhận được Chao Kính Đèn Bão - hãy soi Dư Âm ngay gần đó.");
         }
     }
 }

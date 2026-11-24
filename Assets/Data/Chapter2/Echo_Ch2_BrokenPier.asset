@@ -16,9 +16,12 @@ MonoBehaviour:
   echoTitle: "\u0110\xEAm B\xE3o \u1EDE M\u1ED1 C\u1EA7u"
   requiredFlag: flag_ch2_echo1_lantern_done
   requiredItemId: 
+  requiredSecondaryItemId: 
   completedFlag: flag_ch2_echo2_pier_done
   showKaelGhost: 1
   showMaraGhost: 0
+  customGhostAPrefab: {fileID: 0}
+  customGhostBPrefab: {fileID: 0}
   beats:
   - speakerName: "D\u01B0 \xC2m Kael"
     speakerId: kael

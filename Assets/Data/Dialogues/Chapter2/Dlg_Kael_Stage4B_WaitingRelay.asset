@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c597d33f149cdf04299a1085b446df21, type: 3}
+  m_Name: Dlg_Kael_Stage4B_WaitingRelay
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.DialogueData
+  dialogueID: dlg_kael_s4b_waiting_relay
+  lines:
+  - speakerNameKey: "\xD4ng Kael"
+    textKey: "T\xF4i \u0111\xE3 \u0111\u1EB7t b\xFAa v\xE0 v\xE1n lim s\u1EB5n \u1EDF \u0111\u1EA7u c\u1EA7u B\u1EDD \u0110\xF4ng r\u1ED3i. 18:30 t\u1ED1i nay ch\xE1u ra \u0111\u1EA7u c\u1EA7u g\u1ECDi t\xF4i, ta b\u1EAFt \u0111\u1EA7u \u0110\xEAm Chuy\u1EC1n \u0110\xE8n ngay!"
+    portraitOverride: {fileID: 0}
+    speakerId: kael
+    requiredFlag: 
+    blockedFlag: 
+  choices: []
+  setsStoryFlagOnFinish: 
+  givesItemOnFinish: {fileID: 0}
+  givesItemAmount: 0
+  extraRewards: []
+  consumesRequiredItem: {fileID: 0}
+  consumesAmount: 0
+  unlocksDiaryPage: {fileID: 0}
+  affinityNpcId: 
+  affinityBonusOnFinish: 0

@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aea49fb6d1c7c7c4192c56cb802f2505, type: 3}
+  m_Name: Echo_Ch3_HanaOven
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.EchoData
+  echoID: echo_ch3_hana_oven
+  echoTitle: "L\xF2 B\xE1nh \u0110\xEAm H\u1ED9i N\u0103m X\u01B0a"
+  requiredFlag: flag_ch2_completed
+  requiredItemId: 
+  completedFlag: flag_ch3_hana_echo_done
+  showKaelGhost: 1
+  showMaraGhost: 1
+  customGhostAPrefab: {fileID: 2195731342433065001, guid: a6465f4c25f53fe47923ed7687aefa5a, type: 3}
+  customGhostBPrefab: {fileID: 7786159254899827284, guid: 8d91aa8f1f500f24d855c1e144777949, type: 3}
+  beats:
+  - speakerName: "B\xE0 N\u1ED9i (Th\u1EDDi Tr\u1EBB)"
+    speakerId: mara
+    bodyText: "Hana \xE0, m\u1EBB b\xE1nh m\u1EADt ong tr\u0103ng non ch\xEDn v\xE0ng r\u1ED3i! K\u1EBBo d\xE2n l\xE0ng \u0111\u1EE3i ngo\xE0i c\u1EA7u \u0111\xF3."
+    durationSeconds: 4.2
+    kaelPlaysAction: 1
+    maraPlaysAction: 0
+    overlayTint: {r: 0.28, g: 0.2, b: 0.12, a: 0.36}
+  - speakerName: "B\xE0 Hana (Th\u1EDDi Tr\u1EBB)"
+    speakerId: hana
+    bodyText: "Ch\u1ECB y\xEAn t\xE2m, em ph\u1EBFt th\xEAm ch\xFAt m\u1EADt c\xE1nh tr\u0103ng cho th\u01A1m kh\u1EAFp c\u1EA3 b\u1EDD s\xF4ng lu\xF4n!"
+    durationSeconds: 4.2
+    kaelPlaysAction: 0
+    maraPlaysAction: 1
+    overlayTint: {r: 0.3, g: 0.22, b: 0.14, a: 0.36}
+  - speakerName: "B\xE0 N\u1ED9i (Th\u1EDDi Tr\u1EBB)"
+    speakerId: mara
+    bodyText: "Ch\u1EE3 \u0110\xEAm kh\xF4ng c\u1EA7n gi\xE0u sang, ch\u1EC9 c\u1EA7n l\xF2 c\xF2n \u1EA5m v\xE0 m\u1ECDi ng\u01B0\u1EDDi c\xF2n nh\u1EDB \u0111\u01B0\u1EDDng v\u1EC1 v\u1EDBi nhau."
+    durationSeconds: 4.5
+    kaelPlaysAction: 1
+    maraPlaysAction: 0
+    overlayTint: {r: 0.24, g: 0.24, b: 0.32, a: 0.38}
+  - speakerName: "B\xE0 Hana (Th\u1EDDi Tr\u1EBB)"
+    speakerId: hana
+    bodyText: "Sau n\xE0y n\u1EBFu c\u1EA7u c\xF3 c\u0169, l\xF2 c\xF3 ngu\u1ED9i... r\u1ED3i s\u1EBD c\xF3 ng\u01B0\u1EDDi nh\xF3m l\u1EA1i ng\u1ECDn l\u1EEDa n\xE0y th\xF4i ch\u1ECB nh\u1EC9?"
+    durationSeconds: 4.5
+    kaelPlaysAction: 0
+    maraPlaysAction: 1
+    overlayTint: {r: 0.26, g: 0.22, b: 0.16, a: 0.36}
+  - speakerName: Lumi
+    speakerId: lumi
+    bodyText: "\xC1nh s\xE1ng t\u1EEB l\xF2 b\xE1nh v\u1EABn c\xF2n \u1EA5m t\u1EDBi t\u1EADn h\xF4m nay... B\xE0 n\u1ED9i v\xE0 b\xE0 Hana \u0111\xE3 ch\u1EDD ng\xE0y n\xE0y l\xE2u l\u1EAFm r\u1ED3i."
+    durationSeconds: 4.2
+    kaelPlaysAction: 0
+    maraPlaysAction: 0
+    overlayTint: {r: 0.18, g: 0.3, b: 0.44, a: 0.34}

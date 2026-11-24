@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c597d33f149cdf04299a1085b446df21, type: 3}
+  m_Name: Dlg_Linh_Stage1_Intro
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.DialogueData
+  dialogueID: dlg_linh_stage1_intro
+  lines:
+  - speakerNameKey: Linh
+    textKey: "Ch\xE0o ch\u1ECB Wen! Em l\xE0 Linh, ng\u01B0\u1EDDi s\u01B0u t\u1EA7m th\u1EA3o m\u1ED9c v\u1EEBa qua c\u1EA7u m\u1EDBi s\u1EEDa s\xE1ng nay."
+    portraitOverride: {fileID: 0}
+    speakerId: linh
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: Wen
+    textKey: "Ch\xE0o m\u1EEBng em t\u1EDBi Moonpetal! Nghe n\xF3i em mu\u1ED1n g\xF3p m\u1ED9t gian h\xE0ng cho Ch\u1EE3 \u0110\xEAm?"
+    portraitOverride: {fileID: 0}
+    speakerId: wen
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: Linh
+    textKey: "D\u1EA1 v\xE2ng! Em h\xE1i s\u1EB5n \xEDt C\xFAc B\u1EDD S\xF4ng b\xEAn b\u1EDD n\u01B0\u1EDBc, ch\u1ECB c\u1EA7m l\xE0m nguy\xEAn li\u1EC7u th\u1EED nh\xE9."
+    portraitOverride: {fileID: 0}
+    speakerId: linh
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: Lumi
+    textKey: "Nh\u1EDB gh\xE9 l\xF2 b\xE1nh b\xE0 Hana n\u1EEFa nh\xE9 Wen, t\u1EDB th\u1EA5y c\xF3 \xE1nh D\u01B0 \xC2m \u1EA5m \xE1p \u0111ang ph\xE1t s\xE1ng \u1EDF \u0111\xF3!"
+    portraitOverride: {fileID: 0}
+    speakerId: lumi
+    requiredFlag: 
+    blockedFlag: 
+  choices: []
+  setsStoryFlagOnFinish: flag_ch3_started
+  givesItemOnFinish: {fileID: 0}
+  givesItemAmount: 0
+  extraRewards: []
+  consumesRequiredItem: {fileID: 0}
+  consumesAmount: 0
+  unlocksDiaryPage: {fileID: 0}
+  affinityNpcId: 
+  affinityBonusOnFinish: 0

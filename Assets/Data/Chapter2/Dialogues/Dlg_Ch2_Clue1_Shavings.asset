@@ -15,13 +15,13 @@ MonoBehaviour:
   dialogueID: dlg_ch2_clue1
   lines:
   - speakerNameKey: Wen
-    textKey: "M\u1EA5y phoi b\xE0o g\u1ED7 lim n\xE0y c\xF2n r\u1EA5t m\u1EDBi... c\xF3 ai \u0111\xF3 v\u1EABn l\xE9n \u0111\u1EBDo v\xE1n c\u1EA7u v\xE0o ban \u0111\xEAm."
+    textKey: "M\u1EA5y phoi b\xE0o g\u1ED7 lim n\xE0y c\xF2n r\u1EA5t m\u1EDBi... r\xF5 r\xE0ng \u0111\xEAm n\xE0o c\u0169ng c\xF3 ng\u01B0\u1EDDi l\xE9n ra gia c\u1ED1 m\u1ED1 c\u1EA7u \u0110\xF4ng!"
     portraitOverride: {fileID: 0}
     speakerId: wen
     requiredFlag: 
     blockedFlag: 
-  - speakerNameKey: Lumi
-    textKey: "Gi\xF3 s\xF4ng mang m\xF9i nh\u1EF1a th\xF4ng t\u01B0\u01A1i t\u1EEB ph\xEDa x\u01B0\u1EDFng \xF4ng Kael!"
+  - speakerNameKey: Tinh Linh Lumi
+    textKey: "M\xF9i nh\u1EF1a th\xF4ng t\u01B0\u01A1i bay t\u1EEB x\u01B0\u1EDFng \xF4ng Kael \u0111\u1EA5y! M\xECnh ch\xE8o chi\u1EBFc \u0110\xF2 Ngang ph\xEDa Nam sang B\u1EDD T\xE2y h\u1ECFi b\xE0 Mara xem sao nh\xE9 Wen."
     portraitOverride: {fileID: 0}
     speakerId: lumi
     requiredFlag: 
@@ -29,7 +29,7 @@ MonoBehaviour:
   choices: []
   setsStoryFlagOnFinish: flag_ch2_inv_night1_done
   givesItemOnFinish: {fileID: 0}
-  givesItemAmount: 1
+  givesItemAmount: 0
   extraRewards: []
   consumesRequiredItem: {fileID: 0}
   consumesAmount: 0

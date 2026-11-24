@@ -22,11 +22,17 @@ MonoBehaviour:
   - requiredStoryFlag: flag_ch2_completed
     blockedByStoryFlag: 
     dialogue: {fileID: 11400000, guid: aa14702cb4d23e741b18796449c0cb27, type: 2}
+  - requiredStoryFlag: flag_ch2_relay_agreed
+    blockedByStoryFlag: flag_ch2_completed
+    dialogue: {fileID: 11400000, guid: 885d8543a0812054ea671bf60789e2eb, type: 2}
   - requiredStoryFlag: flag_ch2_echo2_pier_done
-    blockedByStoryFlag: flag_ch2_relay_done
+    blockedByStoryFlag: flag_ch2_relay_agreed
     dialogue: {fileID: 11400000, guid: 3e517b304ecbcb1419983d514654eeba, type: 2}
-  - requiredStoryFlag: flag_ch2_inv_night3_done
+  - requiredStoryFlag: flag_ch2_kael_gave_lantern
     blockedByStoryFlag: flag_ch2_echo2_pier_done
+    dialogue: {fileID: 11400000, guid: ce26d140f3c27314eaf8da88bbba37c9, type: 2}
+  - requiredStoryFlag: flag_ch2_inv_night3_done
+    blockedByStoryFlag: flag_ch2_kael_gave_lantern
     dialogue: {fileID: 11400000, guid: 6032232367175e74e9ddb594550f8db6, type: 2}
   - requiredStoryFlag: flag_ch2_inv_night1_done
     blockedByStoryFlag: flag_ch2_inv_night3_done

@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogueID: dlg_mara_s6_completed
   lines:
   - speakerNameKey: "B\xE0 Mara"
-    textKey: "Ba m\u01B0\u01A1i n\u0103m mang c\u1EE5c \u0111\xE1 n\u1EB7ng trong l\xF2ng, cu\u1ED1i c\xF9ng \u0111\xEAm qua c\u0169ng b\u1ECF xu\u1ED1ng \u0111\u01B0\u1EE3c r\u1ED3i."
+    textKey: "Ba n\u0103m mang c\u1EE5c \u0111\xE1 n\u1EB7ng trong l\xF2ng, cu\u1ED1i c\xF9ng \u0111\xEAm qua c\u0169ng b\u1ECF xu\u1ED1ng \u0111\u01B0\u1EE3c r\u1ED3i."
     portraitOverride: {fileID: 0}
     speakerId: mara
     requiredFlag: 

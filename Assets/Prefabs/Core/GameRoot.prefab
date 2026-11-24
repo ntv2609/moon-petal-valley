@@ -21345,6 +21345,10 @@ GameObject:
   - component: {fileID: 4260828963191896241}
   - component: {fileID: 1569702197657579834}
   - component: {fileID: 2816766835494713584}
+  - component: {fileID: 7908430521484614038}
+  - component: {fileID: 3457827291723738711}
+  - component: {fileID: 1687671078980864693}
+  - component: {fileID: 3601557997182408457}
   m_Layer: 0
   m_Name: GameRoot
   m_TagString: Untagged
@@ -21574,6 +21578,18 @@ MonoBehaviour:
     portrait: {fileID: 21300000, guid: 2f6b2040503bc244f87aa9763d2c1123, type: 3}
     alignLeft: 0
     isFloating: 0
+  - speakerKey: linh
+    portrait: {fileID: 21300000, guid: 17ebd131cd61d0044a93d30460b86df4, type: 3}
+    alignLeft: 0
+    isFloating: 0
+  - speakerKey: grandma_young
+    portrait: {fileID: 21300000, guid: a58187d5eb2be4c48abab3081a58da39, type: 3}
+    alignLeft: 0
+    isFloating: 0
+  - speakerKey: "B\xE0 N\u1ED9i (Th\u1EDDi Tr\u1EBB)"
+    portrait: {fileID: 21300000, guid: a58187d5eb2be4c48abab3081a58da39, type: 3}
+    alignLeft: 0
+    isFloating: 0
 --- !u!114 &4266048460233427555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21721,6 +21737,58 @@ MonoBehaviour:
   kaelGhostPrefab: {fileID: 7367391950403657919, guid: 8b05e592046c5cf489ee59ce6ed01804, type: 3}
   maraGhostPrefab: {fileID: 6220566795340127057, guid: 9be3ac4572d57534789b2aa52fda4c30, type: 3}
   skipHoldDuration: 1
+--- !u!114 &7908430521484614038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7077557100079652462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b6a83ec718317240910d6cd247213a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Chapter3.Chapter3StateManager
+  config: {fileID: 11400000, guid: 5e79b22b50c9d214aa74d6360d1c69e6, type: 2}
+--- !u!114 &3457827291723738711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7077557100079652462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11217f73d979cfe4ca4b50699cab99f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Chapter3.NightMarketCraftingManager
+--- !u!114 &1687671078980864693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7077557100079652462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a535bb62acc7ee24f8ceb6de1ad725fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Chapter3.PrepWorkbenchUIView
+  vnFont: {fileID: 11400000, guid: a09c98e549e36544691f46b8d74e00d7, type: 2}
+  panelWoodSprite: {fileID: 21300000, guid: 3d1a8118c1b5011429fa57fa39f96085, type: 3}
+  buttonWoodSprite: {fileID: 21300000, guid: ec36493ccaaea63488f607c570c17971, type: 3}
+--- !u!114 &3601557997182408457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7077557100079652462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 520593224f18e3740a43ea128c543b84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Chapter3.Chapter3PrepController
 --- !u!1 &7138649997319552689
 GameObject:
   m_ObjectHideFlags: 0

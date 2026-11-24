@@ -29,9 +29,16 @@ namespace MoonpetalValley.Chapter2
         {
             get
             {
-                if (_isTriggering) return false;
+                if (_isTriggering || !gameObject.activeInHierarchy) return false;
+                if (Chapter2StateManager.Instance != null)
+                {
+                    if (Chapter2StateManager.Instance.IsRelayEventActive) return false;
+                    return Chapter2StateManager.Instance.IsClueUnlocked(investigationStage);
+                }
                 StoryFlagManager sf = GameRoot.Instance != null ? GameRoot.Instance.Flags : null;
                 if (sf != null && !string.IsNullOrEmpty(completionFlag) && sf.HasFlag(completionFlag))
+                    return false;
+                if (sf != null && !string.IsNullOrEmpty(requiredPrevFlag) && !sf.HasFlag(requiredPrevFlag))
                     return false;
                 return true;
             }
@@ -51,15 +58,9 @@ namespace MoonpetalValley.Chapter2
 
         public void Interact()
         {
-            if (_isTriggering) return;
+            if (_isTriggering || !CanInteract) return;
 
             StoryFlagManager sf = GameRoot.Instance != null ? GameRoot.Instance.Flags : null;
-            if (sf != null && !string.IsNullOrEmpty(requiredPrevFlag) && !sf.HasFlag(requiredPrevFlag))
-            {
-                GameEventBus.RaiseToastRequested("Chưa rõ manh mối này — hãy nói chuyện với ông Kael và kiểm tra dấu vết trước đó.");
-                return;
-            }
-
             if (requireNight)
             {
                 TimeOfDayManager tm = GameRoot.Instance != null
@@ -67,7 +68,7 @@ namespace MoonpetalValley.Chapter2
                     : UnityEngine.Object.FindAnyObjectByType<TimeOfDayManager>();
                 if (tm != null && tm.CurrentHourFloat < nightStartHour && tm.CurrentHourFloat >= 6.0f)
                 {
-                    GameEventBus.RaiseToastRequested("Ban ngày khó thấy rõ dấu vết — hãy ngồi ở Ghế Đá Bờ Sông chờ đến 18:30.");
+                    GameEventBus.RaiseToastRequested("Ban ngày khó thấy rõ dấu vết mới - hãy ngồi ở Ghế Đá Bờ Sông chờ đến 18:30.");
                     return;
                 }
             }

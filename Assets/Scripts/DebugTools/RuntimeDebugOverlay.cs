@@ -155,14 +155,14 @@ namespace MoonpetalValley.DebugTools
             colRect.anchorMax = new Vector2(1f, 1f);
             colRect.pivot = new Vector2(0f, 1f);
             colRect.anchoredPosition = new Vector2(12f, 0f);
-            colRect.sizeDelta = new Vector2(340f, 420f);
+            colRect.sizeDelta = new Vector2(360f, 520f);
 
             Image bg = colGo.GetComponent<Image>();
             bg.color = new Color(0.07f, 0.09f, 0.14f, 0.94f);
 
             VerticalLayoutGroup vlg = colGo.GetComponent<VerticalLayoutGroup>();
-            vlg.padding = new RectOffset(12, 12, 12, 12);
-            vlg.spacing = 6f;
+            vlg.padding = new RectOffset(10, 10, 10, 10);
+            vlg.spacing = 5f;
             vlg.childAlignment = TextAnchor.UpperCenter;
             vlg.childControlWidth = true;
             vlg.childControlHeight = false;
@@ -178,27 +178,33 @@ namespace MoonpetalValley.DebugTools
             GameObject headerGo = new GameObject("Ch2Header", typeof(RectTransform), typeof(TextMeshProUGUI), typeof(LayoutElement));
             headerGo.transform.SetParent(colGo.transform, false);
             TextMeshProUGUI headerTxt = headerGo.GetComponent<TextMeshProUGUI>();
-            headerTxt.text = "<b>DEBUG CHƯƠNG 2 (BỜ SÔNG)</b>";
+            headerTxt.text = "<b>DEBUG CHƯƠNG 2 (8 GIAI ĐOẠN)</b>";
             headerTxt.font = font;
-            headerTxt.fontSize = 16f;
+            headerTxt.fontSize = 15f;
             headerTxt.color = new Color(0.55f, 0.85f, 1f, 1f);
             headerTxt.alignment = TextAlignmentOptions.Left;
             LayoutElement headerLe = headerGo.GetComponent<LayoutElement>();
-            headerLe.preferredHeight = 26f;
+            headerLe.preferredHeight = 24f;
 
             Color cBlue = new Color(0.18f, 0.36f, 0.56f, 1f);
             Color cTeal = new Color(0.14f, 0.44f, 0.38f, 1f);
             Color cAmber = new Color(0.48f, 0.34f, 0.14f, 1f);
             Color cPurple = new Color(0.38f, 0.24f, 0.54f, 1f);
+            Color cRed = new Color(0.52f, 0.20f, 0.24f, 1f);
 
             AddCh2Button(colGo.transform, font, "Vào Bờ Sông (Riverbank_Chapter2)", cBlue, OnClickEnterRiverbank);
+            AddCh2Button(colGo.transform, font, "Vào Đầm Lầy Tây (WestSwamp_Chapter2)", cBlue, OnClickEnterWestSwamp);
             AddCh2Button(colGo.transform, font, "Về Làng Chính (Không Intro)", cBlue, OnClickReturnToVillage);
-            AddCh2Button(colGo.transform, font, "Mốc 0: Reset Ch2 (Trước Intro Cầu)", cTeal, () => SyncCh2Milestone(0));
-            AddCh2Button(colGo.transform, font, "Mốc 1: Đêm 1 Điều Tra (18:30 + Đò)", cAmber, () => SyncCh2Milestone(1));
-            AddCh2Button(colGo.transform, font, "Mốc 2: Xong 3 Đêm -> Đầm Lầy Bờ Tây", cAmber, () => SyncCh2Milestone(2));
-            AddCh2Button(colGo.transform, font, "Mốc 3: Xong Đầm Lầy -> Soi 2 Dư Âm", cPurple, () => SyncCh2Milestone(3));
-            AddCh2Button(colGo.transform, font, "Mốc 4: Chạy Ngay Đêm Chuyền Đèn", cAmber, () => SyncCh2Milestone(4));
-            AddCh2Button(colGo.transform, font, "Mốc 5: Kích Hoạt Kết Thúc Chương 2", cPurple, () => SyncCh2Milestone(5));
+
+            AddCh2Button(colGo.transform, font, "S0: Reset Đầu Ch2 (Chưa Kéo Cầu)", cTeal, () => SyncCh2Stage(0));
+            AddCh2Button(colGo.transform, font, "S2: Đêm Bờ Đông (Soi Phoi Gỗ)", cAmber, () => SyncCh2Stage(2));
+            AddCh2Button(colGo.transform, font, "S3: Qua Đò Bờ Tây (Gặp Mara)", cAmber, () => SyncCh2Stage(3));
+            AddCh2Button(colGo.transform, font, "S4: Có Khung Đèn -> Xin Dầu Mara", cAmber, () => SyncCh2Stage(4));
+            AddCh2Button(colGo.transform, font, "S5a: Chiến Đấu Đầm Lầy (3 Đợt Quái)", cRed, () => SyncCh2Stage(50));
+            AddCh2Button(colGo.transform, font, "S5b: Xong Đầm Lầy -> Soi Dư Âm 1", cPurple, () => SyncCh2Stage(51));
+            AddCh2Button(colGo.transform, font, "S6: Bến Đò Gãy -> Soi Dư Âm 2", cPurple, () => SyncCh2Stage(6));
+            AddCh2Button(colGo.transform, font, "S7: Chạy Ngay Đêm Chuyền Đèn", cAmber, () => SyncCh2Stage(7));
+            AddCh2Button(colGo.transform, font, "S8: Hoàn Tất Ch2 (Cầu Đã Nối)", cPurple, () => SyncCh2Stage(8));
             AddCh2Button(colGo.transform, font, "Cấp Đủ Đồ Ch2 (2 Nửa Đèn + Bánh Mì)", cTeal, OnClickGiveCh2Kit);
         }
 
@@ -208,11 +214,11 @@ namespace MoonpetalValley.DebugTools
             btnGo.transform.SetParent(parent, false);
 
             RectTransform rt = btnGo.GetComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(0f, 34f);
+            rt.sizeDelta = new Vector2(0f, 30f);
 
             LayoutElement le = btnGo.GetComponent<LayoutElement>();
-            le.preferredHeight = 34f;
-            le.minHeight = 34f;
+            le.preferredHeight = 30f;
+            le.minHeight = 30f;
 
             Image img = btnGo.GetComponent<Image>();
             img.color = bgColor;
@@ -236,7 +242,7 @@ namespace MoonpetalValley.DebugTools
             TextMeshProUGUI tmp = txtGo.GetComponent<TextMeshProUGUI>();
             tmp.text = label;
             tmp.font = font;
-            tmp.fontSize = 14f;
+            tmp.fontSize = 13f;
             tmp.color = Color.white;
             tmp.alignment = TextAlignmentOptions.Center;
             tmp.textWrappingMode = TextWrappingModes.NoWrap;
@@ -253,7 +259,21 @@ namespace MoonpetalValley.DebugTools
             {
                 Chapter2StateManager.Instance.PendingSceneSpawnId = "Spawn_EastEntrance";
             }
-            SceneManager.LoadScene("Riverbank_Chapter2");
+            SceneManager.LoadScene(Chapter2StateManager.Chapter2SceneName);
+        }
+
+        private void OnClickEnterWestSwamp()
+        {
+            if (GameRoot.Instance != null && GameRoot.Instance.Flags != null)
+            {
+                GameRoot.Instance.Flags.SetFlag("flag_nv1_completed", true);
+                GameRoot.Instance.Flags.SetFlag(Chapter2StateManager.FlagSwampUnlocked, true);
+            }
+            if (Chapter2StateManager.Instance != null)
+            {
+                Chapter2StateManager.Instance.PendingSceneSpawnId = "Spawn_SwampEntrance";
+            }
+            SceneManager.LoadScene(Chapter2StateManager.WestSwampSceneName);
         }
 
         private void OnClickReturnToVillage()
@@ -267,7 +287,7 @@ namespace MoonpetalValley.DebugTools
             {
                 Chapter2StateManager.Instance.PendingSceneSpawnId = "Spawn_FromRiverbank";
             }
-            SceneManager.LoadScene("MoonpetalValley_MVP");
+            SceneManager.LoadScene(Chapter2StateManager.MainVillageSceneName);
         }
 
         private void TeleportOrFallback(string spawnId, Vector2 fallbackPos)
@@ -290,13 +310,17 @@ namespace MoonpetalValley.DebugTools
             RefreshStatusText();
         }
 
-        private void SyncCh2Milestone(int milestone)
+        // stageCode: 0, 2, 3, 4, 50 (Swamp Combat), 51 (Swamp Echo 1), 6 (Echo 2), 7 (Relay), 8 (Completed)
+        private void SyncCh2Stage(int stageCode)
         {
             if (GameRoot.Instance == null || GameRoot.Instance.Flags == null) return;
             var f = GameRoot.Instance.Flags;
             var inv = GameRoot.Instance.Inventory;
 
-            // Luon dong bo nen Chuong 1 + vu khi de khong mau thuan logic
+            int logicalStage = stageCode >= 50 ? 5 : stageCode;
+            bool swampCleared = stageCode == 51 || logicalStage >= 6;
+
+            // Luôn đồng bộ nền Chương 1 + Lưỡi Hái Trăng
             f.SetFlag("flag_intro_cutscene_done", true);
             f.SetFlag("flag_tutorial_done", true);
             f.SetFlag("flag_lumi_awakened", true);
@@ -305,100 +329,137 @@ namespace MoonpetalValley.DebugTools
             if (inv != null && !inv.HasItem("item_moon_sickle", 1))
                 inv.AddItemById("item_moon_sickle", 1, false);
 
-            // Reset toan bo flag tien trinh Ch2 theo moc muc tieu
-            f.SetFlag("flag_ch2_solo_bridge_failed", milestone >= 1);
-            f.SetFlag("flag_ch2_met_kael", milestone >= 1);
-            f.SetFlag("flag_ch2_met_mara", milestone >= 1);
-            f.SetFlag("flag_ch2_inv_night1_done", milestone >= 2);
-            f.SetFlag("flag_ch2_inv_night2_done", milestone >= 2);
-            f.SetFlag("flag_ch2_inv_night3_done", milestone >= 2);
-            f.SetFlag("flag_ch2_otis_arrived", milestone >= 2);
-            f.SetFlag("flag_ch2_choice_tell_truth", milestone >= 2);
+            // Đồng bộ toàn bộ 15 cờ tuyến tính Chương 2
+            f.SetFlag(Chapter2StateManager.FlagSoloBridgeFailed, logicalStage >= 1);
+            f.SetFlag(Chapter2StateManager.FlagMetKael, logicalStage >= 2);
+            f.SetFlag(Chapter2StateManager.FlagClue1Done, logicalStage >= 3);
+            f.SetFlag(Chapter2StateManager.FlagMetMara, logicalStage >= 3);
+            f.SetFlag(Chapter2StateManager.FlagClue2Done, logicalStage >= 4);
+            f.SetFlag(Chapter2StateManager.FlagOtisMovedToCh2, logicalStage >= 4);
+            f.SetFlag(Chapter2StateManager.FlagClue3Done, logicalStage >= 4);
+            f.SetFlag(Chapter2StateManager.FlagKaelGaveLantern, logicalStage >= 4);
+            f.SetFlag("flag_ch2_choice_tell_truth", logicalStage >= 4);
             f.SetFlag("flag_ch2_choice_keep_secret", false);
-            f.SetFlag("flag_ch2_swamp_cleared", milestone >= 3);
-            f.SetFlag("flag_ch2_echo1_lantern_done", milestone >= 4);
-            f.SetFlag("flag_ch2_echo2_pier_done", milestone >= 4);
-            f.SetFlag("flag_ch2_relay_done", false);
-            f.SetFlag("flag_ch2_completed", false);
+            f.SetFlag(Chapter2StateManager.FlagSwampUnlocked, logicalStage >= 5);
+            f.SetFlag(Chapter2StateManager.FlagSwampCleared, swampCleared);
+            f.SetFlag(Chapter2StateManager.FlagEcho1Done, logicalStage >= 6);
+            f.SetFlag(Chapter2StateManager.FlagEcho2Done, logicalStage >= 7);
+            f.SetFlag(Chapter2StateManager.FlagRelayAgreed, logicalStage >= 7);
+            f.SetFlag(Chapter2StateManager.FlagRelayDone, logicalStage >= 8);
+            f.SetFlag(Chapter2StateManager.FlagCh2Completed, logicalStage >= 8);
 
-            // Dong bo vat pham cot truyen tuong ung tung moc
+            // Đồng bộ 2 nửa Đèn Bão Cổ
             if (inv != null)
             {
-                if (milestone >= 2 && !inv.HasItem("item_storm_lantern_east", 1))
+                if (logicalStage >= 4 && !inv.HasItem("item_storm_lantern_east", 1))
                     inv.AddItemById("item_storm_lantern_east", 1, false);
-                if (milestone >= 3 && !inv.HasItem("item_storm_lantern_west", 1))
+                if (swampCleared && !inv.HasItem("item_storm_lantern_west", 1))
                     inv.AddItemById("item_storm_lantern_west", 1, false);
             }
 
-            // Dong bo trang thai cau & gio giac
+            // Đồng bộ trạng thái Cầu 3 trạng thái & mốc điều tra
             if (Chapter2StateManager.Instance != null)
             {
                 Chapter2StateManager.Instance.SetRelayEventActive(false);
-                Chapter2StateManager.Instance.SetInvestigationStage(milestone >= 2 ? 3 : 0);
-                if (milestone >= 5) Chapter2StateManager.Instance.SetBridgeState(RiverBridgeState.Repaired);
-                else if (milestone == 4) Chapter2StateManager.Instance.SetBridgeState(RiverBridgeState.RelayInProgress);
+                int invStage = logicalStage >= 4 ? 3 : (logicalStage == 3 ? 1 : 0);
+                Chapter2StateManager.Instance.SetInvestigationStage(invStage);
+                if (logicalStage >= 8) Chapter2StateManager.Instance.SetBridgeState(RiverBridgeState.Repaired);
+                else if (logicalStage == 7) Chapter2StateManager.Instance.SetBridgeState(RiverBridgeState.RelayInProgress);
                 else Chapter2StateManager.Instance.SetBridgeState(RiverBridgeState.Broken);
             }
 
+            // Đồng bộ giờ trong ngày phù hợp từng giai đoạn
             if (GameRoot.Instance.Time != null)
             {
-                if (milestone == 0) GameRoot.Instance.Time.SetHour(10.0f);
-                else if (milestone == 1 || milestone == 4) GameRoot.Instance.Time.SetHour(18.5f);
-                else if (milestone == 2) GameRoot.Instance.Time.SetHour(14.0f);
-                else if (milestone == 3) GameRoot.Instance.Time.SetHour(16.0f);
+                if (stageCode == 0) GameRoot.Instance.Time.SetHour(10.0f);
+                else if (stageCode == 2 || stageCode == 3 || stageCode == 7) GameRoot.Instance.Time.SetHour(18.5f);
+                else if (stageCode == 4 || stageCode == 50) GameRoot.Instance.Time.SetHour(14.5f);
+                else if (stageCode == 51 || stageCode == 6) GameRoot.Instance.Time.SetHour(16.0f);
                 else GameRoot.Instance.Time.SetHour(7.5f);
             }
 
-            // Ep dong bo lich NPC + Dam Lay ngay lap tuc
-            var schedules = UnityEngine.Object.FindObjectsByType<Chapter2NPCSchedule>(FindObjectsInactive.Include);
-            for (int i = 0; i < schedules.Length; i++) schedules[i].ForceRefreshSchedule();
-            var swamp = UnityEngine.Object.FindAnyObjectByType<SwampCombatZoneController>();
-            if (swamp != null) swamp.SyncFromStoryFlags();
+            // Xác định scene mục tiêu (Đầm Lầy Tây cho S5a/S5b, Bờ Sông cho các giai đoạn còn lại)
+            bool wantsSwamp = stageCode == 50 || stageCode == 51;
+            string targetScene = wantsSwamp ? Chapter2StateManager.WestSwampSceneName : Chapter2StateManager.Chapter2SceneName;
+            string targetSpawn = GetTargetSpawnForStage(stageCode);
 
-            bool inCh2Scene = SceneManager.GetActiveScene().name == "Riverbank_Chapter2";
-            if (!inCh2Scene)
+            if (SceneManager.GetActiveScene().name != targetScene)
             {
                 if (Chapter2StateManager.Instance != null)
-                    Chapter2StateManager.Instance.PendingSceneSpawnId = milestone >= 2 && milestone <= 3 ? "Spawn_WestDock" : "Spawn_EastEntrance";
-                SceneManager.LoadScene("Riverbank_Chapter2");
-                GameEventBus.RaiseToastRequested($"Đã đồng bộ Mốc {milestone} và đang chuyển sang Bờ Sông!");
+                    Chapter2StateManager.Instance.PendingSceneSpawnId = targetSpawn;
+                SceneManager.LoadScene(targetScene);
+                GameEventBus.RaiseToastRequested($"Đã đồng bộ S{stageCode} -> đang chuyển sang {targetScene}!");
                 return;
             }
 
-            if (milestone == 0)
+            // Đang ở đúng scene -> ép đồng bộ ngay các controller đang chạy
+            var schedules = UnityEngine.Object.FindObjectsByType<Chapter2NPCSchedule>(FindObjectsInactive.Include);
+            for (int i = 0; i < schedules.Length; i++) schedules[i].ForceRefreshSchedule();
+
+            var barriers = UnityEngine.Object.FindObjectsByType<SwampMistBarrierController>(FindObjectsInactive.Include);
+            for (int i = 0; i < barriers.Length; i++) barriers[i].RefreshBarrierState();
+
+            var waveArena = UnityEngine.Object.FindAnyObjectByType<SwampWaveCombatController>();
+            if (waveArena != null) waveArena.SyncFromFlags();
+
+            if (stageCode == 0)
             {
                 TeleportOrFallback("Spawn_EastEntrance", new Vector2(18.0f, 0.5f));
-                GameEventBus.RaiseToastRequested("Mốc 0: Đã đặt lại đầu Chương 2 (10:00, chưa kéo ván cầu).");
+                GameEventBus.RaiseToastRequested("S0: Đầu Chương 2 (10:00, chưa kéo ván cầu).");
             }
-            else if (milestone == 1)
+            else if (stageCode == 2)
             {
                 TeleportOrFallback("Spawn_EastCamp", new Vector2(12.2f, 2.0f));
-                GameEventBus.RaiseToastRequested("Mốc 1: Đã mở Đò + gặp Kael/Mara + 18:30 (sẵn sàng soi Phoi Bào Gỗ).");
+                GameEventBus.RaiseToastRequested("S2: Đêm Bờ Đông (18:30) -> soi Phoi Bào Gỗ gần Kael.");
             }
-            else if (milestone == 2)
+            else if (stageCode == 3)
             {
                 TeleportOrFallback("Spawn_WestDock", new Vector2(-12.5f, -2.5f));
-                GameEventBus.RaiseToastRequested("Mốc 2: Xong 3 Đêm + có Nửa Đèn Đông -> tiến lên Đầm Lầy Bờ Tây!");
+                GameEventBus.RaiseToastRequested("S3: Đã mở Đò Bờ Tây (18:30) -> nói chuyện bà Mara & soi Dấu Đèn.");
             }
-            else if (milestone == 3)
+            else if (stageCode == 4)
             {
-                TeleportOrFallback("Spawn_SwampEcho", new Vector2(-16.0f, 7.6f));
-                GameEventBus.RaiseToastRequested("Mốc 3: Đã thanh tẩy Đầm Lầy + đủ 2 Nửa Đèn -> bấm [E] soi Dư Âm!");
+                TeleportOrFallback("Spawn_WestDock", new Vector2(-12.5f, -2.5f));
+                GameEventBus.RaiseToastRequested("S4: Đã có Khung Đèn Bão -> nói chuyện bà Mara để xin dầu mở Đầm Lầy!");
             }
-            else if (milestone == 4)
+            else if (stageCode == 50)
+            {
+                TeleportOrFallback("Spawn_SwampEntrance", new Vector2(-14.0f, -1.0f));
+                GameEventBus.RaiseToastRequested("S5a: Đầm Lầy Bờ Tây -> bước vào bãi sương để chiến 3 đợt quái!");
+            }
+            else if (stageCode == 51)
+            {
+                TeleportOrFallback("Spawn_SwampShrine", new Vector2(12.0f, 3.0f));
+                GameEventBus.RaiseToastRequested("S5b: Đã thanh tẩy Đầm Lầy + đủ 2 Nửa Đèn -> bấm [E] soi Dư Âm 1!");
+            }
+            else if (stageCode == 6)
+            {
+                TeleportOrFallback("Spawn_WestDock", new Vector2(-12.5f, -2.5f));
+                GameEventBus.RaiseToastRequested("S6: Đã xong Dư Âm 1 -> soi Dư Âm 2 tại Bến Đò Gãy!");
+            }
+            else if (stageCode == 7)
             {
                 TeleportOrFallback("Spawn_BridgeEast", new Vector2(9.2f, 0.5f));
                 if (LanternRelayManager.Instance != null) LanternRelayManager.Instance.StartRelayEvent();
-                GameEventBus.RaiseToastRequested("Mốc 4: Đã xong 2 Dư Âm -> Bắt đầu Đêm Chuyền Đèn!");
+                GameEventBus.RaiseToastRequested("S7: Bắt đầu Đêm Chuyền Đèn (Cầu dựng giàn giáo + Bướm Hút Sáng)!");
             }
-            else if (milestone >= 5)
+            else if (stageCode >= 8)
             {
                 TeleportOrFallback("Spawn_BridgeEast", new Vector2(4.0f, 0.5f));
-                f.SetFlag("flag_ch2_relay_done", true);
-                GameEventBus.RaiseToastRequested("Mốc 5: Đã xong Đêm Chuyền Đèn -> Kích hoạt Kết Thúc Chương 2!");
+                GameEventBus.RaiseToastRequested("S8: Hoàn tất Chương 2 (Cầu đã nối liền!).");
             }
 
             RefreshStatusText();
+        }
+
+        private static string GetTargetSpawnForStage(int stageCode)
+        {
+            if (stageCode == 0) return "Spawn_EastEntrance";
+            if (stageCode == 2) return "Spawn_EastCamp";
+            if (stageCode == 3 || stageCode == 4 || stageCode == 6) return "Spawn_WestDock";
+            if (stageCode == 50) return "Spawn_SwampEntrance";
+            if (stageCode == 51) return "Spawn_SwampShrine";
+            return "Spawn_BridgeEast";
         }
 
         private void OnClickGiveCh2Kit()
@@ -411,6 +472,7 @@ namespace MoonpetalValley.DebugTools
             GameEventBus.RaiseToastRequested("Đã cấp đủ 2 Nửa Đèn Bão Cổ (Đông + Tây) và 2 Bánh Mì Nắng Ấm!");
             RefreshStatusText();
         }
+
         private void TeleportTo(string spawnId)
         {
             if (WorldSpawnRegistry.Instance != null)
@@ -505,9 +567,11 @@ namespace MoonpetalValley.DebugTools
             if (GameRoot.Instance.Time != null) sb.AppendLine(GameRoot.Instance.Time.GetFormattedClockString());
 
             string sceneName = SceneManager.GetActiveScene().name;
-            if (sceneName == "Riverbank_Chapter2" && Chapter2StateManager.Instance != null)
+            if ((sceneName == Chapter2StateManager.Chapter2SceneName || sceneName == Chapter2StateManager.WestSwampSceneName)
+                && Chapter2StateManager.Instance != null)
             {
-                sb.AppendLine("Ch2 | Cầu: " + Chapter2StateManager.Instance.BridgeState + " | Đêm: " + Chapter2StateManager.Instance.InvestigationStage + "/3");
+                Chapter2Stage st = Chapter2StateManager.Instance.CurrentStage;
+                sb.AppendLine($"Ch2 | Stage: {st} ({(int)st}/8) | Cầu: {Chapter2StateManager.Instance.BridgeState}");
             }
             else if (GameRoot.Instance.Bundle != null)
             {

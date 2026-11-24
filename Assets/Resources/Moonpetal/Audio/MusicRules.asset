@@ -34,6 +34,7 @@ MonoBehaviour:
   - MoonpetalValley_MVP
   riverSceneNames:
   - Riverbank_Chapter2
+  - WestSwamp_Chapter2
   petalFlagIds:
   - flag_nv1_completed
   - flag_ch2_completed

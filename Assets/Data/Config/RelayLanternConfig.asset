@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: RelayLanternConfig
   m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.RelayLanternConfigSO
   lanternCount: 6
-  passiveDrainPerSec: 2.5
-  mothDrainPerSec: 12
+  passiveDrainPerSec: 2.35
+  mothDrainPerSec: 13
   relightRadius: 2.1
   minLitLanternsForWork: 4
   siteLightDrainIfDark: 7.5
   siteLightRecoverPerSec: 4
   freeDashDuringRelay: 1
-  mothSpawnInterval: 5.5
-  maxActiveMoths: 4
+  mothSpawnInterval: 2.6
+  maxActiveMoths: 6

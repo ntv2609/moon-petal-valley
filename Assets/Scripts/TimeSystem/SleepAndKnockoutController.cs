@@ -53,7 +53,8 @@ namespace MoonpetalValley.TimeSystem
         public void TriggerNormalSleep()
         {
             if (_isTransitioning) return;
-            bool inCh2 = SceneManager.GetActiveScene().name == "Riverbank_Chapter2";
+            string active = SceneManager.GetActiveScene().name;
+            bool inCh2 = active == Chapter2StateManager.Chapter2SceneName || active == Chapter2StateManager.WestSwampSceneName;
             string title = inCh2 ? "NGHỈ NGƠI TẠI LỀU TẠM BỜ ĐÔNG" : "NGHỈ NGƠI TRONG NHÀ KÍNH";
             string msg = inCh2
                 ? "Bạn nghỉ ngơi yên bình bên tiếng sông rì rào...\nThể lực hồi đầy 100%, đang đón ánh bình minh ngày mới."
@@ -64,7 +65,7 @@ namespace MoonpetalValley.TimeSystem
         public void TriggerRelaySoftFail()
         {
             if (_isTransitioning) return;
-            StartCoroutine(DayTransitionRoutine(false, "ĐÊM CHUYỀN ĐÈN TẠM DỪNG", "Sương sông quá dày, Ông Kael và Bà Mara dìu bạn vào lều nghỉ ngơi.\nKhông mất vật phẩm — tối mai có thể thử lại ngay!", true));
+            StartCoroutine(DayTransitionRoutine(false, "ĐÊM CHUYỀN ĐÈN TẠM DỪNG", "Sương sông quá dày, Ông Kael và Bà Mara dìu bạn vào lều nghỉ ngơi.\nKhông mất vật phẩm, tối mai có thể thử lại ngay!", true));
         }
 
         public void TriggerKnockout(string message)
@@ -76,9 +77,15 @@ namespace MoonpetalValley.TimeSystem
                 return;
             }
             string activeScene = SceneManager.GetActiveScene().name;
-            string finalMsg = activeScene == "Riverbank_Chapter2"
-                ? "Ông Kael và Bác Otis tìm thấy bạn ngoài Bờ Sông và đưa về Lều Tạm Bờ Đông nghỉ ngơi...\nSáng hôm sau trần Thể lực giảm còn 50% (vật phẩm nhiệm vụ an toàn 100%)."
-                : message;
+            string finalMsg = message;
+            if (activeScene == Chapter2StateManager.WestSwampSceneName)
+            {
+                finalMsg = "Bà Mara và Ông Kael nghe tiếng gọi của Lumi, kịp đưa bạn từ Đầm Lầy Bờ Tây về Lều Tạm Bờ Đông nghỉ ngơi...\nSáng hôm sau trần Thể lực giảm còn 50% (vật phẩm nhiệm vụ an toàn 100%).";
+            }
+            else if (activeScene == Chapter2StateManager.Chapter2SceneName)
+            {
+                finalMsg = "Ông Kael và Bác Otis tìm thấy bạn ngoài Bờ Sông và đưa về Lều Tạm Bờ Đông nghỉ ngơi...\nSáng hôm sau trần Thể lực giảm còn 50% (vật phẩm nhiệm vụ an toàn 100%).";
+            }
             StartCoroutine(DayTransitionRoutine(true, "BẠN ĐÃ KIỆT SỨC...", finalMsg, false));
         }
 
@@ -120,7 +127,16 @@ namespace MoonpetalValley.TimeSystem
             }
 
             string currentScene = SceneManager.GetActiveScene().name;
-            if (currentScene == "Riverbank_Chapter2")
+            if (currentScene == Chapter2StateManager.WestSwampSceneName)
+            {
+                if (Chapter2StateManager.Instance != null)
+                    Chapter2StateManager.Instance.PendingSceneSpawnId = "Spawn_EastCamp";
+                if (GameRoot.Instance != null && GameRoot.Instance.Scenes != null)
+                    GameRoot.Instance.Scenes.LoadScene(Chapter2StateManager.Chapter2SceneName);
+                else
+                    SceneManager.LoadScene(Chapter2StateManager.Chapter2SceneName);
+            }
+            else if (currentScene == Chapter2StateManager.Chapter2SceneName)
             {
                 if (WorldSpawnRegistry.Instance != null)
                     WorldSpawnRegistry.Instance.TeleportPlayerTo("Spawn_EastCamp");

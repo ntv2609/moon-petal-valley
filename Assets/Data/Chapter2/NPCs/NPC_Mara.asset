@@ -23,19 +23,25 @@ MonoBehaviour:
     blockedByStoryFlag: 
     dialogue: {fileID: 11400000, guid: bcf0ecb2a88296c489bada4f139e5aef, type: 2}
   - requiredStoryFlag: flag_ch2_echo2_pier_done
-    blockedByStoryFlag: flag_ch2_relay_done
+    blockedByStoryFlag: flag_ch2_completed
     dialogue: {fileID: 11400000, guid: eb6fba86f13e28044bd3db176f7d1210, type: 2}
   - requiredStoryFlag: flag_ch2_swamp_cleared
     blockedByStoryFlag: flag_ch2_echo2_pier_done
     dialogue: {fileID: 11400000, guid: efb3b2a9609b00a4db24cec91e089f5f, type: 2}
-  - requiredStoryFlag: flag_ch2_choice_tell_truth
+  - requiredStoryFlag: flag_ch2_swamp_unlocked
     blockedByStoryFlag: flag_ch2_swamp_cleared
+    dialogue: {fileID: 11400000, guid: 4609ca3059f8af8468542ed98ef333a3, type: 2}
+  - requiredStoryFlag: flag_ch2_kael_gave_lantern
+    blockedByStoryFlag: flag_ch2_swamp_unlocked
     dialogue: {fileID: 11400000, guid: 2894c1cdf789995488dd99a04cc81a4d, type: 2}
-  - requiredStoryFlag: flag_ch2_choice_keep_secret
-    blockedByStoryFlag: flag_ch2_swamp_cleared
+  - requiredStoryFlag: flag_ch2_kael_gave_lantern
+    blockedByStoryFlag: flag_ch2_swamp_unlocked
     dialogue: {fileID: 11400000, guid: 1d085fc77a33eb747ba7f29eb9accca2, type: 2}
+  - requiredStoryFlag: flag_ch2_inv_night2_done
+    blockedByStoryFlag: flag_ch2_kael_gave_lantern
+    dialogue: {fileID: 11400000, guid: 27b053594ebf30649bc6d76e782b5c48, type: 2}
   - requiredStoryFlag: flag_ch2_met_mara
-    blockedByStoryFlag: flag_ch2_inv_night3_done
+    blockedByStoryFlag: flag_ch2_inv_night2_done
     dialogue: {fileID: 11400000, guid: 55b44c360a8cb2747951f4b5a7c803b6, type: 2}
   isHelperForBundleID: 
   helperReadyStoryFlag: 

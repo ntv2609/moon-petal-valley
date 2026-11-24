@@ -15,13 +15,19 @@ MonoBehaviour:
   dialogueID: dlg_ch2_clue3
   lines:
   - speakerNameKey: "B\xE1c Otis"
-    textKey: "Ch\xE1u t\xECm th\u1EA5y s\u1ED5 ghi ch\xE9p c\u0169 c\u1EE7a b\xE1c r\u1ED3i \xE0? \u0110\xEAm b\xE3o n\u0103m \u0111\xF3 Kael ch\u1EB7t c\xE1p gi\u1EEF nh\xE0 tr\u1EBB b\u1EDD \u0110\xF4ng r\u1ED3i lao xu\u1ED1ng s\xF4ng c\u1EE9u thuy\u1EC1n cho Mara t\u1EDBi b\u1ECB th\u01B0\u01A1ng n\u1EB7ng."
+    textKey: "Ch\xE1u \u0111\u1ECDc s\u1ED5 ghi ch\xE9p \u0111\xEAm b\xE3o 3 n\u0103m tr\u01B0\u1EDBc r\u1ED3i \xE0? \u0110\xEAm \u0111\xF3 Kael c\u1EAFt d\xE2y c\u1EA7u \u0111\u1EC3 v\xE1n g\xE3y kh\xF4ng \u0111\u1EADp s\u1EADp b\u1EBFn nh\xE0 Mara, r\u1ED3i lao xu\u1ED1ng c\u1EE9u thuy\u1EC1n t\u1EDBi b\u1ECB th\u01B0\u01A1ng."
+    portraitOverride: {fileID: 0}
+    speakerId: otis
+    requiredFlag: 
+    blockedFlag: 
+  - speakerNameKey: "B\xE1c Otis"
+    textKey: "Mu\u1ED1n h\xF3a gi\u1EA3i hi\u1EC3u l\u1EA7m su\u1ED1t 3 n\u0103m nay, ch\xE1u c\u1EA7n t\xECm \u0111\u1EE7 Chi\u1EBFc \u0110\xE8n B\xE3o C\u1ED5 hai ng\u01B0\u1EDDi c\xF9ng r\xE8n: Khung \u0110\u1ED3ng \u1EDF ch\u1ED7 \xF4ng Kael, c\xF2n Chao K\xEDnh b\u1ECB b\xE3o cu\u1ED1n v\xE0o \u0110\u1EA7m L\u1EA7y B\u1EDD T\xE2y."
     portraitOverride: {fileID: 0}
     speakerId: otis
     requiredFlag: 
     blockedFlag: 
   - speakerNameKey: Wen
-    textKey: "H\xF3a ra c\u1EA3 hai \u0111\u1EC1u hi\u1EC3u l\u1EA7m nhau su\u1ED1t 3 n\u0103m! M\xECnh n\xEAn n\xF3i th\u1EB3ng s\u1EF1 th\u1EADt cho b\xE0 Mara hay \u0111\u1EC3 hai ng\u01B0\u1EDDi t\u1EF1 th\u1EA5y qua \xC1nh Soi?"
+    textKey: "Ra l\xE0 v\u1EADy! Ch\xE1u s\u1EBD qua g\u1EB7p \xF4ng Kael xin Khung \u0110\u1ED3ng tr\u01B0\u1EDBc. C\xF2n chuy\u1EC7n \u0111\xEAm b\xE3o, m\xECnh n\xEAn n\xF3i th\u1EB3ng cho b\xE0 Mara hay \u0111\u1EC3 hai ng\u01B0\u1EDDi t\u1EF1 th\u1EA5y qua \xC1nh Soi?"
     portraitOverride: {fileID: 0}
     speakerId: wen
     requiredFlag: 
@@ -39,7 +45,7 @@ MonoBehaviour:
     branchDialogue: {fileID: 0}
   setsStoryFlagOnFinish: flag_ch2_inv_night3_done
   givesItemOnFinish: {fileID: 0}
-  givesItemAmount: 1
+  givesItemAmount: 0
   extraRewards: []
   consumesRequiredItem: {fileID: 0}
   consumesAmount: 0

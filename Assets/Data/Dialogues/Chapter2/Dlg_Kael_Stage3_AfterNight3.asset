@@ -15,25 +15,25 @@ MonoBehaviour:
   dialogueID: dlg_kael_s3_after_night3
   lines:
   - speakerNameKey: "\xD4ng Kael"
-    textKey: "B\xE1c Otis \u0111\u01B0a ch\xE1u xem s\u1ED5 ghi ch\xE9p \u0111\xEAm b\xE3o r\u1ED3i sao... Ch\u1EADc, \u0111\xFAng l\xE0 \u0111\xEAm n\xE0o t\xF4i c\u0169ng l\xE9n b\xE0o g\u1ED7 gia c\u1ED1 ch\xE2n c\u1EA7u th\u1EADt."
+    textKey: "B\xE1c Otis \u0111\u01B0a ch\xE1u xem s\u1ED5 ghi ch\xE9p \u0111\xEAm b\xE3o 3 n\u0103m tr\u01B0\u1EDBc r\u1ED3i sao... Ch\u1EADc, \u0111\xFAng l\xE0 \u0111\xEAm n\xE0o t\xF4i c\u0169ng l\xE9n b\xE0o g\u1ED7 gia c\u1ED1 ch\xE2n c\u1EA7u th\u1EADt."
     portraitOverride: {fileID: 0}
     speakerId: kael
     requiredFlag: 
     blockedFlag: 
   - speakerNameKey: "\xD4ng Kael"
-    textKey: "C\u1EA7m l\u1EA5y N\u1EEDa \u0110\xE8n B\xE3o C\u1ED5 n\xE0y \u0111i Wen. N\u0103m x\u01B0a t\xF4i v\xE0 Mara t\u1EF1 tay r\xE8n n\xF3 cho L\u1EC5 Trao H\u1EA1t \u0111\u1EA7u ti\xEAn. N\u1EEDa c\xF2n l\u1EA1i b\u1ECB n\u01B0\u1EDBc cu\u1ED1n v\xE0o \u0110\u1EA7m L\u1EA7y B\u1EDD T\xE2y r\u1ED3i."
+    textKey: "C\u1EA7m l\u1EA5y Khung \u0110\u1ED3ng \u0110\xE8n B\xE3o n\xE0y \u0111i Wen. Chao K\xEDnh b\u1ECB b\xE3o cu\u1ED1n v\xE0o \u0110\u1EA7m L\u1EA7y B\u1EDD T\xE2y r\u1ED3i, nh\u01B0ng s\u01B0\u01A1ng trong \u0111\xF3 d\xE0y l\u1EAFm."
     portraitOverride: {fileID: 0}
     speakerId: kael
     requiredFlag: 
     blockedFlag: 
-  - speakerNameKey: Tinh Linh Lumi
-    textKey: "N\u1EBFu t\xECm \u0111\u1EE7 hai n\u1EEDa \u0111\xE8n b\xE3o, \xC1nh Soi c\u1EE7a Lumi s\u1EBD d\u1EF1ng l\u1EA1i \u0111\u01B0\u1EE3c k\xFD \u1EE9c th\u1EADt s\u1EF1 c\u1EE7a \u0111\xEAm b\xE3o n\u0103m \u1EA5y \u0111\xF3 Wen!"
+  - speakerNameKey: "\xD4ng Kael"
+    textKey: "Khung \u0111\xE8n n\xE0y h\u1EBFt d\u1EA7u r\u1ED3i. Ch\xE1u mang sang B\u1EDD T\xE2y nh\u1EDD b\xE0 Mara ch\xE2m ch\xFAt D\u1EA7u \u0110\xE8n B\xE3o, ng\u1ECDn l\u1EEDa \u0111\xF3 s\u1EBD xua tan s\u01B0\u01A1ng m\xF9 m\u1EDF l\u1ED1i v\xE0o \u0110\u1EA7m L\u1EA7y."
     portraitOverride: {fileID: 0}
-    speakerId: lumi
+    speakerId: kael
     requiredFlag: 
     blockedFlag: 
   choices: []
-  setsStoryFlagOnFinish: 
+  setsStoryFlagOnFinish: flag_ch2_kael_gave_lantern
   givesItemOnFinish: {fileID: 11400000, guid: 6bd0f877f97344e42a4a2ced8616ec63, type: 2}
   givesItemAmount: 1
   extraRewards: []

@@ -15,13 +15,13 @@ MonoBehaviour:
   dialogueID: dlg_ch2_clue2
   lines:
   - speakerNameKey: Wen
-    textKey: "D\u1EA5u \u1EE7ng d\xEDnh b\xF9n \u0111i t\u1EEB b\u1EBFn ph\xE0 th\u1EB3ng ra t\u1EADn m\u1ED1 c\u1EA7u g\xE3y... c\u1EA3 hai ng\u01B0\u1EDDi \u0111\u1EC1u \xE2m th\u1EA7m ra \u0111\xE2y xem c\u1EA7u m\u1ED7i \u0111\xEAm."
+    textKey: "D\u1EA5u \u1EE7ng d\xEDnh b\xF9n \u0111i t\u1EEB b\u1EBFn thuy\u1EC1n th\u1EB3ng ra m\u1ED1 c\u1EA7u T\xE2y... h\xF3a ra \u0111\xEAm n\xE0o b\xE0 Mara c\u0169ng l\xE9n ki\u1EC3m tra nh\u1ECBp c\u1EA7u!"
     portraitOverride: {fileID: 0}
     speakerId: wen
     requiredFlag: 
     blockedFlag: 
-  - speakerNameKey: Lumi
-    textKey: "\xC1nh \u0111\xE8n nh\u1ECF tr\xEAn b\u1EBFn b\xE0 Mara c\u1EE9 ch\u1EDBp t\u1EAFt nh\u01B0 \u0111ang ch\u1EDD ai \u0111\xF3 tr\u1EA3 l\u1EDDi."
+  - speakerNameKey: Tinh Linh Lumi
+    textKey: "C\u1EA3 hai b\xE1c \u0111\u1EC1u quan t\xE2m c\xE2y c\u1EA7u m\xE0 ch\u1EB3ng ai ch\u1ECBu n\xF3i! M\xECnh quay l\u1EA1i B\u1EDD \u0110\xF4ng ki\u1EC3m tra cu\u1ED1n s\u1ED5 c\u0169 c\u1EE7a b\xE1c Otis th\u1EED xem."
     portraitOverride: {fileID: 0}
     speakerId: lumi
     requiredFlag: 
@@ -29,7 +29,7 @@ MonoBehaviour:
   choices: []
   setsStoryFlagOnFinish: flag_ch2_inv_night2_done
   givesItemOnFinish: {fileID: 0}
-  givesItemAmount: 1
+  givesItemAmount: 0
   extraRewards: []
   consumesRequiredItem: {fileID: 0}
   consumesAmount: 0
