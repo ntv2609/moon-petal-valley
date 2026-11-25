@@ -17,6 +17,7 @@ namespace MoonpetalValley.Chapter2
 
         private float _buildProgress;
         private int _lastAnnouncedTier;
+        private Transform _ropeCatwalkGroup;
 
         private void Awake() { Instance = this; }
         private void OnDestroy() { if (Instance == this) Instance = null; }
@@ -58,6 +59,30 @@ namespace MoonpetalValley.Chapter2
             _buildProgress = 0f;
             _lastAnnouncedTier = 0;
             ApplyProgressivePlanks();
+            SetCatwalkReveal(1f);
+        }
+
+        public void SetCatwalkReveal(float t01)
+        {
+            if (scaffoldingVisualsRoot == null) return;
+            if (_ropeCatwalkGroup == null)
+                _ropeCatwalkGroup = scaffoldingVisualsRoot.transform.Find("RopeCatwalkSpan");
+            if (_ropeCatwalkGroup == null) return;
+
+            float clamped = Mathf.Clamp01(t01);
+            int total = _ropeCatwalkGroup.childCount;
+            if (total == 0) return;
+
+            // Unfurl from east/west banks toward center (x = -0.5)
+            float maxDist = 4.6f;
+            float allowedDistFromBank = clamped * maxDist;
+            for (int i = 0; i < total; i++)
+            {
+                Transform ch = _ropeCatwalkGroup.GetChild(i);
+                float distFromCenter = Mathf.Abs(ch.localPosition.x + 0.5f);
+                float distFromBank = Mathf.Max(0f, maxDist - distFromCenter);
+                ch.gameObject.SetActive(clamped >= 0.99f || distFromBank <= allowedDistFromBank);
+            }
         }
 
         public void SetBuildProgress(float progressPercent)
@@ -65,16 +90,26 @@ namespace MoonpetalValley.Chapter2
             _buildProgress = Mathf.Clamp(progressPercent, 0f, 100f);
             ApplyProgressivePlanks();
 
-            int tier = _buildProgress >= 95f ? 3 : (_buildProgress >= 66f ? 2 : (_buildProgress >= 33f ? 1 : 0));
+            int tier = _buildProgress >= 95f ? 3 : (_buildProgress >= 70f ? 2 : (_buildProgress >= 35f ? 1 : 0));
             if (tier > _lastAnnouncedTier)
             {
                 _lastAnnouncedTier = tier;
+                if (JuiceEffectsManager.Instance != null)
+                {
+                    JuiceEffectsManager.Instance.TriggerCameraShake(0.16f, 0.14f);
+                    Vector3 popPos = tier == 1 ? new Vector3(2.5f, 1.4f, 0f) : (tier == 2 ? new Vector3(-2.5f, 1.4f, 0f) : new Vector3(0f, 1.5f, 0f));
+                    string popText = tier == 1 ? "GHÉP NHỊP ĐÔNG (35%)!" : (tier == 2 ? "GHÉP NHỊP TÂY (70%)!" : "CHỐT NHỊP GIỮA!");
+                    JuiceEffectsManager.Instance.SpawnFloatingNumber(popPos, popText, new Color(1f, 0.88f, 0.44f));
+                }
+                if (GameRoot.Instance != null && GameRoot.Instance.Audio != null)
+                    GameRoot.Instance.Audio.PlayUIClick();
+
                 if (tier == 1)
-                    GameEventBus.RaiseToastRequested("Nhịp ván Bờ Đông (33%) đã được ghép lên giàn giáo!");
+                    GameEventBus.RaiseToastRequested("Nhịp ván gỗ Bờ Đông (35%) đã ghép vững lên Cầu Khỉ Dây Thừng!");
                 else if (tier == 2)
-                    GameEventBus.RaiseToastRequested("Nhịp ván Bờ Tây (66%) đã khớp khung cầu!");
+                    GameEventBus.RaiseToastRequested("Nhịp ván gỗ Bờ Tây (70%) đã khớp khung! Chỉ còn khe giữa cuối cùng!");
                 else if (tier == 3)
-                    GameEventBus.RaiseToastRequested("Chỉ còn tấm ván trung tâm cuối cùng!");
+                    GameEventBus.RaiseToastRequested("Tấm ván trung tâm đã vào vị trí! Sẵn sàng nối liền cây cầu!");
             }
         }
 
@@ -89,10 +124,8 @@ namespace MoonpetalValley.Chapter2
             if (repairedVisualsRoot != null) repairedVisualsRoot.SetActive(isRepaired);
             if (bridgeGapBlocker != null) bridgeGapBlocker.enabled = isBroken;
 
-            // Lan can cứng 2 mép Bắc/Nam luôn bật khi đang xây cầu hoặc cầu đã nối xong -> tuyệt đối không đi trên mặt nước!
-            bool railsActive = isRelay || isRepaired;
-            if (bridgeRailNorth != null) bridgeRailNorth.enabled = railsActive;
-            if (bridgeRailSouth != null) bridgeRailSouth.enabled = railsActive;
+            if (bridgeRailNorth != null) bridgeRailNorth.enabled = true;
+            if (bridgeRailSouth != null) bridgeRailSouth.enabled = true;
 
             if (isRelay) ApplyProgressivePlanks();
         }
@@ -100,7 +133,7 @@ namespace MoonpetalValley.Chapter2
         private void ApplyProgressivePlanks()
         {
             if (progressivePlankSegments == null || progressivePlankSegments.Length == 0) return;
-            float[] thresholds = { 33f, 66f, 95f };
+            float[] thresholds = { 35f, 70f, 95f };
             for (int i = 0; i < progressivePlankSegments.Length; i++)
             {
                 if (progressivePlankSegments[i] == null) continue;

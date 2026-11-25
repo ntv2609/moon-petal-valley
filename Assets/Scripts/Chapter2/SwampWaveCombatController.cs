@@ -34,7 +34,7 @@ namespace MoonpetalValley.Chapter2
         [Header("Full-Map Random Spawn Bounds")]
         [SerializeField] private Vector2 arenaMin = new Vector2(-16.5f, -7.2f);
         [SerializeField] private Vector2 arenaMax = new Vector2(15.5f, 8.2f);
-        [SerializeField] private float triggerEnterMinY = -6.2f;
+        [SerializeField] private float triggerEnterMinY = -8.6f;
         [SerializeField] private float minDistFromPlayer = 4.6f;
         [SerializeField] private float maxDistFromPlayer = 11.2f;
 
@@ -157,6 +157,7 @@ namespace MoonpetalValley.Chapter2
         private void BeginSwampGauntlet()
         {
             _combatStarted = true;
+            _lootShardsTotal = 0; _lootSeedsTotal = 0; _lootFertTotal = 0;
             BuildWaveHudIfNeeded();
             SetWaveHudVisible(true);
             GameEventBus.RaiseToastRequested("Bãi lầy rung chuyển! Hàng chục bóng sương đang trồi lên từ khắp mọi phía!");
@@ -300,6 +301,13 @@ namespace MoonpetalValley.Chapter2
             if (prefab == null) yield break;
 
             GameObject inst = Instantiate(prefab, pos, Quaternion.identity);
+            PlayerController2D targetPc = _playerTr != null ? _playerTr.GetComponent<PlayerController2D>() : Object.FindAnyObjectByType<PlayerController2D>();
+            GloomSlimeController gs = inst.GetComponent<GloomSlimeController>();
+            if (gs != null) gs.ForceSwarmAggro(targetPc, 65f);
+            ThornCrawlerController tc = inst.GetComponent<ThornCrawlerController>();
+            if (tc != null) tc.ForceSwarmAggro(targetPc, 65f);
+            BigGloomSlimeController bs = inst.GetComponent<BigGloomSlimeController>();
+            if (bs != null) bs.ForceSwarmAggro(targetPc, 65f);
             IDamageable dmg = inst.GetComponent<IDamageable>();
             _activeEnemies.Add(new ActiveEnemyTrack
             {
@@ -324,9 +332,84 @@ namespace MoonpetalValley.Chapter2
                     _waveDefeatedCount++;
                     bool isBoss = tr.kind == EnemyKind.BigGloomSlime;
                     InstantRecoveryOrb.TrySpawnRandomDrop(tr.lastPos, isBoss ? 1f : 0.42f, isBoss);
+                    AwardSwampEnemyLoot(tr.lastPos, tr.kind);
                     UpdateWaveHudText();
                 }
             }
+        }
+
+
+        private int _lootShardsTotal;
+        private int _lootSeedsTotal;
+        private int _lootFertTotal;
+
+        private void AwardSwampEnemyLoot(Vector3 deathPos, EnemyKind kind)
+        {
+            if (GameRoot.Instance == null || GameRoot.Instance.Inventory == null) return;
+            var inv = GameRoot.Instance.Inventory;
+
+            int shardQty = 0;
+            string seedId = null;
+            string seedLabel = null;
+            int fertQty = 0;
+
+            if (kind == EnemyKind.BigGloomSlime)
+            {
+                shardQty = 3;
+                fertQty = 1;
+                bool moonSeed = Random.value < 0.55f;
+                seedId = moonSeed ? "item_moonbud_seed" : "item_firefly_chili_seed";
+                seedLabel = moonSeed ? "+1 Hạt Cánh Trăng" : "+1 Hạt Ớt Đom Đóm";
+            }
+            else if (kind == EnemyKind.ThornCrawler)
+            {
+                if (Random.value < 0.62f) shardQty = 1;
+                if (Random.value < 0.24f)
+                {
+                    bool moonSeed = Random.value < 0.50f;
+                    seedId = moonSeed ? "item_moonbud_seed" : "item_firefly_chili_seed";
+                    seedLabel = moonSeed ? "+1 Hạt Cánh Trăng" : "+1 Hạt Ớt Đom Đóm";
+                }
+                if (Random.value < 0.14f) fertQty = 1;
+            }
+            else
+            {
+                if (Random.value < 0.48f) shardQty = 1;
+                if (Random.value < 0.18f)
+                {
+                    bool moonSeed = Random.value < 0.55f;
+                    seedId = moonSeed ? "item_moonbud_seed" : "item_firefly_chili_seed";
+                    seedLabel = moonSeed ? "+1 Hạt Cánh Trăng" : "+1 Hạt Ớt Đom Đóm";
+                }
+                if (Random.value < 0.10f) fertQty = 1;
+            }
+
+            float yOff = 0.55f;
+            if (shardQty > 0 && inv.AddItemById("item_gloom_shard", shardQty, false))
+            {
+                _lootShardsTotal += shardQty;
+                SpawnLootPopup(deathPos + new Vector3(0f, yOff, 0f), $"+{shardQty} Mảnh Sương Đen", new Color(0.84f, 0.56f, 1f, 1f));
+                yOff += 0.42f;
+            }
+            if (!string.IsNullOrEmpty(seedId) && inv.AddItemById(seedId, 1, false))
+            {
+                _lootSeedsTotal++;
+                SpawnLootPopup(deathPos + new Vector3(0f, yOff, 0f), seedLabel, new Color(0.56f, 1f, 0.72f, 1f));
+                yOff += 0.42f;
+            }
+            if (fertQty > 0 && inv.AddItemById("item_star_fertilizer", fertQty, false))
+            {
+                _lootFertTotal += fertQty;
+                SpawnLootPopup(deathPos + new Vector3(0f, yOff, 0f), "+1 Phân Tinh Bụi", new Color(1f, 0.90f, 0.42f, 1f));
+            }
+        }
+
+        private void SpawnLootPopup(Vector3 pos, string text, Color color)
+        {
+            GameObject go = new GameObject("SwampLootPopup");
+            go.transform.position = pos;
+            var ft = go.AddComponent<MoonpetalValley.UI.FloatingDamageText>();
+            ft.Initialize(text, color, hudFont);
         }
 
         private void HandleWaveCleared()
@@ -372,7 +455,7 @@ namespace MoonpetalValley.Chapter2
                 GameRoot.Instance.Audio.PlayUIClick();
 
             UpdateWaveHudText("ĐẦM LẦY ĐÃ ĐƯỢC THANH TẨY!", "Đã nhận Chao Kính Đèn Bão -> Tiến lên Miếu Đèn Cổ (Tây-Bắc) bấm [E] soi Dư Âm 1!");
-            GameEventBus.RaiseToastRequested("Thanh tẩy toàn bộ 70 bóng sương! Bạn đã thu được Chao Kính Đèn Bão Cổ!");
+            GameEventBus.RaiseToastRequested($"Thanh tẩy xong 70 bóng sương! Nhận Chao Kính Đèn Bão + {_lootShardsTotal} Mảnh Sương Đen, {_lootSeedsTotal} Hạt hiếm, {_lootFertTotal} Phân Tinh Bụi!");
             StartCoroutine(HideHudDelayed(6.0f));
         }
 

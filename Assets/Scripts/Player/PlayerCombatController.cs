@@ -123,7 +123,7 @@ namespace MoonpetalValley.Player
         {
             if (GameRoot.Instance == null || GameRoot.Instance.Inventory == null) return false;
             var slot = GameRoot.Instance.Inventory.GetSelectedSlot();
-            return slot != null && !slot.IsEmpty && slot.item.itemID == "item_moon_sickle";
+            return slot != null && !slot.IsEmpty && (slot.item.itemID == "item_moon_sickle" || slot.item.itemID == "item_moon_sickle_lv2");
         }
 
         private void ExecuteNextComboAction()
@@ -158,7 +158,7 @@ namespace MoonpetalValley.Player
             float lungeDur = statsConfig != null ? statsConfig.dashStrikeLungeDuration : 0.11f;
             float window = statsConfig != null ? statsConfig.comboWindowDuration : 0.62f;
 
-            _attackCooldownTimer = cooldown;
+            _attackCooldownTimer = cooldown * (PlayerCombatBuffController.Instance != null ? PlayerCombatBuffController.Instance.CooldownMultiplier : 1f);
             _comboStep = 1; // Mở chuỗi mượt: Dash-Strike -> Đòn 2 -> Đòn 3
             _comboWindowTimer = window;
 
@@ -240,7 +240,7 @@ namespace MoonpetalValley.Player
             float window = statsConfig != null ? statsConfig.comboWindowDuration : 0.62f;
             bool isFinisher = (step == 3);
 
-            _attackCooldownTimer = cooldown;
+            _attackCooldownTimer = cooldown * (PlayerCombatBuffController.Instance != null ? PlayerCombatBuffController.Instance.CooldownMultiplier : 1f);
             _comboStep = isFinisher ? 0 : step;
             _comboWindowTimer = isFinisher ? 0f : window;
 
@@ -301,8 +301,9 @@ namespace MoonpetalValley.Player
                 {
                     _hitBuffer.Add(target);
                     Vector2 pushDir = toTarget.sqrMagnitude > 0.0001f ? toTarget.normalized : facing;
-                    target.TakePurifyDamage(dmg, pushDir, kb);
-                    OnPlayerComboHit?.Invoke(comboStep, isDashStrike, targetPos, dmg);
+                    int finalDmg = PlayerCombatBuffController.Instance != null ? Mathf.RoundToInt(dmg * PlayerCombatBuffController.Instance.DamageMultiplier) : dmg;
+                    target.TakePurifyDamage(finalDmg, pushDir, kb);
+                    OnPlayerComboHit?.Invoke(comboStep, isDashStrike, targetPos, finalDmg);
                 }
             }
         }

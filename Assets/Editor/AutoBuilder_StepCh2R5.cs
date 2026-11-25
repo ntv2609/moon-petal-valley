@@ -204,7 +204,8 @@ namespace MoonpetalValley.EditorTools
                 var crawlerProp = wso.FindProperty("thornCrawlerPrefab");
                 var slimeProp = wso.FindProperty("gloomSlimePrefab");
                 var bigSlimeProp = wso.FindProperty("bigGloomSlimePrefab");
-                var nestsProp = wso.FindProperty("spawnNests");
+                var minProp = wso.FindProperty("arenaMin");
+                var maxProp = wso.FindProperty("arenaMax");
 
                 if (crawlerProp == null || crawlerProp.objectReferenceValue == null)
                 {
@@ -221,9 +222,9 @@ namespace MoonpetalValley.EditorTools
                     Debug.LogError("[MV][Ch2-R5][FAIL] SwampWaveCombatController thiếu bigGloomSlimePrefab!");
                     err++;
                 }
-                if (nestsProp == null || nestsProp.arraySize < 3)
+                if (minProp == null || maxProp == null || maxProp.vector2Value.x <= minProp.vector2Value.x || maxProp.vector2Value.y <= minProp.vector2Value.y)
                 {
-                    Debug.LogError("[MV][Ch2-R5][FAIL] SwampWaveCombatController cần >= 3 spawnNests!");
+                    Debug.LogError("[MV][Ch2-R5][FAIL] SwampWaveCombatController thiếu vùng spawn ngẫu nhiên arenaMin/arenaMax hợp lệ!");
                     err++;
                 }
             }

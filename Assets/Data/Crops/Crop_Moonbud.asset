@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 018d7dcb7cb22a14fbc23df63dd7302e, type: 3}
+  m_Name: Crop_Moonbud
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.CropData
+  cropID: crop_moonbud
+  cropNameKey: crop.moonbud.name
+  seedItem: {fileID: 11400000, guid: a52ad164e20e0a04b812ac27cd05c0d8, type: 2}
+  harvestedItem: {fileID: 11400000, guid: 2f769331b15dffa4998ce8ff5fd9116f, type: 2}
+  growDays: 2
+  harvestYield: 1
+  stageSprites:
+  - {fileID: 21300000, guid: 70ee2464517de7e41b4b5de5fc256101, type: 3}
+  - {fileID: 21300000, guid: 9fee0ea1358ac6249ac6e96b84fbafb7, type: 3}
+  - {fileID: 21300000, guid: 6427efdae200e4144ab6b06414a2535b, type: 3}
+  - {fileID: 21300000, guid: 4fc4201ded568d545a3bea9ce97dfe55, type: 3}

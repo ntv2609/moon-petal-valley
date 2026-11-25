@@ -123,6 +123,8 @@ namespace MoonpetalValley.Player
             {
                 Vector2 move = inputReader != null ? inputReader.MoveInput : Vector2.zero;
                 float speed = _slowTimer > 0f ? baseSpeed * slowMult : baseSpeed;
+                if (PlayerCombatBuffController.Instance != null)
+                    speed *= PlayerCombatBuffController.Instance.MoveSpeedMultiplier;
                 rb.linearVelocity = move * speed;
             }
         }

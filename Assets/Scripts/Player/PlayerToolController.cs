@@ -90,6 +90,32 @@ namespace MoonpetalValley.Player
             ItemData item = slot.item;
             Vector2 targetPos = (Vector2)transform.position + playerController.FacingDirection * 0.90f;
 
+            // 0. Phan Bon Tinh Bui (chin tuc thi + hoa Phat Sang x2)
+            if (item.itemID == "item_star_fertilizer")
+            {
+                if (FarmGridManager.Instance != null)
+                {
+                    var tile = FarmGridManager.Instance.FindClosestTile(targetPos, 1.2f);
+                    if (tile != null && tile.TryApplyStarFertilizer())
+                    {
+                        GameRoot.Instance.Inventory.RemoveItem(item.itemID, 1);
+                        TriggerSwingFeedback(WenToolAnimType.GenericSeedHarvest);
+                        GameEventBus.RaiseToastRequested("Phân Bón Tinh Bụi phát sáng! Cây chín tức thì và x2 sản lượng!");
+                        return;
+                    }
+                }
+                GameEventBus.RaiseToastRequested("Hãy đứng cạnh cây đã gieo hạt để rắc Phân Bón Tinh Bụi!");
+                return;
+            }
+
+            // 0b. An/uong truc tiep Consumable dang cam tren Hotbar
+            if (item.category == ItemCategory.Consumable && PlayerCombatBuffController.Instance != null)
+            {
+                if (PlayerCombatBuffController.Instance.ConsumeItemById(item.itemID))
+                    _cooldownTimer = 0.35f;
+                return;
+            }
+
             // 1. Gieo hat
             if (item.category == ItemCategory.Seed && item.linkedCropData != null)
             {
@@ -129,7 +155,7 @@ namespace MoonpetalValley.Player
             }
 
             // 3. Binh Tuoi
-            if (item.itemID == "item_watering_can")
+            if (item.itemID == "item_watering_can" || item.itemID == "item_watering_can_lv2")
             {
                 if (FarmGridManager.Instance != null)
                 {
@@ -138,7 +164,21 @@ namespace MoonpetalValley.Player
                     {
                         if (GameRoot.Instance.Inventory.ConsumeWaterCharge())
                         {
-                            tile.TryWater();
+                            bool isAoE = item.itemID == "item_watering_can_lv2"
+                                || (GameRoot.Instance.Flags != null && GameRoot.Instance.Flags.HasFlag("flag_forge_watering_lv2"));
+                            if (isAoE)
+                            {
+                                var areaTiles = FarmGridManager.Instance.FindTilesInRadius(tile.transform.position, 1.65f);
+                                for (int k = 0; k < areaTiles.Count; k++)
+                                    if (areaTiles[k] != null && areaTiles[k].State != FarmTileState.Untilled && !areaTiles[k].IsWatered)
+                                        areaTiles[k].TryWater();
+                                if (JuiceEffectsManager.Instance != null)
+                                    JuiceEffectsManager.Instance.SpawnFloatingNumber(tile.transform.position + Vector3.up * 0.7f, "TƯỚI 3x3!", new Color(0.45f, 0.94f, 1f));
+                            }
+                            else
+                            {
+                                tile.TryWater();
+                            }
                             int cost = statsConfig != null ? statsConfig.waterStaminaCost : 2;
                             GameRoot.Instance.Stats?.ConsumeStamina(cost);
                             TriggerSwingFeedback(WenToolAnimType.WateringCan);

@@ -18,9 +18,9 @@ namespace MoonpetalValley.Chapter2
         [Header("Scene References")]
         [SerializeField] private StormLanternActor bridgeStormLantern;
         [SerializeField] private Vector3 bridgeFocusPos = new Vector3(0f, 0.9f, -10f);
-        [SerializeField] private Vector3 kaelEndPos = new Vector3(1.25f, 0.55f, 0f);
-        [SerializeField] private Vector3 maraEndPos = new Vector3(-1.25f, 0.55f, 0f);
-        [SerializeField] private Vector2 wenEndPos = new Vector2(0f, -0.45f);
+        [SerializeField] private Vector3 kaelEndPos = new Vector3(1.55f, 0.78f, 0f);
+        [SerializeField] private Vector3 maraEndPos = new Vector3(-1.55f, 0.78f, 0f);
+        [SerializeField] private Vector2 wenEndPos = new Vector2(0f, 0.45f);
 
         private bool _isPlaying;
         private GameObject _summaryPanelRoot;
@@ -58,6 +58,7 @@ namespace MoonpetalValley.Chapter2
         private void Start()
         {
             SyncBridgeLanternVisual();
+            RescuePlayerFromBridgeRailIfStuck();
             if (HasFlag(FlagRelayDone) && !HasFlag(FlagCh2Completed))
             {
                 TriggerEndingSequence();
@@ -112,7 +113,8 @@ namespace MoonpetalValley.Chapter2
             PlayerController2D player = FindAnyObjectByType<PlayerController2D>();
             if (player != null)
             {
-                player.TeleportTo(wenEndPos);
+                Vector2 safeWenEnd = new Vector2(wenEndPos.x, Mathf.Clamp(Mathf.Max(wenEndPos.y, 0.45f), 0.40f, 0.95f));
+                player.TeleportTo(safeWenEnd);
                 player.SetFacingDirection(Vector2.up);
             }
 
@@ -211,6 +213,9 @@ namespace MoonpetalValley.Chapter2
             {
                 GameRoot.Instance.State.ReturnToGameplay();
             }
+            RescuePlayerFromBridgeRailIfStuck();
+            var schedules = FindObjectsByType<Chapter2NPCSchedule>(FindObjectsInactive.Include);
+            for (int i = 0; i < schedules.Length; i++) if (schedules[i] != null) schedules[i].ForceRefreshSchedule();
             GameEventBus.RaiseToastRequested("HOÀN THÀNH CHƯƠNG 2! Mở khóa Xung Ánh Trăng Cấp 2 [Q] (Choáng 2s)!");
         }
 
@@ -320,6 +325,18 @@ namespace MoonpetalValley.Chapter2
             tmp.alignment = align;
             tmp.textWrappingMode = TextWrappingModes.Normal;
             return tmp;
+        }
+
+        private void RescuePlayerFromBridgeRailIfStuck()
+        {
+            PlayerController2D player = FindAnyObjectByType<PlayerController2D>();
+            if (player == null) return;
+            Vector3 p = player.transform.position;
+            // BridgeRail_South spans x=[-8.6..8.6], top edge y=-0.20 (min safe Wen pos.y = 0.36)
+            if (p.x >= -8.6f && p.x <= 8.6f && p.y > -1.05f && p.y < 0.38f)
+            {
+                player.TeleportTo(new Vector2(p.x, 0.52f));
+            }
         }
 
         private static bool HasFlag(string flagId)

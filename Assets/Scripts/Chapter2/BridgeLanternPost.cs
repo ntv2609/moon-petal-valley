@@ -10,6 +10,10 @@ namespace MoonpetalValley.Chapter2
         [SerializeField] private Sprite litSprite;
         [SerializeField] private Sprite dimSprite;
         [SerializeField] private Sprite outSprite;
+        [SerializeField] private Sprite[] litFrames;
+        [SerializeField] private Sprite[] flickerFrames;
+        [SerializeField] private Sprite[] offFrames;
+        [SerializeField] private float animFps = 6f;
         [SerializeField] private GameObject lightBarRoot;
         [SerializeField] private Transform lightBarFill;
         [SerializeField] private int lanternIndex;
@@ -18,6 +22,9 @@ namespace MoonpetalValley.Chapter2
         private float _currentLight = 100f;
         private bool _relayActive;
         private Vector3 _barBaseScale = Vector3.one;
+        private float _animTimer;
+        private int _animFrame;
+        private int _lastAnimBucket = -1;
 
         public float CurrentLight => _currentLight;
         public bool IsLit => _currentLight > 15f;
@@ -31,17 +38,57 @@ namespace MoonpetalValley.Chapter2
         private void Awake()
         {
             if (lightBarFill != null) _barBaseScale = lightBarFill.localScale;
+            _animTimer = (lanternIndex * 0.17f) % 0.6f;
         }
 
         private void OnEnable()
         {
             InteractionManager.Register(this);
             ApplyBridgeVisibility();
+            RefreshVisual();
         }
 
         private void OnDisable()
         {
             InteractionManager.Unregister(this);
+        }
+
+        private void Update()
+        {
+            if (spriteRenderer == null || !spriteRenderer.enabled) return;
+
+            int bucket = _currentLight > 55f ? 2 : (_currentLight > 15f ? 1 : 0);
+            if (bucket != _lastAnimBucket)
+            {
+                _lastAnimBucket = bucket;
+                _animFrame = 0;
+                _animTimer = 0f;
+                ApplyCurrentFrameSprite(bucket);
+            }
+
+            Sprite[] frames = GetFramesForBucket(bucket);
+            if (frames != null && frames.Length > 1)
+            {
+                float fps = bucket == 1 ? animFps * 1.35f : (bucket == 0 ? animFps * 0.45f : animFps);
+                _animTimer += Time.deltaTime;
+                float step = 1f / Mathf.Max(1f, fps);
+                if (_animTimer >= step)
+                {
+                    _animTimer -= step;
+                    _animFrame = (_animFrame + 1) % frames.Length;
+                    if (frames[_animFrame] != null) spriteRenderer.sprite = frames[_animFrame];
+                }
+            }
+
+            if (glowRenderer != null && glowRenderer.enabled)
+            {
+                float pulse = bucket == 1
+                    ? 0.72f + 0.28f * Mathf.Sin(Time.time * 13f + lanternIndex)
+                    : 0.90f + 0.10f * Mathf.Sin(Time.time * 4.5f + lanternIndex);
+                Color c = glowRenderer.color;
+                c.a = Mathf.Clamp01(_currentLight / 100f) * 0.48f * pulse;
+                glowRenderer.color = c;
+            }
         }
 
         public void SetRelayActive(bool active, float initialLight = 100f)
@@ -99,19 +146,43 @@ namespace MoonpetalValley.Chapter2
                 GameRoot.Instance.Audio.PlayUIClick();
             if (JuiceEffectsManager.Instance != null)
                 JuiceEffectsManager.Instance.SpawnFloatingNumber(transform.position + Vector3.up * 0.9f, "Đèn Sáng!", new Color(1f, 0.92f, 0.45f));
+            if (LanternRelayManager.Instance != null) LanternRelayManager.Instance.NotifyLanternRelit(this);
         }
 
         public void Interact() { Relight(); }
         public void HideLegacyPrompt() { }
 
+        private Sprite[] GetFramesForBucket(int bucket)
+        {
+            if (bucket == 2) return litFrames;
+            if (bucket == 1) return flickerFrames;
+            return offFrames;
+        }
+
+        private void ApplyCurrentFrameSprite(int bucket)
+        {
+            if (spriteRenderer == null) return;
+            Sprite[] frames = GetFramesForBucket(bucket);
+            if (frames != null && frames.Length > 0)
+            {
+                int idx = Mathf.Clamp(_animFrame, 0, frames.Length - 1);
+                if (frames[idx] != null)
+                {
+                    spriteRenderer.sprite = frames[idx];
+                    return;
+                }
+            }
+            if (bucket == 2 && litSprite != null) spriteRenderer.sprite = litSprite;
+            else if (bucket == 1 && dimSprite != null) spriteRenderer.sprite = dimSprite;
+            else if (outSprite != null) spriteRenderer.sprite = outSprite;
+        }
+
         private void RefreshVisual()
         {
-            if (spriteRenderer != null)
-            {
-                if (_currentLight > 55f && litSprite != null) spriteRenderer.sprite = litSprite;
-                else if (_currentLight > 15f && dimSprite != null) spriteRenderer.sprite = dimSprite;
-                else if (outSprite != null) spriteRenderer.sprite = outSprite;
-            }
+            int bucket = _currentLight > 55f ? 2 : (_currentLight > 15f ? 1 : 0);
+            _lastAnimBucket = bucket;
+            ApplyCurrentFrameSprite(bucket);
+
             if (glowRenderer != null)
             {
                 glowRenderer.enabled = IsLit && (spriteRenderer == null || spriteRenderer.enabled);

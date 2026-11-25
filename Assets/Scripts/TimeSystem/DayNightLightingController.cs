@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using MoonpetalValley.Core;
 using MoonpetalValley.Data;
@@ -17,33 +18,63 @@ namespace MoonpetalValley.TimeSystem
         private void OnEnable()
         {
             GameEventBus.OnTimeChanged += HandleTimeChanged;
+            SceneManager.sceneLoaded += HandleSceneLoaded;
         }
 
         private void OnDisable()
         {
             GameEventBus.OnTimeChanged -= HandleTimeChanged;
+            SceneManager.sceneLoaded -= HandleSceneLoaded;
         }
 
         private void Start()
         {
+            RefreshNow();
+        }
+
+        private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            RefreshNow();
+        }
+
+        private void RefreshNow()
+        {
             if (GameRoot.Instance != null && GameRoot.Instance.Time != null)
-            {
                 HandleTimeChanged(GameRoot.Instance.Time.CurrentDay, GameRoot.Instance.Time.CurrentHourFloat);
-            }
+            else
+                HandleTimeChanged(1, 12f);
         }
 
         private void Update()
         {
             if (ambientTintImage != null)
             {
-                ambientTintImage.color = Color.Lerp(ambientTintImage.color, _targetTint, Time.unscaledDeltaTime * 3.0f);
+                ambientTintImage.color = Color.Lerp(ambientTintImage.color, _targetTint, Time.unscaledDeltaTime * 4.0f);
             }
         }
 
         private void HandleTimeChanged(int day, float hour)
         {
+            string activeScene = SceneManager.GetActiveScene().name;
+            bool inWestSwamp = activeScene == "WestSwamp_Chapter2";
+
             float dusk = timeConfig != null ? timeConfig.duskStartHour : 18f;
             float night = timeConfig != null ? timeConfig.nightStartHour : 20f;
+
+            if (inWestSwamp)
+            {
+                // Tach biet anh sang Dam Lay khoi lop phu ngay/dem ngoai troi -> khong bi toi mu luc chang vang/dem
+                // Giao toan quyen dieu tiet khong khi am thap cho SwampAtmosphereController
+                float nightBlend = hour >= dusk ? Mathf.InverseLerp(dusk, night, hour) : 0f;
+                _targetTint = Color.Lerp(
+                    new Color(0.06f, 0.14f, 0.16f, 0.02f),
+                    new Color(0.04f, 0.10f, 0.16f, 0.06f),
+                    nightBlend);
+
+                var lumiSwamp = UnityEngine.Object.FindAnyObjectByType<LumiCompanionController>();
+                if (lumiSwamp != null) lumiSwamp.SetHaloRadiusScale(2.1f);
+                return;
+            }
 
             // Cozy Stardew-inspired sunlit warmth & clearer luminous moonlit night
             Color morningTint = new Color(1.0f, 0.94f, 0.76f, 0.09f);

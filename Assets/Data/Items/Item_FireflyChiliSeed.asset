@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2684ab40cc266f746b8e9c76426ecc77, type: 3}
+  m_Name: Item_FireflyChiliSeed
+  m_EditorClassIdentifier: Assembly-CSharp::MoonpetalValley.Data.ItemData
+  itemID: item_firefly_chili_seed
+  displayNameKey: item.firefly_chili_seed.name
+  descriptionKey: item.firefly_chili_seed.desc
+  icon: {fileID: 21300000, guid: 5a6c02da2adb6dc409f337837612a536, type: 3}
+  category: 1
+  maxStack: 99
+  staminaRestore: 0
+  lightHPRestore: 0
+  clearsExhaustionPenalty: 0
+  growDays: 2
+  linkedCropData: {fileID: 11400000, guid: 51abc0aedf140da47a14923f04af4acf, type: 2}
+  isQuestProtected: 0

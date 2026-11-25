@@ -50,8 +50,27 @@ namespace MoonpetalValley.Combat
         private Vector2 _knockbackVelocity;
         private PlayerController2D _player;
         private bool _isDefeated;
+        private bool _swarmAggro;
+        private float _swarmDetectRadius = 60f;
 
         public bool IsDefeated => _isDefeated;
+
+        public void ForceSwarmAggro(PlayerController2D target, float overrideDetectRadius = 60f)
+        {
+            _swarmAggro = true;
+            _swarmDetectRadius = Mathf.Max(20f, overrideDetectRadius);
+            if (target != null) _player = target;
+            if (!_isDefeated && _state == SlimeState.Idle && _player != null)
+            {
+                _state = SlimeState.Telegraph;
+                _stateTimer = 0.25f;
+                if (spriteRenderer != null)
+                {
+                    spriteRenderer.color = new Color(1f, 0.90f, 0.65f, 1f);
+                    spriteRenderer.flipX = _player.transform.position.x < transform.position.x;
+                }
+            }
+        }
 
         private void Start()
         {
@@ -101,7 +120,7 @@ namespace MoonpetalValley.Combat
 
             _stateTimer -= Time.deltaTime;
 
-            float detectR = enemyData != null ? enemyData.detectionRadius : 4.5f;
+            float detectR = _swarmAggro ? _swarmDetectRadius : (enemyData != null ? enemyData.detectionRadius : 4.5f);
             float moveSpd = enemyData != null ? enemyData.moveSpeed : 2.8f;
             float interval = enemyData != null ? enemyData.attackInterval : 1.1f;
 

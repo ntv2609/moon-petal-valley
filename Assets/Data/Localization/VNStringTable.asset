@@ -477,3 +477,55 @@ MonoBehaviour:
     vietnameseText: Wen
   - key: dlg_ch2_post_echo2_txt_1
     vietnameseText: "M\xECnh \u0111\xE3 hi\u1EC3u tr\u1ECDn v\u1EB9n s\u1EF1 th\u1EADt \u0111\xEAm b\xE3o r\u1ED3i. M\xECnh c\u1EA7n \u0111\u01B0a hai ng\u01B0\u1EDDi \u0111\u1ED1i m\u1EB7t \u0111\u1EC3 n\u1ED1i l\u1EA1i c\xE2y c\u1EA7u."
+  - key: item.moonbud_seed.name
+    vietnameseText: "H\u1EA1t C\xE1nh Tr\u0103ng Non"
+  - key: item.moonbud_seed.desc
+    vietnameseText: "Gieo \u1EDF V\u01B0\u1EDDn \u01AF\u01A1m 2 ng\xE0y \u0111\u1EC3 thu ho\u1EA1ch C\xE1nh Tr\u0103ng Non n\u1EA5u thu\u1ED1c h\u1ED3i m\xE1u m\u1EA1nh."
+  - key: item.moonbud_crop.name
+    vietnameseText: "C\xE1nh Tr\u0103ng Non"
+  - key: item.moonbud_crop.desc
+    vietnameseText: "Hoa ph\xE1t s\xE1ng d\u1ECBu d\xF9ng n\u1EA5u Tinh Ch\u1EA5t \xC1nh Tr\u0103ng (+85 M\xE1u + 2s B\u1EA5t T\u1EED)."
+  - key: item.firefly_chili_seed.name
+    vietnameseText: "H\u1EA1t \u1EDAt \u0110om \u0110\xF3m"
+  - key: item.firefly_chili_seed.desc
+    vietnameseText: "Gieo 2 ng\xE0y thu ho\u1EA1ch \u1EDAt \u0110om \u0110\xF3m l\xE0m B\xE1nh L\u1EEDa \u0110\xEAm t\u0103ng s\xE1t th\u01B0\u01A1ng."
+  - key: item.firefly_chili.name
+    vietnameseText: "\u1EDAt \u0110om \u0110\xF3m"
+  - key: item.firefly_chili.desc
+    vietnameseText: "Tr\xE1i \u1EDBt cay ph\xE1t s\xE1ng d\xF9ng n\u01B0\u1EDBng B\xE1nh L\u1EEDa \u0110\xEAm."
+  - key: item.dew_tea.name
+    vietnameseText: "Tr\xE0 S\u01B0\u01A1ng \u1EA4m"
+  - key: item.dew_tea.desc
+    vietnameseText: "B\u1EA5m [F] \u0111\u1EC3 u\u1ED1ng nhanh: h\u1ED3i +45 M\xE1u \xC1nh S\xE1ng & +15 Th\u1EC3 L\u1EF1c."
+  - key: item.moon_elixir.name
+    vietnameseText: "Tinh Ch\u1EA5t \xC1nh Tr\u0103ng"
+  - key: item.moon_elixir.desc
+    vietnameseText: "B\u1EA5m [F] \u0111\u1EC3 u\u1ED1ng nhanh: h\u1ED3i +85 M\xE1u \xC1nh S\xE1ng, +20 Th\u1EC3 L\u1EF1c & 2s B\u1EA5t T\u1EED."
+  - key: item.nightfire_cake.name
+    vietnameseText: "B\xE1nh L\u1EEDa \u0110\xEAm"
+  - key: item.nightfire_cake.desc
+    vietnameseText: "B\u1EA5m [C] \u0111\u1EC3 \u0103n nhanh: +40% S\xE1t Th\u01B0\u01A1ng & +25% T\u1ED1c \u0110\u1ED9 trong 45 gi\xE2y."
+  - key: item.star_fertilizer.name
+    vietnameseText: "Ph\xE2n B\xF3n Tinh B\u1EE5i"
+  - key: item.star_fertilizer.desc
+    vietnameseText: "R\u1EAFc l\xEAn c\xE2y \u0111ang tr\u1ED3ng \u0111\u1EC3 ch\xEDn t\u1EE9c th\xEC v\xE0 h\xF3a Ph\xE1t S\xE1ng x2 s\u1EA3n l\u01B0\u1EE3ng!"
+  - key: crop.moonbud.name
+    vietnameseText: "C\xE1nh Tr\u0103ng Non"
+  - key: crop.firefly_chili.name
+    vietnameseText: "\u1EDAt \u0110om \u0110\xF3m"
+  - key: item.gloom_shard.name
+    vietnameseText: "M\u1EA3nh S\u01B0\u01A1ng \u0110en"
+  - key: item.gloom_shard.desc
+    vietnameseText: "Tinh th\u1EC3 s\u01B0\u01A1ng c\xF4 \u0111\u1EB7c r\u01A1i t\u1EEB qu\xE1i \u0111\u1EA7m l\u1EA7y. D\xF9ng \u0111\u1EC3 r\xE8n n\xE2ng c\u1EA5p trang b\u1ECB t\u1EA1i L\xF2 R\xE8n c\u1EE7a \xD4ng Kael."
+  - key: item.moon_sickle_lv2.name
+    vietnameseText: "Li\u1EC1m \xC1nh Tr\u0103ng Lv.2"
+  - key: item.moon_sickle_lv2.desc
+    vietnameseText: "Li\u1EC1m r\xE8n t\u1EEB M\u1EA3nh S\u01B0\u01A1ng \u0110en: +30% S\xE1t th\u01B0\u01A1ng Li\u1EC1m & S\xF3ng Tr\u0103ng v\u0129nh vi\u1EC5n."
+  - key: item.watering_can_lv2.name
+    vietnameseText: "B\xECnh T\u01B0\u1EDBi Tr\u0103ng 3x3"
+  - key: item.watering_can_lv2.desc
+    vietnameseText: "T\u01B0\u1EDBi n\u01B0\u1EDBc c\xF9ng l\xFAc v\xF9ng 3x3 \xF4 \u0111\u1EA5t ch\u1EC9 trong 1 l\u1EA7n b\u1EA5m."
+  - key: item.nightwind_boots.name
+    vietnameseText: "Gi\xE0y Gi\xF3 \u0110\xEAm"
+  - key: item.nightwind_boots.desc
+    vietnameseText: "T\u0103ng v\u0129nh vi\u1EC5n +20% t\u1ED1c \u0111\u1ED9 di chuy\u1EC3n tr\xEAn m\u1ECDi b\u1EA3n \u0111\u1ED3."

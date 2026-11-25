@@ -52,10 +52,23 @@ namespace MoonpetalValley.Combat
         private PlayerController2D _player;
         private bool _isDefeated;
         private bool _hasSplit;
+        private bool _swarmAggro;
+        private float _swarmDetectRadius = 60f;
 
         public bool IsDefeated => _isDefeated;
         public bool IsStunned => _state == BigSlimeState.Stunned;
         public void SetCombatZone(SwampCombatZoneController zone) { combatZone = zone; }
+
+        public void ForceSwarmAggro(PlayerController2D target, float overrideDetectRadius = 60f)
+        {
+            _swarmAggro = true;
+            _swarmDetectRadius = Mathf.Max(20f, overrideDetectRadius);
+            if (target != null) _player = target;
+            if (!_isDefeated && _state == BigSlimeState.Idle && _player != null)
+            {
+                EnterState(BigSlimeState.Approaching, 1.3f);
+            }
+        }
 
         private void Start()
         {
@@ -100,7 +113,7 @@ namespace MoonpetalValley.Combat
             }
 
             _stateTimer -= Time.deltaTime;
-            float detectR = enemyData != null ? enemyData.detectionRadius : 6.0f;
+            float detectR = _swarmAggro ? _swarmDetectRadius : (enemyData != null ? enemyData.detectionRadius : 6.0f);
             float moveSpd = enemyData != null ? enemyData.moveSpeed : 1.75f;
             float teleDur = enemyData != null ? enemyData.telegraphDuration : 0.70f;
             float waveR = enemyData != null ? enemyData.mudWaveRadius : 2.5f;
@@ -346,8 +359,15 @@ namespace MoonpetalValley.Combat
                 JuiceEffectsManager.Instance.TriggerCameraShake(0.12f, 0.14f);
             }
             if (miniSlimePrefab == null) return;
-            Instantiate(miniSlimePrefab, transform.position + new Vector3(-0.9f, -0.35f, 0f), Quaternion.identity);
-            Instantiate(miniSlimePrefab, transform.position + new Vector3(0.9f, -0.35f, 0f), Quaternion.identity);
+            GameObject m1 = Instantiate(miniSlimePrefab, transform.position + new Vector3(-0.9f, -0.35f, 0f), Quaternion.identity);
+            GameObject m2 = Instantiate(miniSlimePrefab, transform.position + new Vector3(0.9f, -0.35f, 0f), Quaternion.identity);
+            if (_swarmAggro)
+            {
+                GloomSlimeController gs1 = m1 != null ? m1.GetComponent<GloomSlimeController>() : null;
+                if (gs1 != null) gs1.ForceSwarmAggro(_player, _swarmDetectRadius);
+                GloomSlimeController gs2 = m2 != null ? m2.GetComponent<GloomSlimeController>() : null;
+                if (gs2 != null) gs2.ForceSwarmAggro(_player, _swarmDetectRadius);
+            }
         }
 
         private void DieAndSpawnLoot()

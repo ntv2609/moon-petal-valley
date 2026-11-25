@@ -51,10 +51,28 @@ namespace MoonpetalValley.Combat
         private PlayerController2D _player;
         private bool _isDefeated;
         private bool _attackHitDone;
+        private bool _swarmAggro;
+        private float _swarmDetectRadius = 60f;
 
         public bool IsDefeated => _isDefeated;
         public bool IsStunned => _state == CrawlerState.Stunned;
         public void SetCombatZone(SwampCombatZoneController zone) { combatZone = zone; }
+
+        public void ForceSwarmAggro(PlayerController2D target, float overrideDetectRadius = 60f)
+        {
+            _swarmAggro = true;
+            _swarmDetectRadius = Mathf.Max(20f, overrideDetectRadius);
+            if (target != null) _player = target;
+            if (!_isDefeated && _state == CrawlerState.Idle && _player != null)
+            {
+                float moveSpd = enemyData != null ? enemyData.moveSpeed : 2.6f;
+                float burrowDur = enemyData != null ? enemyData.burrowDuration : 1.15f;
+                Vector2 dir = ((Vector2)_player.transform.position - (Vector2)transform.position).normalized;
+                _moveVelocity = dir * (moveSpd * 1.35f);
+                EnterState(CrawlerState.Burrowing, burrowDur);
+                if (spriteRenderer != null && Mathf.Abs(dir.x) > 0.05f) spriteRenderer.flipX = dir.x < 0f;
+            }
+        }
 
         private void Start()
         {
@@ -99,7 +117,7 @@ namespace MoonpetalValley.Combat
             }
 
             _stateTimer -= Time.deltaTime;
-            float detectR = enemyData != null ? enemyData.detectionRadius : 5.2f;
+            float detectR = _swarmAggro ? _swarmDetectRadius : (enemyData != null ? enemyData.detectionRadius : 5.2f);
             float moveSpd = enemyData != null ? enemyData.moveSpeed : 2.6f;
             float burrowDur = enemyData != null ? enemyData.burrowDuration : 1.15f;
             float teleDur = enemyData != null ? enemyData.telegraphDuration : 0.52f;
